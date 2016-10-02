@@ -1,0 +1,56 @@
+{
+  "name": "himawari",
+  "version": "0.0.1",
+  "description": "Study for Kotlin, SpringBoot, React, Redux.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cxpqwvtj/himawari.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cxpqwvtj/himawari/issues"
+  },
+  "homepage": "https://github.com/cxpqwvtj/himawari",
+  "dependencies": {
+    "babel-polyfill": "^6.16.0",
+    "material-ui": "^0.15.4",
+    "moment": "^2.15.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.6",
+    "react-tap-event-plugin": "^1.0.0",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.6.1",
+    "redux-saga": "^0.11.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "express": "^4.14.0",
+    "html-webpack-plugin": "^2.22.0",
+    "http-proxy-middleware": "^0.17.2",
+    "react-hot-loader": "^3.0.0-beta.5",
+    "react-transform-hmr": "^1.0.4",
+    "redux-devtools": "^3.3.1",
+    "redux-devtools-chart-monitor": "^1.4.2",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.11",
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.3",
+    "webpack-hot-middleware": "^2.12.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=development webpack --progress --colors",
+    "package": "NODE_ENV=production webpack --release --progress --colors",
+    "start": "NODE_ENV=development HOT_DEPLOY=true SERVER_MOCK=true node src/main/client-dev-server/server.js",
+    "watch": "NODE_ENV=development webpack --watch --progress --colors"
+  }
+}
