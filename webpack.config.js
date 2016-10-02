@@ -1,5 +1,6 @@
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const DEBUG = !(process.env.NODE_ENV === 'production')
 const VERBOSE = process.argv.includes('--verbose')
@@ -34,7 +35,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'himawari',
       template: 'index.ejs'
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'assets'}
+    ])
   ],
   module: {
     loaders: [
