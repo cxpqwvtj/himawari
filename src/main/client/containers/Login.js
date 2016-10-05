@@ -14,10 +14,13 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div style={{textAlign: 'center'}}>
+          <span>ログイン</span>
+        </div>
+        <div style={{textAlign: 'center'}}>
           <TextField floatingLabelText='メールアドレス' />
         </div>
-        <div>
+        <div style={{textAlign: 'center'}}>
           <TextField floatingLabelText='パスワード' />
         </div>
       </div>
