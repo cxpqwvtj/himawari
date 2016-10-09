@@ -19,20 +19,25 @@
 |登録更新|POST|/api/timecard/{userid}/{yearMonth}/update|
 
 
+prmd のインストール
+```sh
+bundle install --path vendor/bundle
+```
+
 - API作成
 
 ```sh
-prmd init --yaml timecard > doc/schema/schemata/timecard.yml
+bundle exec prmd init --yaml timecard > doc/schema/schemata/timecard.yml
 ```
 
 - schemaファイル結合
 
 ```sh
-prmd combine --meta doc/schema/meta.yml doc/schema/schemata/ > doc/schema/schema.js
+bundle exec prmd combine --meta doc/schema/meta.yml doc/schema/schemata/ > doc/schema/schema.js
 ```
 
 - ドキュメント作成
 
 ```sh
-prmd doc schema.json > schema.md
+bundle exec prmd doc schema.json > schema.md
 ```
