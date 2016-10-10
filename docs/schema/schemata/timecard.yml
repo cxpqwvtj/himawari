@@ -1,0 +1,78 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+id: schemata/timecard
+title: TimeCard
+description: 月の時間データ
+stability: prototype
+strictProperties: true
+type:
+- object
+definitions:
+  id:
+    description: unique identifier of timecard
+    readOnly: true
+    format: uuid
+    type:
+    - string
+  name:
+    description: unique name of timecard
+    readOnly: true
+    type:
+    - string
+  identity:
+    anyOf:
+    - "$ref": "/schemata/timecard#/definitions/id"
+    - "$ref": "/schemata/timecard#/definitions/name"
+  created_at:
+    description: when timecard was created
+    format: date-time
+    type:
+    - string
+  updated_at:
+    description: when timecard was updated
+    format: date-time
+    type:
+    - string
+links:
+- description: Create a new timecard.
+  href: "/timecards"
+  method: POST
+  rel: create
+  schema:
+    properties: {}
+    type:
+    - object
+  title: Create
+- description: Delete an existing timecard.
+  href: "/timecards/{(%2Fschemata%2Ftimecard%23%2Fdefinitions%2Fidentity)}"
+  method: DELETE
+  rel: destroy
+  title: Delete
+- description: Info for existing timecard.
+  href: "/timecards/{(%2Fschemata%2Ftimecard%23%2Fdefinitions%2Fidentity)}"
+  method: GET
+  rel: self
+  title: Info
+- description: List existing timecards.
+  href: "/timecards"
+  method: GET
+  rel: instances
+  title: List
+- description: Update an existing timecard.
+  href: "/timecards/{(%2Fschemata%2Ftimecard%23%2Fdefinitions%2Fidentity)}"
+  method: PATCH
+  rel: update
+  schema:
+    properties: {}
+    type:
+    - object
+  title: Update
+properties:
+  id:
+    "$ref": "/schemata/timecard#/definitions/id"
+  name:
+    "$ref": "/schemata/timecard#/definitions/name"
+  created_at:
+    "$ref": "/schemata/timecard#/definitions/created_at"
+  updated_at:
+    "$ref": "/schemata/timecard#/definitions/updated_at"

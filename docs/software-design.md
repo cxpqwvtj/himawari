@@ -27,17 +27,17 @@ bundle install --path vendor/bundle
 - API作成
 
 ```sh
-bundle exec prmd init --yaml timecard > doc/schema/schemata/timecard.yml
+bundle exec prmd init --yaml timecard > docs/schema/schemata/timecard.yml
 ```
 
 - schemaファイル結合
 
 ```sh
-bundle exec prmd combine --meta doc/schema/meta.yml doc/schema/schemata/ > doc/schema/schema.js
+bundle exec prmd combine --meta docs/schema/meta.yml docs/schema/schemata/ > docs/schema/schema.json
 ```
 
 - ドキュメント作成
 
 ```sh
-bundle exec prmd doc schema.json > schema.md
+bundle exec prmd doc docs/schema/schema.json > docs/schema/schema.md
 ```
