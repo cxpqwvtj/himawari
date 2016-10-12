@@ -33,6 +33,6 @@ dependencies {
 }
 
 task generate << {
-  def hello = new app.himawari.Hello()
-  hello.show()
+  def hello = new app.himawari.JsonSchema()
+  hello.read()
 }
