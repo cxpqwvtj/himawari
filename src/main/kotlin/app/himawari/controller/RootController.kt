@@ -1,10 +1,13 @@
 package app.himawari.controller
 
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestMethod
+import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 /**
@@ -13,9 +16,16 @@ import javax.servlet.http.HttpServletResponse
 @Controller
 @RequestMapping("/")
 open class RootController {
-    @GetMapping(path = arrayOf("", "timber/**"))
+    private val logger = LoggerFactory.getLogger(this.javaClass)
+
+    @GetMapping(path = arrayOf("/"))
     open fun root(response: HttpServletResponse) {
         response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_HTML_VALUE)
         response.outputStream.use { it.write(this.javaClass.getResource("/static/index.html").readBytes()) }
+    }
+
+    @RequestMapping(path = arrayOf("/api/**"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
+    open fun api(request: HttpServletRequest) {
+        logger.debug("apiメソッドが呼ばれました。")
     }
 }
