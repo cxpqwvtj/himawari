@@ -1,11 +1,10 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import App from './containers/App'
-import Login from './containers/Login'
+import * as Containers from './containers'
 
 export default (
-  <Route path={`${process.env.CONTEXT_PATH}/`} component={App}>
-    <IndexRoute component={Login} />
-    <Route path='login' component={Login} />
+  <Route path={`${process.env.CONTEXT_PATH}/`} component={Containers.App}>
+    <IndexRoute component={Containers.Login} />
+    <Route path='login' component={Containers.Login} />
   </Route>
 )
