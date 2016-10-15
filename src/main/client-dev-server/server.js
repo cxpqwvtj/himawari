@@ -32,6 +32,12 @@ if (!!process.env.SERVER_MOCK) {
   app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: false}))
 }
 
+app.get('/**', function(req, res) {
+  console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`)
+  res.setHeader('Content-Type', 'text/html')
+  res.send(compiler.outputFileSystem.readFileSync(compiler.outputPath + '/index.html'))
+})
+
 app.listen(port, function(error) {
   if (error) {
     console.error(error)
