@@ -38,3 +38,7 @@ task generate << {
   def hello = new JsonSchema()
   hello.read()
 }
+
+task appRun << {
+  println "TODO:アプリ起動処理実装"
+}
