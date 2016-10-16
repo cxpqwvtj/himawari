@@ -11,7 +11,7 @@ let CONTEXT_PATH = `${(process.env.CONTEXT_PATH || '')}`
 module.exports = {
   context: __dirname + '/src/main/client',
   entry: {
-    'js/bundle': [...(HOT_DEPLOY ? ['webpack-hot-middleware/client'] : []), './index.js']
+    'js/bundle': [...(HOT_DEPLOY ? ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'] : []), './index.js']
   },
   output: {
     path: __dirname + (WATCH ? '/build/resources/main' : '/src/main/resources') + '/static',
