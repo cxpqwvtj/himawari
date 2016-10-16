@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
@@ -17,7 +16,9 @@ class App extends AppBaseComponent {
     const { children } = this.props
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        {children}
+        <div>
+          {children}
+        </div>
       </MuiThemeProvider>
     )
   }
