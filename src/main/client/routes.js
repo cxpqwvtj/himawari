@@ -6,5 +6,6 @@ export default (
   <Route path={`${process.env.CONTEXT_PATH}/`} component={Containers.App}>
     <IndexRoute component={Containers.PortalPage} />
     <Route path='login' component={Containers.Login} />
+    <Route path='timecards(/:yearMonth)' component={Containers.TimeCard} />
   </Route>
 )

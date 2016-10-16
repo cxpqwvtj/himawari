@@ -16,13 +16,15 @@ class PortalPage extends AppBaseComponent {
           iconElementLeft={<IconButton><NavigationMenu /></IconButton>}
           iconElementRight={
             <FlatButton
-              label="Sign in"
+              label='Sign in'
               labelStyle={{textTransform: 'none'}}
               onClick={() => {super.handleUrlChange('/login')}}
             />
           }
         />
-        <div>PortalPage</div>
+        <div style={{margin: '10px'}}>
+          <FlatButton label='TimeCard' onClick={() => {super.handleUrlChange('/timecards/201701')}} />
+        </div>
       </div>
     )
   }
