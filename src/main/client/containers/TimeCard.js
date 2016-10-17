@@ -23,14 +23,14 @@ class TimeCard extends AppBaseComponent {
         </Toolbar>
         <div>
           <Table>
-            <TableHeader>
+            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn>Date</TableHeaderColumn>
                 <TableHeaderColumn>Start</TableHeaderColumn>
                 <TableHeaderColumn>End</TableHeaderColumn>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody displayRowCheckbox={false}>
               <TableRow>
                 <TableRowColumn>1/1</TableRowColumn>
                 <TableRowColumn>9:00</TableRowColumn>
