@@ -4,14 +4,29 @@ package app.himawari.gen
  * Created by masahiro on 2016/10/18.
  */
 class MetaClass {
-    String className
     String variableName
     List<MetaClass> properties
-    JsonType jsonType
+    String jsonType
     String size
 
+    String getClassName() {
+        return variableName[0].toUpperCase() + variableName[1..<variableName.size()]
+    }
+
     String getPropertyClassName() {
-        return isListProperty() ? "List<${className}>" : className
+        if (isListProperty()) {
+            return "List<${className}>"
+        } else if (JsonType.OBJECT.definitions.contains(jsonType)) {
+            return getClassName()
+        } else if (JsonType.STRING.definitions.contains(jsonType)) {
+            return "String"
+        } else if (JsonType.NUMBER.definitions.contains(jsonType)) {
+            return "Int"
+        } else if (JsonType.BOOLEAN.definitions.contains(jsonType)) {
+            return "Boolean"
+        }
+        println("想定外の型です。varialbleName:${variableName}")
+        return ""
     }
 
     Boolean isListProperty() {
