@@ -9,6 +9,12 @@ class MetaClass {
     String jsonType
     String size
 
+    void setVariableName(String value) {
+        if (value ==~ /A-Z/) {
+            println("大文字開始の名称です。${value}")
+        }
+    }
+
     String getClassName() {
         return variableName[0].toUpperCase() + variableName[1..<variableName.size()]
     }
