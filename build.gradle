@@ -1,4 +1,4 @@
-import app.himawari.JsonSchema
+import app.himawari.gen.ClassGenerator
 
 buildscript {
   ext {
@@ -35,8 +35,7 @@ dependencies {
 }
 
 task generate << {
-  def hello = new JsonSchema()
-  hello.read()
+  new ClassGenerator().generate()
 }
 
 task appRun << {
