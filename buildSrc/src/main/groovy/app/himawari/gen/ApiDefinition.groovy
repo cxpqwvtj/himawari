@@ -7,6 +7,7 @@ class ApiDefinition {
     String apiIdentifier
     String apiName
     String apiDescription
+    List<String> headers = []
 
     def request = new RequestDefinition()
     def response = new ResponseDefinition()

@@ -1,4 +1,4 @@
-import app.himawari.gen.ClassGenerator
+import app.himawari.gen.*
 
 buildscript {
   ext {
@@ -35,7 +35,7 @@ dependencies {
 }
 
 task generate << {
-  new ClassGenerator().generate()
+  new HtmlGenerator().generate()
 }
 
 task appRun << {

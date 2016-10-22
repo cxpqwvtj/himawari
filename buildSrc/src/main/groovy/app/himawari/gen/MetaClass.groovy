@@ -1,9 +1,13 @@
 package app.himawari.gen
 
+import app.himawari.gen.excel.Util
+import org.apache.poi.ss.usermodel.Row
+
 /**
  * Created by masahiro on 2016/10/18.
  */
 class MetaClass {
+    Row row
     String levelDef
     String logicalNameDef
     String descriptionDef
@@ -12,13 +16,21 @@ class MetaClass {
     String variableNameDef
     String jsonTypeDef
     String noteDef
-    List<MetaClass> properties
+    MetaClass parent = null
+    List<MetaClass> properties = []
 
-    void setVariableNameDef(variableNameDef) {
-        if (variableNameDef ==~ /[A-Z].+/) {
-            println("大文字開始の名称です。${variableNameDef}")
-        }
-        this.variableNameDef = variableNameDef
+    MetaClass(Row row) {
+        assert row != null
+        this.row = row
+        if (row.lastCellNum < 8) return
+        levelDef = Util.stringValue(row.getCell(1)).trim()
+        logicalNameDef = Util.stringValue(row.getCell(2))
+        descriptionDef = Util.stringValue(row.getCell(3))
+        sizeDef = Util.stringValue(row.getCell(4))
+        emptyConditionDef = Util.stringValue(row.getCell(5))
+        variableNameDef = Util.stringValue(row.getCell(6))
+        jsonTypeDef = Util.stringValue(row.getCell(7))
+        noteDef = Util.stringValue(row.getCell(8))
     }
 
     String getClassName() {
@@ -49,5 +61,25 @@ class MetaClass {
             return true
         }
         return false
+    }
+
+    int getLevel() {
+        return Integer.parseInt(levelDef.trim())
+    }
+
+    boolean validate() {
+        def ret = true
+        def rowNum = row.getRowNum() + 1
+        if (levelDef ==~ /[0-9]+/) {
+            // 正常
+        } else {
+            println("[${rowNum}]levelが不正です")
+            ret = false
+        }
+        if (variableNameDef ==~ /[A-Z].+/) {
+            println("[${rowNum}]大文字開始の名称です。${variableNameDef}")
+            ret = false
+        }
+        return ret
     }
 }
