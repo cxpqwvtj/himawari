@@ -14,6 +14,7 @@ class HtmlBuilder {
         return """<!DOCTYPE html>
 <html lang='ja'>
 <head>
+<meta charset='UTF-8'>
 <title>${title}</title>
 ${style()}
 </head>
@@ -24,10 +25,25 @@ ${body(list)}
 """
     }
 
-    private static String body(List<ApiDefinition> list) {
+    private String body(List<ApiDefinition> list) {
         def sb = new StringBuffer()
+        sb.append("<h2>${title}</h2>\n")
+        sb.append("<table>\n")
+        sb.append("<thead>\n")
+        sb.append("<tr><th>No</th><th>ID</th><th>name</th></tr>\n")
+        sb.append("</thead>\n")
+        sb.append("<tbody>\n")
+        list.eachWithIndex { apiDef, index ->
+            sb.append("<tr>\n")
+            sb.append("<td>${index + 1}</td>\n")
+            sb.append("<td><a href='#${apiDef.apiIdentifier}'>${apiDef.apiIdentifier}</a></td>\n")
+            sb.append("<td>${apiDef.apiName}</td>\n")
+            sb.append("</tr>\n")
+        }
+        sb.append("</tbody>\n")
+        sb.append("</table>\n")
         list.each { apiDef ->
-            sb.append("<h2>${apiDef.apiIdentifier} ${apiDef.apiName}</h2>\n")
+            sb.append("<h2 id='${apiDef.apiIdentifier}'>${apiDef.apiIdentifier} ${apiDef.apiName}</h2>\n")
             sb.append("<div>リクエスト</div>\n")
             sb.append(apiTable(apiDef.headers, apiDef.request.properties))
             sb.append("<div>レスポンス</div>\n")
@@ -48,42 +64,32 @@ ${body(list)}
         sb.append("</thead>\n")
         sb.append("<tbody>\n")
         list.each { meta ->
-            sb.append("<tr>")
-            sb.append("\n")
+            sb.append("<tr>\n")
             sb.append("<td style='padding-left: ${3 * meta.level}px'>")
             sb.append(meta.levelDef.replaceAll("\n", "<br />"))
-            sb.append("</td>")
-            sb.append("\n")
+            sb.append("</td>\n")
             sb.append("<td>")
             sb.append(meta.logicalNameDef.replaceAll("\n", "<br />"))
-            sb.append("</td>")
-            sb.append("\n")
+            sb.append("</td>\n")
             sb.append("<td>")
             sb.append(meta.descriptionDef.replaceAll("\n", "<br />"))
-            sb.append("</td>")
-            sb.append("\n")
+            sb.append("</td>\n")
             sb.append("<td style='text-align: center'>")
             sb.append(meta.sizeDef.replaceAll("\n", "<br />"))
-            sb.append("</td>")
-            sb.append("\n")
+            sb.append("</td>\n")
             sb.append("<td>")
             sb.append(meta.emptyConditionDef.replaceAll("\n", "<br />"))
-            sb.append("</td>")
-            sb.append("\n")
+            sb.append("</td>\n")
             sb.append("<td>")
             sb.append(meta.variableNameDef.replaceAll("\n", "<br />"))
-            sb.append("</td>")
-            sb.append("\n")
+            sb.append("</td>\n")
             sb.append("<td>")
             sb.append(meta.jsonTypeDef.replaceAll("\n", "<br />"))
-            sb.append("</td>")
-            sb.append("\n")
+            sb.append("</td>\n")
             sb.append("<td>")
             sb.append(meta.noteDef.replaceAll("\n", "<br />"))
-            sb.append("</td>")
-            sb.append("\n")
-            sb.append("</tr>")
-            sb.append("\n")
+            sb.append("</td>\n")
+            sb.append("</tr>\n")
         }
         sb.append("</tbody>\n")
         sb.append("</table>")
@@ -106,7 +112,6 @@ border-right: 1px solid #999;
 font-size: 12px;
 }
 table thead th {
-<!--width: 150px;-->
 padding: 2px;
 vertical-align: top;
 color: #333;
@@ -114,7 +119,6 @@ background-color: #eee;
 border: 1px solid #999;
 }
 table tbody td {
-<!--width: 150px;-->
 padding: 2px;
 background-color: #fff;
 border-bottom: 1px solid #999;
