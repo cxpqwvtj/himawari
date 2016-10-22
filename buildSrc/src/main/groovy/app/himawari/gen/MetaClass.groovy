@@ -4,42 +4,48 @@ package app.himawari.gen
  * Created by masahiro on 2016/10/18.
  */
 class MetaClass {
-    String variableName
+    String levelDef
+    String logicalNameDef
+    String descriptionDef
+    String sizeDef
+    String emptyConditionDef
+    String variableNameDef
+    String jsonTypeDef
+    String noteDef
     List<MetaClass> properties
-    String jsonType
-    String size
 
-    void setVariableName(String value) {
-        if (value ==~ /A-Z/) {
-            println("大文字開始の名称です。${value}")
+    void setVariableNameDef(variableNameDef) {
+        if (variableNameDef ==~ /[A-Z].+/) {
+            println("大文字開始の名称です。${variableNameDef}")
         }
+        this.variableNameDef = variableNameDef
     }
 
     String getClassName() {
-        return variableName[0].toUpperCase() + variableName[1..<variableName.size()]
+        return variableNameDef[0].toUpperCase() + variableNameDef[1..<variableNameDef.size()]
     }
 
     String getPropertyClassName() {
         if (isListProperty()) {
             return "List<${className}>"
-        } else if (JsonType.OBJECT.definitions.contains(jsonType)) {
+        } else if (JsonType.OBJECT.definitions.contains(jsonTypeDef)) {
             return getClassName()
-        } else if (JsonType.STRING.definitions.contains(jsonType)) {
+        } else if (JsonType.STRING.definitions.contains(jsonTypeDef)) {
             return "String"
-        } else if (JsonType.NUMBER.definitions.contains(jsonType)) {
+        } else if (JsonType.NUMBER.definitions.contains(jsonTypeDef)) {
             return "Int"
-        } else if (JsonType.BOOLEAN.definitions.contains(jsonType)) {
+        } else if (JsonType.BOOLEAN.definitions.contains(jsonTypeDef)) {
             return "Boolean"
         }
-        println("想定外の型です。varialbleName:${variableName}")
+        println("想定外の型です。varialbleName:${variableNameDef}")
         return ""
     }
 
     Boolean isListProperty() {
-        if (size ==~ /0-1/) {
+        if (sizeDef ==~ /0-1/) {
             return false
         }
-        if (size.contains("n") || size.contains("-")) {
+        if (sizeDef.contains("n") || sizeDef.contains("-")) {
             return true
         }
         return false

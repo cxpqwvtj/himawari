@@ -1,20 +1,27 @@
 package app.himawari.gen
 
+import app.himawari.gen.excel.JsonSpecExcel
 import groovy.io.FileType
-import org.apache.tools.ant.taskdefs.Classloader
 
 /**
  * Created by masahiro on 2016/10/20.
  */
 class ClassGenerator {
     void generate() {
-        def configFileUrl = new File("buildSrc/src/main/resources/config/default.config").toURI().toURL()
-        //def configFileUrl = ClassLoader.getSystemResource("config/default.config")
+        def configDir = new File("buildSrc/src/main/resources/config").toPath()
+        def configFileUrl = configDir.resolve("default.config").toUri().toURL()
         def defaultConfig = new ConfigSlurper().parse(configFileUrl)
-        println(defaultConfig)
-        def customConfig
-        new File("../sample").eachFileMatch(FileType.FILES, /.*\.xlsx/) {
-            println("${it.name}")
+        def customConfigFile = configDir.resolve("custom.config").toFile()
+        def config = (customConfigFile.exists()) ? defaultConfig.merge(new ConfigSlurper().parse(customConfigFile.toURI().toURL())) : defaultConfig
+        def excelDir = new File(config.excel.dir)
+        if (excelDir.exists()) {
+            def apiDefinitions = []
+            excelDir.eachFileMatch(FileType.FILES, ~/.*xlsx/) {
+                if (it.name.startsWith("~")) return
+                apiDefinitions.addAll(new JsonSpecExcel(it).read())
+            }
+        } else {
+            println("ディレクトリが存在しません。${config.excel.dir}")
         }
     }
 }

@@ -7,7 +7,7 @@ enum JsonType {
     OBJECT(["オブジェクト", "ｵﾌﾞｼﾞｪｸﾄ", "object"]),
     STRING(["文字列", "文字", "string"]),
     NUMBER(["数値", "数字", "number", "num"]),
-    BOOLEAN(["ブーリアン", "ブール", "bool"])
+    BOOLEAN(["ブーリアン", "ブール", "bool", "boolean"])
 
     List<String> definitions
 
