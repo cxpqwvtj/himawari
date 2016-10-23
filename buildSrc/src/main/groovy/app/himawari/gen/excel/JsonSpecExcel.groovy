@@ -1,7 +1,7 @@
 package app.himawari.gen.excel
 
-import app.himawari.gen.ApiDefinition
-import app.himawari.gen.MetaClass
+import app.himawari.gen.meta.ApiDefinition
+import app.himawari.gen.meta.MetaClass
 
 /**
  * Created by masahiro on 2016/10/22.

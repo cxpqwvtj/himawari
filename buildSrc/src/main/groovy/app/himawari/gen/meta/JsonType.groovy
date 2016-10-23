@@ -1,4 +1,4 @@
-package app.himawari.gen
+package app.himawari.gen.meta
 
 /**
  * Created by masahiro on 2016/10/18.

@@ -1,4 +1,4 @@
-package app.himawari.gen
+package app.himawari.gen.meta
 
 import app.himawari.gen.excel.Util
 import org.apache.poi.ss.usermodel.Row

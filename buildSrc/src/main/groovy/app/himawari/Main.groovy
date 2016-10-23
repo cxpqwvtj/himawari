@@ -1,6 +1,6 @@
 package app.himawari
 
-import app.himawari.gen.HtmlGenerator
+import app.himawari.gen.html.HtmlGenerator
 
 /**
  * Created by masahiro on 2016/10/21.

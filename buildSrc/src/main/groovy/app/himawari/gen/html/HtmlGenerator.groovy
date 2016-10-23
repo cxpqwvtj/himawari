@@ -1,6 +1,7 @@
-package app.himawari.gen
+package app.himawari.gen.html
 
 import app.himawari.gen.excel.JsonSpecExcel
+import app.himawari.gen.html.HtmlBuilder
 import groovy.io.FileType
 
 /**

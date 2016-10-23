@@ -1,4 +1,4 @@
-import app.himawari.gen.*
+import app.himawari.gen.html.*
 
 buildscript {
   ext {
