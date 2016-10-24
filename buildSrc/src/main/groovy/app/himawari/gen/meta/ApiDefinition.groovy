@@ -9,18 +9,18 @@ class ApiDefinition {
     String apiDescription
     List<String> headers = []
 
-    def request = new RequestDefinition()
-    def response = new ResponseDefinition()
+    MetaClass request
+    MetaClass response
 
-    String classNameBase() {
-        return "${apiIdentifier[0].toUpperCase()}${apiIdentifier[1..<apiIdentifier.size()]}"
-    }
+    ApiDefinition(String classNamePrefix, String apiIdentifier, String apiName, String apiDescription) {
+        this.classNamePrefix = classNamePrefix
+        this.apiIdentifier = apiIdentifier
+        this.apiName = apiName
+        this.apiDescription = apiDescription
 
-    String requestClassName() {
-        return "${classNamePrefix}Api${classNameBase()}Request"
-    }
-
-    String responseClassName() {
-        return "${classNamePrefix}Api${classNameBase()}Rsponse"
+        def classNameBase = "${classNamePrefix}Api${apiIdentifier[0].toUpperCase()}${apiIdentifier[1..<apiIdentifier.size()]}"
+        def className = "${classNameBase[0].toLowerCase()}${classNameBase[1..<classNameBase.size()]}"
+        request = new MetaClass("リクエスト", "${className}Request")
+        response = new MetaClass("レスポンス", "${className}}Response")
     }
 }

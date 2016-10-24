@@ -19,10 +19,10 @@ class JsonSpecExcel extends SpecExcel {
             def sheet = book.getSheetAt(sheetIndex)
 //            if (sheet.sheetName ==~ /.*/) return
             def responseType = false
-            def apiDefinition = new ApiDefinition()
-            apiDefinition.apiIdentifier = Util.stringValue(sheet.getRow(0).getCell(1))
-            apiDefinition.apiName = Util.stringValue(sheet.getRow(0).getCell(3))
-            apiDefinition.apiDescription = "${apiDefinition.apiIdentifier} ${apiDefinition.apiName}"
+            def apiIdentifier = Util.stringValue(sheet.getRow(0).getCell(1))
+            def apiName = Util.stringValue(sheet.getRow(0).getCell(3))
+            def apiDescription = "${apiIdentifier} ${apiName}"
+            def apiDefinition = new ApiDefinition("", apiIdentifier, apiName, apiDescription)
             def headerRow = sheet.getRow(4)
             apiDefinition.headers = [Util.stringValue(headerRow.getCell(1)),
                                      Util.stringValue(headerRow.getCell(2)),

@@ -19,6 +19,15 @@ class MetaClass {
     MetaClass parent = null
     List<MetaClass> properties = []
 
+    /**
+     * ルートオブジェクトの場合、このコンストラクタを使用する。
+     */
+    MetaClass(String name, String variableName) {
+        logicalNameDef = name
+        variableNameDef = variableName
+        jsonTypeDef = "オブジェクト"
+    }
+
     MetaClass(Row row) {
         assert row != null
         this.row = row

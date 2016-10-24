@@ -39,7 +39,7 @@ class ClassGenerator {
             def sb = new StringBuffer()
             sb.append("package ${config.classParam.packageName}\n")
             sb.append("\n")
-            sb.append("data class ${apiDefinition.requestClassName()}")
+            sb.append("data class ${apiDefinition.request.className}")
             println(sb.toString())
         }
     }
