@@ -37,10 +37,15 @@ class ClassGenerator {
     private void generateClass(List<ApiDefinition> apiDefinitions) {
         apiDefinitions.each { apiDefinition ->
             def sb = new StringBuffer()
+            // リクエスト用
             sb.append("package ${config.classParam.packageName}\n")
             sb.append("\n")
             sb.append("data class ${apiDefinition.request.className}")
+            apiDefinition.request.properties.each { property ->
+                // TODO: JsonSpecExcelでデータを階層構造で保持するようにしてから実装する
+            }
             println(sb.toString())
+            // レスポンス用
         }
     }
 }

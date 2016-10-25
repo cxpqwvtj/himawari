@@ -65,6 +65,8 @@ class JsonSpecExcel extends SpecExcel {
                         parent.properties.add(meta)
                     }
                     if (Util.stringValue(row.getCell(0)) == "response") responseType = true
+                    // TODO: トップレベルのプロパティにすべてのオブジェクトを詰めているのはバグ。階層構造を持つようにする
+                    // TODO: HTML出力では階層構造を意識してtableを組み立てる
                     if (responseType) {
                         apiDefinition.response.properties.add(meta)
                     } else {
