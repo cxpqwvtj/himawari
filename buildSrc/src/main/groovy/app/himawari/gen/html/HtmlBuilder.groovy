@@ -48,14 +48,14 @@ ${body(list)}
         list.each { apiDef ->
             sb.append("<h2 id='${apiDef.apiIdentifier}'>${apiDef.apiIdentifier} ${apiDef.apiName}</h2>\n")
             sb.append("<div>リクエスト</div>\n")
-            sb.append(apiTable(apiDef.headers, apiDef.request.properties))
+            sb.append(apiTable(apiDef.headers, apiDef.request))
             sb.append("<div>レスポンス</div>\n")
-            sb.append(apiTable(apiDef.headers, apiDef.response.properties))
+            sb.append(apiTable(apiDef.headers, apiDef.response))
         }
         return sb.toString()
     }
 
-    private static String apiTable(List<String> headers, List<MetaClass> list) {
+    private static String apiTable(List<String> headers, MetaClass meta) {
         def sb = new StringBuffer()
         sb.append("<table>\n")
         sb.append("<thead>\n")
@@ -66,6 +66,14 @@ ${body(list)}
         sb.append("</tr>\n")
         sb.append("</thead>\n")
         sb.append("<tbody>\n")
+        sb.append(row(meta.properties));
+        sb.append("</tbody>\n")
+        sb.append("</table>")
+        return sb.toString()
+    }
+
+    private static String row(List<MetaClass> list) {
+        def sb = new StringBuffer()
         list.each { meta ->
             sb.append("<tr>\n")
             sb.append("<td style='padding-left: ${3 * meta.level}px'>")
@@ -93,11 +101,13 @@ ${body(list)}
             sb.append(meta.noteDef.replaceAll("\n", "<br />"))
             sb.append("</td>\n")
             sb.append("</tr>\n")
+            if (!meta.properties.isEmpty()) {
+                sb.append(row(meta.properties))
+            }
         }
-        sb.append("</tbody>\n")
-        sb.append("</table>")
         return sb.toString()
     }
+
 
     private static String style() {
         return """<style type="text/css">

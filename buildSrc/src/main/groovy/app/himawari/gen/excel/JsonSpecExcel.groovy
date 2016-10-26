@@ -41,36 +41,34 @@ class JsonSpecExcel extends SpecExcel {
                     if (row == null) return
                     if (Util.stringValue(row.getCell(0)) == "request") defStarted = true
                     if (!defStarted) return
+                    if (Util.stringValue(row.getCell(0)) == "response") responseType = true
                     def meta = new MetaClass(row)
                     if (!meta.validate()) return
                     if (meta.level <= 1) {
                         parent = meta
+                        if (responseType) {
+                            apiDefinition.response.properties.add(meta)
+                        } else {
+                            apiDefinition.request.properties.add(meta)
+                        }
                     } else if (prevRow.level == meta.level) {
                         meta.parent = parent
                         parent.properties.add(meta)
-                    } else if (prevRow.level == meta.level + 1) {
+                    } else if (prevRow.level == meta.level - 1) {
                         parent = prevRow
                         meta.parent = parent
                         parent.properties.add(meta)
                     } else if (prevRow.level > meta.level) {
                         def temp = parent
                         while (temp != null) {
-                            if (temp.level == meta.level + 1) {
+                            if (temp.level == meta.level - 1) {
                                 parent = temp
                                 break;
                             }
-                            temp = parent.parent
+                            temp = temp.parent
                         }
                         meta.parent = parent
                         parent.properties.add(meta)
-                    }
-                    if (Util.stringValue(row.getCell(0)) == "response") responseType = true
-                    // TODO: トップレベルのプロパティにすべてのオブジェクトを詰めているのはバグ。階層構造を持つようにする
-                    // TODO: HTML出力では階層構造を意識してtableを組み立てる
-                    if (responseType) {
-                        apiDefinition.response.properties.add(meta)
-                    } else {
-                        apiDefinition.request.properties.add(meta)
                     }
                     prevRow = meta
                 } catch (Exception e) {
