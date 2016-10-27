@@ -128,7 +128,7 @@ table thead th {
 padding: 2px;
 vertical-align: top;
 color: #333;
-background-color: #eee;
+background-color: #2EFEF7;
 border: 1px solid #999;
 }
 table tbody td {
