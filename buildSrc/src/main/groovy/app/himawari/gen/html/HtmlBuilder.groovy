@@ -51,6 +51,7 @@ ${body(list)}
             sb.append(apiTable(apiDef.headers, apiDef.request))
             sb.append("<div>レスポンス</div>\n")
             sb.append(apiTable(apiDef.headers, apiDef.response))
+            sb.append("<hr />")
         }
         return sb.toString()
     }
