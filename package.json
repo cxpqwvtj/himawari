@@ -38,6 +38,7 @@
     "fsevents": "^1.0.14",
     "html-webpack-plugin": "^2.22.0",
     "http-proxy-middleware": "^0.17.2",
+    "json-loader": "^0.5.4",
     "react-hot-loader": "^3.0.0-beta.5",
     "react-transform-hmr": "^1.0.4",
     "redux-devtools": "^3.3.1",
@@ -46,7 +47,8 @@
     "redux-devtools-log-monitor": "^1.0.11",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.0"
+    "webpack-hot-middleware": "^2.13.0",
+    "yaml-loader": "^0.4.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
