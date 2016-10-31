@@ -1,3 +1,3 @@
 # himawari
 
-SpringBoot、Kotlin、React、Redux回りを勉強するためのプロジェクトです。
+SpringBoot、Kotlin、React、Redux、JSON Schema、あたりを勉強するためのプロジェクトです。
