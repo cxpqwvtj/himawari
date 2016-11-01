@@ -13,6 +13,7 @@
   "homepage": "https://github.com/cxpqwvtj/himawari",
   "dependencies": {
     "babel-polyfill": "^6.16.0",
+    "json-schema-parser": "^0.1.0",
     "material-ui": "^0.16.0",
     "moment": "^2.15.1",
     "react": "^15.3.2",
