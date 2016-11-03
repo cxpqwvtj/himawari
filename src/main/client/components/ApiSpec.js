@@ -12,24 +12,28 @@ export default class ApiSpec extends AppBaseComponent {
   }
 
   propertyRows(name, property, level) {
-    const children = property.get('properties')
-    console.log(level, name, property.get('description'), property.get('type').join(', '))
-    if (children === undefined) return
-    Immutable.List(Object.keys(children.toJS())).flatMap((key) => {
-      const childProperty = children.get(key)
-      if (childProperty.get('type').contains('object')) {
-        this.propertyRows(key, childProperty, level + 1)
-      } else if (childProperty.get('type').contains('array')) {
-        const items = childProperty.get('items').get('properties')
-        Immutable.List(Object.keys(items.toJS())).map((itemName) => {
-          this.propertyRows(itemName, items.get(itemName), level + 1)
-        })
-      }
-    })
+    console.log(level, name, property.get('description'))
+    const properties = property.get('properties')
+    if (properties) {
+      properties.map((v, k) => this.propertyRows(k, v, level + 1))
+    } else if (property.get('items') && property.get('items').get('properties')) {
+      property.get('items').get('properties').map((v, k) => this.propertyRows(k, v, level + 1))
+    }
+    return (
+      <TableRow>
+        <TableRowColumn>{level}</TableRowColumn>
+        <TableRowColumn>{name}</TableRowColumn>
+        <TableRowColumn>{property.get('description')}</TableRowColumn>
+        <TableRowColumn>{property.get('type')}</TableRowColumn>
+      </TableRow>
+    )
   }
 
   render() {
-    this.propertyRows('ROOT', Immutable.fromJS(Parser.parse(schemaJson)), 0)
+    const schema = Parser.parse(schemaJson)
+    const properties = Immutable.fromJS(schema.properties)
+    console.log(properties.flatMap((v, k) => this.propertyRows(k, v, 0)).map((v, k) => v).toJS())
+    const rows = undefined
     return (
       <div>
         <Table>
@@ -42,7 +46,7 @@ export default class ApiSpec extends AppBaseComponent {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {/*rows*/}
+            {rows}
           </TableBody>
         </Table>
       </div>
