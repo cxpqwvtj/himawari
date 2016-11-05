@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import Parser from 'json-schema-parser'
 import Immutable from 'immutable'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import FlatButton from 'material-ui/FlatButton'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
@@ -34,6 +35,9 @@ export default class ApiSpec extends AppBaseComponent {
     const rows = properties.map((v, k) => this.propertyRows(k, v, 0)).toList().flatMap((v) => v)
     return (
       <div>
+        <div style={{margin: '10px'}}>
+          <FlatButton label='TOP' onClick={() => {super.handleUrlChange('')}} />
+        </div>
         <Table>
           <TableHeader>
             <TableRow>

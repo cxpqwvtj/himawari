@@ -26,8 +26,8 @@ class PortalPage extends AppBaseComponent {
         <div style={{margin: '10px'}}>
           <FlatButton label='TimeCard' onClick={() => {super.handleUrlChange('/timecards/201701')}} />
         </div>
-        <div>
-          <ApiSpec />
+        <div style={{margin: '10px'}}>
+          <FlatButton label='API' onClick={() => {super.handleUrlChange('/docs/api')}} />
         </div>
       </div>
     )
