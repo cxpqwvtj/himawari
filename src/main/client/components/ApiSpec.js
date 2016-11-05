@@ -12,28 +12,26 @@ export default class ApiSpec extends AppBaseComponent {
   }
 
   propertyRows(name, property, level) {
-    console.log(level, name, property.get('description'))
-    const properties = property.get('properties')
-    if (properties) {
-      properties.map((v, k) => this.propertyRows(k, v, level + 1))
-    } else if (property.get('items') && property.get('items').get('properties')) {
-      property.get('items').get('properties').map((v, k) => this.propertyRows(k, v, level + 1))
-    }
-    return (
-      <TableRow>
+    const description = property.get('description')
+    const types = property.get('type') || Immutable.List.of()
+    const itemsProperties = property.get('items') && property.get('items').get('properties') ? property.get('items').get('properties') : undefined
+    const properties = property.get('properties') || itemsProperties
+    const rows = Immutable.List.of(
+      <TableRow key={`${level}${name}`}>
         <TableRowColumn>{level}</TableRowColumn>
         <TableRowColumn>{name}</TableRowColumn>
-        <TableRowColumn>{property.get('description')}</TableRowColumn>
-        <TableRowColumn>{property.get('type')}</TableRowColumn>
+        <TableRowColumn>{description}</TableRowColumn>
+        <TableRowColumn>{types.join(', ')}</TableRowColumn>
       </TableRow>
     )
+    const children = properties ? properties.map((v, k) => this.propertyRows(k, v, level + 1) ).toList().flatMap((v) => v) : undefined
+    return children ? rows.concat(children) : rows
   }
 
   render() {
     const schema = Parser.parse(schemaJson)
     const properties = Immutable.fromJS(schema.properties)
-    console.log(properties.flatMap((v, k) => this.propertyRows(k, v, 0)).map((v, k) => v).toJS())
-    const rows = undefined
+    const rows = properties.map((v, k) => this.propertyRows(k, v, 0)).toList().flatMap((v) => v)
     return (
       <div>
         <Table>
