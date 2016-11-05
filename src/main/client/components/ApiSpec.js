@@ -12,6 +12,8 @@ export default class ApiSpec extends AppBaseComponent {
   static propTypes = {
   }
 
+  levelColomnStyle = { width: '10px' }
+
   propertyRows(name, property, level) {
     const description = property.get('description')
     const types = property.get('type') || Immutable.List.of()
@@ -19,7 +21,7 @@ export default class ApiSpec extends AppBaseComponent {
     const properties = property.get('properties') || itemsProperties
     const rows = Immutable.List.of(
       <TableRow key={`${level}${name}`}>
-        <TableRowColumn>{level}</TableRowColumn>
+        <TableRowColumn style={Object.assign({}, this.levelColomnStyle, { paddingLeft: `${24 + (level * 5)}px` })}>{level}</TableRowColumn>
         <TableRowColumn>{name}</TableRowColumn>
         <TableRowColumn>{description}</TableRowColumn>
         <TableRowColumn>{types.join(', ')}</TableRowColumn>
@@ -34,20 +36,20 @@ export default class ApiSpec extends AppBaseComponent {
     const properties = Immutable.fromJS(schema.properties)
     const rows = properties.map((v, k) => this.propertyRows(k, v, 0)).toList().flatMap((v) => v)
     return (
-      <div>
-        <div style={{margin: '10px'}}>
+      <div style={{margin: '10px'}}>
+        <div>
           <FlatButton label='TOP' onClick={() => {super.handleUrlChange('')}} />
         </div>
         <Table>
-          <TableHeader>
+          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
-              <TableHeaderColumn>level</TableHeaderColumn>
+              <TableHeaderColumn style={this.levelColomnStyle}>level</TableHeaderColumn>
               <TableHeaderColumn>name</TableHeaderColumn>
               <TableHeaderColumn>description</TableHeaderColumn>
               <TableHeaderColumn>type</TableHeaderColumn>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody displayRowCheckbox={false}>
             {rows}
           </TableBody>
         </Table>
