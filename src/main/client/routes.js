@@ -1,11 +1,15 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import * as Containers from './containers'
+
+import App from './containers/App'
+import PortalPage from './containers/PortalPage'
+import Login from './containers/Login'
+import TimeCard from './containers/TimeCard'
 
 export default (
-  <Route path={`${process.env.CONTEXT_PATH}/`} component={Containers.App}>
-    <IndexRoute component={Containers.PortalPage} />
-    <Route path='login' component={Containers.Login} />
-    <Route path='timecards(/:yearMonth)' component={Containers.TimeCard} />
+  <Route path={`${process.env.CONTEXT_PATH}/`} component={App}>
+    <IndexRoute component={PortalPage} />
+    <Route path='login' component={Login} />
+    <Route path='timecards(/:yearMonth)' component={TimeCard} />
   </Route>
 )
