@@ -6,7 +6,6 @@ import FlatButton from 'material-ui/FlatButton'
 import { NavigationMenu } from 'material-ui/svg-icons'
 
 import AppBaseComponent from '../components/AppBaseComponent'
-import ApiSpec from '../components/ApiSpec'
 
 class PortalPage extends AppBaseComponent {
   render() {
