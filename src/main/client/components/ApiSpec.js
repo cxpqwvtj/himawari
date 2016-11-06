@@ -6,15 +6,16 @@ import FlatButton from 'material-ui/FlatButton'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
-import schemaJson from '../../../../docs/schema/schema.json'
+import timecard from '../../../../docs/schema/schemata/timecard.yml'
 
 export default class ApiSpec extends AppBaseComponent {
   static propTypes = {
   }
 
   levelColomnStyle = { width: '10px' }
+  typeColomnStyle = { width: '50px' }
 
-  jsonTable(name, property) {
+  createTable(name, property) {
     const rows = property.get('properties').map((v, k) => this.propertyRows(k, v, 1)).toList().flatMap((v) => v)
     return (
       <div key={name}>
@@ -29,8 +30,9 @@ export default class ApiSpec extends AppBaseComponent {
               <TableHeaderColumn style={this.levelColomnStyle}>level</TableHeaderColumn>
               <TableHeaderColumn>name</TableHeaderColumn>
               <TableHeaderColumn>description</TableHeaderColumn>
-              <TableHeaderColumn>type</TableHeaderColumn>
+              <TableHeaderColumn style={this.typeColomnStyle}>type</TableHeaderColumn>
               <TableHeaderColumn>format</TableHeaderColumn>
+              <TableHeaderColumn>pattern</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
@@ -44,7 +46,8 @@ export default class ApiSpec extends AppBaseComponent {
   propertyRows(name, property, level) {
     const description = property.get('description')
     const types = property.get('type') || Immutable.List.of()
-    const format = property.get('format') || property.get('pattern')
+    const format = property.get('format')
+    const pattern = property.get('pattern')
     const itemsProperties = property.get('items') && property.get('items').get('properties') ? property.get('items').get('properties') : undefined
     const properties = property.get('properties') || itemsProperties
     const rows = Immutable.List.of(
@@ -52,8 +55,9 @@ export default class ApiSpec extends AppBaseComponent {
         <TableRowColumn style={Object.assign({}, this.levelColomnStyle, { paddingLeft: `${24 + ((level - 1) * 5)}px` })}>{level}</TableRowColumn>
         <TableRowColumn>{name}</TableRowColumn>
         <TableRowColumn>{description}</TableRowColumn>
-        <TableRowColumn>{types.join(', ')}</TableRowColumn>
+        <TableRowColumn style={this.typeColomnStyle}>{types.join(', ')}</TableRowColumn>
         <TableRowColumn>{format}</TableRowColumn>
+        <TableRowColumn>{pattern}</TableRowColumn>
       </TableRow>
     )
     const children = properties ? properties.map((v, k) => this.propertyRows(k, v, level + 1) ).toList().flatMap((v) => v) : undefined
@@ -61,15 +65,13 @@ export default class ApiSpec extends AppBaseComponent {
   }
 
   render() {
-    const schema = Parser.parse(schemaJson)
-    const properties = Immutable.fromJS(schema.properties)
-    const jsonSpecs = properties.map((v, k) => this.jsonTable(k, v)).toList()
+    const spec = this.createTable('timecard', Immutable.fromJS(Parser.parse(timecard)))
     return (
       <div style={{margin: '10px'}}>
         <div>
           <FlatButton label='TOP' onClick={() => {super.handleUrlChange('')}} />
         </div>
-        {jsonSpecs}
+        {spec}
       </div>
     )
   }
