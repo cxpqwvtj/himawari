@@ -17,6 +17,7 @@ export default class ApiSpec extends AppBaseComponent {
   propertyRows(name, property, level) {
     const description = property.get('description')
     const types = property.get('type') || Immutable.List.of()
+    const format = property.get('format') || property.get('pattern')
     const itemsProperties = property.get('items') && property.get('items').get('properties') ? property.get('items').get('properties') : undefined
     const properties = property.get('properties') || itemsProperties
     const rows = Immutable.List.of(
@@ -25,6 +26,7 @@ export default class ApiSpec extends AppBaseComponent {
         <TableRowColumn>{name}</TableRowColumn>
         <TableRowColumn>{description}</TableRowColumn>
         <TableRowColumn>{types.join(', ')}</TableRowColumn>
+        <TableRowColumn>{format}</TableRowColumn>
       </TableRow>
     )
     const children = properties ? properties.map((v, k) => this.propertyRows(k, v, level + 1) ).toList().flatMap((v) => v) : undefined
@@ -47,6 +49,7 @@ export default class ApiSpec extends AppBaseComponent {
               <TableHeaderColumn>name</TableHeaderColumn>
               <TableHeaderColumn>description</TableHeaderColumn>
               <TableHeaderColumn>type</TableHeaderColumn>
+              <TableHeaderColumn>format</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
