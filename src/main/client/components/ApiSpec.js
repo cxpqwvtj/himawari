@@ -14,6 +14,33 @@ export default class ApiSpec extends AppBaseComponent {
 
   levelColomnStyle = { width: '10px' }
 
+  jsonTable(name, property) {
+    const rows = property.get('properties').map((v, k) => this.propertyRows(k, v, 1)).toList().flatMap((v) => v)
+    return (
+      <div key={name}>
+        <div>{name}</div>
+        <div>title {property.get('title')}</div>
+        <div>description {property.get('description')}</div>
+        <div>stability {property.get('stability')}</div>
+        <div>strictProperties {property.get('strictProperties')}</div>
+        <Table>
+          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+            <TableRow>
+              <TableHeaderColumn style={this.levelColomnStyle}>level</TableHeaderColumn>
+              <TableHeaderColumn>name</TableHeaderColumn>
+              <TableHeaderColumn>description</TableHeaderColumn>
+              <TableHeaderColumn>type</TableHeaderColumn>
+              <TableHeaderColumn>format</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody displayRowCheckbox={false}>
+            {rows}
+          </TableBody>
+        </Table>
+      </div>
+    )
+  }
+
   propertyRows(name, property, level) {
     const description = property.get('description')
     const types = property.get('type') || Immutable.List.of()
@@ -36,26 +63,13 @@ export default class ApiSpec extends AppBaseComponent {
   render() {
     const schema = Parser.parse(schemaJson)
     const properties = Immutable.fromJS(schema.properties)
-    const rows = properties.map((v, k) => this.propertyRows(k, v, 0)).toList().flatMap((v) => v)
+    const jsonSpecs = properties.map((v, k) => this.jsonTable(k, v)).toList()
     return (
       <div style={{margin: '10px'}}>
         <div>
           <FlatButton label='TOP' onClick={() => {super.handleUrlChange('')}} />
         </div>
-        <Table>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-            <TableRow>
-              <TableHeaderColumn style={this.levelColomnStyle}>level</TableHeaderColumn>
-              <TableHeaderColumn>name</TableHeaderColumn>
-              <TableHeaderColumn>description</TableHeaderColumn>
-              <TableHeaderColumn>type</TableHeaderColumn>
-              <TableHeaderColumn>format</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {rows}
-          </TableBody>
-        </Table>
+        {jsonSpecs}
       </div>
     )
   }
