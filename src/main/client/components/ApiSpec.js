@@ -22,7 +22,7 @@ export default class ApiSpec extends AppBaseComponent {
     const properties = property.get('properties') || itemsProperties
     const rows = Immutable.List.of(
       <TableRow key={`${level}${name}`}>
-        <TableRowColumn style={Object.assign({}, this.levelColomnStyle, { paddingLeft: `${24 + (level * 5)}px` })}>{level}</TableRowColumn>
+        <TableRowColumn style={Object.assign({}, this.levelColomnStyle, { paddingLeft: `${24 + ((level - 1) * 5)}px` })}>{level}</TableRowColumn>
         <TableRowColumn>{name}</TableRowColumn>
         <TableRowColumn>{description}</TableRowColumn>
         <TableRowColumn>{types.join(', ')}</TableRowColumn>
