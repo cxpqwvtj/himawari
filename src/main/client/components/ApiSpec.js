@@ -14,6 +14,7 @@ export default class ApiSpec extends AppBaseComponent {
 
   levelColomnStyle = { width: '10px' }
   typeColomnStyle = { width: '50px' }
+  rowHeightStyle = { height: '30px' }
 
   createTable(name, property) {
     const rows = property.get('properties').map((v, k) => this.propertyRows(k, v, 1)).toList().flatMap((v) => v)
@@ -27,12 +28,12 @@ export default class ApiSpec extends AppBaseComponent {
         <Table>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
-              <TableHeaderColumn style={this.levelColomnStyle}>level</TableHeaderColumn>
-              <TableHeaderColumn>name</TableHeaderColumn>
-              <TableHeaderColumn style={this.typeColomnStyle}>type</TableHeaderColumn>
-              <TableHeaderColumn>description</TableHeaderColumn>
-              <TableHeaderColumn>format</TableHeaderColumn>
-              <TableHeaderColumn>pattern</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle, this.levelColomnStyle)}>level</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle)}>name</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle, this.typeColomnStyle)}>type</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle)}>description</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle)}>format</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle)}>pattern</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
@@ -51,13 +52,13 @@ export default class ApiSpec extends AppBaseComponent {
     const itemsProperties = property.get('items') && property.get('items').get('properties') ? property.get('items').get('properties') : undefined
     const properties = property.get('properties') || itemsProperties
     const rows = Immutable.List.of(
-      <TableRow key={`${level}${name}`}>
-        <TableRowColumn style={Object.assign({}, this.levelColomnStyle, { paddingLeft: `${24 + ((level - 1) * 5)}px` })}>{level}</TableRowColumn>
-        <TableRowColumn>{name}</TableRowColumn>
-        <TableRowColumn style={this.typeColomnStyle}>{types.join(', ')}</TableRowColumn>
-        <TableRowColumn>{description}</TableRowColumn>
-        <TableRowColumn>{format}</TableRowColumn>
-        <TableRowColumn>{pattern}</TableRowColumn>
+      <TableRow key={`${level}${name}`} style={Object.assign({}, this.rowHeightStyle)}>
+        <TableRowColumn style={Object.assign({}, this.rowHeightStyle, this.levelColomnStyle, { paddingLeft: `${24 + ((level - 1) * 5)}px` })}>{level}</TableRowColumn>
+        <TableRowColumn style={Object.assign({}, this.rowHeightStyle)}>{name}</TableRowColumn>
+        <TableRowColumn style={Object.assign({}, this.rowHeightStyle, this.typeColomnStyle)}>{types.join(', ')}</TableRowColumn>
+        <TableRowColumn style={Object.assign({}, this.rowHeightStyle)}>{description}</TableRowColumn>
+        <TableRowColumn style={Object.assign({}, this.rowHeightStyle)}>{format}</TableRowColumn>
+        <TableRowColumn style={Object.assign({}, this.rowHeightStyle)}>{pattern}</TableRowColumn>
       </TableRow>
     )
     const children = properties ? properties.map((v, k) => this.propertyRows(k, v, level + 1) ).toList().flatMap((v) => v) : undefined
@@ -67,7 +68,7 @@ export default class ApiSpec extends AppBaseComponent {
   render() {
     const spec = this.createTable('timecard', Immutable.fromJS(Parser.parse(timecard)))
     return (
-      <div style={{margin: '10px'}}>
+      <div style={{margin: '10px 50px'}}>
         <div>
           <FlatButton label='TOP' onClick={() => {super.handleUrlChange('')}} />
         </div>
