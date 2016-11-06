@@ -29,8 +29,8 @@ export default class ApiSpec extends AppBaseComponent {
             <TableRow>
               <TableHeaderColumn style={this.levelColomnStyle}>level</TableHeaderColumn>
               <TableHeaderColumn>name</TableHeaderColumn>
-              <TableHeaderColumn>description</TableHeaderColumn>
               <TableHeaderColumn style={this.typeColomnStyle}>type</TableHeaderColumn>
+              <TableHeaderColumn>description</TableHeaderColumn>
               <TableHeaderColumn>format</TableHeaderColumn>
               <TableHeaderColumn>pattern</TableHeaderColumn>
             </TableRow>
@@ -54,8 +54,8 @@ export default class ApiSpec extends AppBaseComponent {
       <TableRow key={`${level}${name}`}>
         <TableRowColumn style={Object.assign({}, this.levelColomnStyle, { paddingLeft: `${24 + ((level - 1) * 5)}px` })}>{level}</TableRowColumn>
         <TableRowColumn>{name}</TableRowColumn>
-        <TableRowColumn>{description}</TableRowColumn>
         <TableRowColumn style={this.typeColomnStyle}>{types.join(', ')}</TableRowColumn>
+        <TableRowColumn>{description}</TableRowColumn>
         <TableRowColumn>{format}</TableRowColumn>
         <TableRowColumn>{pattern}</TableRowColumn>
       </TableRow>
