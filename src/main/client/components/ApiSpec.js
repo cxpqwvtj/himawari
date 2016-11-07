@@ -14,7 +14,6 @@ export default class ApiSpec extends AppBaseComponent {
 
   levelColomnStyle = { width: '10px' }
   typeColomnStyle = { width: '50px' }
-  rowHeightStyle = { height: '30px' }
 
   createTable(name, property) {
     const rows = property.get('properties').map((v, k) => this.propertyRows(k, v, 1)).toList().flatMap((v) => v)
@@ -28,12 +27,12 @@ export default class ApiSpec extends AppBaseComponent {
         <Table>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
-              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle, this.levelColomnStyle)}>level</TableHeaderColumn>
-              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle)}>name</TableHeaderColumn>
-              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle, this.typeColomnStyle)}>type</TableHeaderColumn>
-              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle)}>description</TableHeaderColumn>
-              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle)}>format</TableHeaderColumn>
-              <TableHeaderColumn style={Object.assign({}, this.rowHeightStyle)}>pattern</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({}, this.levelColomnStyle)}>level</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({})}>name</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({}, this.typeColomnStyle)}>type</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({})}>description</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({})}>format</TableHeaderColumn>
+              <TableHeaderColumn style={Object.assign({})}>pattern</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
@@ -52,13 +51,13 @@ export default class ApiSpec extends AppBaseComponent {
     const itemsProperties = property.get('items') && property.get('items').get('properties') ? property.get('items').get('properties') : undefined
     const properties = property.get('properties') || itemsProperties
     const rows = Immutable.List.of(
-      <TableRow key={`${level}${name}`} style={Object.assign({}, this.rowHeightStyle)}>
-        <TableRowColumn style={Object.assign({}, this.rowHeightStyle, this.levelColomnStyle, { paddingLeft: `${24 + ((level - 1) * 5)}px` })}>{level}</TableRowColumn>
-        <TableRowColumn style={Object.assign({}, this.rowHeightStyle)}>{name}</TableRowColumn>
-        <TableRowColumn style={Object.assign({}, this.rowHeightStyle, this.typeColomnStyle)}>{types.join(', ')}</TableRowColumn>
-        <TableRowColumn style={Object.assign({}, this.rowHeightStyle)}>{description}</TableRowColumn>
-        <TableRowColumn style={Object.assign({}, this.rowHeightStyle)}>{format}</TableRowColumn>
-        <TableRowColumn style={Object.assign({}, this.rowHeightStyle)}>{pattern}</TableRowColumn>
+      <TableRow key={`${level}${name}`} style={Object.assign({})}>
+        <TableRowColumn style={Object.assign({}, this.levelColomnStyle, { paddingLeft: `${24 + ((level - 1) * 5)}px` })}>{level}</TableRowColumn>
+        <TableRowColumn style={Object.assign({})}>{name}</TableRowColumn>
+        <TableRowColumn style={Object.assign({}, this.typeColomnStyle)}>{types.join(', ')}</TableRowColumn>
+        <TableRowColumn style={Object.assign({})}>{description}</TableRowColumn>
+        <TableRowColumn style={Object.assign({})}>{format}</TableRowColumn>
+        <TableRowColumn style={Object.assign({})}>{pattern}</TableRowColumn>
       </TableRow>
     )
     const children = properties ? properties.map((v, k) => this.propertyRows(k, v, level + 1) ).toList().flatMap((v) => v) : undefined

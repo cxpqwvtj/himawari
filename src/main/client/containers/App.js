@@ -14,8 +14,18 @@ class App extends AppBaseComponent {
 
   render() {
     const { children } = this.props
+
+    const muiTheme = getMuiTheme({
+      tableRowColumn: {
+        height: '30px'
+      },
+      tableRow: {
+        height: '30px'
+      }
+    })
+
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           {children}
         </div>
