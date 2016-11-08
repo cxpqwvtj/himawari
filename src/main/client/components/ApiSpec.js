@@ -3,6 +3,7 @@ import Parser from 'json-schema-parser'
 import Immutable from 'immutable'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import FlatButton from 'material-ui/FlatButton'
+import TextField from 'material-ui/TextField'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
@@ -71,6 +72,12 @@ export default class ApiSpec extends AppBaseComponent {
         <div>
           <FlatButton label='TOP' onClick={() => {super.handleUrlChange('')}} />
         </div>
+        <div>
+        <TextField
+          hintText='api1'
+          floatingLabelText='search'
+        />
+      </div>
         {spec}
       </div>
     )
