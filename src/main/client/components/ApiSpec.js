@@ -17,6 +17,20 @@ export default class ApiSpec extends AppBaseComponent {
   levelColomnStyle = { width: '10px' }
   typeColomnStyle = { width: '50px' }
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      searchText: ''
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      searchText: event.target.value,
+    })
+  }
+
   createTable(name, property) {
     const rows = property.get('properties').map((v, k) => this.propertyRows(k, v, 1)).toList().flatMap((v) => v)
     return (
@@ -79,6 +93,8 @@ export default class ApiSpec extends AppBaseComponent {
         <TextField
           hintText='api1'
           floatingLabelText='search'
+          value={this.state.searchText}
+          onChange={this.handleChange}
         />
       </div>
         {spec}
