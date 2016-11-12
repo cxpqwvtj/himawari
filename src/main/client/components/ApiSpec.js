@@ -90,13 +90,13 @@ export default class ApiSpec extends AppBaseComponent {
           <FlatButton label='TOP' onClick={() => {super.handleUrlChange('')}} />
         </div>
         <div>
-        <TextField
-          hintText='api1'
-          floatingLabelText='search'
-          value={this.state.searchText}
-          onChange={this.handleChange}
-        />
-      </div>
+          <TextField
+            hintText='api1'
+            floatingLabelText='search'
+            value={this.state.searchText}
+            onChange={this.handleChange}
+          />
+        </div>
         {spec}
       </div>
     )
