@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
 import { NavigationMenu } from 'material-ui/svg-icons'
 
 import AppBaseComponent from '../components/AppBaseComponent'
@@ -23,10 +24,10 @@ class PortalPage extends AppBaseComponent {
           }
         />
         <div style={{margin: '10px'}}>
-          <FlatButton label='TimeCard' onClick={() => {super.handleUrlChange('/timecards/201701')}} />
+          <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange('/timecards/201701')}} />
         </div>
         <div style={{margin: '10px'}}>
-          <FlatButton label='API' onClick={() => {super.handleUrlChange('/docs/api')}} />
+          <RaisedButton label='API' onClick={() => {super.handleUrlChange('/docs/api')}} />
         </div>
       </div>
     )
