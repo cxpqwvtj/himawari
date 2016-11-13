@@ -10,8 +10,6 @@ class DataClassMeta {
     String description = ""
     /** 型 */
     String typeDef
-    /** array用 */
-    DataClassMeta items
     /** object用 */
     List<DataClassMeta> properties
     /** デフォルト値 */
@@ -26,9 +24,17 @@ class DataClassMeta {
             }
             this.typeDef = entry.value.type
             if (this.getType() == JsonType.ARRAY) {
-                items = new DataClassMeta(["${entry.key}": entry.value.items].entrySet().first())
+                this.properties = [new DataClassMeta(["${entry.key}": entry.value.items].entrySet().first())]
             } else if (this.getType() == JsonType.OBJECT) {
                 this.properties = entry.value.properties.collect { new DataClassMeta(it) }
+            }
+            // TODO: defaultValueをentryのvalueから設定する
+            if (this.getType() == JsonType.STRING) {
+                this.defaultValue = '""'
+            } else if (this.getType() == JsonType.NUMBER) {
+                this.defaultValue = "0"
+            } else if (this.getType() == JsonType.BOOLEAN) {
+                this.defaultValue = "false"
             }
         } catch (Exception e) {
             println "${entry.key}でエラー発生"
@@ -51,23 +57,31 @@ class DataClassMeta {
         if (getType() == JsonType.OBJECT) {
             return "${getClassName()} = ${getClassName()}()"
         } else if (getType() == JsonType.ARRAY) {
-            return "${String.format(JsonType.ARRAY.kotlinType, items.getClassName())} = listOf()"
+            return "${String.format(JsonType.ARRAY.kotlinType, properties.first().getClassName())} = listOf()"
         } else {
             return "${getType().kotlinType} = ${defaultValue}"
         }
     }
 
-    String generateClass() {
+    String generateClass(int level) {
         def propDescriptions = properties.collect { " * @property ${it.name} ${it.description}" }
-        def props = properties.collect { "     var ${it.name}: ${it.getPropertiyClassDef()}" }
-        return """/**
- * ${description}
- *
-${propDescriptions.join("\n")}
- */
-data class ${getClassName()} (
-${props.join("\n")}
-)
+        def props = properties.collect { "    var ${it.name}: ${it.getPropertiyClassDef()}" }
+        def childrenDefinitions = properties.findAll {
+            return it.getType() == JsonType.OBJECT || (it.getType() == JsonType.ARRAY && it.properties.first().getType() == JsonType.OBJECT)
+        }.collect {
+            return it.generateClass((it.getType() == JsonType.ARRAY) ? level : level + 1)
+        }
+        def indent = (0..<level).collect { "    " }.join("")
+        def children = (childrenDefinitions.size() > 0) ? "\n${indent}${childrenDefinitions.join("\n")}" : ""
+        if (getType() == JsonType.ARRAY) return children
+        return """${indent}/**
+${indent} * ${description}
+${indent} *
+${indent}${propDescriptions.join("\n${indent}")}
+${indent} */
+${indent}data class ${getClassName()} (
+${indent}${props.join("\n${indent}")}) {${children}
+${indent}}
 """
     }
 }
