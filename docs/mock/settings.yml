@@ -3,48 +3,48 @@ name: mockSetting
 title: 設定
 type: object
 properties:
-- name: responseDelay
-  title: レスポンス遅延(ms)
-  type: number
-  default: 0
-  options:
-    - value: 500
-    - value: 1000
-    - value: 5000
-- name: responseHttpStatus
-  title: HTTPステータス
-  type: number
-  default: 200
-  options:
-    - value: 404
-    - value: 500
-- name: mockSettingLog
-  title: モック設定ログ
-  type: boolean
-  default: false
-- name: objectArrayItem
-  title: オブジェクト配列定義
-  type: array
-  items:
-    type: object
-    properties:
-      - name: name1
-        title: 配列要素のプロパティ1
-        type: string
-        default: ""
-- name: stringArrayItem
-  title: 文字列配列定義
-  type: array
-  items:
-    name: stringArrayChild
-    title: 文字列配列要素のプロパティ1
-    type: string
-    default: ""
-- name: objectItem
-  title: オブジェクト定義
-  type: object
-  properties:
-    - name: objectChild
+  responseDelay:
+    title: レスポンス遅延(ms)
+    type: number
+    default: 0
+    options:
+      - value: 500
+      - value: 1000
+      - value: 5000
+  responseHttpStatus:
+    title: HTTPステータス
+    type: number
+    default: 200
+    options:
+      - value: 404
+      - value: 500
+  mockSettingLog:
+    title: モック設定ログ
+    type: boolean
+    default: false
+  objectArrayItem:
+    title: オブジェクト配列定義
+    type: array
+    items:
+      type: object
+      properties:
+        name1:
+          title: 配列要素のプロパティ1
+          type: string
+          default: ""
+  stringArrayItem:
+    title: 文字列配列定義
+    type: array
+    items:
+      name: stringArrayChild
+      title: 文字列配列要素のプロパティ1
       type: string
       default: ""
-
+  objectItem:
+    title: オブジェクト定義
+    type: object
+    properties:
+      objectChild:
+        title: ""
+        type: string
+        default: ""

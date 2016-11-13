@@ -13,7 +13,7 @@ class DataClassGenerator {
         // TODO: yamlファイルを外から指定できるようにする
         new Yaml().loadAll(new FileInputStream(new File("./docs/mock/settings.yml"))).each {
             // TODO: ファイル生成する
-            println new DataClassMeta(it).generateClass()
+            println new DataClassMeta(["mockSetting": it].entrySet().first()).generateClass()
         }
     }
 }
