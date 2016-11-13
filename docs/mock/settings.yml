@@ -26,6 +26,7 @@ properties:
     title: オブジェクト配列定義
     type: array
     items:
+      title: オブジェクト配列アイテム
       type: object
       properties:
         name1:

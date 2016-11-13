@@ -26,11 +26,7 @@ class DataClassMeta {
             }
             this.typeDef = entry.value.type
             if (this.getType() == JsonType.ARRAY) {
-                if (JsonType.OBJECT.definitions.contains(entry.value.items.type)) {
-                    items = new DataClassMeta(entry.value.items.properties.entrySet().first())
-                } else {
-                    items = new DataClassMeta(["${entry.key}": entry.value.items].entrySet().first())
-                }
+                items = new DataClassMeta(["${entry.key}": entry.value.items].entrySet().first())
             } else if (this.getType() == JsonType.OBJECT) {
                 this.properties = entry.value.properties.collect { new DataClassMeta(it) }
             }
@@ -62,9 +58,9 @@ class DataClassMeta {
     }
 
     String generateClass() {
-        def props = properties.collect { "        var ${it.name}: ${it.getPropertiyClassDef()}" }
         def propDescriptions = properties.collect { " * @property ${it.name} ${it.description}" }
-        """/**
+        def props = properties.collect { "     var ${it.name}: ${it.getPropertiyClassDef()}" }
+        return """/**
  * ${description}
  *
 ${propDescriptions.join("\n")}
