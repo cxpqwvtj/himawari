@@ -11,7 +11,7 @@ import AppBaseComponent from '../components/AppBaseComponent'
 
 import SettingsYaml from 'raw!../../../../docs/mock/settings.yml'
 
-export default class ApiSpec extends AppBaseComponent {
+export default class MockSetting extends AppBaseComponent {
   static propTypes = {
   }
 
