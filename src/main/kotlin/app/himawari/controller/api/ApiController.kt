@@ -1,15 +1,16 @@
 package app.himawari.controller.api
 
 import org.slf4j.LoggerFactory
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RestController
 import javax.servlet.http.HttpServletRequest
 
 /**
+ * APIリクエスト用コントローラ
  * Created by masahiro on 2016/10/15.
  */
-@Controller
+@RestController
 @RequestMapping("/api")
 open class ApiController {
     private val logger = LoggerFactory.getLogger(this.javaClass)

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpServletResponse
 
 /**
+ * 通常の(RESTではない)コントローラ
  * Created by masahiro on 2016/10/12.
  */
 @Controller
