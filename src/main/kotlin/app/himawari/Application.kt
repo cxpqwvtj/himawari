@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 
 /**
+ * アプリケーションエントリーポイント
  * Created by masahiro on 2016/010/02.
  */
 @Configuration
