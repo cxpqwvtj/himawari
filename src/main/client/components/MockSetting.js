@@ -14,8 +14,15 @@ export default class MockSetting extends AppBaseComponent {
   static propTypes = {
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      yaml: jsyaml.safeLoad(SettingsYaml)
+    }
+  }
+
   render() {
-    const properties = Immutable.fromJS(jsyaml.safeLoad(SettingsYaml).properties)
+    const properties = Immutable.fromJS(this.state.yaml.properties)
     const elements = properties.map((v, k) => {
       const opts = v.get('options')
       const options = opts ? opts.map((opt, index) => {
