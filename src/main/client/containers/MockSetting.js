@@ -1,16 +1,18 @@
 import React, { PropTypes } from 'react'
 import Immutable from 'immutable'
+import { Field, reduxForm } from 'redux-form'
+import jsyaml from 'js-yaml'
+
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import Checkbox from 'material-ui/Checkbox'
-import jsyaml from 'js-yaml'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
 import SettingsYaml from 'raw!../../../../docs/mock/settings.yml'
 
-export default class MockSetting extends AppBaseComponent {
+export class MockSetting extends AppBaseComponent {
   static propTypes = {
   }
 
@@ -30,6 +32,14 @@ export default class MockSetting extends AppBaseComponent {
       }) : undefined
       return v.get('type').indexOf('bool') < 0 ? (
         <div key={k}>
+          <Field name={k} type="text" component={({ input, label, meta: { touched, error }, ...custom }) => (
+            <TextField hintText={label}
+              floatingLabelText={label}
+              errorText={touched && error}
+              {...input}
+              {...custom}
+            />
+          )} label={v.get('title')} />
           <TextField
             floatingLabelText={v.get('title')}
             defaultValue={v.get('default')}
@@ -48,8 +58,14 @@ export default class MockSetting extends AppBaseComponent {
     }).toList()
     return (
       <div style={{margin: '10px 50px'}}>
-        {elements}
+        <form>
+          {elements}
+        </form>
       </div>
     )
   }
 }
+
+export default reduxForm({
+  form: 'searchForm'
+})(MockSetting)
