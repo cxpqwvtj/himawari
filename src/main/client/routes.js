@@ -6,7 +6,7 @@ import PortalPage from './containers/PortalPage'
 import Login from './containers/Login'
 import TimeCard from './containers/TimeCard'
 import ApiSpec from './components/ApiSpec'
-import MockSetting from './components/MockSetting'
+import MockSetting from './containers/MockSetting'
 
 export default (
   <Route path={`${process.env.CONTEXT_PATH}/`} component={App}>
