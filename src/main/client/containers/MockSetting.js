@@ -40,10 +40,6 @@ export class MockSetting extends AppBaseComponent {
               {...custom}
             />
           )} label={v.get('title')} />
-          <TextField
-            floatingLabelText={v.get('title')}
-            defaultValue={v.get('default')}
-          />
           {options}
         </div>
       ) : (
