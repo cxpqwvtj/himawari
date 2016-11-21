@@ -44,6 +44,13 @@ export class MockSetting extends AppBaseComponent {
         </div>
       ) : (
         <div key={k}>
+          <Field name={v.get('title')} component={({ input, label }) => (
+            <Checkbox label={label}
+              checked={input.value ? true : false}
+              onCheck={input.onChange}
+            />
+            )} label={v.get('title')}
+          />
           <Checkbox
             label={v.get('title')}
             defaultChecked={v.get('default')}
