@@ -29,6 +29,9 @@ class PortalPage extends AppBaseComponent {
         <div style={{margin: '10px'}}>
           <RaisedButton label='API' onClick={() => {super.handleUrlChange('/docs/api')}} />
         </div>
+        <div style={{margin: '10px'}}>
+          <RaisedButton label='mock setting' onClick={() => {super.handleUrlChange('/mock/setting')}} />
+        </div>
       </div>
     )
   }
