@@ -56,9 +56,7 @@ export class MockSetting extends AppBaseComponent {
     }).toList()
     return (
       <div style={{margin: '10px 50px'}}>
-        <form>
-          {elements}
-        </form>
+        {elements}
       </div>
     )
   }
