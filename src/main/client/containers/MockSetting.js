@@ -51,11 +51,6 @@ export class MockSetting extends AppBaseComponent {
             />
             )} label={v.get('title')}
           />
-          <Checkbox
-            label={v.get('title')}
-            defaultChecked={v.get('default')}
-            style={{padding: '15px 0px 5px'}}
-          />
         </div>
       )
     }).toList()
