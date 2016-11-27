@@ -1,17 +1,21 @@
 import React, { PropTypes } from 'react'
-import Immutable from 'immutable'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import jsyaml from 'js-yaml'
 import { Checkbox, RadioButtonGroup, SelectField, TextField, Toggle } from 'redux-form-material-ui'
-
 import RaisedButton from 'material-ui/RaisedButton'
+
+import Immutable from 'immutable'
+import jsyaml from 'js-yaml'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
+import * as actions from '../actions'
 import SettingsYaml from 'raw!../../../../docs/mock/settings.yml'
 
 export class MockSetting extends AppBaseComponent {
   static propTypes = {
+    actions: PropTypes.object.isRequired
   }
 
   render() {
@@ -19,7 +23,7 @@ export class MockSetting extends AppBaseComponent {
     const elements = properties.map((v, k) => {
       const opts = v.get('options')
       const options = opts ? opts.map((opt, index) => {
-        return <RaisedButton label={opt.get('value')} key={index} style={{marginLeft: '10px'}} />
+        return <RaisedButton label={opt.get('value')} key={index} style={{marginLeft: '10px'}} onClick={() => this.props.actions.changeSearchText(k, opt.get('value'))} />
       }) : undefined
       return v.get('type').indexOf('bool') < 0 ? (
         <div key={`div${k}`}>
@@ -43,6 +47,15 @@ export class MockSetting extends AppBaseComponent {
   }
 }
 
-export default reduxForm({
-  form: 'searchForm'
-})(MockSetting)
+function mapStateToProps(state, ownProps) {
+  return {
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+  form: 'mockSettingForm'
+})(MockSetting))
