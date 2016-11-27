@@ -18,8 +18,12 @@ export class MockSetting extends AppBaseComponent {
     actions: PropTypes.object.isRequired
   }
 
+  componentDidMount() {
+    this.props.actions.mockSettingDefinition(jsyaml.safeLoad(SettingsYaml))
+  }
+
   render() {
-    const properties = Immutable.fromJS(jsyaml.safeLoad(SettingsYaml).properties)
+    const properties = Immutable.fromJS(this.props.def.properties)
     const elements = properties.map((v, k) => {
       const opts = v.get('options')
       const options = opts ? opts.map((opt, index) => {
@@ -49,6 +53,7 @@ export class MockSetting extends AppBaseComponent {
 
 function mapStateToProps(state, ownProps) {
   return {
+    def: state.mockSettingDefinition.def || { properties: {} }
   }
 }
 
