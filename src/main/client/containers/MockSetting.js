@@ -27,7 +27,7 @@ export class MockSetting extends AppBaseComponent {
     const elements = properties.map((v, k) => {
       const opts = v.get('options')
       const options = opts ? opts.map((opt, index) => {
-        return <RaisedButton label={opt.get('value')} key={index} style={{marginLeft: '10px'}} onClick={() => this.props.actions.changeSearchText(k, opt.get('value'))} />
+        return <RaisedButton label={opt.get('value')} key={index} style={{marginLeft: '10px'}} onClick={() => this.props.actions.changeSettingValue(k, opt.get('value'))} />
       }) : undefined
       return v.get('type').indexOf('bool') < 0 ? (
         <div key={`div${k}`}>
