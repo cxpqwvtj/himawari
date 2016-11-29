@@ -13,7 +13,7 @@ function mockSettingDefinition(state = {}, action) {
 const rootReducer = combineReducers({
   routing,
   form: formReducer.plugin({
-    mockSettingForm: (state, action) => {
+    mockSettingForm: (state={}, action) => {
       if (action.type === CHANGE_SETTING_VALUE) {
         return {
           ...state,
