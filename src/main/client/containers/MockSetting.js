@@ -45,6 +45,9 @@ export class MockSetting extends AppBaseComponent {
         <div style={{marginBottom: '20px'}}>
           <RaisedButton label='TOPへ' onClick={() => super.handleUrlChange('/')} />
         </div>
+        <div style={{marginBottom: '20px'}}>
+          <RaisedButton label='デフォルト' onClick={() => {}} />
+        </div>
         {elements}
       </div>
     )
