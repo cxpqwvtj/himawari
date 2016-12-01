@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
-import { MOCK_SETTING_DEFINITION, CHANGE_SETTING_VALUE } from '../actions'
+import Immutable from 'immutable'
+
+import * as Actions from '../actions'
 
 function mockSettingDefinition(state = {}, action) {
-  if (action.type === MOCK_SETTING_DEFINITION) {
+  if (action.type === Actions.MOCK_SETTING_DEFINITION) {
     return Object.assign({}, state, action.payload)
   }
   return state
@@ -14,7 +16,7 @@ const rootReducer = combineReducers({
   routing,
   form: formReducer.plugin({
     mockSettingForm: (state={}, action) => {
-      if (action.type === CHANGE_SETTING_VALUE) {
+      if (action.type === Actions.CHANGE_SETTING_VALUE) {
         return {
           ...state,
           values: {
@@ -24,6 +26,16 @@ const rootReducer = combineReducers({
           fields: {
             ...state.fields,
             [action.payload.name]: undefined
+          }
+        }
+      } else if (action.type === Actions.MOCK_SETTING_DEFINITION) {
+        return {
+          ...state,
+          values: {
+            ...Immutable.fromJS(action.payload.def.properties).map((v) => v.get('default')).toJS(),
+          },
+          fields: {
+            ...state.fields
           }
         }
       }
