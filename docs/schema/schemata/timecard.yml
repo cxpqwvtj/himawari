@@ -14,7 +14,7 @@ definitions:
     - object
     properties:
       yearMonth:
-        description: 年月(yyyyMMdd)
+        description: 年月(yyyyMM)
         pattern: "^[0-9]{8}"
         type:
         - string
