@@ -45,21 +45,8 @@ definitions:
               description: 備考
               type:
               - string
-  error:
-    description: エラー情報
-    type:
-    - object
-    properties:
-      code:
-        description: エラーコード
-        type:
-        - string
-      message:
-        description: エラーメッセージ
-        type:
-        - string
 properties:
   result:
     "$ref": "/schemata/timecard#/definitions/result"
   error:
-    "$ref": "/schemata/timecard#/definitions/error"
+    "$ref": "/schemata/error#/definitions/error"
