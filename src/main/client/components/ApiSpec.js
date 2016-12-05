@@ -39,7 +39,7 @@ export default class ApiSpec extends AppBaseComponent {
         <div>title {property.get('title')}</div>
         <div>description {property.get('description')}</div>
         <div>stability {property.get('stability')}</div>
-        <div>strictProperties {property.get('strictProperties')}</div>
+        <div>strictProperties {property.get('strictProperties') ? 'true' : 'false'}</div>
         <Table>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
