@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { NavigationMenu } from 'material-ui/svg-icons'
 
 import AppBaseComponent from '../components/AppBaseComponent'
+import { ROUTES } from '../constants'
 
 class PortalPage extends AppBaseComponent {
   render() {
@@ -27,10 +28,10 @@ class PortalPage extends AppBaseComponent {
           <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange('/timecards/201701')}} />
         </div>
         <div style={{margin: '10px'}}>
-          <RaisedButton label='API' onClick={() => {super.handleUrlChange('/docs/api')}} />
+          <RaisedButton label='API' onClick={() => {super.handleUrlChange(ROUTES.API_SPEC)}} />
         </div>
         <div style={{margin: '10px'}}>
-          <RaisedButton label='mock setting' onClick={() => {super.handleUrlChange('/mock/setting')}} />
+          <RaisedButton label='mock setting' onClick={() => {super.handleUrlChange(ROUTES.MOCK_SETTING)}} />
         </div>
       </div>
     )
