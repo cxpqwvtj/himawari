@@ -4,11 +4,10 @@ import Immutable from 'immutable'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
-import jsyaml from 'js-yaml'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
-import src from 'raw!../../../../docs/schema/schemata/timecard.yml'
+import schema from '../../../../docs/schema/schema.json'
 
 export default class ApiSpec extends AppBaseComponent {
   static propTypes = {
@@ -81,9 +80,7 @@ export default class ApiSpec extends AppBaseComponent {
   }
 
   render() {
-    const timecard = []
-    jsyaml.safeLoadAll(src, (v) => timecard.push(v))
-    const spec = this.createTable('timecard', Immutable.fromJS(Parser.parse(timecard[0])))
+    const spec = this.createTable('timecard', Immutable.fromJS(Parser.parse(schema)))
     return (
       <div style={{margin: '10px 50px'}}>
         <div>
