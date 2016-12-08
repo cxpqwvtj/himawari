@@ -80,7 +80,13 @@ export default class ApiSpec extends AppBaseComponent {
   }
 
   render() {
-    const spec = this.createTable('timecard', Immutable.fromJS(Parser.parse(schema)))
+    const specs = Immutable.fromJS(Parser.parse(schema).properties).map((v, k) => {
+      if (k === 'error') {
+        // 共通のエラーオブジェクトなので無視
+      } else {
+        return this.createTable(k, v)
+      }
+    }).toList()
     return (
       <div style={{margin: '10px 50px'}}>
         <div>
@@ -94,7 +100,7 @@ export default class ApiSpec extends AppBaseComponent {
             onChange={this.handleChange}
           />
         </div>
-        {spec}
+        {specs}
       </div>
     )
   }
