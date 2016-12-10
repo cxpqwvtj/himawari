@@ -1,6 +1,11 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
+import AppBar from 'material-ui/AppBar'
+import IconButton from 'material-ui/IconButton'
+import FlatButton from 'material-ui/FlatButton'
+import { NavigationMenu } from 'material-ui/svg-icons'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import AppBaseComponent from '../components/AppBaseComponent'
@@ -27,6 +32,17 @@ class App extends AppBaseComponent {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
+          <AppBar
+            title="Himawari"
+            iconElementLeft={<IconButton><NavigationMenu /></IconButton>}
+            iconElementRight={
+              <FlatButton
+                label='Sign in'
+                labelStyle={{textTransform: 'none'}}
+                onClick={() => {super.handleUrlChange('/login')}}
+              />
+            }
+          />
           {children}
         </div>
       </MuiThemeProvider>
