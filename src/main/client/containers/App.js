@@ -34,7 +34,7 @@ class App extends AppBaseComponent {
         <div>
           <AppBar
             title="Himawari"
-            iconElementLeft={<IconButton><FirstPageIcon /></IconButton>}
+            iconElementLeft={<IconButton onClick={() => super.handleUrlChange('')}><FirstPageIcon /></IconButton>}
             iconElementRight={
               <FlatButton
                 label='Sign in'
