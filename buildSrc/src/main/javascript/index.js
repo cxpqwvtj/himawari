@@ -14,7 +14,7 @@ const printRecursive = (obj, depth, parentKey) => {
         console.log(`[${depth}]${k} ${v.get('type').get(0)}`)
       }
       if (k !== 'definitions') {
-        printRecursive(v, depth + 1, k)
+        printRecursive(v, parentKey === 'properties' ? depth + 1 : depth, k)
       }
     }
   })
