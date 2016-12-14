@@ -10,7 +10,7 @@ const schemaDef = immutable.fromJS(parser.parse(JSON.parse(buf.toString())))
 const printRecursive = (obj, depth, parentKey) => {
   obj.map((v, k) => {
     if (parentKey === 'properties' && !(depth === 1 && k === 'error')) {
-      console.log(`[${depth}]${k} ${v.getIn(['type', 0])}`)
+      console.log(`[${depth}]${k} ${v.getIn(['type', 0])} ${v.get('description')}`)
     }
     if (k !== 'definitions' && typeof(v) === 'object') {
       printRecursive(v, parentKey === 'properties' ? depth + 1 : depth, k)
