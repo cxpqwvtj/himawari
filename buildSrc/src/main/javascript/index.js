@@ -9,7 +9,7 @@ const schemaDef = immutable.fromJS(parser.parse(JSON.parse(buf.toString())))
 
 const printRecursive = (obj, depth) => {
   return obj.map((v, k) => {
-    if (k !== 'definitions' && !(depth === 1 && k === 'error')) {
+    if (k !== 'definitions') {
       console.log(`[${depth}]${k} ${v.getIn(['type', 0])} ${v.get('description')}`)
       if (v.getIn(['type', 0]).toLowerCase() === 'object') {
         return immutable.fromJS({[k]: printRecursive(v.get('properties'), depth + 1)})
@@ -30,6 +30,13 @@ const printRecursive = (obj, depth) => {
 
 // console.log(JSON.stringify(schemaDef.toJS(), null, 2))
 
-console.log(JSON.stringify(printRecursive(schemaDef.get('properties'), 1).toJS(), null, 2))
+schemaDef.get('properties').map((v, k) => {
+  if (k !== 'error') {
+    const obj = printRecursive(immutable.fromJS(v.get('properties')), 1).toJS()
+    console.log(`*****${k}*****`)
+    console.log(JSON.stringify(obj, null, 2))
+  }
+})
+
 
 // console.log(JSON.stringify(schemaDef.get('properties').toJS(), null, 2))
