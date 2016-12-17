@@ -28,8 +28,6 @@ const printRecursive = (obj, depth) => {
   }).reduce((r, v) => r.mergeDeep(v), immutable.fromJS({}))
 }
 
-// console.log(JSON.stringify(schemaDef.toJS(), null, 2))
-
 schemaDef.get('properties').map((v, k) => {
   if (k !== 'error') {
     const obj = printRecursive(immutable.fromJS(v.get('properties')), 1).toJS()
@@ -37,6 +35,3 @@ schemaDef.get('properties').map((v, k) => {
     console.log(JSON.stringify(obj, null, 2))
   }
 })
-
-
-// console.log(JSON.stringify(schemaDef.get('properties').toJS(), null, 2))
