@@ -2,7 +2,7 @@
 "$schema": http://json-schema.org/draft-04/hyper-schema
 id: schemata/TimeCardResponse
 title: TimeCardResponse
-description: 月の時間データ
+description: 月の時間データ取得APIレスポンス
 stability: prototype
 strictProperties: true
 type:
