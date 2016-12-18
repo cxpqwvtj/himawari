@@ -1,7 +1,7 @@
 ---
 "$schema": http://json-schema.org/draft-04/hyper-schema
-id: schemata/timecard
-title: TimeCard 
+id: schemata/TimeCardResponse
+title: TimeCardResponse
 description: 月の時間データ
 stability: prototype
 strictProperties: true
@@ -47,6 +47,6 @@ definitions:
               - string
 properties:
   result:
-    "$ref": "/schemata/timecard#/definitions/result"
+    "$ref": "/schemata/TimeCardResponse#/definitions/result"
   error:
     "$ref": "/schemata/error#/definitions/error"
