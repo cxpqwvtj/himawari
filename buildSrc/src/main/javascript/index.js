@@ -30,9 +30,10 @@ const exampleJson = (obj, depth) => {
 const generateKotlinDataClass = (obj, depth) => {
   return obj.map((v, k) => {
     if (k !== 'definitions') {
+      const indent = immutable.Range(1, depth).map(() => '  ').reduce((r, v) => r + v, '')
       console.log(`[${depth}]${k} ${v.getIn(['type', 0])} ${v.get('description')}`)
       if (v.getIn(['type', 0]).toLowerCase() === 'object') {
-        return `data class ${k[0].toUpperCase()}${k.substring(1)}\n`
+        return `${indent}data class ${k[0].toUpperCase()}${k.substring(1)}\n`
         // return immutable.fromJS({[k]: generateKotlinDataClass(v.get('properties'), depth + 1)})
       } else if (v.getIn(['type', 0]).toLowerCase() === 'array') {
         const arrayProp = v.getIn(['items', 'properties'])
