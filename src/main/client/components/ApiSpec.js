@@ -33,7 +33,8 @@ export default class ApiSpec extends AppBaseComponent {
   createTable(name, property) {
     const rows = property.get('properties').map((v, k) => this.propertyRows(k, v, 1)).toList().flatMap((v) => v)
     return (
-      <div key={name}>
+      <div key={name} style={{marginTop: 20}}>
+        <hr />
         <div>{name}</div>
         <div>title {property.get('title')}</div>
         <div>description {property.get('description')}</div>
