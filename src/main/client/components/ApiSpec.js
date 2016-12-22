@@ -91,9 +91,6 @@ export default class ApiSpec extends AppBaseComponent {
     return (
       <div style={{margin: '10px 50px'}}>
         <div>
-          <FlatButton label='TOP' onClick={() => {super.handleUrlChange('')}} />
-        </div>
-        <div>
           <TextField
             hintText='api1'
             floatingLabelText='search'
