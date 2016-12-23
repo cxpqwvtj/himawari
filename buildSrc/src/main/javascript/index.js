@@ -89,7 +89,10 @@ schemaDef.get('properties').map((v, k) => {
     const obj = exampleJson(v.get('properties'), 1).toJS()
     console.log(`***** ${k} *****`)
     console.log(JSON.stringify(obj, null, 2))
-    console.log(`${generateClassComment(v.get('properties'), 1)}data class ${k}(${generateVariable(v.get('properties'), 1)})${generateKotlinDataClass(v.get('properties'), 1)}`)
+    const classComment = generateClassComment(v.get('properties'), 1)
+    const variables = generateVariable(v.get('properties'), 1)
+    const dataClasses = generateKotlinDataClass(v.get('properties'), 1)
+    console.log(`${classComment}data class ${k}(${variables})${dataClasses}`)
     console.log('')
   }
 })
