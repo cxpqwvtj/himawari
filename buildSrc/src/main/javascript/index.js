@@ -49,18 +49,28 @@ const generateVariable = (obj, depth) => {
   .join(',')
 }
 
+const generateClassComment = (obj, depth) => {
+  const indent = immutable.Range(0, depth - 1).map(() => '  ').reduce((r, v) => r + v, '')
+  const propertiesComment = obj.map((v, k) => {
+    if (k !== 'definitions') {
+      return `${indent} * @property ${k} ${v.get('description').replace('\n', '<br />')}`
+    }
+  }).join('\n')
+  return `${indent}/**\n${propertiesComment}\n${indent} */\n`
+}
+
 const generateKotlinDataClass = (obj, depth) => {
   const indent = immutable.Range(0, depth).map(() => '  ').reduce((r, v) => r + v, '')
   const classDefs = obj.map((v, k) => {
     if (k !== 'definitions') {
       // console.log(`[${depth}]${k} ${v.getIn(['type', 0])} ${v.get('description')}`)
       if (v.getIn(['type', 0]).toLowerCase() === 'object') {
-        return `${indent}data class ${k[0].toUpperCase()}${k.substring(1)} (${generateVariable(immutable.fromJS(v.get('properties')), depth + 1)})${generateKotlinDataClass(immutable.fromJS(v.get('properties')), depth + 1)}`
+        return `${generateClassComment(v.get('properties'), depth + 1)}${indent}data class ${k[0].toUpperCase()}${k.substring(1)} (${generateVariable(v.get('properties'), depth + 1)})${generateKotlinDataClass(v.get('properties'), depth + 1)}`
         // return immutable.fromJS({[k]: generateKotlinDataClass(v.get('properties'), depth + 1)})
       } else if (v.getIn(['type', 0]).toLowerCase() === 'array') {
         const arrayProp = v.getIn(['items', 'properties'])
         if (arrayProp) {
-          return `${indent}data class ${k[0].toUpperCase()}${k.substring(1)} (${generateVariable(immutable.fromJS(v.getIn(['items', 'properties'])), depth + 1)})${generateKotlinDataClass(immutable.fromJS(v.getIn(['items', 'properties'])), depth + 1)}`
+          return `${generateClassComment(v.getIn(['items', 'properties']), depth + 1)}${indent}data class ${k[0].toUpperCase()}${k.substring(1)} (${generateVariable(v.getIn(['items', 'properties']), depth + 1)})${generateKotlinDataClass(v.getIn(['items', 'properties']), depth + 1)}`
         }
         // TODO: arrayの中身がobjectではない場合を考慮する
       }
@@ -76,10 +86,10 @@ const generateKotlinDataClass = (obj, depth) => {
 
 schemaDef.get('properties').map((v, k) => {
   if (k !== 'error') {
-    const obj = exampleJson(immutable.fromJS(v.get('properties')), 1).toJS()
+    const obj = exampleJson(v.get('properties'), 1).toJS()
     console.log(`***** ${k} *****`)
     console.log(JSON.stringify(obj, null, 2))
-    console.log(`data class ${k}(${generateVariable(immutable.fromJS(v.get('properties')), 1)})${generateKotlinDataClass(immutable.fromJS(v.get('properties')), 1)}`)
+    console.log(`${generateClassComment(v.get('properties'), 1)}data class ${k}(${generateVariable(v.get('properties'), 1)})${generateKotlinDataClass(v.get('properties'), 1)}`)
     console.log('')
   }
 })
