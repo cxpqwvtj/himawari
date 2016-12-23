@@ -7,8 +7,8 @@ const buf = fs.readFileSync('./docs/schema/schema.json')
 // console.log(JSON.stringify({}, null, 2))
 const schemaDef = Immutable.fromJS(parser.parse(JSON.parse(buf.toString())))
 
-const exampleJson = (obj, depth) => {
-  return obj.map((v, k) => {
+const exampleJson = (propertiesDef, depth) => {
+  return propertiesDef.map((v, k) => {
     if (k !== 'definitions') {
       if (v.getIn(['type', 0]).toLowerCase() === 'object') {
         return Immutable.fromJS({[k]: exampleJson(v.get('properties'), depth + 1)})
@@ -27,9 +27,9 @@ const exampleJson = (obj, depth) => {
   }).reduce((r, v) => r.mergeDeep(v), Immutable.fromJS({}))
 }
 
-const generateVariable = (obj, depth) => {
+const generateVariable = (propertiesDef, depth) => {
   const indent = Immutable.Range(0, depth).map(() => '  ').reduce((r, v) => r + v, '')
-  return obj.map((v, k) => {
+  return propertiesDef.map((v, k) => {
     if (k !== 'definitions') {
       if (v.getIn(['type', 0]).toLowerCase() === 'object') {
         return `${indent}var ${k}: ${k[0].toUpperCase()}${k.substring(1)}`
@@ -49,9 +49,9 @@ const generateVariable = (obj, depth) => {
   .join(',')
 }
 
-const generateClassComment = (obj, depth) => {
+const generateClassComment = (propertiesDef, depth) => {
   const indent = Immutable.Range(0, depth - 1).map(() => '  ').reduce((r, v) => r + v, '')
-  const propertiesComment = obj.map((v, k) => {
+  const propertiesComment = propertiesDef.map((v, k) => {
     if (k !== 'definitions') {
       return `${indent} * @property ${k} ${v.get('description').replace('\n', '<br />')}`
     }
@@ -59,9 +59,9 @@ const generateClassComment = (obj, depth) => {
   return `${indent}/**\n${propertiesComment}\n${indent} */\n`
 }
 
-const generateKotlinDataClass = (obj, depth) => {
+const generateKotlinDataClass = (propertiesDef, depth) => {
   const indent = Immutable.Range(0, depth).map(() => '  ').reduce((r, v) => r + v, '')
-  const classDefs = obj.map((v, k) => {
+  const classDefs = propertiesDef.map((v, k) => {
     if (k !== 'definitions') {
       // console.log(`[${depth}]${k} ${v.getIn(['type', 0])} ${v.get('description')}`)
       if (v.getIn(['type', 0]).toLowerCase() === 'object') {
