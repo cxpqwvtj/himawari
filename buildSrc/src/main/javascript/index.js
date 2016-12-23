@@ -7,24 +7,22 @@ const buf = fs.readFileSync('./docs/schema/schema.json')
 // console.log(JSON.stringify({}, null, 2))
 const schemaDef = Immutable.fromJS(parser.parse(JSON.parse(buf.toString())))
 
-const exampleJson = (propertiesDef, depth) => {
-  return propertiesDef.map((v, k) => {
-    if (k !== 'definitions') {
-      if (v.getIn(['type', 0]).toLowerCase() === 'object') {
-        return Immutable.fromJS({[k]: exampleJson(v.get('properties'), depth + 1)})
-      } else if (v.getIn(['type', 0]).toLowerCase() === 'array') {
-        const arrayProp = v.getIn(['items', 'properties'])
-        if (arrayProp) {
-          return Immutable.fromJS({[k]: [exampleJson(arrayProp, depth + 1, k)]})
-        }
-        // TODO: arrayの中身がobjectではない場合を考慮する
-      } else if (v.getIn(['type', 0]).toLowerCase() === 'string') {
-        return Immutable.fromJS({[k]: '文字列'})
-      } else if (v.getIn(['type', 0]).toLowerCase() === 'number') {
-        return Immutable.fromJS({[k]: 0})
-      }
-    }
-  }).reduce((r, v) => r.mergeDeep(v), Immutable.fromJS({}))
+const exampleJson = (propertyName, jsonDef) => {
+  if (jsonDef.getIn(['type', 0]).toLowerCase() === 'object') {
+    const properties = jsonDef.get('properties') || Immutable.fromJS({})
+    return properties.map((v, k) => {
+      return Immutable.fromJS({[k]: exampleJson(k, v)})
+    }).reduce((r, v) => r.mergeDeep(v))
+  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'array') {
+    const properties = jsonDef.getIn(['items', 'properties']) || Immutable.fromJS({})
+    return properties.map((v, k) => {
+      return Immutable.fromJS([{[k]: exampleJson(k, v)}])
+    }).reduce((r, v) => r.mergeDeep(v))
+  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'string') {
+    return '文字列'
+  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'number') {
+    return 0
+  }
 }
 
 const generateVariable = (propertiesDef, depth) => {
@@ -86,8 +84,8 @@ const generateKotlinDataClass = (propertiesDef, depth) => {
 
 schemaDef.get('properties').map((v, k) => {
   if (k !== 'error') {
-    const obj = exampleJson(v.get('properties'), 1).toJS()
     console.log(`***** ${k} *****`)
+    const obj = exampleJson(k, v, 1).toJS()
     console.log(JSON.stringify(obj, null, 2))
     const classComment = generateClassComment(v.get('properties'), 1)
     const variables = generateVariable(v.get('properties'), 1)
