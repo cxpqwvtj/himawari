@@ -1,0 +1,15 @@
+{
+  "result": {
+    "yearMonth": "文字列",
+    "days": {
+      "bizDate": "文字列",
+      "startDate": "文字列",
+      "endDate": "文字列",
+      "remarks": "文字列"
+    }
+  },
+  "error": {
+    "code": "文字列",
+    "message": "文字列"
+  }
+}
