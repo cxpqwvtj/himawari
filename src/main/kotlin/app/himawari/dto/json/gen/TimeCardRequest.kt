@@ -6,4 +6,4 @@ package app.himawari.dto.json.gen
  * @property yearMonth 年月(yyyyMM)
  */
 data class TimeCardRequest(
-    var yearMonth: String)
+        var yearMonth: String? = null)

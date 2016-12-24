@@ -7,35 +7,35 @@ package app.himawari.dto.json.gen
  * @property error エラー情報
  */
 data class TimeCardResponse(
-    var result: Result,
-    var error: Error) {
-  /**
-   * 結果
-   * @property yearMonth 年月(yyyyMM)
-   * @property days 日次データ
-   */
-  data class Result(
-      var yearMonth: String,
-      var days: List<Days>) {
+        var result: Result? = null,
+        var error: Error? = null) {
     /**
-     * 日次データ
-     * @property bizDate 業務日
-     * @property startDate 開始時間
-     * @property endDate 終了時間
-     * @property remarks 備考
+     * 結果
+     * @property yearMonth 年月(yyyyMM)
+     * @property days 日次データ
      */
-    data class Days(
-        var bizDate: String,
-        var startDate: String,
-        var endDate: String,
-        var remarks: String)
-  }
-  /**
-   * エラー情報
-   * @property code エラーコード
-   * @property message エラーメッセージ
-   */
-  data class Error(
-      var code: String,
-      var message: String)
+    data class Result(
+            var yearMonth: String? = null,
+            var days: List<Days>? = null) {
+        /**
+         * 日次データ
+         * @property bizDate 業務日
+         * @property startDate 開始時間
+         * @property endDate 終了時間
+         * @property remarks 備考
+         */
+        data class Days(
+                var bizDate: String? = null,
+                var startDate: String? = null,
+                var endDate: String? = null,
+                var remarks: String? = null)
+    }
+    /**
+     * エラー情報
+     * @property code エラーコード
+     * @property message エラーメッセージ
+     */
+    data class Error(
+            var code: String? = null,
+            var message: String? = null)
 }
