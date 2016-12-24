@@ -7,10 +7,15 @@ const config = require('./config')
 const schemaDef = Immutable.fromJS(parser.parse(JSON.parse(fs.readFileSync(config.schemaJsonFilePath).toString())))
 
 const exampleJson = (propertyName, jsonDef) => {
-  if (jsonDef.getIn(['type', 0]).toLowerCase() === 'object' || jsonDef.getIn(['type', 0]).toLowerCase() === 'array') {
-    const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties'])
+  if (jsonDef.getIn(['type', 0]).toLowerCase() === 'object') {
+    const properties = jsonDef.get('properties')
     return properties.map((v, k) => {
       return Immutable.fromJS({[k]: exampleJson(k, v)})
+    }).reduce((r, v) => r.mergeDeep(v))
+  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'array') {
+    const properties = jsonDef.getIn(['items', 'properties'])
+    return properties.map((v, k) => {
+      return Immutable.fromJS([{[k]: exampleJson(k, v)}])
     }).reduce((r, v) => r.mergeDeep(v))
   } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'string') {
     return '文字列'
