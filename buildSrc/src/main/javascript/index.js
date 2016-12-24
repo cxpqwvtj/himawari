@@ -3,8 +3,9 @@ const util = require('util')
 const parser = require('json-schema-parser')
 const Immutable = require('immutable')
 
-const buf = fs.readFileSync('./docs/schema/schema.json')
-const schemaDef = Immutable.fromJS(parser.parse(JSON.parse(buf.toString())))
+const config = require('./config')
+
+const schemaDef = Immutable.fromJS(parser.parse(JSON.parse(fs.readFileSync(config.schemaJsonFilePath).toString())))
 
 const exampleJson = (propertyName, jsonDef) => {
   if (jsonDef.getIn(['type', 0]).toLowerCase() === 'object' || jsonDef.getIn(['type', 0]).toLowerCase() === 'array') {
