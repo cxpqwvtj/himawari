@@ -4,7 +4,6 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const DEBUG = !(process.env.NODE_ENV === 'production')
 const VERBOSE = process.argv.includes('--verbose')
-const WATCH =  process.argv.includes('--watch')
 const HOT_DEPLOY = !!process.env.HOT_DEPLOY
 let CONTEXT_PATH = `${(process.env.CONTEXT_PATH || '')}`
 
@@ -14,7 +13,7 @@ module.exports = {
     'js/bundle': [...(HOT_DEPLOY ? ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'] : []), './index.js']
   },
   output: {
-    path: __dirname + (WATCH ? '/build/resources/main' : '/src/main/resources') + '/static',
+    path: __dirname + '/src/main/resources/static',
     filename: '[name].js',
     publicPath: `${CONTEXT_PATH}/`
   },
