@@ -49,4 +49,4 @@ properties:
   result:
     "$ref": "/schemata/TimeCardResponse#/definitions/result"
   error:
-    "$ref": "/schemata/error#/definitions/error"
+    "$ref": "/schemata/_Error#/definitions/error"

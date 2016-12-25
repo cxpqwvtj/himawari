@@ -108,7 +108,7 @@ const generateKotlinTestVariable = (propertyName, jsonDef, depth) => {
 }
 
 schemaDef.get('properties').map((v, k) => {
-  if (k !== 'error') {
+  if (!k.startsWith('_')) {
     console.log(`generate ${k}...`) // eslint-disable-line no-console
     const obj = exampleJson(k, v, 1).toJS()
     fs.writeFileSync(`${config.sampleJsonDir}/${k}.json`, JSON.stringify(obj, null, 2))

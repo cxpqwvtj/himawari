@@ -1,6 +1,6 @@
 ---
 "$schema": http://json-schema.org/draft-04/hyper-schema
-id: schemata/error
+id: schemata/_Error
 title: Errorオブジェクト
 description: エラー時のレスポンスに含まれるオブジェクト
 stability: prototype
