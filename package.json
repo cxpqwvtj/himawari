@@ -39,7 +39,6 @@
     "babel-preset-stage-1": "^6.16.0",
     "copy-webpack-plugin": "^4.0.1",
     "express": "^4.14.0",
-    "fsevents": "^1.0.15",
     "html-webpack-plugin": "^2.24.1",
     "http-proxy-middleware": "^0.17.2",
     "json-loader": "^0.5.4",
@@ -54,6 +53,9 @@
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.2",
     "yaml-loader": "^0.4.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^1.0.15"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
