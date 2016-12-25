@@ -45,3 +45,7 @@ task generate << {
 task appRun << {
   println "TODO:アプリ起動処理実装"
 }
+
+bootRun {
+  addResources = true
+}
