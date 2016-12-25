@@ -29,6 +29,7 @@ module.exports = {
       2,
       "never"
     ],
-    "no-constant-condition": [0]
+    "no-constant-condition": [0],
+    "indent": ["error", 2]
   }
 };
