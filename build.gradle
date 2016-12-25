@@ -2,7 +2,7 @@ import app.himawari.gen.html.*
 
 buildscript {
   ext {
-    kotlinVersion = '1.0.5'
+    kotlinVersion = '1.0.5-3'
     springBootVersion = '1.4.3.RELEASE'
   }
   repositories {
