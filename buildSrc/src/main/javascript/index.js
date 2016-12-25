@@ -26,6 +26,19 @@ const exampleJson = (propertyName, jsonDef) => {
   }
 }
 
+const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
+  const indent = Immutable.Range(0, depth).map(() => '    ').reduce((r, v) => r + v, '')
+  if (jsonDef.get('type').map(v => v.toLowerCase()).contains('object') ||
+    jsonDef.get('type').map(v => v.toLowerCase()).contains('array')) {
+    const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties'])
+    const children = properties.map((v, k) => {
+      return generateKotlinDataClass(k, v, depth + 1)
+    }).filter(v => v).map(v => `\n${v}`).join('')
+    const inner = children === '' ? '' : ` {${children}\n${indent}}`
+    return `${generateClassComment(propertyName, jsonDef, depth + 1)}${indent}data class ${propertyName[0].toUpperCase()}${propertyName.substring(1)}(${generateVariable(propertyName, jsonDef, depth + 2)})${inner}`
+  }
+}
+
 const generateVariable = (propertyName, jsonDef, depth) => {
   const indent = Immutable.Range(0, depth).map(() => '    ').join('')
   const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties']) || Immutable.fromJS({})
@@ -51,19 +64,6 @@ const generateClassComment = (propertyName, jsonDef, depth) => {
     return `${indent} * @property ${k} ${v.get('description').replace('\n', '<br />')}`
   }).map(v => `\n${v}`).join('')
   return `${indent}/**\n${indent} * ${jsonDef.get('description').replace('\n', '<br />')}${propertiesComment}\n${indent} */\n`
-}
-
-const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
-  const indent = Immutable.Range(0, depth).map(() => '    ').reduce((r, v) => r + v, '')
-  if (jsonDef.get('type').map(v => v.toLowerCase()).contains('object') ||
-    jsonDef.get('type').map(v => v.toLowerCase()).contains('array')) {
-    const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties'])
-    const children = properties.map((v, k) => {
-      return generateKotlinDataClass(k, v, depth + 1)
-    }).filter(v => v).map(v => `\n${v}`).join('')
-    const inner = children === '' ? '' : ` {${children}\n${indent}}`
-    return `${generateClassComment(propertyName, jsonDef, depth + 1)}${indent}data class ${propertyName[0].toUpperCase()}${propertyName.substring(1)}(${generateVariable(propertyName, jsonDef, depth + 2)})${inner}`
-  }
 }
 
 const generateKotlinTestClass = (k, v) => {
