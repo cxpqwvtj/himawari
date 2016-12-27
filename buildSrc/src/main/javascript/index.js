@@ -43,14 +43,16 @@ const generateVariable = (propertyName, jsonDef, depth) => {
   const indent = Immutable.Range(0, depth).map(() => '    ').join('')
   const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties']) || Immutable.fromJS({})
   return properties.map((v, k) => {
+    const requiredField = jsonDef.get('required') || Immutable.fromJS([])
+    const requiredMark = requiredField.contains(k) ? '' : '?'
     if (v.getIn(['type', 0]).toLowerCase() === 'object') {
-      return `${indent}var ${k}: ${k[0].toUpperCase()}${k.substring(1)}? = null`
+      return `${indent}var ${k}: ${k[0].toUpperCase()}${k.substring(1)}${requiredMark} = null`
     } else if (v.getIn(['type', 0]).toLowerCase() === 'array') {
-      return `${indent}var ${k}: List<${k[0].toUpperCase()}${k.substring(1)}>? = null`
+      return `${indent}var ${k}: List<${k[0].toUpperCase()}${k.substring(1)}>${requiredMark} = null`
     } else if (v.getIn(['type', 0]).toLowerCase() === 'string') {
-      return `${indent}var ${k}: String? = null`
+      return `${indent}var ${k}: String${requiredMark} = null`
     } else if (v.getIn(['type', 0]).toLowerCase() === 'number') {
-      return `${indent}var ${k}: Int? = null`
+      return `${indent}var ${k}: Int${requiredMark} = null`
     } else {
       console.log(`不明な型定義です。${v.get('type')}`) // eslint-disable-line no-console
     }
