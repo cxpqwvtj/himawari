@@ -1,0 +1,10 @@
+.gradle
+.idea
+.vscode
+build
+docker
+!docker/himawari/entrypoint.sh
+log
+node_modules
+timber
+gradlew.bat
