@@ -3,5 +3,6 @@ module.exports = {
   mainPackageRoot: './src/main/kotlin',
   testPackageRoot: './src/test/kotlin',
   packageName: 'app.himawari.dto.json.gen',
-  sampleJsonDir: './src/test/resources/json/gen'
+  sampleJsonDir: './src/test/resources/json/gen',
+  jsonDefXlsxDir: './buildSrc/src/main/resources/xlsx'
 }
