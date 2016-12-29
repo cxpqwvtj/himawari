@@ -1,36 +1,21 @@
 const fs = require('fs')
 const Excel = require('exceljs')
-const Immutable = require('immutable')
-const DefaultConfig = require('./config.js')
+
+const Utils = require('./utils')
+const config = require('./config.js')
 
 const workbook = new Excel.Workbook()
 
 const cellValue = (cell) => {
   if (cell.type === Excel.ValueType.Formula) {
-    return cell.value.result
+    //return cell.value.result
+  } else if (cell.type === Excel.ValueType.RichText) {
+    console.log(JSON.stringify(cell.value, null, 2))
   }
-  return cell.value
+  return cell.toString().replace(/\r\n/g, '\\n')
 }
 
-const directoryExists = (filePath) => {
-  try {
-    return fs.statSync(filePath).isDirectory()
-  } catch (err) {
-    return false
-  }
-}
-
-const fileExists = (filePath) => {
-  try {
-    return fs.statSync(filePath).isFile()
-  } catch (err) {
-    return false
-  }
-}
-
-const customConfigFilePath = './buildSrc/src/main/javascript/customConfig.json'
-const config = (fileExists(customConfigFilePath)) ? Immutable.fromJS(DefaultConfig).mergeDeep(Immutable.fromJS(JSON.parse(fs.readFileSync(customConfigFilePath).toString()))).toJS() : DefaultConfig
-if (!directoryExists(config.jsonDefXlsxDir)) {
+if (!Utils.existsDirectory(config.jsonDefXlsxDir)) {
   console.log(`ディレクトリが存在しません。${config.jsonDefXlsxDir}`) // eslint-disable-line no-console
   return
 }
@@ -40,8 +25,8 @@ fs.readdir(config.jsonDefXlsxDir, (err, files) => {
     return
   }
   files.map((file) => {
-    if (file.endsWith('.xlsx')) {
-      console.log(`${config.jsonDefXlsxDir}/${file}`)
+    if (!file.startsWith('~$') && file.endsWith('.xlsx')) {
+      console.log(`${config.jsonDefXlsxDir}/${file} ...`) // eslint-disable-line no-console
       workbook.xlsx.readFile(`${config.jsonDefXlsxDir}/${file}`).then(() => {
         workbook.eachSheet((worksheet, sheetId) => {
           console.log(`[WorksheetName]${worksheet.name}`)
