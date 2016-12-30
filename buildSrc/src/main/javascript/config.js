@@ -14,5 +14,6 @@ module.exports = Immutable.fromJS({
   testPackageRoot: './src/test/kotlin',
   packageName: 'app.himawari.dto.json.gen',
   sampleJsonDir: './src/test/resources/json/gen',
-  jsonDefXlsxDir: './buildSrc/src/main/resources/xlsx'
+  jsonDefXlsxDir: './buildSrc/src/main/resources/xlsx',
+  outputHtmlDir: './docs/html'
 }).mergeDeep(customConfig).toJS()
