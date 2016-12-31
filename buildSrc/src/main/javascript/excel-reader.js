@@ -2,6 +2,7 @@ const fs = require('fs')
 const Excel = require('exceljs')
 const ejs = require('ejs')
 const yaml = require('js-yaml')
+const Immutable = require('immutable')
 const join = require('path').join;
 
 const Utils = require('./utils')
@@ -13,7 +14,15 @@ const cellValue = (cell) => {
   if (cell.type === Excel.ValueType.Formula) {
     //return cell.value.result
   } else if (cell.type === Excel.ValueType.RichText) {
-    //console.log(JSON.stringify(cell.value, null, 2))
+    return cell.value.richText.map((v) => {
+      const bold = Immutable.fromJS(v).getIn(['font', 'bold']) ? 'font-weight: bold;' : ''
+      const strike = Immutable.fromJS(v).getIn(['font', 'strike']) ? 'text-decoration: line-through;' : ''
+      const italic = Immutable.fromJS(v).getIn(['font', 'italic']) ? 'font-style: italic;' : ''
+      const underline = Immutable.fromJS(v).getIn(['font', 'underline']) ? 'text-decoration: underline;' : ''
+      const color = Immutable.fromJS(v).getIn(['font', 'color', 'argb'])
+      // style='font-weight: bold; text-decoration: line-through; font-style: italic; text-decoration: underline; color: '
+      return `<span style='${bold}${strike}${italic}${underline}${color ? `color: #${color.substring(2)};` : ''}'>${v.text.replace(/\r\n/g, '\\n')}</span>`
+    }).join('')
   }
   return cell.toString().replace(/\r\n/g, '\\n')
 }
