@@ -12,3 +12,4 @@ properties:
     description: 年月(yyyyMM)
     type:
     - string
+required: [yearMonth]

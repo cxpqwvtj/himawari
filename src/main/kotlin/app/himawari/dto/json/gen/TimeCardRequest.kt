@@ -9,4 +9,4 @@ import com.fasterxml.jackson.annotation.JsonInclude
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class TimeCardRequest(
-        var yearMonth: String? = null)
+        var yearMonth: String = "")
