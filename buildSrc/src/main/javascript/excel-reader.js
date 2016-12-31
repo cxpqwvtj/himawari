@@ -1,6 +1,8 @@
 const fs = require('fs')
 const Excel = require('exceljs')
 const ejs = require('ejs')
+const yaml = require('js-yaml')
+const join = require('path').join;
 
 const Utils = require('./utils')
 const config = require('./config.js')
@@ -25,7 +27,7 @@ const files = fs.readdirSync(config.jsonDefXlsxDir)
 const promises = files.filter((file) => {
   return !file.startsWith('~$') && file.endsWith('.xlsx')
 }).map((file) => {
-  return () => {
+  return (books) => {
     return new Promise((resolve) => {
       console.log(`${config.jsonDefXlsxDir}/${file} ...`) // eslint-disable-line no-console
       workbook.xlsx.readFile(`${config.jsonDefXlsxDir}/${file}`).then(() => {
@@ -33,29 +35,33 @@ const promises = files.filter((file) => {
         workbook.eachSheet((worksheet) => {
           if (!worksheet.name.match(/.*/)) return
           const rows = []
-          console.log(`[WorksheetName]${worksheet.name}`)
           worksheet.eachRow((row, rowNumber) => {
             const cells = []
             row.eachCell({includeEmpty: true}, (cell, colNumber) => {
               cells.push(cellValue(cell))
             })
-            rows.push(cells)
-            // console.log(`${rowNumber}: ${cells.join(', ')}`)
+            rows.push({cells})
           })
-          sheets.push(rows)
-          resolve()
+          sheets.push({name: worksheet.name, rows})
         })
+        books.push({name: file, sheets})
+        resolve(books)
       })
     })
   }
 })
 
-promises.push(() => {
+promises.push((books) => {
   return new Promise(() => {
-    ejs.renderFile('./buildSrc/src/main/javascript/template/api-def.ejs', {}, {}, (err, html) => {
-      console.log('render html')
+    fs.writeFileSync('./docs/excel/excel.yml', yaml.safeDump(books, {sortKeys: true}))
+    ejs.renderFile(join(__dirname, '/template/api-def.ejs'), {books}, {}, (err, html) => {
+      if (err) {
+        console.log(`HTMLのrender処理でエラーが発生しました。\n${err}`) // eslint-disable-line no-console
+      } else {
+        fs.writeFileSync('./docs/excel/excel.html', html)
+      }
     })
   })
 })
 
-promises.reduce((r, v) => r.then(v), Promise.resolve())
+promises.reduce((r, v) => r.then(v), Promise.resolve([]))

@@ -5,5 +5,27 @@
     <title>API定義</title>
   </head>
   <body style="margin: 0px">
+  <%_books.map((book) => {-%>
+    <div>
+      <h2><%=book.name%></h2>
+    <%_book.sheets.map((sheet) => {-%>
+      <h4><%=sheet.name%></h4>
+      <table>
+        <thead>
+          <%_//<tr><td>ヘッダ</td></tr>-%>
+        </thead>
+        <tbody>
+        <%_sheet.rows.map((row) => {-%>
+          <tr>
+          <%_row.cells.map((cell) => {-%>
+            <td><%-cell.replace(/\\n/g, '<br />')%></td>
+          <%_})-%>
+          </tr>
+        <%_})-%>
+        </tbody>
+      </table>
+    <%_})-%>
+    </div>
+  <%_})-%>
   </body>
 </html>
