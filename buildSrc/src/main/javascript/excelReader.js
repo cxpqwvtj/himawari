@@ -29,17 +29,7 @@ const promises = files.filter((file) => {
           worksheet.eachRow((row, rowNumber) => {
             const cells = []
             row.eachCell({includeEmpty: true}, (cell, colNumber) => {
-              const value = (cell.type === Excel.ValueType.RichText) ? (
-                cell.value.richText.map((v) => {
-                  const bold = Immutable.fromJS(v).getIn(['font', 'bold']) ? 'font-weight: bold;' : ''
-                  const strike = Immutable.fromJS(v).getIn(['font', 'strike']) ? 'text-decoration: line-through;' : ''
-                  const italic = Immutable.fromJS(v).getIn(['font', 'italic']) ? 'font-style: italic;' : ''
-                  const underline = Immutable.fromJS(v).getIn(['font', 'underline']) ? 'text-decoration: underline;' : ''
-                  const color = Immutable.fromJS(v).getIn(['font', 'color', 'argb'])
-                  return `<span style='${bold}${strike}${italic}${underline}${color ? `color: #${color.substring(2)};` : ''}'>${v.text}</span>`
-                }).join('')
-              ) : cell.toString()
-              cells.push(value.replace(/\r\n/g, '<br/>'))
+              cells.push(cell.type === Excel.ValueType.RichText ? cell.value : cell.toString())
             })
             rows.push({cells})
           })
@@ -55,7 +45,7 @@ const promises = files.filter((file) => {
 promises.push((books) => {
   return new Promise(() => {
     fs.writeFileSync('./docs/excel/excel.yml', yaml.safeDump(books, {sortKeys: true}))
-    ejs.renderFile(join(__dirname, '/template/api_def.ejs'), {books}, {}, (err, html) => {
+    ejs.renderFile(join(__dirname, '/template/api_def.ejs'), {Immutable, books}, {}, (err, html) => {
       if (err) {
         console.log(`HTMLのrender処理でエラーが発生しました。\n${err}`) // eslint-disable-line no-console
       } else {

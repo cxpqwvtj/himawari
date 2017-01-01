@@ -18,7 +18,17 @@
         <%_sheet.rows.map((row) => {-%>
           <tr>
           <%_row.cells.map((cell) => {-%>
-            <td><%-cell.replace(/\\n/g, '<br />')%></td>
+            <td><%_if (typeof(cell) === 'string') {
+%><%-cell.replace(/\r\n/g, '<br />')%><%
+} else if (cell.richText) {-%><%-cell.richText.map((v) => {
+  const value = Immutable.fromJS(v)
+  const bold = value.getIn(['font', 'bold']) ? 'font-weight: bold;' : ''
+  const strike = value.getIn(['font', 'strike']) ? 'text-decoration: line-through;' : ''
+  const italic = value.getIn(['font', 'italic']) ? 'font-style: italic;' : ''
+  const underline = value.getIn(['font', 'underline']) ? 'text-decoration: underline;' : ''
+  const color = value.getIn(['font', 'color', 'argb'])
+  return `<span style='${bold}${strike}${italic}${underline}${color ? `color: #${color.substring(2)};` : ''}'>${v.text.replace(/\r\n/g, '<br/>')}</span>`
+}).join('')%><%} else if (cell.formula) {%><%-cell.result%><%}%></td>
           <%_})-%>
           </tr>
         <%_})-%>
