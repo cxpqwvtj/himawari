@@ -1,7 +1,7 @@
 const fs = require('fs')
 const Immutable = require('immutable')
 const Excel = require('exceljs')
-const join = require('path').join;
+const join = require('path').join
 const yaml = require('js-yaml')
 const ejs = require('ejs')
 

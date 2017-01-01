@@ -5,7 +5,7 @@ import App from './containers/App'
 import PortalPage from './containers/PortalPage'
 import Login from './containers/Login'
 import TimeCard from './containers/TimeCard'
-import ApiSpec from './components/ApiSpec'
+import ApiSpec from './containers/ApiSpec'
 import MockSetting from './containers/MockSetting'
 
 export default (

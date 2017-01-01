@@ -4,7 +4,8 @@ var webpackHotMiddleware = require('webpack-hot-middleware')
 var proxy = require('http-proxy-middleware')
 var config = require('../../../webpack.config')
 var moment = require('moment')
-var openBrowser = require('react-dev-utils/openBrowser');
+var clearConsole = require('react-dev-utils/clearConsole')
+var openBrowser = require('react-dev-utils/openBrowser')
 var isInteractive = process.stdout.isTTY
 
 const LOG_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS'
@@ -17,17 +18,17 @@ app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output
 app.use(webpackHotMiddleware(compiler))
 if (!!process.env.SERVER_MOCK) {
   app.post('/api/trail/create', function(req, res) {
-    console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`)
+    console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`) // eslint-disable-line no-console
     //res.status(500)
     res.json({})
   })
   app.get('/api*', function(req, res) {
-    console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`)
+    console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`) // eslint-disable-line no-console
     res.json({})
     //res.json({error: {message: 'エラーです'}})
   })
   app.post('/api*', function(req, res) {
-    console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`)
+    console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`) // eslint-disable-line no-console
     res.json({})
   })
 } else {
@@ -35,16 +36,17 @@ if (!!process.env.SERVER_MOCK) {
 }
 
 app.get('/**', function(req, res) {
-  console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`)
+  console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`) // eslint-disable-line no-console
   res.setHeader('Content-Type', 'text/html')
   res.send(compiler.outputFileSystem.readFileSync(compiler.outputPath + '/index.html'))
 })
 
 app.listen(port, function(error) {
   if (error) {
-    console.error(error)
+    console.error(error) // eslint-disable-line no-console
   } else {
-    console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
+    clearConsole()
+    console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port) // eslint-disable-line no-console
     if (isInteractive) {
       openBrowser(`http://localhost:${port}/`)
     }
