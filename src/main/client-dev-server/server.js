@@ -4,6 +4,7 @@ var webpackHotMiddleware = require('webpack-hot-middleware')
 var proxy = require('http-proxy-middleware')
 var config = require('../../../webpack.config')
 var moment = require('moment')
+var openBrowser = require('react-dev-utils/openBrowser');
 
 const LOG_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS'
 
@@ -43,5 +44,6 @@ app.listen(port, function(error) {
     console.error(error)
   } else {
     console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
+    openBrowser(`http://localhost:${port}/`)
   }
 })
