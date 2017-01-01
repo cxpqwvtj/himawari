@@ -47,6 +47,6 @@ definitions:
               - string
 properties:
   result:
-    "$ref": "/schemata/TimeCardResponse#/definitions/result"
+    "$ref": "./TimeCardResponse.yml#/definitions/result"
   error:
-    "$ref": "/schemata/_Error#/definitions/error"
+    "$ref": "./_Error.yml#/definitions/error"
