@@ -102,4 +102,4 @@ jspm_packages
 docker/data/*
 buildSrc/src/main/resources/config/custom.config
 /docs/schema/schema.json
-buildSrc/src/main/javascript/custom-config.yml
+buildSrc/src/main/javascript/custom_config.yml
