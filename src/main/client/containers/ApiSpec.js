@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import Parser from 'json-schema-parser'
 import Immutable from 'immutable'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
-import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
+import * as actions from '../actions'
+
 import schema from '../../../../docs/schema/schema.json'
 
-export default class ApiSpec extends AppBaseComponent {
+export class ApiSpec extends AppBaseComponent {
   static propTypes = {
   }
 
@@ -103,3 +106,14 @@ export default class ApiSpec extends AppBaseComponent {
     )
   }
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApiSpec)
