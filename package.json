@@ -67,6 +67,6 @@
     "package": "NODE_ENV=production webpack --release --progress --colors",
     "start": "NODE_ENV=development HOT_DEPLOY=true SERVER_MOCK=true node src/main/client-dev-server/server.js",
     "watch": "NODE_ENV=development webpack --progress --colors",
-    "generate": "node buildSrc/src/main/javascript/index.js"
+    "generate": "node buildSrc/src/main/javascript/jsonSchemaToKotlinDataClass.js"
   }
 }
