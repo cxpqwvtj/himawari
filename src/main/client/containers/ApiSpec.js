@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Parser from 'json-schema-parser'
 import Immutable from 'immutable'
+
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import TextField from 'material-ui/TextField'
 
@@ -10,7 +10,7 @@ import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
 
-import schema from '../../../../docs/schema/schema.json'
+import { schema } from '../constants'
 
 export class ApiSpec extends AppBaseComponent {
   static propTypes = {
@@ -84,12 +84,8 @@ export class ApiSpec extends AppBaseComponent {
   }
 
   render() {
-    const specs = Immutable.fromJS(Parser.parse(schema).properties).map((v, k) => {
-      if (k === 'error') {
-        // 共通のエラーオブジェクトなので無視
-      } else {
-        return this.createTable(k, v)
-      }
+    const specs = Immutable.fromJS(schema).map((v, k) => {
+      return this.createTable(k, v)
     }).toList()
     return (
       <div style={{margin: '10px 50px'}}>
