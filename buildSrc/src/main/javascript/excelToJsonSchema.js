@@ -112,14 +112,14 @@ promises.push((books) => {
               .mergeDeepIn([v.get('physicalName'), ...keyPath], props)
             }
             return r.mergeDeep(getProperty(v))
-          }, Immutable.fromJS({
+          }, Immutable.fromJS({})).toJS()
+          fs.writeFileSync(`${__dirname}/../../../../docs/schema/gen/API${api.id}${apiType}.yml`, yaml.safeDump({
             $schema: 'http://json-schema.org/draft-04/hyper-schema',
             title: api.id,
             description: api.name,
             type: ['object'],
-            properties: {}
-          })).toJS()
-          fs.writeFileSync(`${__dirname}/../../../../docs/schema/gen/API${api.id}${apiType}.yml`, yaml.safeDump(schema))
+            properties: schema
+          }))
         }
         createYaml(api.request, 'Request')
         createYaml(api.response, 'Response')

@@ -9,31 +9,46 @@ const config = require('./config')
 const schemaDir = path.join(__dirname, '/../../../../docs/schema/schemata')
 
 const exampleJson = (propertyName, jsonDef) => {
-  if (jsonDef.getIn(['type', 0]).toLowerCase() === 'object') {
+  const type = jsonDef.getIn(['type', 0])
+  if (type === 'object') {
     const properties = jsonDef.get('properties')
     return properties.map((v, k) => {
       return Immutable.fromJS({[k]: exampleJson(k, v)})
     }).reduce((r, v) => r.mergeDeep(v))
-  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'array') {
+  } else if (type === 'array' && jsonDef.getIn(['items', 'type', 0]) === 'object') {
     const properties = jsonDef.getIn(['items', 'properties'])
     return properties.map((v, k) => {
       return Immutable.fromJS([{[k]: exampleJson(k, v)}])
     }).reduce((r, v) => r.mergeDeep(v))
-  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'string') {
+  } else if (type === 'array') {
+    const itemType = jsonDef.getIn(['items', 'type', 0])
+    if (itemType === 'string') {
+      return ['文字列']
+    } else if (itemType === 'integer') {
+      return 0
+    } else if (itemType === 'number') {
+      return 1.1
+    } else if (itemType === 'boolean') {
+      return false
+    }
+    console.log(`[JSON生成(Array)]不明な型定義です。${itemType}`) // eslint-disable-line no-console
+  } else if (type === 'string') {
     return '文字列'
-  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'number') {
+  } else if (type === 'integer') {
     return 0
-  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'boolean') {
+  } else if (type === 'number') {
+    return 1.1
+  } else if (type === 'boolean') {
     return false
-  } else {
-    console.log(`[JSON生成]不明な型定義です。${jsonDef.getIn(['type', 0])}`) // eslint-disable-line no-console
   }
+  console.log(`[JSON生成]不明な型定義です。${jsonDef.getIn(['type', 0])}`) // eslint-disable-line no-console
 }
 
 const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
   const indent = Immutable.Range(0, depth).map(() => '    ').reduce((r, v) => r + v, '')
-  if (jsonDef.get('type').map(v => v.toLowerCase()).contains('object') ||
-    jsonDef.get('type').map(v => v.toLowerCase()).contains('array')) {
+  const type = jsonDef.getIn(['type', 0])
+  const itemType = jsonDef.getIn(['items', 'type', 0])
+  if (type === 'object' || (type === 'array' && itemType === 'object')) {
     const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties'])
     const children = properties.map((v, k) => {
       return generateKotlinDataClass(k, v, depth + 1)
@@ -49,20 +64,38 @@ const generateVariable = (propertyName, jsonDef, depth) => {
   return properties.map((v, k) => {
     const requiredField = (jsonDef.get('required') || Immutable.fromJS([])).contains(k)
     const requiredMark = requiredField ? '' : '?'
-    const className = `${k[0].toUpperCase()}${k.substring(1)}`
-    if (v.getIn(['type', 0]).toLowerCase() === 'object') {
-      return `${indent}var ${k}: ${className}${requiredMark} = ${requiredField ? `${className}()` : 'null'}`
-    } else if (v.getIn(['type', 0]).toLowerCase() === 'array') {
-      return `${indent}var ${k}: List<${className}>${requiredMark} = ${requiredField ? 'listOf()' : 'null'}`
-    } else if (v.getIn(['type', 0]).toLowerCase() === 'string') {
-      return `${indent}var ${k}: String${requiredMark} = ${requiredField ? '""' : 'null'}`
-    } else if (v.getIn(['type', 0]).toLowerCase() === 'number') {
-      return `${indent}var ${k}: Int${requiredMark} = ${requiredField ? '0' : 'null'}`
-    } else if (v.getIn(['type', 0]).toLowerCase() === 'boolean') {
-      return `${indent}var ${k}: Boolean${requiredMark} = ${requiredField ? 'false' : 'null'}`
-    } else {
-      console.log(`[メインクラス生成]不明な型定義です。${v.getIn(['type', 0])}`) // eslint-disable-line no-console
+    const type = v.getIn(['type', 0])
+    const convertTypeJsonToKotlin = (jsonType) => {
+      if (jsonType === 'string') {
+        return 'String'
+      } else if (jsonType === 'integer') {
+        return 'Int'
+      } else if (jsonType === 'number') {
+        return 'Float'
+      } else if (jsonType === 'boolean') {
+        return 'Boolean'
+      } else if (jsonType === 'object') {
+        return `${k[0].toUpperCase()}${k.substring(1)}`
+      } else if (jsonType === 'array') {
+        return 'List'
+      }
     }
+    const className = convertTypeJsonToKotlin(type)
+    if (type === 'object') {
+      return `${indent}var ${k}: ${className}${requiredMark} = ${requiredField ? `${className}()` : 'null'}`
+    } else if (type === 'array') {
+      const itemType = v.getIn(['items', 'type', 0])
+      return `${indent}var ${k}: ${className}<${convertTypeJsonToKotlin(itemType)}>${requiredMark} = ${requiredField ? 'listOf()' : 'null'}`
+    } else if (type === 'string') {
+      return `${indent}var ${k}: String${requiredMark} = ${requiredField ? '""' : 'null'}`
+    } else if (type === 'integer') {
+      return `${indent}var ${k}: Int${requiredMark} = ${requiredField ? '0' : 'null'}`
+    } else if (type === 'number') {
+      return `${indent}var ${k}: Float${requiredMark} = ${requiredField ? '0' : 'null'}`
+    } else if (type === 'boolean') {
+      return `${indent}var ${k}: Boolean${requiredMark} = ${requiredField ? 'false' : 'null'}`
+    }
+    console.log(`[メインクラス生成]不明な型定義です。${v.getIn(['type', 0])}`) // eslint-disable-line no-console
   }).map(v => `\n${v}`).join(',')
 }
 
@@ -102,18 +135,34 @@ const generateKotlinTestVariable = (propertyName, jsonDef, depth) => {
   const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties']) || Immutable.fromJS({})
   return properties.map((v, k) => {
     const className = `${propertyName}.${k[0].toUpperCase()}${k.substring(1)}`
-    if (v.getIn(['type', 0]).toLowerCase() === 'object') {
+    const type = v.getIn(['type', 0])
+    const itemType = v.getIn(['items', 'type', 0])
+    if (type === 'object') {
       return `${indent}${k} = ${className}().apply {${generateKotlinTestVariable(className, v, depth + 1)}\n${indent}}`
-    } else if (v.getIn(['type', 0]).toLowerCase() === 'array') {
-      return `${indent}${k} = listOf(${className}().apply {${generateKotlinTestVariable(className, v, depth + 1)}\n${indent}})`
-    } else if (v.getIn(['type', 0]).toLowerCase() === 'string') {
+    } else if (type === 'array') {
+      if (itemType === 'object') {
+        return `${indent}${k} = listOf(${className}().apply {${generateKotlinTestVariable(className, v, depth + 1)}\n${indent}})`
+      } else if (itemType === 'string') {
+        return `${indent}${k} = listOf("")`
+      } else if (itemType === 'integer') {
+        return `${indent}${k} = listOf(0)`
+      } else if (itemType === 'number') {
+        return `${indent}${k} = listOf(0.0f)`
+      } else if (itemType === 'boolean') {
+        return `${indent}${k} = listOf(false)`
+      } else {
+        console.log(`[テストクラス生成(array)]不明な型定義です。${itemType}`) // eslint-disable-line no-console
+      }
+    } else if (type === 'string') {
       return `${indent}${k} = ""`
-    } else if (v.getIn(['type', 0]).toLowerCase() === 'number') {
+    } else if (type === 'integer') {
       return `${indent}${k} = 0`
-    } else if (v.getIn(['type', 0]).toLowerCase() === 'boolean') {
+    } else if (type === 'number') {
+      return `${indent}${k} = 0.0f`
+    } else if (type === 'boolean') {
       return `${indent}${k} = false`
     } else {
-      console.log(`[テストクラス生成]不明な型定義です。${v.getIn(['type', 0])}`) // eslint-disable-line no-console
+      console.log(`[テストクラス生成]不明な型定義です。${type}`) // eslint-disable-line no-console
     }
   }).map(v => `\n${v}`).join('')
 }
