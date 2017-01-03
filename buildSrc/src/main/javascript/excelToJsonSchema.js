@@ -18,7 +18,7 @@ const promises = files.filter((file) => {
 }).map((file) => {
   return (books) => {
     return new Promise((resolve) => {
-      console.log(`${config.jsonDefXlsxDir}/${file} ...`) // eslint-disable-line no-console
+      console.log(`reading ${config.jsonDefXlsxDir}/${file} ...`) // eslint-disable-line no-console
       const workbook = new Excel.Workbook()
       workbook.xlsx.readFile(`${config.jsonDefXlsxDir}/${file}`).then(() => {
         const sheets = []
@@ -36,7 +36,7 @@ const promises = files.filter((file) => {
             })
             rows.push({cells})
           })
-          sheets.push({name: worksheet.name, rows})
+          sheets.push({name: worksheet.name, apiId: worksheet.getCell(1, 2).toString(), apiName: worksheet.getCell(1, 4).toString(), rows})
         })
         books.push({name: file, sheets})
         resolve(books)
@@ -47,6 +47,7 @@ const promises = files.filter((file) => {
 
 promises.push((books) => {
   return new Promise(() => {
+    console.log('generate yml ...') // eslint-disable-line no-console
     books.map((book) => {
       book.sheets.map((sheet) => {
         const api = sheet.rows.reduce((r, row) => {
@@ -74,8 +75,8 @@ promises.push((books) => {
           }
           return r
         }, {})
-        api.id = ''
-        api.description = ''
+        api.id = sheet.apiId
+        api.name = sheet.apiName
 
         const request = Immutable.fromJS(api.request)
         .reduce((r, v) => {
@@ -105,11 +106,10 @@ promises.push((books) => {
         }, Immutable.fromJS({
           $schema: 'http://json-schema.org/draft-04/hyper-schema',
           title: api.id,
-          description: api.description,
+          description: api.name,
           properties: {}
         })).toJS()
-        fs.writeFileSync()
-        console.log(JSON.stringify(request, null, 2))
+        fs.writeFileSync(`${__dirname}/../../../../docs/schema/gen/${api.id}.yml`, yaml.safeDump(request))
       })
       // return {title: '', description: book.name, type: ['object'], properties: {}}
     })

@@ -3,7 +3,7 @@ const fs = require('fs')
 const Immutable = require('immutable')
 
 const booleanTypeDefs = Immutable.fromJS(['ブーリアン', 'ブール', 'Boolean', 'Bool', 'boolean', 'bool'])
-const stringTypeDefs = Immutable.fromJS(['文字列', 'String', 'string'])
+const stringTypeDefs = Immutable.fromJS(['文字列', '文字', 'String', 'string'])
 const numberTypeDefs = Immutable.fromJS(['数値', '数字', 'Number', 'Num', 'number', 'num'])
 const integerTypeDefs = Immutable.fromJS(['整数', 'Integer', 'Int', 'integer', 'int'])
 const objectTypeDefs = Immutable.fromJS(['オブジェクト', 'Object', 'object'])
