@@ -3,8 +3,36 @@
   <head>
     <meta charset="UTF-8">
     <title>API定義</title>
+    <style type="text/css">
+    <!--
+    table{
+      width:100%;
+      border-collapse: collapse;
+      border-spacing: 0px;
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+    }
+    table th{
+      padding: 4px;
+      text-align: left;
+      vertical-align: top;
+      color: #444;
+      background-color: #ccc;
+      border-top: 1px solid #fff;
+      border-left: 1px solid #fff;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    table td{
+      padding: 4px;
+      background-color: #fafafa;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    --> 
+    </style>
   </head>
-  <body style="margin: 0px">
+  <body style="margin: 0px; padding: 10px">
   <%_books.map((book) => {-%>
     <div>
       <h2><%=book.name%></h2>
