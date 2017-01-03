@@ -41,6 +41,8 @@ module.exports = {
       return true
     } else if (countDef.includes('-')) {
       return Number.isInteger(Number(countDef.split('-')[1])) && Number(countDef.split('-')[1]) > 1
+    } else if (Number.isInteger(Number(countDef)) && Number(countDef) > 1) {
+      return true
     }
     return false
   }
