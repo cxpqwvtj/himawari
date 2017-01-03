@@ -25,11 +25,11 @@ const exampleJson = (propertyName, jsonDef) => {
     if (itemType === 'string') {
       return ['文字列']
     } else if (itemType === 'integer') {
-      return 0
+      return [0]
     } else if (itemType === 'number') {
-      return 1.1
+      return [1.1]
     } else if (itemType === 'boolean') {
-      return false
+      return [false]
     }
     console.log(`[JSON生成(Array)]不明な型定義です。${itemType}`) // eslint-disable-line no-console
   } else if (type === 'string') {
