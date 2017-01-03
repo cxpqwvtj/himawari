@@ -78,38 +78,42 @@ promises.push((books) => {
         api.id = sheet.apiId
         api.name = sheet.apiName
 
-        const request = Immutable.fromJS(api.request)
-        .reduce((r, v) => {
-          // levelを元にして階層構造を構築
-          if (v.get('level') === 1) {
-            return r.push(v)
-          }
-          const findParentKey = (p, v) => {
-            if (p.last().get('level') === v.get('level') - 1) {
-              return Immutable.List.of(p.findLastKey(() => true))
+        const createYaml = (structDef, apiType) => {
+          const schema = Immutable.fromJS(structDef).reduce((r, v) => {
+            // levelを元にして階層構造を構築
+            if (v.get('level') === 1) {
+              return r.push(v)
             }
-            return Immutable.fromJS([p.findLastKey(() => true), 'children']).push(...findParentKey(p.last().get('children'), v))
-          }
-          const parentKey = findParentKey(r, v)
-          return r.setIn(parentKey.push('children'), (r.getIn(parentKey).get('children') || Immutable.List.of()).push(v))
-        }, Immutable.List.of())
-        .reduce((r, v) => {
-          // JSON Schema 形式にする
-          const getProperty = (v) => {
-            const type = Utils.jsonType(v.get('type'))
-            const children = (type === 'object') ? v.get('children').reduce((r, child) => {
-              return r.mergeDeepIn(['properties'], getProperty(child))
-            }, Immutable.fromJS({properties: {}})) : Immutable.fromJS({})
-            return Immutable.fromJS({[v.get('physicalName')]: {title: v.get('logicalName'), description: v.get('description'), type: [type]}}).mergeDeepIn([v.get('physicalName')], children)
-          }
-          return r.mergeDeepIn(['properties'], getProperty(v))
-        }, Immutable.fromJS({
-          $schema: 'http://json-schema.org/draft-04/hyper-schema',
-          title: api.id,
-          description: api.name,
-          properties: {}
-        })).toJS()
-        fs.writeFileSync(`${__dirname}/../../../../docs/schema/gen/${api.id}.yml`, yaml.safeDump(request))
+            const findParentKey = (p, v) => {
+              if (p.last().get('level') === v.get('level') - 1) {
+                return Immutable.List.of(p.findLastKey(() => true))
+              }
+              return Immutable.fromJS([p.findLastKey(() => true), 'children']).push(...findParentKey(p.last().get('children'), v))
+            }
+            const parentKey = findParentKey(r, v)
+            return r.setIn(parentKey.push('children'), (r.getIn(parentKey).get('children') || Immutable.List.of()).push(v))
+          }, Immutable.List.of())
+          .reduce((r, v) => {
+            // JSON Schema 形式にする
+            const getProperty = (v) => {
+              const type = Utils.jsonType(v.get('type'))
+              const children = (type === 'object') ? v.get('children').reduce((r, child) => {
+                return r.mergeDeepIn(['properties'], getProperty(child))
+              }, Immutable.fromJS({properties: {}})) : Immutable.fromJS({})
+              return Immutable.fromJS({[v.get('physicalName')]: {title: v.get('logicalName'), description: v.get('description'), type: [type]}}).mergeDeepIn([v.get('physicalName')], children)
+            }
+            return r.mergeDeepIn(['properties'], getProperty(v))
+          }, Immutable.fromJS({
+            $schema: 'http://json-schema.org/draft-04/hyper-schema',
+            title: api.id,
+            description: api.name,
+            type: ['object'],
+            properties: {}
+          })).toJS()
+          fs.writeFileSync(`${__dirname}/../../../../docs/schema/gen/API${api.id}${apiType}.yml`, yaml.safeDump(schema))
+        }
+        createYaml(api.request, 'Request')
+        createYaml(api.response, 'Response')
       })
       // return {title: '', description: book.name, type: ['object'], properties: {}}
     })

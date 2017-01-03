@@ -6,7 +6,7 @@ const Immutable = require('immutable')
 
 const config = require('./config')
 
-const schemataDir = path.join(__dirname, '/../../../../docs/schema/schemata')
+const schemaDir = path.join(__dirname, '/../../../../docs/schema/schemata')
 
 const exampleJson = (propertyName, jsonDef) => {
   if (jsonDef.getIn(['type', 0]).toLowerCase() === 'object') {
@@ -23,8 +23,10 @@ const exampleJson = (propertyName, jsonDef) => {
     return '文字列'
   } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'number') {
     return 0
+  } else if (jsonDef.getIn(['type', 0]).toLowerCase() === 'boolean') {
+    return false
   } else {
-    console.log(`不明な型定義です。${jsonDef.get('type')}`) // eslint-disable-line no-console
+    console.log(`[JSON生成]不明な型定義です。${jsonDef.getIn(['type', 0])}`) // eslint-disable-line no-console
   }
 }
 
@@ -56,8 +58,10 @@ const generateVariable = (propertyName, jsonDef, depth) => {
       return `${indent}var ${k}: String${requiredMark} = ${requiredField ? '""' : 'null'}`
     } else if (v.getIn(['type', 0]).toLowerCase() === 'number') {
       return `${indent}var ${k}: Int${requiredMark} = ${requiredField ? '0' : 'null'}`
+    } else if (v.getIn(['type', 0]).toLowerCase() === 'boolean') {
+      return `${indent}var ${k}: Boolean${requiredMark} = ${requiredField ? 'false' : 'null'}`
     } else {
-      console.log(`不明な型定義です。${v.get('type')}`) // eslint-disable-line no-console
+      console.log(`[メインクラス生成]不明な型定義です。${v.getIn(['type', 0])}`) // eslint-disable-line no-console
     }
   }).map(v => `\n${v}`).join(',')
 }
@@ -106,17 +110,19 @@ const generateKotlinTestVariable = (propertyName, jsonDef, depth) => {
       return `${indent}${k} = ""`
     } else if (v.getIn(['type', 0]).toLowerCase() === 'number') {
       return `${indent}${k} = 0`
+    } else if (v.getIn(['type', 0]).toLowerCase() === 'boolean') {
+      return `${indent}${k} = false`
     } else {
-      console.log(`不明な型定義です。${v.get('type')}`) // eslint-disable-line no-console
+      console.log(`[テストクラス生成]不明な型定義です。${v.getIn(['type', 0])}`) // eslint-disable-line no-console
     }
   }).map(v => `\n${v}`).join('')
 }
 
-const schemaDefFiles = fs.readdirSync(schemataDir)
+const schemaDefFiles = fs.readdirSync(schemaDir)
 const promises = schemaDefFiles.filter((v) => !v.startsWith('_')).map((fileName) => {
   return () => {
     return new Promise((resolve, reject) => {
-      $RefParser.dereference(`${schemataDir}/${fileName}`, (err, schema) => {
+      $RefParser.dereference(`${schemaDir}/${fileName}`, (err, schema) => {
         if (err) {
           reject(err)
           return
