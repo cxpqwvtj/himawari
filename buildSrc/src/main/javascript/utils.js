@@ -35,5 +35,13 @@ module.exports = {
     } else if (objectTypeDefs.contains(type)) {
       return 'object'
     }
+  },
+  isArray: (countDef) => {
+    if (countDef.includes('n')) {
+      return true
+    } else if (countDef.includes('-')) {
+      return Number.isInteger(Number(countDef.split('-')[1])) && Number(countDef.split('-')[1]) > 1
+    }
+    return false
   }
 }

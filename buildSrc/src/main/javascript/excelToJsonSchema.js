@@ -65,7 +65,8 @@ promises.push((books) => {
             emptyDef: row.cells[5],
             physicalName: row.cells[6],
             type: row.cells[7],
-            remark: row.cells[8]
+            remark: row.cells[8],
+            children: []
           } : undefined
           if (r.response) {
             r.response.push(obj)
@@ -90,18 +91,27 @@ promises.push((books) => {
               return Immutable.fromJS([p.findLastKey(() => true), 'children']).push(...findParentKey(p.last().get('children'), v))
             }
             const parentKey = findParentKey(r, v)
-            return r.setIn(parentKey.push('children'), (r.getIn(parentKey).get('children') || Immutable.List.of()).push(v))
+            return r.setIn(parentKey.push('children'), r.getIn(parentKey).get('children').push(v))
           }, Immutable.List.of())
           .reduce((r, v) => {
             // JSON Schema 形式にする
             const getProperty = (v) => {
               const type = Utils.jsonType(v.get('type'))
-              const children = (type === 'object') ? v.get('children').reduce((r, child) => {
-                return r.mergeDeepIn(['properties'], getProperty(child))
-              }, Immutable.fromJS({properties: {}})) : Immutable.fromJS({})
-              return Immutable.fromJS({[v.get('physicalName')]: {title: v.get('logicalName'), description: v.get('description'), type: [type]}}).mergeDeepIn([v.get('physicalName')], children)
+              const array = Utils.isArray(v.get('countDef'))
+              const children = v.get('children').reduce((r, child) => {
+                return r.mergeDeep(getProperty(child))
+              }, Immutable.fromJS({}))
+              const keyPath = (array) ? ['items'] : []
+              const props = (type === 'object') ? {type: ['object'], properties: children.toJS()} : {type: [type]}
+              return Immutable.fromJS({
+                [v.get('physicalName')]: {
+                  title: v.get('logicalName'),
+                  description: v.get('description'),
+                }
+              }).mergeDeepIn([v.get('physicalName')], (array) ? {type: ['array'], items: {}} : {})
+              .mergeDeepIn([v.get('physicalName'), ...keyPath], props)
             }
-            return r.mergeDeepIn(['properties'], getProperty(v))
+            return r.mergeDeep(getProperty(v))
           }, Immutable.fromJS({
             $schema: 'http://json-schema.org/draft-04/hyper-schema',
             title: api.id,
