@@ -1,7 +1,6 @@
 const fs = require('fs')
 const Immutable = require('immutable')
 const Excel = require('exceljs')
-const join = require('path').join
 const yaml = require('js-yaml')
 
 const Utils = require('./utils')
@@ -115,15 +114,7 @@ promises.push((books) => {
         createYaml(api.request, 'Request')
         createYaml(api.response, 'Response')
       })
-      // return {title: '', description: book.name, type: ['object'], properties: {}}
     })
-    // ejs.renderFile(join(__dirname, '/template/api_def.ejs'), {Immutable, books}, {}, (err, html) => {
-    //   if (err) {
-    //     console.log(`HTMLのrender処理でエラーが発生しました。\n${err}`) // eslint-disable-line no-console
-    //   } else {
-    //     fs.writeFileSync('./docs/excel/excel.html', html)
-    //   }
-    // })
   })
 })
 
