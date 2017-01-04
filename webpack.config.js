@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     path: __dirname + '/src/main/resources/static',
-    filename: '[name].js',
+    filename: 'assets/[name].js',
     publicPath: `${CONTEXT_PATH}/`
   },
   resolve: {
