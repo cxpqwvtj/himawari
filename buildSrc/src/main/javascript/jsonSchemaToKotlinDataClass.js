@@ -6,7 +6,7 @@ const Immutable = require('immutable')
 
 const config = require('./config')
 
-const schemaDir = path.join(__dirname, '/../../../../docs/schema/schemata')
+const schemaDir = path.join(__dirname, '/../../../../docs/json-schema/schemata')
 
 const exampleJson = (propertyName, jsonDef) => {
   const type = jsonDef.getIn(['type', 0])

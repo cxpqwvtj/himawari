@@ -5,7 +5,7 @@ const yaml = require('js-yaml')
 const $RefParser = require('json-schema-ref-parser')
 const ejs = require('ejs')
 
-const schemataDir = path.join(__dirname, '/../../../../docs/schema/schemata')
+const schemataDir = path.join(__dirname, '/../../../../docs/json-schema/schemata')
 const outputDir = path.join(schemataDir, '/../gen')
 const schemaIndexFile = path.join(__dirname, '/../../../../src/main/client/constants/schema.js')
 

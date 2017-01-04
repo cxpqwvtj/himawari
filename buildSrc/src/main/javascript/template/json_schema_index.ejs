@@ -1,5 +1,5 @@
 <%generatedFiles.map((file) => {_%>
-import <%-file.replace('.yml', '')%> from 'json!yaml!../../../../docs/schema/gen/<%-file%>'
+import <%-file.replace('.yml', '')%> from 'json!yaml!../../../../docs/json-schema/gen/<%-file%>'
 <%})%>
 export default {
   <%-generatedFiles.map((file) => file.replace('.yml', '')).join(',\n  ')%>
