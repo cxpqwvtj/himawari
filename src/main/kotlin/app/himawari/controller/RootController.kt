@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse
 open class RootController {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
-    @GetMapping(path = arrayOf("/"))
+    @GetMapping(path = arrayOf("", "timecards/**", "dev/**"))
     open fun root(response: HttpServletResponse) {
         response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_HTML_VALUE)
         response.outputStream.use { it.write(this.javaClass.getResource("/static/index.html").readBytes()) }
