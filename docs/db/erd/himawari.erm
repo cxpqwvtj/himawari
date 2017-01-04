@@ -106,6 +106,73 @@
 	</tablespace_set>
 	<diagram_walkers>
 		<table>
+			<physical_name>DAILY_IN_OUT</physical_name>
+			<logical_name>日次勤務時間記録</logical_name>
+			<description></description>
+			<height>107</height>
+			<width>250</width>
+			<font_name>.SF NS Text</font_name>
+			<font_size>9</font_size>
+			<x>432</x>
+			<y>235</y>
+			<color>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
+			</color>
+			<connections>
+				<relationship>
+					<name>FK_DAILY_IN_OUT_TIMECARD</name>
+					<source>table.TIMECARD</source>
+					<target>table.DAILY_IN_OUT</target>
+					<fk_columns>
+						<fk_column>
+							<fk_column_name>TIMECARD_ID</fk_column_name>
+						</fk_column>
+					</fk_columns>
+					<parent_cardinality>1</parent_cardinality>
+					<child_cardinality>0..n</child_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+				</relationship>
+			</connections>
+			<columns>
+				<normal_column>
+					<physical_name>DAILY_IN_OUT_ID</physical_name>
+					<logical_name>日次勤務時間記録ID</logical_name>
+					<type>bigint</type>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+				</normal_column>
+				<normal_column>
+					<physical_name>TIMECARD_ID</physical_name>
+					<logical_name>タイムカードID</logical_name>
+					<referred_column>table.TIMECARD.TIMECARD_ID</referred_column>
+					<relationship>FK_DAILY_IN_OUT_TIMECARD</relationship>
+					<not_null>true</not_null>
+				</normal_column>
+				<normal_column>
+					<physical_name>IN_DATETIME</physical_name>
+					<logical_name>出勤時間</logical_name>
+					<type>datetime</type>
+					<not_null>true</not_null>
+				</normal_column>
+				<normal_column>
+					<physical_name>OUT_DATETIME</physical_name>
+					<logical_name>退勤時間</logical_name>
+					<type>datetime</type>
+					<not_null>true</not_null>
+				</normal_column>
+			</columns>
+			<indexes>
+			</indexes>
+			<compound_unique_key_list>
+			</compound_unique_key_list>
+			<table_properties>
+			</table_properties>
+		</table>
+		<table>
 			<physical_name>MEMBER</physical_name>
 			<logical_name>メンバー</logical_name>
 			<description></description>
