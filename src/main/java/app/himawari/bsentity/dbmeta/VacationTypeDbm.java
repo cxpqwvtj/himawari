@@ -46,10 +46,8 @@ public class VacationTypeDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((VacationType)et).getVacationTypeName(), (et, vl) -> ((VacationType)et).setVacationTypeName((String)vl), "vacationTypeName");
         setupEpg(_epgMap, et -> ((VacationType)et).getRegisterDatetime(), (et, vl) -> ((VacationType)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((VacationType)et).getRegisterUser(), (et, vl) -> ((VacationType)et).setRegisterUser((String)vl), "registerUser");
-        setupEpg(_epgMap, et -> ((VacationType)et).getRegisterProcess(), (et, vl) -> ((VacationType)et).setRegisterProcess((String)vl), "registerProcess");
         setupEpg(_epgMap, et -> ((VacationType)et).getUpdateDatetime(), (et, vl) -> ((VacationType)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
         setupEpg(_epgMap, et -> ((VacationType)et).getUpdateUser(), (et, vl) -> ((VacationType)et).setUpdateUser((String)vl), "updateUser");
-        setupEpg(_epgMap, et -> ((VacationType)et).getUpdateProcess(), (et, vl) -> ((VacationType)et).setUpdateProcess((String)vl), "updateProcess");
         setupEpg(_epgMap, et -> ((VacationType)et).getVersionNo(), (et, vl) -> ((VacationType)et).setVersionNo(ctl(vl)), "versionNo");
     }
     public PropertyGateway findPropertyGateway(String prop)
@@ -75,10 +73,8 @@ public class VacationTypeDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnVacationTypeName = cci("VACATION_TYPE_NAME", "VACATION_TYPE_NAME", null, null, String.class, "vacationTypeName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, String.class, "registerProcess", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, String.class, "updateProcess", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
@@ -102,11 +98,6 @@ public class VacationTypeDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnRegisterUser() { return _columnRegisterUser; }
     /**
-     * REGISTER_PROCESS: {NotNull, VARCHAR(200)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnRegisterProcess() { return _columnRegisterProcess; }
-    /**
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return The information object of specified column. (NotNull)
      */
@@ -116,11 +107,6 @@ public class VacationTypeDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnUpdateUser() { return _columnUpdateUser; }
-    /**
-     * UPDATE_PROCESS: {NotNull, VARCHAR(200)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnUpdateProcess() { return _columnUpdateProcess; }
     /**
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return The information object of specified column. (NotNull)
@@ -133,10 +119,8 @@ public class VacationTypeDbm extends AbstractDBMeta {
         ls.add(columnVacationTypeName());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
-        ls.add(columnRegisterProcess());
         ls.add(columnUpdateDatetime());
         ls.add(columnUpdateUser());
-        ls.add(columnUpdateProcess());
         ls.add(columnVersionNo());
         return ls;
     }

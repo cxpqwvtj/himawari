@@ -233,26 +233,6 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      */
     public BsDailyInOutCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
 
-    protected ConditionValue _registerProcess;
-    public ConditionValue xdfgetRegisterProcess()
-    { if (_registerProcess == null) { _registerProcess = nCV(); }
-      return _registerProcess; }
-    protected ConditionValue xgetCValueRegisterProcess() { return xdfgetRegisterProcess(); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * REGISTER_PROCESS: {NotNull, VARCHAR(200)}
-     * @return this. (NotNull)
-     */
-    public BsDailyInOutCQ addOrderBy_RegisterProcess_Asc() { regOBA("REGISTER_PROCESS"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * REGISTER_PROCESS: {NotNull, VARCHAR(200)}
-     * @return this. (NotNull)
-     */
-    public BsDailyInOutCQ addOrderBy_RegisterProcess_Desc() { regOBD("REGISTER_PROCESS"); return this; }
-
     protected ConditionValue _updateDatetime;
     public ConditionValue xdfgetUpdateDatetime()
     { if (_updateDatetime == null) { _updateDatetime = nCV(); }
@@ -292,26 +272,6 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * @return this. (NotNull)
      */
     public BsDailyInOutCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
-
-    protected ConditionValue _updateProcess;
-    public ConditionValue xdfgetUpdateProcess()
-    { if (_updateProcess == null) { _updateProcess = nCV(); }
-      return _updateProcess; }
-    protected ConditionValue xgetCValueUpdateProcess() { return xdfgetUpdateProcess(); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * UPDATE_PROCESS: {NotNull, VARCHAR(200)}
-     * @return this. (NotNull)
-     */
-    public BsDailyInOutCQ addOrderBy_UpdateProcess_Asc() { regOBA("UPDATE_PROCESS"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * UPDATE_PROCESS: {NotNull, VARCHAR(200)}
-     * @return this. (NotNull)
-     */
-    public BsDailyInOutCQ addOrderBy_UpdateProcess_Desc() { regOBD("UPDATE_PROCESS"); return this; }
 
     protected ConditionValue _versionNo;
     public ConditionValue xdfgetVersionNo()

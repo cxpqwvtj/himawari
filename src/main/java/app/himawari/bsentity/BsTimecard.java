@@ -19,7 +19,7 @@ import app.himawari.exentity.*;
  *     TIMECARD_ID
  *
  * [column]
- *     TIMECARD_ID, MEMBER_ID, TIMECARD_YEAR_MONTH, REGISTER_DATETIME, REGISTER_USER, REGISTER_PROCESS, UPDATE_DATETIME, UPDATE_USER, UPDATE_PROCESS, VERSION_NO
+ *     TIMECARD_ID, MEMBER_ID, TIMECARD_YEAR_MONTH, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -49,20 +49,16 @@ import app.himawari.exentity.*;
  * String timecardYearMonth = entity.getTimecardYearMonth();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * String registerUser = entity.getRegisterUser();
- * String registerProcess = entity.getRegisterProcess();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * String updateUser = entity.getUpdateUser();
- * String updateProcess = entity.getUpdateProcess();
  * Long versionNo = entity.getVersionNo();
  * entity.setTimecardId(timecardId);
  * entity.setMemberId(memberId);
  * entity.setTimecardYearMonth(timecardYearMonth);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setRegisterUser(registerUser);
- * entity.setRegisterProcess(registerProcess);
  * entity.setUpdateDatetime(updateDatetime);
  * entity.setUpdateUser(updateUser);
- * entity.setUpdateProcess(updateProcess);
  * entity.setVersionNo(versionNo);
  * = = = = = = = = = =/
  * </pre>
@@ -94,17 +90,11 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity 
     /** REGISTER_USER: {NotNull, VARCHAR(200)} */
     protected String _registerUser;
 
-    /** REGISTER_PROCESS: {NotNull, VARCHAR(200)} */
-    protected String _registerProcess;
-
     /** UPDATE_DATETIME: {NotNull, DATETIME(19)} */
     protected java.time.LocalDateTime _updateDatetime;
 
     /** UPDATE_USER: {NotNull, VARCHAR(200)} */
     protected String _updateUser;
-
-    /** UPDATE_PROCESS: {NotNull, VARCHAR(200)} */
-    protected String _updateProcess;
 
     /** VERSION_NO: {NotNull, BIGINT(19)} */
     protected Long _versionNo;
@@ -247,10 +237,8 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity 
         sb.append(dm).append(xfND(_timecardYearMonth));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_registerUser));
-        sb.append(dm).append(xfND(_registerProcess));
         sb.append(dm).append(xfND(_updateDatetime));
         sb.append(dm).append(xfND(_updateUser));
-        sb.append(dm).append(xfND(_updateProcess));
         sb.append(dm).append(xfND(_versionNo));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
@@ -381,26 +369,6 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity 
     }
 
     /**
-     * [get] REGISTER_PROCESS: {NotNull, VARCHAR(200)} <br>
-     * ??????
-     * @return The value of the column 'REGISTER_PROCESS'. (basically NotNull if selected: for the constraint)
-     */
-    public String getRegisterProcess() {
-        checkSpecifiedProperty("registerProcess");
-        return _registerProcess;
-    }
-
-    /**
-     * [set] REGISTER_PROCESS: {NotNull, VARCHAR(200)} <br>
-     * ??????
-     * @param registerProcess The value of the column 'REGISTER_PROCESS'. (basically NotNull if update: for the constraint)
-     */
-    public void setRegisterProcess(String registerProcess) {
-        registerModifiedProperty("registerProcess");
-        _registerProcess = registerProcess;
-    }
-
-    /**
      * [get] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
      * ????
      * @return The value of the column 'UPDATE_DATETIME'. (basically NotNull if selected: for the constraint)
@@ -438,26 +406,6 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity 
     public void setUpdateUser(String updateUser) {
         registerModifiedProperty("updateUser");
         _updateUser = updateUser;
-    }
-
-    /**
-     * [get] UPDATE_PROCESS: {NotNull, VARCHAR(200)} <br>
-     * ??????
-     * @return The value of the column 'UPDATE_PROCESS'. (basically NotNull if selected: for the constraint)
-     */
-    public String getUpdateProcess() {
-        checkSpecifiedProperty("updateProcess");
-        return _updateProcess;
-    }
-
-    /**
-     * [set] UPDATE_PROCESS: {NotNull, VARCHAR(200)} <br>
-     * ??????
-     * @param updateProcess The value of the column 'UPDATE_PROCESS'. (basically NotNull if update: for the constraint)
-     */
-    public void setUpdateProcess(String updateProcess) {
-        registerModifiedProperty("updateProcess");
-        _updateProcess = updateProcess;
     }
 
     /**

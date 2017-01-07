@@ -51,10 +51,8 @@ public class DailyInOutDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((DailyInOut)et).getNote(), (et, vl) -> ((DailyInOut)et).setNote((String)vl), "note");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getRegisterDatetime(), (et, vl) -> ((DailyInOut)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getRegisterUser(), (et, vl) -> ((DailyInOut)et).setRegisterUser((String)vl), "registerUser");
-        setupEpg(_epgMap, et -> ((DailyInOut)et).getRegisterProcess(), (et, vl) -> ((DailyInOut)et).setRegisterProcess((String)vl), "registerProcess");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getUpdateDatetime(), (et, vl) -> ((DailyInOut)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getUpdateUser(), (et, vl) -> ((DailyInOut)et).setUpdateUser((String)vl), "updateUser");
-        setupEpg(_epgMap, et -> ((DailyInOut)et).getUpdateProcess(), (et, vl) -> ((DailyInOut)et).setUpdateProcess((String)vl), "updateProcess");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getVersionNo(), (et, vl) -> ((DailyInOut)et).setVersionNo(ctl(vl)), "versionNo");
     }
     public PropertyGateway findPropertyGateway(String prop)
@@ -97,10 +95,8 @@ public class DailyInOutDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnNote = cci("NOTE", "NOTE", null, null, String.class, "note", null, false, false, false, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, String.class, "registerProcess", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, String.class, "updateProcess", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
@@ -144,11 +140,6 @@ public class DailyInOutDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnRegisterUser() { return _columnRegisterUser; }
     /**
-     * REGISTER_PROCESS: {NotNull, VARCHAR(200)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnRegisterProcess() { return _columnRegisterProcess; }
-    /**
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return The information object of specified column. (NotNull)
      */
@@ -158,11 +149,6 @@ public class DailyInOutDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnUpdateUser() { return _columnUpdateUser; }
-    /**
-     * UPDATE_PROCESS: {NotNull, VARCHAR(200)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnUpdateProcess() { return _columnUpdateProcess; }
     /**
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return The information object of specified column. (NotNull)
@@ -179,10 +165,8 @@ public class DailyInOutDbm extends AbstractDBMeta {
         ls.add(columnNote());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
-        ls.add(columnRegisterProcess());
         ls.add(columnUpdateDatetime());
         ls.add(columnUpdateUser());
-        ls.add(columnUpdateProcess());
         ls.add(columnVersionNo());
         return ls;
     }

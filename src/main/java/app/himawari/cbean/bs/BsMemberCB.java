@@ -348,11 +348,6 @@ public class BsMemberCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnRegisterUser() { return doColumn("REGISTER_USER"); }
         /**
-         * REGISTER_PROCESS: {NotNull, VARCHAR(200)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnRegisterProcess() { return doColumn("REGISTER_PROCESS"); }
-        /**
          * UPDATE_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
@@ -362,11 +357,6 @@ public class BsMemberCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnUpdateUser() { return doColumn("UPDATE_USER"); }
-        /**
-         * UPDATE_PROCESS: {NotNull, VARCHAR(200)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnUpdateProcess() { return doColumn("UPDATE_PROCESS"); }
         /**
          * VERSION_NO: {NotNull, BIGINT(19)}
          * @return The information object of specified column. (NotNull)

@@ -48,10 +48,8 @@ public class MemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((Member)et).getMemberAccountId(), (et, vl) -> ((Member)et).setMemberAccountId((String)vl), "memberAccountId");
         setupEpg(_epgMap, et -> ((Member)et).getRegisterDatetime(), (et, vl) -> ((Member)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((Member)et).getRegisterUser(), (et, vl) -> ((Member)et).setRegisterUser((String)vl), "registerUser");
-        setupEpg(_epgMap, et -> ((Member)et).getRegisterProcess(), (et, vl) -> ((Member)et).setRegisterProcess((String)vl), "registerProcess");
         setupEpg(_epgMap, et -> ((Member)et).getUpdateDatetime(), (et, vl) -> ((Member)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
         setupEpg(_epgMap, et -> ((Member)et).getUpdateUser(), (et, vl) -> ((Member)et).setUpdateUser((String)vl), "updateUser");
-        setupEpg(_epgMap, et -> ((Member)et).getUpdateProcess(), (et, vl) -> ((Member)et).setUpdateProcess((String)vl), "updateProcess");
         setupEpg(_epgMap, et -> ((Member)et).getVersionNo(), (et, vl) -> ((Member)et).setVersionNo(ctl(vl)), "versionNo");
     }
     public PropertyGateway findPropertyGateway(String prop)
@@ -90,10 +88,8 @@ public class MemberDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnMemberAccountId = cci("MEMBER_ACCOUNT_ID", "MEMBER_ACCOUNT_ID", null, null, String.class, "memberAccountId", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, String.class, "registerProcess", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, String.class, "updateProcess", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
@@ -122,11 +118,6 @@ public class MemberDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnRegisterUser() { return _columnRegisterUser; }
     /**
-     * REGISTER_PROCESS: {NotNull, VARCHAR(200)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnRegisterProcess() { return _columnRegisterProcess; }
-    /**
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return The information object of specified column. (NotNull)
      */
@@ -136,11 +127,6 @@ public class MemberDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnUpdateUser() { return _columnUpdateUser; }
-    /**
-     * UPDATE_PROCESS: {NotNull, VARCHAR(200)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnUpdateProcess() { return _columnUpdateProcess; }
     /**
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return The information object of specified column. (NotNull)
@@ -154,10 +140,8 @@ public class MemberDbm extends AbstractDBMeta {
         ls.add(columnMemberAccountId());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
-        ls.add(columnRegisterProcess());
         ls.add(columnUpdateDatetime());
         ls.add(columnUpdateUser());
-        ls.add(columnUpdateProcess());
         ls.add(columnVersionNo());
         return ls;
     }
