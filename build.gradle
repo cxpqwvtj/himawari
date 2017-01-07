@@ -29,6 +29,8 @@ dependencies {
   compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
   compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
   //compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+  compile "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+  compile "mysql:mysql-connector-java:6.0.5"
   compile "org.codehaus.janino:janino:3.0.0"
   compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
   compile("org.dbflute:dbflute-runtime:1.1.2")
