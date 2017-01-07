@@ -109,12 +109,12 @@
 			<physical_name>DAILY_IN_OUT</physical_name>
 			<logical_name>日次勤務時間記録</logical_name>
 			<description></description>
-			<height>107</height>
-			<width>250</width>
+			<height>251</height>
+			<width>258</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>432</x>
-			<y>235</y>
+			<x>439</x>
+			<y>349</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -128,6 +128,21 @@
 					<fk_columns>
 						<fk_column>
 							<fk_column_name>TIMECARD_ID</fk_column_name>
+						</fk_column>
+					</fk_columns>
+					<parent_cardinality>1</parent_cardinality>
+					<child_cardinality>0..n</child_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+				</relationship>
+				<relationship>
+					<name>FK_DAILY_IN_OUT_VACATION_TYPE</name>
+					<source>table.VACATION_TYPE</source>
+					<target>table.DAILY_IN_OUT</target>
+					<fk_columns>
+						<fk_column>
+							<fk_column_name>VACATION_TYPE_ID</fk_column_name>
 						</fk_column>
 					</fk_columns>
 					<parent_cardinality>1</parent_cardinality>
@@ -156,14 +171,26 @@
 					<physical_name>IN_DATETIME</physical_name>
 					<logical_name>出勤時間</logical_name>
 					<type>datetime</type>
-					<not_null>true</not_null>
 				</normal_column>
 				<normal_column>
 					<physical_name>OUT_DATETIME</physical_name>
 					<logical_name>退勤時間</logical_name>
 					<type>datetime</type>
+				</normal_column>
+				<normal_column>
+					<physical_name>VACATION_TYPE_ID</physical_name>
+					<logical_name>休暇タイプコード</logical_name>
+					<referred_column>table.VACATION_TYPE.VACATION_TYPE_ID</referred_column>
+					<relationship>FK_DAILY_IN_OUT_VACATION_TYPE</relationship>
 					<not_null>true</not_null>
 				</normal_column>
+				<normal_column>
+					<physical_name>NOTE</physical_name>
+					<logical_name>備考入力テキスト</logical_name>
+					<type>text</type>
+				</normal_column>
+				<column_group>共通カラム</column_group>
+				<column_group>排他制御カラム</column_group>
 			</columns>
 			<indexes>
 			</indexes>
@@ -210,7 +237,10 @@
 					<type>varchar(n)</type>
 					<length>50</length>
 					<not_null>true</not_null>
+					<unique_key>true</unique_key>
 				</normal_column>
+				<column_group>共通カラム</column_group>
+				<column_group>排他制御カラム</column_group>
 			</columns>
 			<indexes>
 			</indexes>
@@ -223,12 +253,12 @@
 			<physical_name>TIMECARD</physical_name>
 			<logical_name>タイムカード</logical_name>
 			<description></description>
-			<height>179</height>
+			<height>215</height>
 			<width>258</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>74</x>
-			<y>235</y>
+			<x>67</x>
+			<y>352</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -266,6 +296,7 @@
 					<referred_column>table.MEMBER.MEMBER_ID</referred_column>
 					<relationship>FK_TIMECARD_MEMBER</relationship>
 					<not_null>true</not_null>
+					<unique_key>true</unique_key>
 				</normal_column>
 				<normal_column>
 					<physical_name>TIMECARD_YEAR_MONTH</physical_name>
@@ -274,7 +305,74 @@
 					<length>6</length>
 					<description>YYYYMM</description>
 					<not_null>true</not_null>
+					<unique_key>true</unique_key>
 				</normal_column>
+				<column_group>共通カラム</column_group>
+				<column_group>排他制御カラム</column_group>
+			</columns>
+			<indexes>
+			</indexes>
+			<compound_unique_key_list>
+			</compound_unique_key_list>
+			<table_properties>
+			</table_properties>
+		</table>
+		<table>
+			<physical_name>VACATION_TYPE</physical_name>
+			<logical_name>休暇タイプ</logical_name>
+			<description></description>
+			<height>215</height>
+			<width>279</width>
+			<font_name>.SF NS Text</font_name>
+			<font_size>9</font_size>
+			<x>456</x>
+			<y>49</y>
+			<color>
+				<r>255</r>
+				<g>255</g>
+				<b>0</b>
+			</color>
+			<connections>
+			</connections>
+			<columns>
+				<normal_column>
+					<physical_name>VACATION_TYPE_ID</physical_name>
+					<logical_name>休暇タイプID</logical_name>
+					<type>integer</type>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+				</normal_column>
+				<normal_column>
+					<physical_name>VACATION_TYPE_CODE</physical_name>
+					<logical_name>休暇タイプコード</logical_name>
+					<type>varchar(n)</type>
+					<length>3</length>
+					<not_null>true</not_null>
+				</normal_column>
+				<normal_column>
+					<physical_name>VACATION_TYPE_NAME</physical_name>
+					<logical_name>休暇タイプ名称</logical_name>
+					<type>varchar(n)</type>
+					<length>200</length>
+					<not_null>true</not_null>
+				</normal_column>
+				<column_group>共通カラム</column_group>
+				<column_group>排他制御カラム</column_group>
+			</columns>
+			<indexes>
+			</indexes>
+			<compound_unique_key_list>
+			</compound_unique_key_list>
+			<table_properties>
+			</table_properties>
+		</table>
+	</diagram_walkers>
+	<vdiagrams>
+	</vdiagrams>
+	<column_groups>
+		<column_group>
+			<column_group_name>共通カラム</column_group_name>
+			<columns>
 				<normal_column>
 					<physical_name>REGISTER_DATETIME</physical_name>
 					<logical_name>登録日時</logical_name>
@@ -316,17 +414,18 @@
 					<not_null>true</not_null>
 				</normal_column>
 			</columns>
-			<indexes>
-			</indexes>
-			<compound_unique_key_list>
-			</compound_unique_key_list>
-			<table_properties>
-			</table_properties>
-		</table>
-	</diagram_walkers>
-	<vdiagrams>
-	</vdiagrams>
-	<column_groups>
+		</column_group>
+		<column_group>
+			<column_group_name>排他制御カラム</column_group_name>
+			<columns>
+				<normal_column>
+					<physical_name>VERSION_NO</physical_name>
+					<logical_name>バージョン番号</logical_name>
+					<type>bigint</type>
+					<not_null>true</not_null>
+				</normal_column>
+			</columns>
+		</column_group>
 	</column_groups>
 	<sequence_set>
 	</sequence_set>
