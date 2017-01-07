@@ -98,6 +98,7 @@ jspm_packages
 /lib/bundler/man/
 
 
+dbflute_himawari/dfprop/system-password.txt
 /src/main/resources/static/*
 docker/data/*
 buildSrc/src/main/resources/config/custom.config
