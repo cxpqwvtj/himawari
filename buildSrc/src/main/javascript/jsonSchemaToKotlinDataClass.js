@@ -9,19 +9,19 @@ const config = require('./config')
 const schemaDir = path.join(__dirname, '/../../../../docs/json-schema/schemata')
 
 const exampleJson = (propertyName, jsonDef) => {
-  const type = jsonDef.getIn(['type', 0])
+  const type = jsonDef.getIn(['type', 0]) || jsonDef.get('type')
   if (type === 'object') {
     const properties = jsonDef.get('properties')
     return properties.map((v, k) => {
       return Immutable.fromJS({[k]: exampleJson(k, v)})
     }).reduce((r, v) => r.mergeDeep(v))
-  } else if (type === 'array' && jsonDef.getIn(['items', 'type', 0]) === 'object') {
+  } else if (type === 'array' && jsonDef.getIn(['items', 'type', 0]) || jsonDef.getIn(['items', 'type']) === 'object') {
     const properties = jsonDef.getIn(['items', 'properties'])
     return properties.map((v, k) => {
       return Immutable.fromJS([{[k]: exampleJson(k, v)}])
     }).reduce((r, v) => r.mergeDeep(v))
   } else if (type === 'array') {
-    const itemType = jsonDef.getIn(['items', 'type', 0])
+    const itemType = jsonDef.getIn(['items', 'type', 0]) || jsonDef.getIn(['items', 'type'])
     if (itemType === 'string') {
       return ['文字列']
     } else if (itemType === 'integer') {
@@ -41,13 +41,13 @@ const exampleJson = (propertyName, jsonDef) => {
   } else if (type === 'boolean') {
     return false
   }
-  console.log(`[JSON生成]不明な型定義です。${jsonDef.getIn(['type', 0])}`) // eslint-disable-line no-console
+  console.log(`[JSON生成]不明な型定義です。${type}`) // eslint-disable-line no-console
 }
 
 const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
   const indent = Immutable.Range(0, depth).map(() => '    ').reduce((r, v) => r + v, '')
-  const type = jsonDef.getIn(['type', 0])
-  const itemType = jsonDef.getIn(['items', 'type', 0])
+  const type = jsonDef.getIn(['type', 0]) || jsonDef.get('type')
+  const itemType = jsonDef.getIn(['items', 'type', 0]) || jsonDef.getIn(['items', 'type'])
   if (type === 'object' || (type === 'array' && itemType === 'object')) {
     const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties'])
     const children = properties.map((v, k) => {
@@ -64,7 +64,7 @@ const generateVariable = (propertyName, jsonDef, depth) => {
   return properties.map((v, k) => {
     const requiredField = (jsonDef.get('required') || jsonDef.getIn(['items', 'properties']) || Immutable.fromJS([])).contains(k)
     const requiredMark = requiredField ? '' : '?'
-    const type = v.getIn(['type', 0])
+    const type = v.getIn(['type', 0]) || v.get('type')
     const convertTypeJsonToKotlin = (jsonType) => {
       if (jsonType === 'string') {
         return 'String'
@@ -84,7 +84,7 @@ const generateVariable = (propertyName, jsonDef, depth) => {
     if (type === 'object') {
       return `${indent}var ${k}: ${className}${requiredMark} = ${requiredField ? `${className}()` : 'null'}`
     } else if (type === 'array') {
-      const itemType = v.getIn(['items', 'type', 0])
+      const itemType = v.getIn(['items', 'type', 0]) || v.getIn(['items', 'type'])
       return `${indent}var ${k}: ${className}<${convertTypeJsonToKotlin(itemType)}>${requiredMark} = ${requiredField ? 'listOf()' : 'null'}`
     } else if (type === 'string') {
       return `${indent}var ${k}: String${requiredMark} = ${requiredField ? '""' : 'null'}`
@@ -95,7 +95,7 @@ const generateVariable = (propertyName, jsonDef, depth) => {
     } else if (type === 'boolean') {
       return `${indent}var ${k}: Boolean${requiredMark} = ${requiredField ? 'false' : 'null'}`
     }
-    console.log(`[メインクラス生成]不明な型定義です。${v.getIn(['type', 0])}`) // eslint-disable-line no-console
+    console.log(`[メインクラス生成]不明な型定義です。${type}`) // eslint-disable-line no-console
   }).map(v => `\n${v}`).join(',')
 }
 
@@ -135,8 +135,8 @@ const generateKotlinTestVariable = (propertyName, jsonDef, depth) => {
   const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties']) || Immutable.fromJS({})
   return properties.map((v, k) => {
     const className = `${propertyName}.${k[0].toUpperCase()}${k.substring(1)}`
-    const type = v.getIn(['type', 0])
-    const itemType = v.getIn(['items', 'type', 0])
+    const type = v.getIn(['type', 0]) || v.get('type')
+    const itemType = v.getIn(['items', 'type', 0]) || v.getIn(['items', 'type'])
     if (type === 'object') {
       return `${indent}${k} = ${className}().apply {${generateKotlinTestVariable(className, v, depth + 1)}\n${indent}}`
     } else if (type === 'array') {
