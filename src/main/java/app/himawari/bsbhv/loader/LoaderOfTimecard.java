@@ -9,7 +9,7 @@ import app.himawari.exentity.*;
 import app.himawari.cbean.*;
 
 /**
- * The referrer loader of timecard as TABLE. <br>
+ * The referrer loader of TIMECARD as TABLE. <br>
  * <pre>
  * [primary key]
  *     TIMECARD_ID
@@ -27,10 +27,10 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     member
+ *     MEMBER
  *
  * [referrer table]
- *     daily_in_out
+ *     DAILY_IN_OUT
  *
  * [foreign property]
  *     member
@@ -65,7 +65,7 @@ public class LoaderOfTimecard {
 
     /**
      * Load referrer of dailyInOutList by the set-upper of referrer. <br>
-     * daily_in_out by TIMECARD_ID, named 'dailyInOutList'.
+     * DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'.
      * <pre>
      * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">timecardList</span>, <span style="color: #553000">timecardLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">timecardLoader</span>.<span style="color: #CC4747">loadDailyInOut</span>(<span style="color: #553000">outCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {

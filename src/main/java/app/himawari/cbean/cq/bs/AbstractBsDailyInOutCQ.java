@@ -465,7 +465,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCode The value of vacationTypeCode as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_Equal(String vacationTypeCode) {
@@ -478,7 +478,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCode The value of vacationTypeCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_NotEqual(String vacationTypeCode) {
@@ -491,7 +491,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCode The value of vacationTypeCode as greaterThan. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_GreaterThan(String vacationTypeCode) {
@@ -500,7 +500,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCode The value of vacationTypeCode as lessThan. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_LessThan(String vacationTypeCode) {
@@ -509,7 +509,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCode The value of vacationTypeCode as greaterEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_GreaterEqual(String vacationTypeCode) {
@@ -518,7 +518,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCode The value of vacationTypeCode as lessEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_LessEqual(String vacationTypeCode) {
@@ -527,7 +527,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCodeList The collection of vacationTypeCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_InScope(Collection<String> vacationTypeCodeList) {
@@ -540,7 +540,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCodeList The collection of vacationTypeCode as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_NotInScope(Collection<String> vacationTypeCodeList) {
@@ -553,7 +553,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type} <br>
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} <br>
      * <pre>e.g. setVacationTypeCode_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
      * @param vacationTypeCode The value of vacationTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
@@ -564,7 +564,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type} <br>
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} <br>
      * <pre>e.g. setVacationTypeCode_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
      * @param vacationTypeCode The value of vacationTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -576,7 +576,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCode The value of vacationTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
@@ -587,13 +587,31 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @param vacationTypeCode The value of vacationTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
     protected void setVacationTypeCode_NotLikeSearch(String vacationTypeCode, LikeSearchOption likeSearchOption) {
         regLSQ(CK_NLS, fRES(vacationTypeCode), xgetCValueVacationTypeCode(), "VACATION_TYPE_CODE", likeSearchOption);
     }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     */
+    public void setVacationTypeCode_IsNull() { regVacationTypeCode(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br>
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     */
+    public void setVacationTypeCode_IsNullOrEmpty() { regVacationTypeCode(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     */
+    public void setVacationTypeCode_IsNotNull() { regVacationTypeCode(CK_ISNN, DOBJ); }
 
     protected void regVacationTypeCode(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueVacationTypeCode(), "VACATION_TYPE_CODE"); }
     protected abstract ConditionValue xgetCValueVacationTypeCode();

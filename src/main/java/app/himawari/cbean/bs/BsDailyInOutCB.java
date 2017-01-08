@@ -245,7 +245,7 @@ public class BsDailyInOutCB extends AbstractConditionBean {
     }
     /**
      * Set up relation columns to select clause. <br>
-     * timecard by my TIMECARD_ID, named 'timecard'.
+     * TIMECARD by my TIMECARD_ID, named 'timecard'.
      * <pre>
      * <span style="color: #0000C0">dailyInOutBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Timecard()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
@@ -269,7 +269,7 @@ public class BsDailyInOutCB extends AbstractConditionBean {
 
     /**
      * Set up relation columns to select clause. <br>
-     * vacation_type by my VACATION_TYPE_CODE, named 'vacationType'.
+     * VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'.
      * <pre>
      * <span style="color: #0000C0">dailyInOutBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_VacationType()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
@@ -355,7 +355,7 @@ public class BsDailyInOutCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnOutDatetime() { return doColumn("OUT_DATETIME"); }
         /**
-         * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+         * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnVacationTypeCode() { return doColumn("VACATION_TYPE_CODE"); }
@@ -407,7 +407,7 @@ public class BsDailyInOutCB extends AbstractConditionBean {
         protected String getTableDbName() { return "daily_in_out"; }
         /**
          * Prepare to specify functions about relation table. <br>
-         * timecard by my TIMECARD_ID, named 'timecard'.
+         * TIMECARD by my TIMECARD_ID, named 'timecard'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
         public TimecardCB.HpSpecification specifyTimecard() {
@@ -427,7 +427,7 @@ public class BsDailyInOutCB extends AbstractConditionBean {
         }
         /**
          * Prepare to specify functions about relation table. <br>
-         * vacation_type by my VACATION_TYPE_CODE, named 'vacationType'.
+         * VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
         public VacationTypeCB.HpSpecification specifyVacationType() {

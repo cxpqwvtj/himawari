@@ -328,7 +328,7 @@ public class BsVacationTypeCB extends AbstractConditionBean {
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
          * {select max(FOO) from daily_in_out where ...) as FOO_MAX} <br>
-         * daily_in_out by VACATION_TYPE_CODE, named 'dailyInOutList'.
+         * DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'.
          * <pre>
          * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
          *     outCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>

@@ -298,7 +298,7 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
     //                                                                       =============
     /**
      * Get the condition-query for relation table. <br>
-     * member by my MEMBER_ID, named 'member'.
+     * MEMBER by my MEMBER_ID, named 'member'.
      * @return The instance of condition-query. (NotNull)
      */
     public MemberCQ queryMember() {

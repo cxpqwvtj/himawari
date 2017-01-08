@@ -269,7 +269,7 @@ public class BsTimecardCB extends AbstractConditionBean {
     }
     /**
      * Set up relation columns to select clause. <br>
-     * member by my MEMBER_ID, named 'member'.
+     * MEMBER by my MEMBER_ID, named 'member'.
      * <pre>
      * <span style="color: #0000C0">timecardBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Member()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
@@ -391,7 +391,7 @@ public class BsTimecardCB extends AbstractConditionBean {
         protected String getTableDbName() { return "timecard"; }
         /**
          * Prepare to specify functions about relation table. <br>
-         * member by my MEMBER_ID, named 'member'.
+         * MEMBER by my MEMBER_ID, named 'member'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
         public MemberCB.HpSpecification specifyMember() {
@@ -412,7 +412,7 @@ public class BsTimecardCB extends AbstractConditionBean {
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
          * {select max(FOO) from daily_in_out where ...) as FOO_MAX} <br>
-         * daily_in_out by TIMECARD_ID, named 'dailyInOutList'.
+         * DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'.
          * <pre>
          * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
          *     outCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>

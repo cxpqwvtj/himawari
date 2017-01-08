@@ -20,7 +20,7 @@ public class DailyInOutNss {
     //                                                                     ===============
     /**
      * With nested relation columns to select clause. <br>
-     * timecard by my TIMECARD_ID, named 'timecard'.
+     * TIMECARD by my TIMECARD_ID, named 'timecard'.
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
     public TimecardNss withTimecard() {
@@ -29,7 +29,7 @@ public class DailyInOutNss {
     }
     /**
      * With nested relation columns to select clause. <br>
-     * vacation_type by my VACATION_TYPE_CODE, named 'vacationType'.
+     * VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'.
      */
     public void withVacationType() {
         _query.xdoNss(() -> _query.queryVacationType());

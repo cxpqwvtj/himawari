@@ -22,7 +22,7 @@ import app.himawari.bsentity.dbmeta.*;
 import app.himawari.cbean.*;
 
 /**
- * The behavior of member as TABLE. <br>
+ * The behavior of MEMBER as TABLE. <br>
  * <pre>
  * [primary key]
  *     MEMBER_ID
@@ -40,10 +40,10 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     timecard(AsOne)
+ *     TIMECARD(AsOne)
  *
  * [referrer table]
- *     timecard
+ *     TIMECARD
  *
  * [foreign property]
  *     timecardAsOne

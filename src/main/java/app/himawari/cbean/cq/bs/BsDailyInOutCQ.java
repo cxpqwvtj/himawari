@@ -161,14 +161,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @return this. (NotNull)
      */
     public BsDailyInOutCQ addOrderBy_VacationTypeCode_Asc() { regOBA("VACATION_TYPE_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @return this. (NotNull)
      */
     public BsDailyInOutCQ addOrderBy_VacationTypeCode_Desc() { regOBD("VACATION_TYPE_CODE"); return this; }
@@ -347,7 +347,7 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
     //                                                                       =============
     /**
      * Get the condition-query for relation table. <br>
-     * timecard by my TIMECARD_ID, named 'timecard'.
+     * TIMECARD by my TIMECARD_ID, named 'timecard'.
      * @return The instance of condition-query. (NotNull)
      */
     public TimecardCQ queryTimecard() {
@@ -367,7 +367,7 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
 
     /**
      * Get the condition-query for relation table. <br>
-     * vacation_type by my VACATION_TYPE_CODE, named 'vacationType'.
+     * VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'.
      * @return The instance of condition-query. (NotNull)
      */
     public VacationTypeCQ queryVacationType() {

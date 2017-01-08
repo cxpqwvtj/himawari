@@ -75,9 +75,9 @@ public class DailyInOutDbm extends AbstractDBMeta {
     //                                                                          Table Info
     //                                                                          ==========
     protected final String _tableDbName = "daily_in_out";
-    protected final String _tableDispName = "daily_in_out";
+    protected final String _tableDispName = "DAILY_IN_OUT";
     protected final String _tablePropertyName = "dailyInOut";
-    protected final TableSqlName _tableSqlName = new TableSqlName("daily_in_out", _tableDbName);
+    protected final TableSqlName _tableSqlName = new TableSqlName("DAILY_IN_OUT", _tableDbName);
     { _tableSqlName.xacceptFilter(DBFluteConfig.getInstance().getTableSqlNameFilter()); }
     public String getTableDbName() { return _tableDbName; }
     public String getTableDispName() { return _tableDispName; }
@@ -91,12 +91,12 @@ public class DailyInOutDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnTimecardId = cci("TIMECARD_ID", "TIMECARD_ID", null, null, Long.class, "timecardId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "timecard", null, null, false);
     protected final ColumnInfo _columnInDatetime = cci("IN_DATETIME", "IN_DATETIME", null, null, java.time.LocalDateTime.class, "inDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnOutDatetime = cci("OUT_DATETIME", "OUT_DATETIME", null, null, java.time.LocalDateTime.class, "outDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, false, false, true, "VARCHAR", 3, 0, null, false, null, null, "vacationType", null, null, false);
+    protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, false, false, false, "VARCHAR", 3, 0, null, false, null, null, "vacationType", null, null, false);
     protected final ColumnInfo _columnNote = cci("NOTE", "NOTE", null, null, String.class, "note", null, false, false, false, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
+    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
@@ -120,7 +120,7 @@ public class DailyInOutDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnOutDatetime() { return _columnOutDatetime; }
     /**
-     * VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnVacationTypeCode() { return _columnVacationTypeCode; }
@@ -192,7 +192,7 @@ public class DailyInOutDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     /**
-     * timecard by my TIMECARD_ID, named 'timecard'.
+     * TIMECARD by my TIMECARD_ID, named 'timecard'.
      * @return The information object of foreign property. (NotNull)
      */
     public ForeignInfo foreignTimecard() {
@@ -200,7 +200,7 @@ public class DailyInOutDbm extends AbstractDBMeta {
         return cfi("FK_DAILY_IN_OUT_TIMECARD", "timecard", this, TimecardDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "dailyInOutList", false);
     }
     /**
-     * vacation_type by my VACATION_TYPE_CODE, named 'vacationType'.
+     * VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'.
      * @return The information object of foreign property. (NotNull)
      */
     public ForeignInfo foreignVacationType() {
@@ -218,6 +218,13 @@ public class DailyInOutDbm extends AbstractDBMeta {
     public boolean hasIdentity() { return true; }
     public boolean hasVersionNo() { return true; }
     public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
+    public boolean hasCommonColumn() { return true; }
+    public List<ColumnInfo> getCommonColumnInfoList()
+    { return newArrayList(columnRegisterDatetime(), columnRegisterUser(), columnUpdateDatetime(), columnUpdateUser()); }
+    public List<ColumnInfo> getCommonColumnInfoBeforeInsertList()
+    { return newArrayList(columnRegisterDatetime(), columnRegisterUser(), columnUpdateDatetime(), columnUpdateUser()); }
+    public List<ColumnInfo> getCommonColumnInfoBeforeUpdateList()
+    { return newArrayList(columnUpdateDatetime(), columnUpdateUser()); }
 
     // ===================================================================================
     //                                                                           Type Name

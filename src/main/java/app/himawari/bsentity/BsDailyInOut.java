@@ -8,12 +8,13 @@ import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
 import org.dbflute.optional.OptionalEntity;
+import app.himawari.allcommon.EntityDefinedCommonColumn;
 import app.himawari.allcommon.DBMetaInstanceHandler;
 import app.himawari.exentity.*;
 
 /**
- * The entity of daily_in_out as TABLE. <br>
- * ????????
+ * The entity of DAILY_IN_OUT as TABLE. <br>
+ * 日次勤務時間記録
  * <pre>
  * [primary-key]
  *     DAILY_IN_OUT_ID
@@ -31,7 +32,7 @@ import app.himawari.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     timecard, vacation_type
+ *     TIMECARD, VACATION_TYPE
  *
  * [referrer table]
  *     
@@ -70,7 +71,7 @@ import app.himawari.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsDailyInOut extends AbstractEntity implements DomainEntity {
+public abstract class BsDailyInOut extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition
@@ -93,7 +94,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     /** OUT_DATETIME: {DATETIME(19)} */
     protected java.time.LocalDateTime _outDatetime;
 
-    /** VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type} */
+    /** VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} */
     protected String _vacationTypeCode;
 
     /** NOTE: {TEXT(65535)} */
@@ -139,11 +140,11 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** timecard by my TIMECARD_ID, named 'timecard'. */
+    /** TIMECARD by my TIMECARD_ID, named 'timecard'. */
     protected OptionalEntity<Timecard> _timecard;
 
     /**
-     * [get] timecard by my TIMECARD_ID, named 'timecard'. <br>
+     * [get] TIMECARD by my TIMECARD_ID, named 'timecard'. <br>
      * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
      * @return The entity of foreign property 'timecard'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
      */
@@ -153,18 +154,18 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [set] timecard by my TIMECARD_ID, named 'timecard'.
+     * [set] TIMECARD by my TIMECARD_ID, named 'timecard'.
      * @param timecard The entity of foreign property 'timecard'. (NullAllowed)
      */
     public void setTimecard(OptionalEntity<Timecard> timecard) {
         _timecard = timecard;
     }
 
-    /** vacation_type by my VACATION_TYPE_CODE, named 'vacationType'. */
+    /** VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'. */
     protected OptionalEntity<VacationType> _vacationType;
 
     /**
-     * [get] vacation_type by my VACATION_TYPE_CODE, named 'vacationType'. <br>
+     * [get] VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'. <br>
      * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
      * @return The entity of foreign property 'vacationType'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
      */
@@ -174,7 +175,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [set] vacation_type by my VACATION_TYPE_CODE, named 'vacationType'.
+     * [set] VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'.
      * @param vacationType The entity of foreign property 'vacationType'. (NullAllowed)
      */
     public void setVacationType(OptionalEntity<VacationType> vacationType) {
@@ -267,7 +268,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     //                                                                            ========
     /**
      * [get] DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * ????????ID
+     * 日次勤務時間記録ID
      * @return The value of the column 'DAILY_IN_OUT_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getDailyInOutId() {
@@ -277,7 +278,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * ????????ID
+     * 日次勤務時間記録ID
      * @param dailyInOutId The value of the column 'DAILY_IN_OUT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setDailyInOutId(Long dailyInOutId) {
@@ -287,7 +288,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard} <br>
-     * ??????ID
+     * タイムカードID
      * @return The value of the column 'TIMECARD_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getTimecardId() {
@@ -297,7 +298,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard} <br>
-     * ??????ID
+     * タイムカードID
      * @param timecardId The value of the column 'TIMECARD_ID'. (basically NotNull if update: for the constraint)
      */
     public void setTimecardId(Long timecardId) {
@@ -307,7 +308,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] IN_DATETIME: {DATETIME(19)} <br>
-     * ????
+     * 出勤時間
      * @return The value of the column 'IN_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getInDatetime() {
@@ -317,7 +318,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] IN_DATETIME: {DATETIME(19)} <br>
-     * ????
+     * 出勤時間
      * @param inDatetime The value of the column 'IN_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setInDatetime(java.time.LocalDateTime inDatetime) {
@@ -327,7 +328,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] OUT_DATETIME: {DATETIME(19)} <br>
-     * ????
+     * 退勤時間
      * @return The value of the column 'OUT_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getOutDatetime() {
@@ -337,7 +338,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] OUT_DATETIME: {DATETIME(19)} <br>
-     * ????
+     * 退勤時間
      * @param outDatetime The value of the column 'OUT_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setOutDatetime(java.time.LocalDateTime outDatetime) {
@@ -346,9 +347,9 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [get] VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type} <br>
-     * ????????
-     * @return The value of the column 'VACATION_TYPE_CODE'. (basically NotNull if selected: for the constraint)
+     * [get] VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} <br>
+     * 休暇タイプコード
+     * @return The value of the column 'VACATION_TYPE_CODE'. (NullAllowed even if selected: for no constraint)
      */
     public String getVacationTypeCode() {
         checkSpecifiedProperty("vacationTypeCode");
@@ -356,9 +357,9 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [set] VACATION_TYPE_CODE: {IX, NotNull, VARCHAR(3), FK to vacation_type} <br>
-     * ????????
-     * @param vacationTypeCode The value of the column 'VACATION_TYPE_CODE'. (basically NotNull if update: for the constraint)
+     * [set] VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} <br>
+     * 休暇タイプコード
+     * @param vacationTypeCode The value of the column 'VACATION_TYPE_CODE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setVacationTypeCode(String vacationTypeCode) {
         registerModifiedProperty("vacationTypeCode");
@@ -367,7 +368,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] NOTE: {TEXT(65535)} <br>
-     * ????????
+     * 備考入力テキスト
      * @return The value of the column 'NOTE'. (NullAllowed even if selected: for no constraint)
      */
     public String getNote() {
@@ -377,7 +378,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] NOTE: {TEXT(65535)} <br>
-     * ????????
+     * 備考入力テキスト
      * @param note The value of the column 'NOTE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNote(String note) {
@@ -387,7 +388,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * ????
+     * 登録日時
      * @return The value of the column 'REGISTER_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -397,7 +398,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * ????
+     * 登録日時
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -407,7 +408,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * ?????
+     * 登録ユーザ
      * @return The value of the column 'REGISTER_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getRegisterUser() {
@@ -417,7 +418,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * ?????
+     * 登録ユーザ
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
@@ -427,7 +428,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * ????
+     * 更新日時
      * @return The value of the column 'UPDATE_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -437,7 +438,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * ????
+     * 更新日時
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {
@@ -447,7 +448,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * ?????
+     * 更新ユーザ
      * @return The value of the column 'UPDATE_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getUpdateUser() {
@@ -457,7 +458,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * ?????
+     * 更新ユーザ
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
@@ -467,7 +468,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * ???????
+     * バージョン番号
      * @return The value of the column 'VERSION_NO'. (basically NotNull if selected: for the constraint)
      */
     public Long getVersionNo() {
@@ -477,7 +478,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * ???????
+     * バージョン番号
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {

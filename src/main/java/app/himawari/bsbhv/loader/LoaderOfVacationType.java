@@ -9,7 +9,7 @@ import app.himawari.exentity.*;
 import app.himawari.cbean.*;
 
 /**
- * The referrer loader of vacation_type as TABLE. <br>
+ * The referrer loader of VACATION_TYPE as TABLE. <br>
  * <pre>
  * [primary key]
  *     VACATION_TYPE_CODE
@@ -30,7 +30,7 @@ import app.himawari.cbean.*;
  *     
  *
  * [referrer table]
- *     daily_in_out
+ *     DAILY_IN_OUT
  *
  * [foreign property]
  *     
@@ -65,7 +65,7 @@ public class LoaderOfVacationType {
 
     /**
      * Load referrer of dailyInOutList by the set-upper of referrer. <br>
-     * daily_in_out by VACATION_TYPE_CODE, named 'dailyInOutList'.
+     * DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'.
      * <pre>
      * <span style="color: #0000C0">vacationTypeBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">vacationTypeList</span>, <span style="color: #553000">typeLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">typeLoader</span>.<span style="color: #CC4747">loadDailyInOut</span>(<span style="color: #553000">outCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {

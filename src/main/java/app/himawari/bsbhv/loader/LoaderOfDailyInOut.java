@@ -7,7 +7,7 @@ import app.himawari.exbhv.*;
 import app.himawari.exentity.*;
 
 /**
- * The referrer loader of daily_in_out as TABLE. <br>
+ * The referrer loader of DAILY_IN_OUT as TABLE. <br>
  * <pre>
  * [primary key]
  *     DAILY_IN_OUT_ID
@@ -25,7 +25,7 @@ import app.himawari.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     timecard, vacation_type
+ *     TIMECARD, VACATION_TYPE
  *
  * [referrer table]
  *     

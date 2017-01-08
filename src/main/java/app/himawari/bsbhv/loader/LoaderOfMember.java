@@ -7,7 +7,7 @@ import app.himawari.exbhv.*;
 import app.himawari.exentity.*;
 
 /**
- * The referrer loader of member as TABLE. <br>
+ * The referrer loader of MEMBER as TABLE. <br>
  * <pre>
  * [primary key]
  *     MEMBER_ID
@@ -25,10 +25,10 @@ import app.himawari.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     timecard(AsOne)
+ *     TIMECARD(AsOne)
  *
  * [referrer table]
- *     timecard
+ *     TIMECARD
  *
  * [foreign property]
  *     timecardAsOne

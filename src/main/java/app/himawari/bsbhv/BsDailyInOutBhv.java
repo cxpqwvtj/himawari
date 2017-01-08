@@ -22,7 +22,7 @@ import app.himawari.bsentity.dbmeta.*;
 import app.himawari.cbean.*;
 
 /**
- * The behavior of daily_in_out as TABLE. <br>
+ * The behavior of DAILY_IN_OUT as TABLE. <br>
  * <pre>
  * [primary key]
  *     DAILY_IN_OUT_ID
@@ -40,7 +40,7 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     timecard, vacation_type
+ *     TIMECARD, VACATION_TYPE
  *
  * [referrer table]
  *     
