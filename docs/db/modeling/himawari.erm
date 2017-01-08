@@ -182,7 +182,6 @@
 					<physical_name>VACATION_TYPE_CODE</physical_name>
 					<referred_column>table.VACATION_TYPE.VACATION_TYPE_CODE</referred_column>
 					<relationship>FK_DAILY_IN_OUT_VACATION_TYPE</relationship>
-					<not_null>true</not_null>
 				</normal_column>
 				<normal_column>
 					<physical_name>NOTE</physical_name>
