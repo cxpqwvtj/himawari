@@ -4,12 +4,10 @@ title: TimeCardRequest
 description: 月の時間データ取得APIリクエスト
 stability: prototype
 strictProperties: true
-type:
-  - object
+type: object
 properties:
   yearMonth:
     description: 年月(yyyyMM)
-    type:
-      - string
+    type: string
 required:
   - yearMonth
