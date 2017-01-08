@@ -2,6 +2,11 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  datasource:
+    url: jdbc:mysql://localhost:3306/himawari
+    username: himawari
+    password: himawari
+    driverClassName: com.mysql.jdbc.Driver
 app:
   log:
     filter:
