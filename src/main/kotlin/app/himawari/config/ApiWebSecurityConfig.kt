@@ -1,5 +1,6 @@
 package app.himawari.config
 
+import org.springframework.boot.autoconfigure.security.Http401AuthenticationEntryPoint
 import org.springframework.boot.autoconfigure.security.SecurityProperties
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.annotation.Order
@@ -9,25 +10,19 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 
 /**
- * SpringSecurity用のJavaConfigクラスです。
- * Created by masahiro on 2016/11/12.
+ * APIアクセスのセキュリティ設定クラスです。
+ * Created by masahiro on 2017/01/09.
  */
 @Configuration
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-open class WebSecurityConfig : WebSecurityConfigurerAdapter() {
-    @Override
-    override fun configure(web: WebSecurity) {
-        web.ignoring().antMatchers("/assets/**")
-    }
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 2)
+open class ApiWebSecurityConfig : WebSecurityConfigurerAdapter() {
 
-    @Override
     override fun configure(httpSecurity: HttpSecurity) {
         http.authorizeRequests().anyRequest().authenticated()
-                .and().formLogin()//.loginPage("/login").permitAll()
-                .and().logout().permitAll()
+                .and().antMatcher("/api/**")
+                .exceptionHandling().authenticationEntryPoint(Http401AuthenticationEntryPoint(""))//.loginPage("/login").permitAll()
     }
 
-    @Override
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.inMemoryAuthentication()
                 .withUser("admin").password("admin").roles("ADMIN", "USER")
