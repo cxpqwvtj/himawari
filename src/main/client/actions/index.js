@@ -13,12 +13,21 @@ function action(type, payload = {}) {
   return {type, payload}
 }
 
-export const LOGS = createRequestTypes('LOGS')
-export const LOAD_LOGS = 'LOAD_LOGS'
-export const TRAIL = createRequestTypes('TRAIL')
-export const CREATE_TRAIL = 'CREATE_TRAIL'
-
-export const loadLogs = () => action(LOAD_LOGS, {endpoint: '/api/timber/list', method: 'GET'})
+export const LOGOUT_REQUEST = createRequestTypes('LOGOUT_REQUEST')
+export const logoutRequestTypes = {
+  request: (param) => action(LOGOUT_REQUEST.REQUEST, {param}),
+  success: (param, response) => action(LOGOUT_REQUEST.SUCCESS, {param, response}),
+  failure: (param, error) => action(LOGOUT_REQUEST.FAILURE, {param, error}),
+}
+export const LOGOUT_ACTION = 'LOGOUT_ACTION'
+export const logoutAction = () => {
+  const param = {
+    endpoint: '/logout',
+    method: 'POST',
+    body: {}
+  }
+  return action(LOGOUT_ACTION, param)
+}
 
 export const MOCK_SETTING_DEFINITION = 'MOCK_SETTING_DEFINITION'
 export const mockSettingDefinition = (def) => action(MOCK_SETTING_DEFINITION, {def})
