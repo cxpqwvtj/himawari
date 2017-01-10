@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository
 
 /**
  * SpringSecurity用のJavaConfigクラスです。
@@ -16,13 +17,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 open class UiWebSecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(web: WebSecurity) {
-        web.ignoring().antMatchers("/assets/**")
+        web.ignoring().mvcMatchers("/assets/**")
     }
 
     override fun configure(httpSecurity: HttpSecurity) {
         http.authorizeRequests().anyRequest().authenticated()
                 .and().formLogin()//.loginPage("/login").permitAll()
                 .and().logout().permitAll()
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {

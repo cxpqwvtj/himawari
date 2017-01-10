@@ -13,9 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * APIアクセスのセキュリティ設定クラスです。
  * Created by masahiro on 2017/01/09.
  */
-@Configuration
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 2)
+//@Configuration
+//@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 2)
 open class ApiWebSecurityConfig : WebSecurityConfigurerAdapter() {
+    override fun configure(web: WebSecurity) {
+        web.ignoring().antMatchers("/assets/**")
+    }
 
     override fun configure(httpSecurity: HttpSecurity) {
         http.authorizeRequests().anyRequest().authenticated()
