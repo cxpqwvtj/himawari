@@ -2,12 +2,16 @@ import 'isomorphic-fetch'
 
 function callApi(requestParam) {
   const fullUrl = `${process.env.CONTEXT_PATH}${requestParam.endpoint}`
+  const csrfToken = document.cookie.split(';').filter((v) => v.trim().startsWith('XSRF-TOKEN')).reduce((r, v) => {
+    return {'X-XSRF-TOKEN': v.split('=')[1]}
+  }, {})
   const param = Object.assign({
     method: requestParam.method,
     credentials: 'same-origin',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      ...csrfToken
     }
   }, requestParam.method === 'POST' ? { body: JSON.stringify(requestParam.body || null)} : {})
 
