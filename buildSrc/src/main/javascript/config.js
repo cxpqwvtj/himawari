@@ -16,5 +16,8 @@ module.exports = Immutable.fromJS({
   packageName: 'app.himawari.dto.json.gen',
   sampleJsonDir: './src/test/resources/json/gen',
   jsonDefXlsxDir: './docs/xlsx',
-  outputHtmlDir: './docs/html'
+  outputHtmlDir: './docs/html',
+  csvConvertPaths: [
+    `${__dirname}/../../../../dbflute_himawari/playsql/data/common/csv/00-VACATION_TYPE.csv`
+  ]
 }).mergeDeep(customConfig).toJS()
