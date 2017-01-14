@@ -18,6 +18,6 @@ module.exports = Immutable.fromJS({
   jsonDefXlsxDir: './docs/xlsx',
   outputHtmlDir: './docs/html',
   csvConvertPaths: [
-    `${__dirname}/../../../../dbflute_himawari/playsql/data/common/csv/00-VACATION_TYPE.csv`
+    `${__dirname}/../../../../dbflute_himawari/playsql/data/common/csv/UTF-8`
   ]
 }).mergeDeep(customConfig).toJS()
