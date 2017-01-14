@@ -103,4 +103,5 @@ jspm_packages
 /buildSrc/src/main/resources/config/custom.config
 /buildSrc/src/main/javascript/custom_config.yml
 /dbflute_himawari/dfprop/system-password.txt
+/dbflute_himawari/playsql/data/common/csv/*.xlsx
 /src/main/resources/static/*
