@@ -1,0 +1,7 @@
+map:{
+    ; REGISTER_DATETIME = sysdate
+    ; REGISTER_USER     = user
+    ; UPDATE_DATETIME   = sysdate
+    ; UPDATE_USER       = user
+    ; VERSION_NO        = 0
+}
