@@ -169,6 +169,12 @@
 					<not_null>true</not_null>
 				</normal_column>
 				<normal_column>
+					<physical_name>BIZ_DATE</physical_name>
+					<logical_name>業務日</logical_name>
+					<type>date</type>
+					<not_null>true</not_null>
+				</normal_column>
+				<normal_column>
 					<physical_name>IN_DATETIME</physical_name>
 					<logical_name>出勤時間</logical_name>
 					<type>datetime</type>
