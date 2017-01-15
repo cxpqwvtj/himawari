@@ -1,5 +1,7 @@
 package app.himawari.controller.api
 
+import app.himawari.dto.json.gen.TimeCardResponse
+import app.himawari.service.api.ApiService
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -12,11 +14,18 @@ import javax.servlet.http.HttpServletRequest
  */
 @RestController
 @RequestMapping("/api")
-open class ApiController {
+open class ApiController(
+        val service: ApiService
+) {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
     @RequestMapping(path = arrayOf("/**"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
     open fun root(request: HttpServletRequest) {
         logger.debug(request.requestURL.toString())
+    }
+
+    @RequestMapping(path = arrayOf("/timecard"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
+    open fun timecard(request: HttpServletRequest): TimeCardResponse {
+        return service.selectMonthlyInOutData("201612")
     }
 }
