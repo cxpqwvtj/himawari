@@ -113,6 +113,26 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      */
     public BsDailyInOutCQ addOrderBy_TimecardId_Desc() { regOBD("TIMECARD_ID"); return this; }
 
+    protected ConditionValue _bizDate;
+    public ConditionValue xdfgetBizDate()
+    { if (_bizDate == null) { _bizDate = nCV(); }
+      return _bizDate; }
+    protected ConditionValue xgetCValueBizDate() { return xdfgetBizDate(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * @return this. (NotNull)
+     */
+    public BsDailyInOutCQ addOrderBy_BizDate_Asc() { regOBA("BIZ_DATE"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * @return this. (NotNull)
+     */
+    public BsDailyInOutCQ addOrderBy_BizDate_Desc() { regOBD("BIZ_DATE"); return this; }
+
     protected ConditionValue _inDatetime;
     public ConditionValue xdfgetInDatetime()
     { if (_inDatetime == null) { _inDatetime = nCV(); }

@@ -45,6 +45,7 @@ public class DailyInOutDbm extends AbstractDBMeta {
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((DailyInOut)et).getDailyInOutId(), (et, vl) -> ((DailyInOut)et).setDailyInOutId(ctl(vl)), "dailyInOutId");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getTimecardId(), (et, vl) -> ((DailyInOut)et).setTimecardId(ctl(vl)), "timecardId");
+        setupEpg(_epgMap, et -> ((DailyInOut)et).getBizDate(), (et, vl) -> ((DailyInOut)et).setBizDate(ctld(vl)), "bizDate");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getInDatetime(), (et, vl) -> ((DailyInOut)et).setInDatetime(ctldt(vl)), "inDatetime");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getOutDatetime(), (et, vl) -> ((DailyInOut)et).setOutDatetime(ctldt(vl)), "outDatetime");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getVacationTypeCode(), (et, vl) -> ((DailyInOut)et).setVacationTypeCode((String)vl), "vacationTypeCode");
@@ -89,6 +90,7 @@ public class DailyInOutDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnDailyInOutId = cci("DAILY_IN_OUT_ID", "DAILY_IN_OUT_ID", null, null, Long.class, "dailyInOutId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTimecardId = cci("TIMECARD_ID", "TIMECARD_ID", null, null, Long.class, "timecardId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "timecard", null, null, false);
+    protected final ColumnInfo _columnBizDate = cci("BIZ_DATE", "BIZ_DATE", null, null, java.time.LocalDate.class, "bizDate", null, false, false, true, "DATE", 10, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnInDatetime = cci("IN_DATETIME", "IN_DATETIME", null, null, java.time.LocalDateTime.class, "inDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnOutDatetime = cci("OUT_DATETIME", "OUT_DATETIME", null, null, java.time.LocalDateTime.class, "outDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, false, false, false, "VARCHAR", 3, 0, null, false, null, null, "vacationType", null, null, false);
@@ -109,6 +111,11 @@ public class DailyInOutDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnTimecardId() { return _columnTimecardId; }
+    /**
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnBizDate() { return _columnBizDate; }
     /**
      * IN_DATETIME: {DATETIME(19)}
      * @return The information object of specified column. (NotNull)
@@ -159,6 +166,7 @@ public class DailyInOutDbm extends AbstractDBMeta {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnDailyInOutId());
         ls.add(columnTimecardId());
+        ls.add(columnBizDate());
         ls.add(columnInDatetime());
         ls.add(columnOutDatetime());
         ls.add(columnVacationTypeCode());

@@ -63,6 +63,7 @@ public class DailyInOutCIQ extends AbstractBsDailyInOutCQ {
     //                                                                ====================
     protected ConditionValue xgetCValueDailyInOutId() { return _myCQ.xdfgetDailyInOutId(); }
     protected ConditionValue xgetCValueTimecardId() { return _myCQ.xdfgetTimecardId(); }
+    protected ConditionValue xgetCValueBizDate() { return _myCQ.xdfgetBizDate(); }
     protected ConditionValue xgetCValueInDatetime() { return _myCQ.xdfgetInDatetime(); }
     protected ConditionValue xgetCValueOutDatetime() { return _myCQ.xdfgetOutDatetime(); }
     protected ConditionValue xgetCValueVacationTypeCode() { return _myCQ.xdfgetVacationTypeCode(); }

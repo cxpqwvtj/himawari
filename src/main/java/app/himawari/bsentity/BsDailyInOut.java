@@ -20,7 +20,7 @@ import app.himawari.exentity.*;
  *     DAILY_IN_OUT_ID
  *
  * [column]
- *     DAILY_IN_OUT_ID, TIMECARD_ID, IN_DATETIME, OUT_DATETIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     DAILY_IN_OUT_ID, TIMECARD_ID, BIZ_DATE, IN_DATETIME, OUT_DATETIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -47,6 +47,7 @@ import app.himawari.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long dailyInOutId = entity.getDailyInOutId();
  * Long timecardId = entity.getTimecardId();
+ * java.time.LocalDate bizDate = entity.getBizDate();
  * java.time.LocalDateTime inDatetime = entity.getInDatetime();
  * java.time.LocalDateTime outDatetime = entity.getOutDatetime();
  * String vacationTypeCode = entity.getVacationTypeCode();
@@ -58,6 +59,7 @@ import app.himawari.exentity.*;
  * Long versionNo = entity.getVersionNo();
  * entity.setDailyInOutId(dailyInOutId);
  * entity.setTimecardId(timecardId);
+ * entity.setBizDate(bizDate);
  * entity.setInDatetime(inDatetime);
  * entity.setOutDatetime(outDatetime);
  * entity.setVacationTypeCode(vacationTypeCode);
@@ -87,6 +89,9 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /** TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard} */
     protected Long _timecardId;
+
+    /** BIZ_DATE: {NotNull, DATE(10)} */
+    protected java.time.LocalDate _bizDate;
 
     /** IN_DATETIME: {DATETIME(19)} */
     protected java.time.LocalDateTime _inDatetime;
@@ -229,6 +234,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_dailyInOutId));
         sb.append(dm).append(xfND(_timecardId));
+        sb.append(dm).append(xfND(_bizDate));
         sb.append(dm).append(xfND(_inDatetime));
         sb.append(dm).append(xfND(_outDatetime));
         sb.append(dm).append(xfND(_vacationTypeCode));
@@ -304,6 +310,26 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     public void setTimecardId(Long timecardId) {
         registerModifiedProperty("timecardId");
         _timecardId = timecardId;
+    }
+
+    /**
+     * [get] BIZ_DATE: {NotNull, DATE(10)} <br>
+     * 業務日
+     * @return The value of the column 'BIZ_DATE'. (basically NotNull if selected: for the constraint)
+     */
+    public java.time.LocalDate getBizDate() {
+        checkSpecifiedProperty("bizDate");
+        return _bizDate;
+    }
+
+    /**
+     * [set] BIZ_DATE: {NotNull, DATE(10)} <br>
+     * 業務日
+     * @param bizDate The value of the column 'BIZ_DATE'. (basically NotNull if update: for the constraint)
+     */
+    public void setBizDate(java.time.LocalDate bizDate) {
+        registerModifiedProperty("bizDate");
+        _bizDate = bizDate;
     }
 
     /**

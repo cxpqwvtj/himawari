@@ -345,6 +345,11 @@ public class BsDailyInOutCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnTimecardId() { return doColumn("TIMECARD_ID"); }
         /**
+         * BIZ_DATE: {NotNull, DATE(10)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnBizDate() { return doColumn("BIZ_DATE"); }
+        /**
          * IN_DATETIME: {DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */

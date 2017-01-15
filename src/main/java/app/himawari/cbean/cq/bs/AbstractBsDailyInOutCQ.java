@@ -291,6 +291,81 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * @param bizDate The value of bizDate as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setBizDate_Equal(java.time.LocalDate bizDate) {
+        regBizDate(CK_EQ,  bizDate);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * @param bizDate The value of bizDate as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setBizDate_GreaterThan(java.time.LocalDate bizDate) {
+        regBizDate(CK_GT,  bizDate);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * @param bizDate The value of bizDate as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setBizDate_LessThan(java.time.LocalDate bizDate) {
+        regBizDate(CK_LT,  bizDate);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * @param bizDate The value of bizDate as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setBizDate_GreaterEqual(java.time.LocalDate bizDate) {
+        regBizDate(CK_GE,  bizDate);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * @param bizDate The value of bizDate as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setBizDate_LessEqual(java.time.LocalDate bizDate) {
+        regBizDate(CK_LE, bizDate);
+    }
+
+    /**
+     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * <pre>e.g. setBizDate_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of bizDate. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of bizDate. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of from-to. (NotNull)
+     */
+    public void setBizDate_FromTo(java.time.LocalDate fromDatetime, java.time.LocalDate toDatetime, ConditionOptionCall<FromToOption> opLambda) {
+        setBizDate_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
+    }
+
+    /**
+     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * BIZ_DATE: {NotNull, DATE(10)}
+     * <pre>e.g. setBizDate_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of bizDate. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of bizDate. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param fromToOption The option of from-to. (NotNull)
+     */
+    protected void setBizDate_FromTo(java.time.LocalDate fromDatetime, java.time.LocalDate toDatetime, FromToOption fromToOption) {
+        String nm = "BIZ_DATE"; FromToOption op = fromToOption;
+        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueBizDate(), nm, op);
+    }
+
+    protected void regBizDate(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueBizDate(), "BIZ_DATE"); }
+    protected abstract ConditionValue xgetCValueBizDate();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
      * IN_DATETIME: {DATETIME(19)}
      * @param inDatetime The value of inDatetime as equal. (basically NotNull: error as default, or no condition as option)
      */
