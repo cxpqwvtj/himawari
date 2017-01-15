@@ -15,7 +15,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository
  */
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-open class UiWebSecurityConfig : WebSecurityConfigurerAdapter() {
+open class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(web: WebSecurity) {
         web.ignoring().mvcMatchers("/assets/**")
     }
