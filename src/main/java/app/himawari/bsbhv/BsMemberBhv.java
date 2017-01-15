@@ -40,16 +40,16 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     TIMECARD(AsOne)
+ *     
  *
  * [referrer table]
  *     TIMECARD
  *
  * [foreign property]
- *     timecardAsOne
+ *     
  *
  * [referrer property]
- *     
+ *     timecardList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -386,17 +386,73 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
         loaderLambda.handle(new LoaderOfMember().ready(xnewLRAryLs(member), _behaviorSelector));
     }
 
+    /**
+     * Load referrer of timecardList by the set-upper of referrer. <br>
+     * TIMECARD by MEMBER_ID, named 'timecardList'.
+     * <pre>
+     * <span style="color: #0000C0">memberBhv</span>.<span style="color: #CC4747">loadTimecard</span>(<span style="color: #553000">memberList</span>, <span style="color: #553000">timecardCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">timecardCB</span>.setupSelect...
+     *     <span style="color: #553000">timecardCB</span>.query().set...
+     *     <span style="color: #553000">timecardCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (Member member : <span style="color: #553000">memberList</span>) {
+     *     ... = member.<span style="color: #CC4747">getTimecardList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setMemberId_InScope(pkList);
+     * cb.query().addOrderBy_MemberId_Asc();
+     * </pre>
+     * @param memberList The entity list of member. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<Timecard> loadTimecard(List<Member> memberList, ReferrerConditionSetupper<TimecardCB> refCBLambda) {
+        xassLRArg(memberList, refCBLambda);
+        return doLoadTimecard(memberList, new LoadReferrerOption<TimecardCB, Timecard>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of timecardList by the set-upper of referrer. <br>
+     * TIMECARD by MEMBER_ID, named 'timecardList'.
+     * <pre>
+     * <span style="color: #0000C0">memberBhv</span>.<span style="color: #CC4747">loadTimecard</span>(<span style="color: #553000">member</span>, <span style="color: #553000">timecardCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">timecardCB</span>.setupSelect...
+     *     <span style="color: #553000">timecardCB</span>.query().set...
+     *     <span style="color: #553000">timecardCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">member</span>.<span style="color: #CC4747">getTimecardList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setMemberId_InScope(pkList);
+     * cb.query().addOrderBy_MemberId_Asc();
+     * </pre>
+     * @param member The entity of member. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<Timecard> loadTimecard(Member member, ReferrerConditionSetupper<TimecardCB> refCBLambda) {
+        xassLRArg(member, refCBLambda);
+        return doLoadTimecard(xnewLRLs(member), new LoadReferrerOption<TimecardCB, Timecard>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<Timecard> doLoadTimecard(List<Member> memberList, LoadReferrerOption<TimecardCB, Timecard> option) {
+        return helpLoadReferrerInternally(memberList, option, "timecardList");
+    }
+
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-    /**
-     * Pull out the list of referrer-as-one table 'Timecard'.
-     * @param memberList The list of member. (NotNull, EmptyAllowed)
-     * @return The list of referrer-as-one table. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<Timecard> pulloutTimecardAsOne(List<Member> memberList)
-    { return helpPulloutInternally(memberList, "timecardAsOne"); }
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============

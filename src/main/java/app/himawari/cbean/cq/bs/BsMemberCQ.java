@@ -79,6 +79,20 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
       return _memberId; }
     protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
 
+    public Map<String, TimecardCQ> xdfgetMemberId_ExistsReferrer_TimecardList() { return xgetSQueMap("memberId_ExistsReferrer_TimecardList"); }
+    public String keepMemberId_ExistsReferrer_TimecardList(TimecardCQ sq) { return xkeepSQue("memberId_ExistsReferrer_TimecardList", sq); }
+
+    public Map<String, TimecardCQ> xdfgetMemberId_NotExistsReferrer_TimecardList() { return xgetSQueMap("memberId_NotExistsReferrer_TimecardList"); }
+    public String keepMemberId_NotExistsReferrer_TimecardList(TimecardCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_TimecardList", sq); }
+
+    public Map<String, TimecardCQ> xdfgetMemberId_SpecifyDerivedReferrer_TimecardList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_TimecardList"); }
+    public String keepMemberId_SpecifyDerivedReferrer_TimecardList(TimecardCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_TimecardList", sq); }
+
+    public Map<String, TimecardCQ> xdfgetMemberId_QueryDerivedReferrer_TimecardList() { return xgetSQueMap("memberId_QueryDerivedReferrer_TimecardList"); }
+    public String keepMemberId_QueryDerivedReferrer_TimecardList(TimecardCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_TimecardList", sq); }
+    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_TimecardListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_TimecardList"); }
+    public String keepMemberId_QueryDerivedReferrer_TimecardListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_TimecardList", pm); }
+
     /** 
      * Add order-by as ascend. <br>
      * MEMBER_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -272,34 +286,11 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     //                                                                         Union Query
     //                                                                         ===========
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
-        MemberCQ bq = (MemberCQ)bqs;
-        MemberCQ uq = (MemberCQ)uqs;
-        if (bq.hasConditionQueryTimecardAsOne()) {
-            uq.queryTimecardAsOne().reflectRelationOnUnionQuery(bq.queryTimecardAsOne(), uq.queryTimecardAsOne());
-        }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
-    /**
-     * Get the condition-query for relation table. <br>
-     * timecard by MEMBER_ID, named 'timecardAsOne'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public TimecardCQ queryTimecardAsOne() { return xdfgetConditionQueryTimecardAsOne(); }
-    public TimecardCQ xdfgetConditionQueryTimecardAsOne() {
-        String prop = "timecardAsOne";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryTimecardAsOne()); xsetupOuterJoinTimecardAsOne(); }
-        return xgetQueRlMap(prop);
-    }
-    protected TimecardCQ xcreateQueryTimecardAsOne() {
-        String nrp = xresolveNRP("member", "timecardAsOne"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new TimecardCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "timecardAsOne", nrp);
-    }
-    protected void xsetupOuterJoinTimecardAsOne() { xregOutJo("timecardAsOne"); }
-    public boolean hasConditionQueryTimecardAsOne() { return xhasQueRlMap("timecardAsOne"); }
-
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
     }

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.dbflute.Entity;
-import org.dbflute.optional.OptionalEntity;
 import org.dbflute.dbmeta.AbstractDBMeta;
 import org.dbflute.dbmeta.info.*;
 import org.dbflute.dbmeta.name.*;
@@ -55,18 +54,6 @@ public class MemberDbm extends AbstractDBMeta {
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
 
-    // -----------------------------------------------------
-    //                                      Foreign Property
-    //                                      ----------------
-    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
-    { xsetupEfpg(); }
-    @SuppressWarnings("unchecked")
-    protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((Member)et).getTimecardAsOne(), (et, vl) -> ((Member)et).setTimecardAsOne((OptionalEntity<Timecard>)vl), "timecardAsOne");
-    }
-    public PropertyGateway findForeignPropertyGateway(String prop)
-    { return doFindEfpg(_efpgMap, prop); }
-
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
@@ -83,7 +70,7 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "", null, false);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "timecardList", null, false);
     protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, true, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnMemberAccountId = cci("MEMBER_ACCOUNT_ID", "MEMBER_ACCOUNT_ID", null, null, String.class, "memberAccountId", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -171,18 +158,18 @@ public class MemberDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
-    /**
-     * timecard by MEMBER_ID, named 'timecardAsOne'.
-     * @return The information object of foreign property(referrer-as-one). (NotNull)
-     */
-    public ForeignInfo foreignTimecardAsOne() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), TimecardDbm.getInstance().columnMemberId());
-        return cfi("FK_TIMECARD_MEMBER", "timecardAsOne", this, TimecardDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, true, false, true, false, null, null, false, "member", false);
-    }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * TIMECARD by MEMBER_ID, named 'timecardList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerTimecardList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), TimecardDbm.getInstance().columnMemberId());
+        return cri("FK_TIMECARD_MEMBER", "timecardList", this, TimecardDbm.getInstance(), mp, false, "member");
+    }
 
     // ===================================================================================
     //                                                                        Various Info

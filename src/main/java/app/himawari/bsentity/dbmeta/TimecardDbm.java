@@ -98,12 +98,12 @@ public class TimecardDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnTimecardId() { return _columnTimecardId; }
     /**
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
     /**
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnTimecardYearMonth() { return _columnTimecardYearMonth; }
@@ -161,8 +161,12 @@ public class TimecardDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                        Unique Element
     //                                        --------------
-    public UniqueInfo uniqueOfMemberId() { return hpcui(columnMemberId()); }
-    public UniqueInfo uniqueOfTimecardYearMonth() { return hpcui(columnTimecardYearMonth()); }
+    public UniqueInfo uniqueOf() {
+        List<ColumnInfo> ls = newArrayListSized(4);
+        ls.add(columnMemberId());
+        ls.add(columnTimecardYearMonth());
+        return hpcui(ls);
+    }
 
     // ===================================================================================
     //                                                                       Relation Info
@@ -178,7 +182,7 @@ public class TimecardDbm extends AbstractDBMeta {
      */
     public ForeignInfo foreignMember() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
-        return cfi("FK_TIMECARD_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, true, false, false, false, null, null, false, "timecardAsOne", false);
+        return cfi("FK_TIMECARD_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "timecardList", false);
     }
 
     // -----------------------------------------------------

@@ -18,7 +18,6 @@ import app.himawari.allcommon.ImplementedInvokerAssistant;
 import app.himawari.allcommon.ImplementedSqlClauseCreator;
 import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
-import app.himawari.cbean.nss.*;
 
 /**
  * The base condition-bean of timecard.
@@ -93,25 +92,14 @@ public class BsTimecardCB extends AbstractConditionBean {
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param memberId : UQ, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param memberId : UQ+, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
      * @return this. (NotNull)
      */
-    public TimecardCB acceptUniqueOfMemberId(Long memberId) {
-        assertObjectNotNull("memberId", memberId);
+    public TimecardCB acceptUniqueOf(Long memberId, String timecardYearMonth) {
+        assertObjectNotNull("memberId", memberId);assertObjectNotNull("timecardYearMonth", timecardYearMonth);
         BsTimecardCB cb = this;
-        cb.query().setMemberId_Equal(memberId);
-        return (TimecardCB)this;
-    }
-
-    /**
-     * Accept the query condition of unique key as equal.
-     * @param timecardYearMonth : UQ, NotNull, VARCHAR(6). (NotNull)
-     * @return this. (NotNull)
-     */
-    public TimecardCB acceptUniqueOfTimecardYearMonth(String timecardYearMonth) {
-        assertObjectNotNull("timecardYearMonth", timecardYearMonth);
-        BsTimecardCB cb = this;
-        cb.query().setTimecardYearMonth_Equal(timecardYearMonth);
+        cb.query().setMemberId_Equal(memberId);cb.query().setTimecardYearMonth_Equal(timecardYearMonth);
         return (TimecardCB)this;
     }
 
@@ -262,11 +250,6 @@ public class BsTimecardCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected MemberNss _nssMember;
-    public MemberNss xdfgetNssMember() {
-        if (_nssMember == null) { _nssMember = new MemberNss(null); }
-        return _nssMember;
-    }
     /**
      * Set up relation columns to select clause. <br>
      * MEMBER by my MEMBER_ID, named 'member'.
@@ -278,17 +261,13 @@ public class BsTimecardCB extends AbstractConditionBean {
      *     ... = <span style="color: #553000">timecard</span>.<span style="color: #CC4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * });
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberNss setupSelect_Member() {
+    public void setupSelect_Member() {
         assertSetupSelectPurpose("member");
         if (hasSpecifiedLocalColumn()) {
             specify().columnMemberId();
         }
         doSetupSelect(() -> query().queryMember());
-        if (_nssMember == null || !_nssMember.hasConditionQuery())
-        { _nssMember = new MemberNss(query().queryMember()); }
-        return _nssMember;
     }
 
     // [DBFlute-0.7.4]
@@ -343,12 +322,12 @@ public class BsTimecardCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnTimecardId() { return doColumn("TIMECARD_ID"); }
         /**
-         * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+         * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
         /**
-         * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+         * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnTimecardYearMonth() { return doColumn("TIMECARD_YEAR_MONTH"); }

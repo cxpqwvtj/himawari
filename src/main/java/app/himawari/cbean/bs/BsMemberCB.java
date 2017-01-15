@@ -18,7 +18,6 @@ import app.himawari.allcommon.ImplementedInvokerAssistant;
 import app.himawari.allcommon.ImplementedSqlClauseCreator;
 import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
-import app.himawari.cbean.nss.*;
 
 /**
  * The base condition-bean of member.
@@ -250,32 +249,6 @@ public class BsMemberCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected TimecardNss _nssTimecardAsOne;
-    public TimecardNss xdfgetNssTimecardAsOne() {
-        if (_nssTimecardAsOne == null) { _nssTimecardAsOne = new TimecardNss(null); }
-        return _nssTimecardAsOne;
-    }
-    /**
-     * Set up relation columns to select clause. <br>
-     * timecard by MEMBER_ID, named 'timecardAsOne'.
-     * <pre>
-     * <span style="color: #0000C0">memberBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_TimecardAsOne(${dynamicFixedConditionVariables})</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     *     <span style="color: #553000">cb</span>.query().set...
-     * }).alwaysPresent(<span style="color: #553000">member</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">member</span>.<span style="color: #CC4747">getTimecardAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * });
-     * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
-     */
-    public TimecardNss setupSelect_TimecardAsOne() {
-        assertSetupSelectPurpose("timecardAsOne");
-        doSetupSelect(() -> query().queryTimecardAsOne());
-        if (_nssTimecardAsOne == null || !_nssTimecardAsOne.hasConditionQuery())
-        { _nssTimecardAsOne = new TimecardNss(query().queryTimecardAsOne()); }
-        return _nssTimecardAsOne;
-    }
-
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -317,7 +290,6 @@ public class BsMemberCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<MemberCQ> {
-        protected TimecardCB.HpSpecification _timecardAsOne;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<MemberCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
@@ -371,24 +343,21 @@ public class BsMemberCB extends AbstractConditionBean {
         @Override
         protected String getTableDbName() { return "member"; }
         /**
-         * Prepare to specify functions about relation table. <br>
-         * timecard by MEMBER_ID, named 'timecardAsOne'.
-         * @return The instance for specification for relation table to specify. (NotNull)
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
+         * {select max(FOO) from timecard where ...) as FOO_MAX} <br>
+         * TIMECARD by MEMBER_ID, named 'timecardList'.
+         * <pre>
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     timecardCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     timecardCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, Timecard.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
          */
-        public TimecardCB.HpSpecification specifyTimecardAsOne() {
-            assertRelation("timecardAsOne");
-            if (_timecardAsOne == null) {
-                _timecardAsOne = new TimecardCB.HpSpecification(_baseCB
-                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryTimecardAsOne()
-                                    , () -> _qyCall.qy().queryTimecardAsOne())
-                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
-                if (xhasSyncQyCall()) { // inherits it
-                    _timecardAsOne.xsetSyncQyCall(xcreateSpQyCall(
-                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryTimecardAsOne()
-                      , () -> xsyncQyCall().qy().queryTimecardAsOne()));
-                }
-            }
-            return _timecardAsOne;
+        public HpSDRFunction<TimecardCB, MemberCQ> derivedTimecard() {
+            assertDerived("timecardList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TimecardCB> sq, MemberCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveTimecardList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

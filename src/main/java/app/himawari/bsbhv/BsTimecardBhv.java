@@ -188,52 +188,28 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
 
     /**
      * Select the entity by the unique-key value.
-     * @param memberId : UQ, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param memberId : UQ+, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
      * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public OptionalEntity<Timecard> selectByUniqueOfMemberId(Long memberId) {
-        return facadeSelectByUniqueOfMemberId(memberId);
+    public OptionalEntity<Timecard> selectByUniqueOf(Long memberId, String timecardYearMonth) {
+        return facadeSelectByUniqueOf(memberId, timecardYearMonth);
     }
 
-    protected OptionalEntity<Timecard> facadeSelectByUniqueOfMemberId(Long memberId) {
-        return doSelectByUniqueOfMemberId(memberId, typeOfSelectedEntity());
+    protected OptionalEntity<Timecard> facadeSelectByUniqueOf(Long memberId, String timecardYearMonth) {
+        return doSelectByUniqueOf(memberId, timecardYearMonth, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends Timecard> OptionalEntity<ENTITY> doSelectByUniqueOfMemberId(Long memberId, Class<? extends ENTITY> tp) {
-        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOfMemberId(memberId), tp), memberId);
+    protected <ENTITY extends Timecard> OptionalEntity<ENTITY> doSelectByUniqueOf(Long memberId, String timecardYearMonth, Class<? extends ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberId, timecardYearMonth), tp), memberId, timecardYearMonth);
     }
 
-    protected TimecardCB xprepareCBAsUniqueOfMemberId(Long memberId) {
-        assertObjectNotNull("memberId", memberId);
-        return newConditionBean().acceptUniqueOfMemberId(memberId);
-    }
-
-    /**
-     * Select the entity by the unique-key value.
-     * @param timecardYearMonth : UQ, NotNull, VARCHAR(6). (NotNull)
-     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
-     * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
-     * @throws EntityDuplicatedException When the entity has been duplicated.
-     * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
-     */
-    public OptionalEntity<Timecard> selectByUniqueOfTimecardYearMonth(String timecardYearMonth) {
-        return facadeSelectByUniqueOfTimecardYearMonth(timecardYearMonth);
-    }
-
-    protected OptionalEntity<Timecard> facadeSelectByUniqueOfTimecardYearMonth(String timecardYearMonth) {
-        return doSelectByUniqueOfTimecardYearMonth(timecardYearMonth, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends Timecard> OptionalEntity<ENTITY> doSelectByUniqueOfTimecardYearMonth(String timecardYearMonth, Class<? extends ENTITY> tp) {
-        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOfTimecardYearMonth(timecardYearMonth), tp), timecardYearMonth);
-    }
-
-    protected TimecardCB xprepareCBAsUniqueOfTimecardYearMonth(String timecardYearMonth) {
-        assertObjectNotNull("timecardYearMonth", timecardYearMonth);
-        return newConditionBean().acceptUniqueOfTimecardYearMonth(timecardYearMonth);
+    protected TimecardCB xprepareCBAsUniqueOf(Long memberId, String timecardYearMonth) {
+        assertObjectNotNull("memberId", memberId);assertObjectNotNull("timecardYearMonth", timecardYearMonth);
+        return newConditionBean().acceptUniqueOf(memberId, timecardYearMonth);
     }
 
     // ===================================================================================
@@ -496,22 +472,6 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      */
     public List<Long> extractTimecardIdList(List<Timecard> timecardList)
     { return helpExtractListInternally(timecardList, "timecardId"); }
-
-    /**
-     * Extract the value list of (single) unique key memberId.
-     * @param timecardList The list of timecard. (NotNull, EmptyAllowed)
-     * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<Long> extractMemberIdList(List<Timecard> timecardList)
-    { return helpExtractListInternally(timecardList, "memberId"); }
-
-    /**
-     * Extract the value list of (single) unique key timecardYearMonth.
-     * @param timecardList The list of timecard. (NotNull, EmptyAllowed)
-     * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<String> extractTimecardYearMonthList(List<Timecard> timecardList)
-    { return helpExtractListInternally(timecardList, "timecardYearMonth"); }
 
     // ===================================================================================
     //                                                                       Entity Update

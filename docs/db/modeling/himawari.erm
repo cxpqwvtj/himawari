@@ -295,7 +295,6 @@
 					<referred_column>table.MEMBER.MEMBER_ID</referred_column>
 					<relationship>FK_TIMECARD_MEMBER</relationship>
 					<not_null>true</not_null>
-					<unique_key>true</unique_key>
 				</normal_column>
 				<normal_column>
 					<physical_name>TIMECARD_YEAR_MONTH</physical_name>
@@ -304,7 +303,6 @@
 					<length>6</length>
 					<description>YYYYMM</description>
 					<not_null>true</not_null>
-					<unique_key>true</unique_key>
 				</normal_column>
 				<column_group>共通カラム</column_group>
 				<column_group>排他制御カラム</column_group>
@@ -312,6 +310,17 @@
 			<indexes>
 			</indexes>
 			<compound_unique_key_list>
+				<compound_unique_key>
+					<name>UQ_TIMECARD_MEMBER_MONTH</name>
+					<columns>
+						<column>
+							<column_id>table.TIMECARD.MEMBER_ID</column_id>
+						</column>
+						<column>
+							<column_id>table.TIMECARD.TIMECARD_YEAR_MONTH</column_id>
+						</column>
+					</columns>
+				</compound_unique_key>
 			</compound_unique_key_list>
 			<table_properties>
 			</table_properties>

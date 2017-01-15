@@ -79,10 +79,10 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     /** TIMECARD_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _timecardId;
 
-    /** MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member} */
+    /** MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member} */
     protected Long _memberId;
 
-    /** TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)} */
+    /** TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} */
     protected String _timecardYearMonth;
 
     /** REGISTER_DATETIME: {NotNull, DATETIME(19)} */
@@ -125,23 +125,14 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     /**
      * To be unique by the unique column. <br>
      * You can update the entity by the key when entity update (NOT batch update).
-     * @param memberId : UQ, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param memberId : UQ+, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
      */
-    public void uniqueByMemberId(Long memberId) {
+    public void uniqueBy(Long memberId, String timecardYearMonth) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("memberId");
-        setMemberId(memberId);
-    }
-
-    /**
-     * To be unique by the unique column. <br>
-     * You can update the entity by the key when entity update (NOT batch update).
-     * @param timecardYearMonth : UQ, NotNull, VARCHAR(6). (NotNull)
-     */
-    public void uniqueByTimecardYearMonth(String timecardYearMonth) {
-        __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("timecardYearMonth");
-        setTimecardYearMonth(timecardYearMonth);
+        setMemberId(memberId);setTimecardYearMonth(timecardYearMonth);
     }
 
     // ===================================================================================
@@ -290,7 +281,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [get] MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member} <br>
+     * [get] MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member} <br>
      * メンバーID
      * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
      */
@@ -300,7 +291,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [set] MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member} <br>
+     * [set] MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member} <br>
      * メンバーID
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
@@ -310,7 +301,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [get] TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)} <br>
+     * [get] TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} <br>
      * 年月 : YYYYMM
      * @return The value of the column 'TIMECARD_YEAR_MONTH'. (basically NotNull if selected: for the constraint)
      */
@@ -320,7 +311,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [set] TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)} <br>
+     * [set] TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} <br>
      * 年月 : YYYYMM
      * @param timecardYearMonth The value of the column 'TIMECARD_YEAR_MONTH'. (basically NotNull if update: for the constraint)
      */

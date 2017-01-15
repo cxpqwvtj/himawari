@@ -115,14 +115,14 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @return this. (NotNull)
      */
     public BsTimecardCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @return this. (NotNull)
      */
     public BsTimecardCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
@@ -135,14 +135,14 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @return this. (NotNull)
      */
     public BsTimecardCQ addOrderBy_TimecardYearMonth_Asc() { regOBA("TIMECARD_YEAR_MONTH"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @return this. (NotNull)
      */
     public BsTimecardCQ addOrderBy_TimecardYearMonth_Desc() { regOBD("TIMECARD_YEAR_MONTH"); return this; }

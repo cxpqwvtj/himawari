@@ -247,7 +247,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param memberId The value of memberId as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_Equal(Long memberId) {
@@ -260,7 +260,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param memberId The value of memberId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_NotEqual(Long memberId) {
@@ -273,7 +273,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param memberId The value of memberId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_GreaterThan(Long memberId) {
@@ -282,7 +282,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param memberId The value of memberId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_LessThan(Long memberId) {
@@ -291,7 +291,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param memberId The value of memberId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_GreaterEqual(Long memberId) {
@@ -300,7 +300,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param memberId The value of memberId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_LessEqual(Long memberId) {
@@ -311,7 +311,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -324,7 +324,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -335,7 +335,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param memberIdList The collection of memberId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_InScope(Collection<Long> memberIdList) {
@@ -348,7 +348,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * MEMBER_ID: {UQ, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
      * @param memberIdList The collection of memberId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_NotInScope(Collection<Long> memberIdList) {
@@ -364,7 +364,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonth The value of timecardYearMonth as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardYearMonth_Equal(String timecardYearMonth) {
@@ -377,7 +377,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonth The value of timecardYearMonth as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardYearMonth_NotEqual(String timecardYearMonth) {
@@ -390,7 +390,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonth The value of timecardYearMonth as greaterThan. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardYearMonth_GreaterThan(String timecardYearMonth) {
@@ -399,7 +399,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonth The value of timecardYearMonth as lessThan. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardYearMonth_LessThan(String timecardYearMonth) {
@@ -408,7 +408,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonth The value of timecardYearMonth as greaterEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardYearMonth_GreaterEqual(String timecardYearMonth) {
@@ -417,7 +417,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonth The value of timecardYearMonth as lessEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardYearMonth_LessEqual(String timecardYearMonth) {
@@ -426,7 +426,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonthList The collection of timecardYearMonth as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardYearMonth_InScope(Collection<String> timecardYearMonthList) {
@@ -439,7 +439,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonthList The collection of timecardYearMonth as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardYearMonth_NotInScope(Collection<String> timecardYearMonthList) {
@@ -452,7 +452,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)} <br>
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} <br>
      * <pre>e.g. setTimecardYearMonth_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
      * @param timecardYearMonth The value of timecardYearMonth as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
@@ -463,7 +463,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)} <br>
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} <br>
      * <pre>e.g. setTimecardYearMonth_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
      * @param timecardYearMonth The value of timecardYearMonth as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -475,7 +475,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonth The value of timecardYearMonth as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
@@ -486,7 +486,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * TIMECARD_YEAR_MONTH: {UQ, NotNull, VARCHAR(6)}
+     * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
      * @param timecardYearMonth The value of timecardYearMonth as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */

@@ -3,11 +3,9 @@ package app.himawari.bsentity;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.dbflute.Entity;
 import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
-import org.dbflute.optional.OptionalEntity;
 import app.himawari.allcommon.EntityDefinedCommonColumn;
 import app.himawari.allcommon.DBMetaInstanceHandler;
 import app.himawari.exentity.*;
@@ -32,16 +30,16 @@ import app.himawari.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     TIMECARD(AsOne)
+ *     
  *
  * [referrer table]
  *     TIMECARD
  *
  * [foreign property]
- *     timecardAsOne
+ *     
  *
  * [referrer property]
- *     
+ *     timecardList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -136,30 +134,29 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** timecard by MEMBER_ID, named 'timecardAsOne'. */
-    protected OptionalEntity<Timecard> _timecardAsOne;
-
-    /**
-     * [get] timecard by MEMBER_ID, named 'timecardAsOne'.
-     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
-     * @return the entity of foreign property(referrer-as-one) 'timecardAsOne'. (NotNull, EmptyAllowed: when e.g. no data, no setupSelect)
-     */
-    public OptionalEntity<Timecard> getTimecardAsOne() {
-        if (_timecardAsOne == null) { _timecardAsOne = OptionalEntity.relationEmpty(this, "timecardAsOne"); }
-        return _timecardAsOne;
-    }
-
-    /**
-     * [set] timecard by MEMBER_ID, named 'timecardAsOne'.
-     * @param timecardAsOne The entity of foreign property(referrer-as-one) 'timecardAsOne'. (NullAllowed)
-     */
-    public void setTimecardAsOne(OptionalEntity<Timecard> timecardAsOne) {
-        _timecardAsOne = timecardAsOne;
-    }
-
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** TIMECARD by MEMBER_ID, named 'timecardList'. */
+    protected List<Timecard> _timecardList;
+
+    /**
+     * [get] TIMECARD by MEMBER_ID, named 'timecardList'.
+     * @return The entity list of referrer property 'timecardList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<Timecard> getTimecardList() {
+        if (_timecardList == null) { _timecardList = newReferrerList(); }
+        return _timecardList;
+    }
+
+    /**
+     * [set] TIMECARD by MEMBER_ID, named 'timecardList'.
+     * @param timecardList The entity list of referrer property 'timecardList'. (NullAllowed)
+     */
+    public void setTimecardList(List<Timecard> timecardList) {
+        _timecardList = timecardList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
         return new ArrayList<ELEMENT>();
     }
@@ -189,12 +186,9 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_timecardAsOne != null && _timecardAsOne.isPresent())
-        { sb.append(li).append(xbRDS(_timecardAsOne, "timecardAsOne")); }
+        if (_timecardList != null) { for (Timecard et : _timecardList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "timecardList")); } } }
         return sb.toString();
-    }
-    protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
-        return et.get().buildDisplayString(name, true, true);
     }
 
     @Override
@@ -218,8 +212,8 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_timecardAsOne != null && _timecardAsOne.isPresent())
-        { sb.append(dm).append("timecardAsOne"); }
+        if (_timecardList != null && !_timecardList.isEmpty())
+        { sb.append(dm).append("timecardList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
