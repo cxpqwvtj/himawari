@@ -3,10 +3,10 @@ spring:
     ansi:
       enabled: ALWAYS
   datasource:
-    url: jdbc:mysql://localhost:3306/himawari
+    url: jdbc:mysql://localhost:3306/himawari?useSSL=false
     username: himawari
     password: himawari
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
 app:
   log:
     filter:
