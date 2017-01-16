@@ -13,12 +13,18 @@ const exampleJson = (propertyName, jsonDef) => {
   if (type === 'object') {
     const properties = jsonDef.get('properties')
     return properties.map((v, k) => {
-      return Immutable.fromJS({[k]: exampleJson(k, v)})
+      return Immutable.fromJS({[k]: exampleJson(k, v)}, (key, value) => {
+        var isIndexed = Immutable.Iterable.isIndexed(value)
+        return isIndexed ? value.toList() : value.toOrderedMap()
+      })
     }).reduce((r, v) => r.mergeDeep(v))
   } else if (type === 'array' && jsonDef.getIn(['items', 'type', 0]) || jsonDef.getIn(['items', 'type']) === 'object') {
     const properties = jsonDef.getIn(['items', 'properties'])
     return properties.map((v, k) => {
-      return Immutable.fromJS([{[k]: exampleJson(k, v)}])
+      return Immutable.fromJS([{[k]: exampleJson(k, v)}], (key, value) => {
+        var isIndexed = Immutable.Iterable.isIndexed(value)
+        return isIndexed ? value.toList() : value.toOrderedMap()
+      })
     }).reduce((r, v) => r.mergeDeep(v))
   } else if (type === 'array') {
     const itemType = jsonDef.getIn(['items', 'type', 0]) || jsonDef.getIn(['items', 'type'])
@@ -178,7 +184,10 @@ const promises = schemaDefFiles.filter((v) => !v.startsWith('_')).map((fileName)
         }
 
         const schemaName = fileName.replace('.yml', '')
-        const properties = Immutable.fromJS(schema)
+        const properties = Immutable.fromJS(schema, (key, value) => {
+          var isIndexed = Immutable.Iterable.isIndexed(value)
+          return isIndexed ? value.toList() : value.toOrderedMap()
+        })
         console.log(`generate ${schemaName}...`) // eslint-disable-line no-console
         const obj = exampleJson(schemaName, properties, 1).toJS()
         fs.writeFileSync(`${config.sampleJsonDir}/${schemaName}.json`, JSON.stringify(obj, null, 2))
