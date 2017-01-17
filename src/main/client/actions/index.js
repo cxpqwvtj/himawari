@@ -23,8 +23,7 @@ export const LOGOUT_ACTION = 'LOGOUT_ACTION'
 export const logoutAction = () => {
   const param = {
     endpoint: '/logout',
-    method: 'POST',
-    body: {}
+    method: 'POST'
   }
   return action(LOGOUT_ACTION, param)
 }
