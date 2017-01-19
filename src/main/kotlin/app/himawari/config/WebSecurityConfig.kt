@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.core.annotation.Order
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.builders.WebSecurity
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository
 
@@ -15,11 +15,9 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository
  * SpringSecurity用のJavaConfigクラスです。
  * Created by masahiro on 2016/11/12.
  */
-class WebSecurityConfig {
-    @Autowired
-    fun configureGlobal(web: WebSecurity) {
-        web.ignoring().mvcMatchers("/assets/**")
-    }
+@Configuration
+@EnableWebSecurity
+open class WebSecurityConfig {
 
     @Autowired
     fun configureGlobal(auth: AuthenticationManagerBuilder) {
