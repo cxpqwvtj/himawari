@@ -4,9 +4,11 @@
 build
 docker
 !docker/himawari/entrypoint.sh
+docs
 log
 logs
 *.log
 node_modules
 timber
 gradlew.bat
+vendor
