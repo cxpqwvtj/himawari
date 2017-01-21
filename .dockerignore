@@ -2,12 +2,14 @@
 .idea
 .vscode
 build
+dbflute_himawari
 docker
 !docker/himawari/entrypoint.sh
 docs
 log
 logs
 *.log
+mydbflute
 node_modules
 timber
 gradlew.bat
