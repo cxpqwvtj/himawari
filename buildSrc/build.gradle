@@ -1,8 +1,0 @@
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile "com.fasterxml.jackson.core:jackson-databind:2.8.3"
-    compile "org.apache.poi:poi-ooxml:3.15"
-}
