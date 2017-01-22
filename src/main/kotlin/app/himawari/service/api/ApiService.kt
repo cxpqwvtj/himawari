@@ -13,10 +13,11 @@ import java.time.format.DateTimeFormatter
 class ApiService(
         private val dailyInOutBhv: DailyInOutBhv
 ) {
-    fun selectMonthlyInOutData(yearMonth: String): TimeCardResponse {
+    fun selectMonthlyInOutData(userId: String, yearMonth: String): TimeCardResponse {
         val list = dailyInOutBhv.selectList {
             it.setupSelect_Timecard()
             it.query().queryTimecard().setTimecardYearMonth_Equal(yearMonth)
+            it.query().queryTimecard().queryMember().setMemberAccountId_Equal(userId)
         }
         return TimeCardResponse().apply {
             result = TimeCardResponse.Result().apply {
