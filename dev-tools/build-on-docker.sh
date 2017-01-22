@@ -5,17 +5,20 @@ usage_exit() {
   exit 1
 }
 
-BUILD_CLIENT=1
-BUILD_SERVER=1
+if [ $# -lt 1 ]; then
+  BUILD_CLIENT=1
+  BUILD_SERVER=1
+else
+  BUILD_CLIENT=0
+  BUILD_SERVER=0
+fi
 
 while getopts scx:h OPT
 do
   case $OPT in
-    s)  BUILD_CLIENT=0
-        BUILD_SERVER=1
+    s)  BUILD_SERVER=1
       ;;
     c)  BUILD_CLIENT=1
-        BUILD_SERVER=0
       ;;
     x)  SKIP_TASK=$OPTARG
       ;;
