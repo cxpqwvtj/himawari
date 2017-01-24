@@ -24,6 +24,7 @@ definitions:
           properties:
             bizDate:
               description: 業務日
+              pattern: "^[0-9]{4}-[01]{1}[0-9]{1}-[0-3]{1}[0-9]{1}"
               type: string
             startDate:
               description: 開始時間
@@ -38,6 +39,6 @@ definitions:
               type: string
 properties:
   result:
-    "$ref": "./TimeCardResponse.yml#/definitions/result"
+    "$ref": "/schemata/TimeCardResponse#/definitions/result"
   error:
-    "$ref": "./_Error.yml#/definitions/error"
+    "$ref": "/schemata/_Error#/definitions/error"
