@@ -20,12 +20,12 @@ open class ApiController(
 ) {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
-    @RequestMapping(path = arrayOf("/**"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
+    @RequestMapping(path = arrayOf("/v1/**"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
     open fun root(request: HttpServletRequest) {
         logger.debug(request.requestURL.toString())
     }
 
-    @RequestMapping(path = arrayOf("/users/{userId}/timecards/{yearMonth}"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
+    @RequestMapping(path = arrayOf("/v1/users/{userId}/timecards/{yearMonth}"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
     open fun timecard(@PathVariable userId: String, @PathVariable yearMonth: String): TimeCardResponse {
         return service.selectMonthlyInOutData(userId, yearMonth)
     }
