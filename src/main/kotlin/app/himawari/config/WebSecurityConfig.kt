@@ -31,7 +31,7 @@ open class WebSecurityConfig {
     open class ApiWebSecurityConfigurationAdapter : WebSecurityConfigurerAdapter() {
         @Throws(Exception::class)
         override fun configure(http: HttpSecurity) {
-            http.antMatcher("/api/**").authorizeRequests().anyRequest().hasRole("ADMIN")
+            http.antMatcher("/api/**").authorizeRequests().anyRequest().hasRole("USER")
                     .and().httpBasic()
         }
     }
