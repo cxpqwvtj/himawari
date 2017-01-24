@@ -30,7 +30,7 @@ definitions:
               description: 開始時間
               type: string
               format: date-time
-            endDate:
+            finishDate:
               description: 終了時間
               type: string
               format: date-time
