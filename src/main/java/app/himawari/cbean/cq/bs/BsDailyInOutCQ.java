@@ -133,45 +133,85 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      */
     public BsDailyInOutCQ addOrderBy_BizDate_Desc() { regOBD("BIZ_DATE"); return this; }
 
-    protected ConditionValue _inDatetime;
-    public ConditionValue xdfgetInDatetime()
-    { if (_inDatetime == null) { _inDatetime = nCV(); }
-      return _inDatetime; }
-    protected ConditionValue xgetCValueInDatetime() { return xdfgetInDatetime(); }
+    protected ConditionValue _startDatetime;
+    public ConditionValue xdfgetStartDatetime()
+    { if (_startDatetime == null) { _startDatetime = nCV(); }
+      return _startDatetime; }
+    protected ConditionValue xgetCValueStartDatetime() { return xdfgetStartDatetime(); }
 
     /** 
      * Add order-by as ascend. <br>
-     * IN_DATETIME: {DATETIME(19)}
+     * START_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_InDatetime_Asc() { regOBA("IN_DATETIME"); return this; }
+    public BsDailyInOutCQ addOrderBy_StartDatetime_Asc() { regOBA("START_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * IN_DATETIME: {DATETIME(19)}
+     * START_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_InDatetime_Desc() { regOBD("IN_DATETIME"); return this; }
+    public BsDailyInOutCQ addOrderBy_StartDatetime_Desc() { regOBD("START_DATETIME"); return this; }
 
-    protected ConditionValue _outDatetime;
-    public ConditionValue xdfgetOutDatetime()
-    { if (_outDatetime == null) { _outDatetime = nCV(); }
-      return _outDatetime; }
-    protected ConditionValue xgetCValueOutDatetime() { return xdfgetOutDatetime(); }
+    protected ConditionValue _finishDatetime;
+    public ConditionValue xdfgetFinishDatetime()
+    { if (_finishDatetime == null) { _finishDatetime = nCV(); }
+      return _finishDatetime; }
+    protected ConditionValue xgetCValueFinishDatetime() { return xdfgetFinishDatetime(); }
 
     /** 
      * Add order-by as ascend. <br>
-     * OUT_DATETIME: {DATETIME(19)}
+     * FINISH_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_OutDatetime_Asc() { regOBA("OUT_DATETIME"); return this; }
+    public BsDailyInOutCQ addOrderBy_FinishDatetime_Asc() { regOBA("FINISH_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * OUT_DATETIME: {DATETIME(19)}
+     * FINISH_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_OutDatetime_Desc() { regOBD("OUT_DATETIME"); return this; }
+    public BsDailyInOutCQ addOrderBy_FinishDatetime_Desc() { regOBD("FINISH_DATETIME"); return this; }
+
+    protected ConditionValue _amendedStartTime;
+    public ConditionValue xdfgetAmendedStartTime()
+    { if (_amendedStartTime == null) { _amendedStartTime = nCV(); }
+      return _amendedStartTime; }
+    protected ConditionValue xgetCValueAmendedStartTime() { return xdfgetAmendedStartTime(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * @return this. (NotNull)
+     */
+    public BsDailyInOutCQ addOrderBy_AmendedStartTime_Asc() { regOBA("AMENDED_START_TIME"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * @return this. (NotNull)
+     */
+    public BsDailyInOutCQ addOrderBy_AmendedStartTime_Desc() { regOBD("AMENDED_START_TIME"); return this; }
+
+    protected ConditionValue _amendedFinishTime;
+    public ConditionValue xdfgetAmendedFinishTime()
+    { if (_amendedFinishTime == null) { _amendedFinishTime = nCV(); }
+      return _amendedFinishTime; }
+    protected ConditionValue xgetCValueAmendedFinishTime() { return xdfgetAmendedFinishTime(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * @return this. (NotNull)
+     */
+    public BsDailyInOutCQ addOrderBy_AmendedFinishTime_Asc() { regOBA("AMENDED_FINISH_TIME"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * @return this. (NotNull)
+     */
+    public BsDailyInOutCQ addOrderBy_AmendedFinishTime_Desc() { regOBD("AMENDED_FINISH_TIME"); return this; }
 
     protected ConditionValue _vacationTypeCode;
     public ConditionValue xdfgetVacationTypeCode()

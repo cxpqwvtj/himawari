@@ -20,7 +20,7 @@ import app.himawari.exentity.*;
  *     DAILY_IN_OUT_ID
  *
  * [column]
- *     DAILY_IN_OUT_ID, TIMECARD_ID, BIZ_DATE, IN_DATETIME, OUT_DATETIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     DAILY_IN_OUT_ID, TIMECARD_ID, BIZ_DATE, START_DATETIME, FINISH_DATETIME, AMENDED_START_TIME, AMENDED_FINISH_TIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -48,8 +48,10 @@ import app.himawari.exentity.*;
  * Long dailyInOutId = entity.getDailyInOutId();
  * Long timecardId = entity.getTimecardId();
  * java.time.LocalDate bizDate = entity.getBizDate();
- * java.time.LocalDateTime inDatetime = entity.getInDatetime();
- * java.time.LocalDateTime outDatetime = entity.getOutDatetime();
+ * java.time.LocalDateTime startDatetime = entity.getStartDatetime();
+ * java.time.LocalDateTime finishDatetime = entity.getFinishDatetime();
+ * java.time.LocalDateTime amendedStartTime = entity.getAmendedStartTime();
+ * java.time.LocalDateTime amendedFinishTime = entity.getAmendedFinishTime();
  * String vacationTypeCode = entity.getVacationTypeCode();
  * String note = entity.getNote();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
@@ -60,8 +62,10 @@ import app.himawari.exentity.*;
  * entity.setDailyInOutId(dailyInOutId);
  * entity.setTimecardId(timecardId);
  * entity.setBizDate(bizDate);
- * entity.setInDatetime(inDatetime);
- * entity.setOutDatetime(outDatetime);
+ * entity.setStartDatetime(startDatetime);
+ * entity.setFinishDatetime(finishDatetime);
+ * entity.setAmendedStartTime(amendedStartTime);
+ * entity.setAmendedFinishTime(amendedFinishTime);
  * entity.setVacationTypeCode(vacationTypeCode);
  * entity.setNote(note);
  * entity.setRegisterDatetime(registerDatetime);
@@ -93,11 +97,17 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     /** BIZ_DATE: {NotNull, DATE(10)} */
     protected java.time.LocalDate _bizDate;
 
-    /** IN_DATETIME: {DATETIME(19)} */
-    protected java.time.LocalDateTime _inDatetime;
+    /** START_DATETIME: {DATETIME(19)} */
+    protected java.time.LocalDateTime _startDatetime;
 
-    /** OUT_DATETIME: {DATETIME(19)} */
-    protected java.time.LocalDateTime _outDatetime;
+    /** FINISH_DATETIME: {DATETIME(19)} */
+    protected java.time.LocalDateTime _finishDatetime;
+
+    /** AMENDED_START_TIME: {DATETIME(19)} */
+    protected java.time.LocalDateTime _amendedStartTime;
+
+    /** AMENDED_FINISH_TIME: {DATETIME(19)} */
+    protected java.time.LocalDateTime _amendedFinishTime;
 
     /** VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} */
     protected String _vacationTypeCode;
@@ -235,8 +245,10 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
         sb.append(dm).append(xfND(_dailyInOutId));
         sb.append(dm).append(xfND(_timecardId));
         sb.append(dm).append(xfND(_bizDate));
-        sb.append(dm).append(xfND(_inDatetime));
-        sb.append(dm).append(xfND(_outDatetime));
+        sb.append(dm).append(xfND(_startDatetime));
+        sb.append(dm).append(xfND(_finishDatetime));
+        sb.append(dm).append(xfND(_amendedStartTime));
+        sb.append(dm).append(xfND(_amendedFinishTime));
         sb.append(dm).append(xfND(_vacationTypeCode));
         sb.append(dm).append(xfND(_note));
         sb.append(dm).append(xfND(_registerDatetime));
@@ -333,43 +345,83 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [get] IN_DATETIME: {DATETIME(19)} <br>
-     * 出勤時間
-     * @return The value of the column 'IN_DATETIME'. (NullAllowed even if selected: for no constraint)
+     * [get] START_DATETIME: {DATETIME(19)} <br>
+     * 始業時間
+     * @return The value of the column 'START_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
-    public java.time.LocalDateTime getInDatetime() {
-        checkSpecifiedProperty("inDatetime");
-        return _inDatetime;
+    public java.time.LocalDateTime getStartDatetime() {
+        checkSpecifiedProperty("startDatetime");
+        return _startDatetime;
     }
 
     /**
-     * [set] IN_DATETIME: {DATETIME(19)} <br>
-     * 出勤時間
-     * @param inDatetime The value of the column 'IN_DATETIME'. (NullAllowed: null update allowed for no constraint)
+     * [set] START_DATETIME: {DATETIME(19)} <br>
+     * 始業時間
+     * @param startDatetime The value of the column 'START_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setInDatetime(java.time.LocalDateTime inDatetime) {
-        registerModifiedProperty("inDatetime");
-        _inDatetime = inDatetime;
+    public void setStartDatetime(java.time.LocalDateTime startDatetime) {
+        registerModifiedProperty("startDatetime");
+        _startDatetime = startDatetime;
     }
 
     /**
-     * [get] OUT_DATETIME: {DATETIME(19)} <br>
-     * 退勤時間
-     * @return The value of the column 'OUT_DATETIME'. (NullAllowed even if selected: for no constraint)
+     * [get] FINISH_DATETIME: {DATETIME(19)} <br>
+     * 就業時間
+     * @return The value of the column 'FINISH_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
-    public java.time.LocalDateTime getOutDatetime() {
-        checkSpecifiedProperty("outDatetime");
-        return _outDatetime;
+    public java.time.LocalDateTime getFinishDatetime() {
+        checkSpecifiedProperty("finishDatetime");
+        return _finishDatetime;
     }
 
     /**
-     * [set] OUT_DATETIME: {DATETIME(19)} <br>
-     * 退勤時間
-     * @param outDatetime The value of the column 'OUT_DATETIME'. (NullAllowed: null update allowed for no constraint)
+     * [set] FINISH_DATETIME: {DATETIME(19)} <br>
+     * 就業時間
+     * @param finishDatetime The value of the column 'FINISH_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setOutDatetime(java.time.LocalDateTime outDatetime) {
-        registerModifiedProperty("outDatetime");
-        _outDatetime = outDatetime;
+    public void setFinishDatetime(java.time.LocalDateTime finishDatetime) {
+        registerModifiedProperty("finishDatetime");
+        _finishDatetime = finishDatetime;
+    }
+
+    /**
+     * [get] AMENDED_START_TIME: {DATETIME(19)} <br>
+     * 補正後の始業時間
+     * @return The value of the column 'AMENDED_START_TIME'. (NullAllowed even if selected: for no constraint)
+     */
+    public java.time.LocalDateTime getAmendedStartTime() {
+        checkSpecifiedProperty("amendedStartTime");
+        return _amendedStartTime;
+    }
+
+    /**
+     * [set] AMENDED_START_TIME: {DATETIME(19)} <br>
+     * 補正後の始業時間
+     * @param amendedStartTime The value of the column 'AMENDED_START_TIME'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setAmendedStartTime(java.time.LocalDateTime amendedStartTime) {
+        registerModifiedProperty("amendedStartTime");
+        _amendedStartTime = amendedStartTime;
+    }
+
+    /**
+     * [get] AMENDED_FINISH_TIME: {DATETIME(19)} <br>
+     * 補正後の就業時間
+     * @return The value of the column 'AMENDED_FINISH_TIME'. (NullAllowed even if selected: for no constraint)
+     */
+    public java.time.LocalDateTime getAmendedFinishTime() {
+        checkSpecifiedProperty("amendedFinishTime");
+        return _amendedFinishTime;
+    }
+
+    /**
+     * [set] AMENDED_FINISH_TIME: {DATETIME(19)} <br>
+     * 補正後の就業時間
+     * @param amendedFinishTime The value of the column 'AMENDED_FINISH_TIME'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setAmendedFinishTime(java.time.LocalDateTime amendedFinishTime) {
+        registerModifiedProperty("amendedFinishTime");
+        _amendedFinishTime = amendedFinishTime;
     }
 
     /**

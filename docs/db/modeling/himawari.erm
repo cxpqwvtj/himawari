@@ -175,13 +175,23 @@
 					<not_null>true</not_null>
 				</normal_column>
 				<normal_column>
-					<physical_name>IN_DATETIME</physical_name>
-					<logical_name>出勤時間</logical_name>
+					<physical_name>START_DATETIME</physical_name>
+					<logical_name>始業時間</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>OUT_DATETIME</physical_name>
-					<logical_name>退勤時間</logical_name>
+					<physical_name>FINISH_DATETIME</physical_name>
+					<logical_name>就業時間</logical_name>
+					<type>datetime</type>
+				</normal_column>
+				<normal_column>
+					<physical_name>AMENDED_START_TIME</physical_name>
+					<logical_name>補正後の始業時間</logical_name>
+					<type>datetime</type>
+				</normal_column>
+				<normal_column>
+					<physical_name>AMENDED_FINISH_TIME</physical_name>
+					<logical_name>補正後の就業時間</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>

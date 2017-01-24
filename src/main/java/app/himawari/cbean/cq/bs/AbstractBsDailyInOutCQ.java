@@ -366,177 +366,351 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
-     * @param inDatetime The value of inDatetime as equal. (basically NotNull: error as default, or no condition as option)
+     * START_DATETIME: {DATETIME(19)}
+     * @param startDatetime The value of startDatetime as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setInDatetime_Equal(java.time.LocalDateTime inDatetime) {
-        regInDatetime(CK_EQ,  inDatetime);
+    public void setStartDatetime_Equal(java.time.LocalDateTime startDatetime) {
+        regStartDatetime(CK_EQ,  startDatetime);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
-     * @param inDatetime The value of inDatetime as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * START_DATETIME: {DATETIME(19)}
+     * @param startDatetime The value of startDatetime as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setInDatetime_GreaterThan(java.time.LocalDateTime inDatetime) {
-        regInDatetime(CK_GT,  inDatetime);
+    public void setStartDatetime_GreaterThan(java.time.LocalDateTime startDatetime) {
+        regStartDatetime(CK_GT,  startDatetime);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
-     * @param inDatetime The value of inDatetime as lessThan. (basically NotNull: error as default, or no condition as option)
+     * START_DATETIME: {DATETIME(19)}
+     * @param startDatetime The value of startDatetime as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setInDatetime_LessThan(java.time.LocalDateTime inDatetime) {
-        regInDatetime(CK_LT,  inDatetime);
+    public void setStartDatetime_LessThan(java.time.LocalDateTime startDatetime) {
+        regStartDatetime(CK_LT,  startDatetime);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
-     * @param inDatetime The value of inDatetime as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * START_DATETIME: {DATETIME(19)}
+     * @param startDatetime The value of startDatetime as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setInDatetime_GreaterEqual(java.time.LocalDateTime inDatetime) {
-        regInDatetime(CK_GE,  inDatetime);
+    public void setStartDatetime_GreaterEqual(java.time.LocalDateTime startDatetime) {
+        regStartDatetime(CK_GE,  startDatetime);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
-     * @param inDatetime The value of inDatetime as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * START_DATETIME: {DATETIME(19)}
+     * @param startDatetime The value of startDatetime as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setInDatetime_LessEqual(java.time.LocalDateTime inDatetime) {
-        regInDatetime(CK_LE, inDatetime);
+    public void setStartDatetime_LessEqual(java.time.LocalDateTime startDatetime) {
+        regStartDatetime(CK_LE, startDatetime);
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
-     * <pre>e.g. setInDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of inDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of inDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * START_DATETIME: {DATETIME(19)}
+     * <pre>e.g. setStartDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of startDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of startDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of from-to. (NotNull)
      */
-    public void setInDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
-        setInDatetime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
+    public void setStartDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
+        setStartDatetime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
-     * <pre>e.g. setInDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of inDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of inDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * START_DATETIME: {DATETIME(19)}
+     * <pre>e.g. setStartDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of startDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of startDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    protected void setInDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
-        String nm = "IN_DATETIME"; FromToOption op = fromToOption;
-        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueInDatetime(), nm, op);
+    protected void setStartDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
+        String nm = "START_DATETIME"; FromToOption op = fromToOption;
+        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueStartDatetime(), nm, op);
     }
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
+     * START_DATETIME: {DATETIME(19)}
      */
-    public void setInDatetime_IsNull() { regInDatetime(CK_ISN, DOBJ); }
+    public void setStartDatetime_IsNull() { regStartDatetime(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * IN_DATETIME: {DATETIME(19)}
+     * START_DATETIME: {DATETIME(19)}
      */
-    public void setInDatetime_IsNotNull() { regInDatetime(CK_ISNN, DOBJ); }
+    public void setStartDatetime_IsNotNull() { regStartDatetime(CK_ISNN, DOBJ); }
 
-    protected void regInDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueInDatetime(), "IN_DATETIME"); }
-    protected abstract ConditionValue xgetCValueInDatetime();
+    protected void regStartDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueStartDatetime(), "START_DATETIME"); }
+    protected abstract ConditionValue xgetCValueStartDatetime();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
-     * @param outDatetime The value of outDatetime as equal. (basically NotNull: error as default, or no condition as option)
+     * FINISH_DATETIME: {DATETIME(19)}
+     * @param finishDatetime The value of finishDatetime as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setOutDatetime_Equal(java.time.LocalDateTime outDatetime) {
-        regOutDatetime(CK_EQ,  outDatetime);
+    public void setFinishDatetime_Equal(java.time.LocalDateTime finishDatetime) {
+        regFinishDatetime(CK_EQ,  finishDatetime);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
-     * @param outDatetime The value of outDatetime as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * FINISH_DATETIME: {DATETIME(19)}
+     * @param finishDatetime The value of finishDatetime as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setOutDatetime_GreaterThan(java.time.LocalDateTime outDatetime) {
-        regOutDatetime(CK_GT,  outDatetime);
+    public void setFinishDatetime_GreaterThan(java.time.LocalDateTime finishDatetime) {
+        regFinishDatetime(CK_GT,  finishDatetime);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
-     * @param outDatetime The value of outDatetime as lessThan. (basically NotNull: error as default, or no condition as option)
+     * FINISH_DATETIME: {DATETIME(19)}
+     * @param finishDatetime The value of finishDatetime as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setOutDatetime_LessThan(java.time.LocalDateTime outDatetime) {
-        regOutDatetime(CK_LT,  outDatetime);
+    public void setFinishDatetime_LessThan(java.time.LocalDateTime finishDatetime) {
+        regFinishDatetime(CK_LT,  finishDatetime);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
-     * @param outDatetime The value of outDatetime as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * FINISH_DATETIME: {DATETIME(19)}
+     * @param finishDatetime The value of finishDatetime as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setOutDatetime_GreaterEqual(java.time.LocalDateTime outDatetime) {
-        regOutDatetime(CK_GE,  outDatetime);
+    public void setFinishDatetime_GreaterEqual(java.time.LocalDateTime finishDatetime) {
+        regFinishDatetime(CK_GE,  finishDatetime);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
-     * @param outDatetime The value of outDatetime as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * FINISH_DATETIME: {DATETIME(19)}
+     * @param finishDatetime The value of finishDatetime as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setOutDatetime_LessEqual(java.time.LocalDateTime outDatetime) {
-        regOutDatetime(CK_LE, outDatetime);
+    public void setFinishDatetime_LessEqual(java.time.LocalDateTime finishDatetime) {
+        regFinishDatetime(CK_LE, finishDatetime);
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
-     * <pre>e.g. setOutDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of outDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of outDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * FINISH_DATETIME: {DATETIME(19)}
+     * <pre>e.g. setFinishDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of finishDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of finishDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of from-to. (NotNull)
      */
-    public void setOutDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
-        setOutDatetime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
+    public void setFinishDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
+        setFinishDatetime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
-     * <pre>e.g. setOutDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of outDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of outDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * FINISH_DATETIME: {DATETIME(19)}
+     * <pre>e.g. setFinishDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of finishDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of finishDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    protected void setOutDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
-        String nm = "OUT_DATETIME"; FromToOption op = fromToOption;
-        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueOutDatetime(), nm, op);
+    protected void setFinishDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
+        String nm = "FINISH_DATETIME"; FromToOption op = fromToOption;
+        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueFinishDatetime(), nm, op);
     }
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
+     * FINISH_DATETIME: {DATETIME(19)}
      */
-    public void setOutDatetime_IsNull() { regOutDatetime(CK_ISN, DOBJ); }
+    public void setFinishDatetime_IsNull() { regFinishDatetime(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * OUT_DATETIME: {DATETIME(19)}
+     * FINISH_DATETIME: {DATETIME(19)}
      */
-    public void setOutDatetime_IsNotNull() { regOutDatetime(CK_ISNN, DOBJ); }
+    public void setFinishDatetime_IsNotNull() { regFinishDatetime(CK_ISNN, DOBJ); }
 
-    protected void regOutDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueOutDatetime(), "OUT_DATETIME"); }
-    protected abstract ConditionValue xgetCValueOutDatetime();
+    protected void regFinishDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueFinishDatetime(), "FINISH_DATETIME"); }
+    protected abstract ConditionValue xgetCValueFinishDatetime();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * @param amendedStartTime The value of amendedStartTime as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedStartTime_Equal(java.time.LocalDateTime amendedStartTime) {
+        regAmendedStartTime(CK_EQ,  amendedStartTime);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * @param amendedStartTime The value of amendedStartTime as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedStartTime_GreaterThan(java.time.LocalDateTime amendedStartTime) {
+        regAmendedStartTime(CK_GT,  amendedStartTime);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * @param amendedStartTime The value of amendedStartTime as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedStartTime_LessThan(java.time.LocalDateTime amendedStartTime) {
+        regAmendedStartTime(CK_LT,  amendedStartTime);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * @param amendedStartTime The value of amendedStartTime as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedStartTime_GreaterEqual(java.time.LocalDateTime amendedStartTime) {
+        regAmendedStartTime(CK_GE,  amendedStartTime);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * @param amendedStartTime The value of amendedStartTime as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedStartTime_LessEqual(java.time.LocalDateTime amendedStartTime) {
+        regAmendedStartTime(CK_LE, amendedStartTime);
+    }
+
+    /**
+     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * <pre>e.g. setAmendedStartTime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of from-to. (NotNull)
+     */
+    public void setAmendedStartTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
+        setAmendedStartTime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
+    }
+
+    /**
+     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * <pre>e.g. setAmendedStartTime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param fromToOption The option of from-to. (NotNull)
+     */
+    protected void setAmendedStartTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
+        String nm = "AMENDED_START_TIME"; FromToOption op = fromToOption;
+        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueAmendedStartTime(), nm, op);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     */
+    public void setAmendedStartTime_IsNull() { regAmendedStartTime(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * AMENDED_START_TIME: {DATETIME(19)}
+     */
+    public void setAmendedStartTime_IsNotNull() { regAmendedStartTime(CK_ISNN, DOBJ); }
+
+    protected void regAmendedStartTime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueAmendedStartTime(), "AMENDED_START_TIME"); }
+    protected abstract ConditionValue xgetCValueAmendedStartTime();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * @param amendedFinishTime The value of amendedFinishTime as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedFinishTime_Equal(java.time.LocalDateTime amendedFinishTime) {
+        regAmendedFinishTime(CK_EQ,  amendedFinishTime);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * @param amendedFinishTime The value of amendedFinishTime as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedFinishTime_GreaterThan(java.time.LocalDateTime amendedFinishTime) {
+        regAmendedFinishTime(CK_GT,  amendedFinishTime);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * @param amendedFinishTime The value of amendedFinishTime as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedFinishTime_LessThan(java.time.LocalDateTime amendedFinishTime) {
+        regAmendedFinishTime(CK_LT,  amendedFinishTime);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * @param amendedFinishTime The value of amendedFinishTime as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedFinishTime_GreaterEqual(java.time.LocalDateTime amendedFinishTime) {
+        regAmendedFinishTime(CK_GE,  amendedFinishTime);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * @param amendedFinishTime The value of amendedFinishTime as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setAmendedFinishTime_LessEqual(java.time.LocalDateTime amendedFinishTime) {
+        regAmendedFinishTime(CK_LE, amendedFinishTime);
+    }
+
+    /**
+     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * <pre>e.g. setAmendedFinishTime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedFinishTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedFinishTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of from-to. (NotNull)
+     */
+    public void setAmendedFinishTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
+        setAmendedFinishTime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
+    }
+
+    /**
+     * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * <pre>e.g. setAmendedFinishTime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedFinishTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedFinishTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param fromToOption The option of from-to. (NotNull)
+     */
+    protected void setAmendedFinishTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
+        String nm = "AMENDED_FINISH_TIME"; FromToOption op = fromToOption;
+        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueAmendedFinishTime(), nm, op);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     */
+    public void setAmendedFinishTime_IsNull() { regAmendedFinishTime(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     */
+    public void setAmendedFinishTime_IsNotNull() { regAmendedFinishTime(CK_ISNN, DOBJ); }
+
+    protected void regAmendedFinishTime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueAmendedFinishTime(), "AMENDED_FINISH_TIME"); }
+    protected abstract ConditionValue xgetCValueAmendedFinishTime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>

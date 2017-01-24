@@ -295,7 +295,7 @@ dl.procedurelist dd.column pre {
 	<tbody id="table-list-body">
 	<tr>
 		<td class="rownumcell">1</td>
-		<td><a href="#daily_in_out" title="type=TABLE, primaryKey={DAILY_IN_OUT_ID}, nameLength=12, columnCount=12">DAILY_IN_OUT</a></td>
+		<td><a href="#daily_in_out" title="type=TABLE, primaryKey={DAILY_IN_OUT_ID}, nameLength=12, columnCount=14">DAILY_IN_OUT</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#timecard" title="FK_DAILY_IN_OUT_TIMECARD">TIMECARD</a>, <a href="#vacation_type" title="FK_DAILY_IN_OUT_VACATION_TYPE">VACATION_TYPE</a></td>
 		<td class="relcell">&nbsp;</td>
@@ -332,7 +332,7 @@ dl.procedurelist dd.column pre {
 	</tbody>
 </table>
 
-<h2 id="daily_in_out" title="type=TABLE, primaryKey={DAILY_IN_OUT_ID}, nameLength=12, columnCount=12">
+<h2 id="daily_in_out" title="type=TABLE, primaryKey={DAILY_IN_OUT_ID}, nameLength=12, columnCount=14">
 DAILY_IN_OUT
 </h2>
 <p class="tablecomment">日次勤務時間記録</p>
@@ -414,14 +414,14 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_in_out_in_datetime">IN_DATETIME</td>
+		<td id="daily_in_out_start_datetime">START_DATETIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 出勤時間</td>
-		<td class="subcell">inDatetime</td>
+		<td class="commentcell"> 始業時間</td>
+		<td class="subcell">startDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
@@ -431,18 +431,52 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_in_out_out_datetime">OUT_DATETIME</td>
+		<td id="daily_in_out_finish_datetime">FINISH_DATETIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 退勤時間</td>
-		<td class="subcell">outDatetime</td>
+		<td class="commentcell"> 就業時間</td>
+		<td class="subcell">finishDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">6</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td id="daily_in_out_amended_start_time">AMENDED_START_TIME</td>
+		<td class="typecell">DATETIME</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> 補正後の始業時間</td>
+		<td class="subcell">amendedStartTime</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td id="daily_in_out_amended_finish_time">AMENDED_FINISH_TIME</td>
+		<td class="typecell">DATETIME</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> 補正後の就業時間</td>
+		<td class="subcell">amendedFinishTime</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -459,7 +493,7 @@ DAILY_IN_OUT
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -476,7 +510,7 @@ DAILY_IN_OUT
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">10</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -493,7 +527,7 @@ DAILY_IN_OUT
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">11</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -510,7 +544,7 @@ DAILY_IN_OUT
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">10</td>
+		<td class="rownumcell">12</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -527,7 +561,7 @@ DAILY_IN_OUT
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">11</td>
+		<td class="rownumcell">13</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -544,7 +578,7 @@ DAILY_IN_OUT
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">12</td>
+		<td class="rownumcell">14</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>

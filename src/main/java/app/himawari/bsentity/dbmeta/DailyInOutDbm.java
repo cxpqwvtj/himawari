@@ -46,8 +46,10 @@ public class DailyInOutDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((DailyInOut)et).getDailyInOutId(), (et, vl) -> ((DailyInOut)et).setDailyInOutId(ctl(vl)), "dailyInOutId");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getTimecardId(), (et, vl) -> ((DailyInOut)et).setTimecardId(ctl(vl)), "timecardId");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getBizDate(), (et, vl) -> ((DailyInOut)et).setBizDate(ctld(vl)), "bizDate");
-        setupEpg(_epgMap, et -> ((DailyInOut)et).getInDatetime(), (et, vl) -> ((DailyInOut)et).setInDatetime(ctldt(vl)), "inDatetime");
-        setupEpg(_epgMap, et -> ((DailyInOut)et).getOutDatetime(), (et, vl) -> ((DailyInOut)et).setOutDatetime(ctldt(vl)), "outDatetime");
+        setupEpg(_epgMap, et -> ((DailyInOut)et).getStartDatetime(), (et, vl) -> ((DailyInOut)et).setStartDatetime(ctldt(vl)), "startDatetime");
+        setupEpg(_epgMap, et -> ((DailyInOut)et).getFinishDatetime(), (et, vl) -> ((DailyInOut)et).setFinishDatetime(ctldt(vl)), "finishDatetime");
+        setupEpg(_epgMap, et -> ((DailyInOut)et).getAmendedStartTime(), (et, vl) -> ((DailyInOut)et).setAmendedStartTime(ctldt(vl)), "amendedStartTime");
+        setupEpg(_epgMap, et -> ((DailyInOut)et).getAmendedFinishTime(), (et, vl) -> ((DailyInOut)et).setAmendedFinishTime(ctldt(vl)), "amendedFinishTime");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getVacationTypeCode(), (et, vl) -> ((DailyInOut)et).setVacationTypeCode((String)vl), "vacationTypeCode");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getNote(), (et, vl) -> ((DailyInOut)et).setNote((String)vl), "note");
         setupEpg(_epgMap, et -> ((DailyInOut)et).getRegisterDatetime(), (et, vl) -> ((DailyInOut)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
@@ -91,8 +93,10 @@ public class DailyInOutDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnDailyInOutId = cci("DAILY_IN_OUT_ID", "DAILY_IN_OUT_ID", null, null, Long.class, "dailyInOutId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnTimecardId = cci("TIMECARD_ID", "TIMECARD_ID", null, null, Long.class, "timecardId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "timecard", null, null, false);
     protected final ColumnInfo _columnBizDate = cci("BIZ_DATE", "BIZ_DATE", null, null, java.time.LocalDate.class, "bizDate", null, false, false, true, "DATE", 10, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnInDatetime = cci("IN_DATETIME", "IN_DATETIME", null, null, java.time.LocalDateTime.class, "inDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnOutDatetime = cci("OUT_DATETIME", "OUT_DATETIME", null, null, java.time.LocalDateTime.class, "outDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnStartDatetime = cci("START_DATETIME", "START_DATETIME", null, null, java.time.LocalDateTime.class, "startDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnFinishDatetime = cci("FINISH_DATETIME", "FINISH_DATETIME", null, null, java.time.LocalDateTime.class, "finishDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnAmendedStartTime = cci("AMENDED_START_TIME", "AMENDED_START_TIME", null, null, java.time.LocalDateTime.class, "amendedStartTime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnAmendedFinishTime = cci("AMENDED_FINISH_TIME", "AMENDED_FINISH_TIME", null, null, java.time.LocalDateTime.class, "amendedFinishTime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, false, false, false, "VARCHAR", 3, 0, null, false, null, null, "vacationType", null, null, false);
     protected final ColumnInfo _columnNote = cci("NOTE", "NOTE", null, null, String.class, "note", null, false, false, false, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -117,15 +121,25 @@ public class DailyInOutDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnBizDate() { return _columnBizDate; }
     /**
-     * IN_DATETIME: {DATETIME(19)}
+     * START_DATETIME: {DATETIME(19)}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnInDatetime() { return _columnInDatetime; }
+    public ColumnInfo columnStartDatetime() { return _columnStartDatetime; }
     /**
-     * OUT_DATETIME: {DATETIME(19)}
+     * FINISH_DATETIME: {DATETIME(19)}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnOutDatetime() { return _columnOutDatetime; }
+    public ColumnInfo columnFinishDatetime() { return _columnFinishDatetime; }
+    /**
+     * AMENDED_START_TIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnAmendedStartTime() { return _columnAmendedStartTime; }
+    /**
+     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnAmendedFinishTime() { return _columnAmendedFinishTime; }
     /**
      * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
      * @return The information object of specified column. (NotNull)
@@ -167,8 +181,10 @@ public class DailyInOutDbm extends AbstractDBMeta {
         ls.add(columnDailyInOutId());
         ls.add(columnTimecardId());
         ls.add(columnBizDate());
-        ls.add(columnInDatetime());
-        ls.add(columnOutDatetime());
+        ls.add(columnStartDatetime());
+        ls.add(columnFinishDatetime());
+        ls.add(columnAmendedStartTime());
+        ls.add(columnAmendedFinishTime());
         ls.add(columnVacationTypeCode());
         ls.add(columnNote());
         ls.add(columnRegisterDatetime());

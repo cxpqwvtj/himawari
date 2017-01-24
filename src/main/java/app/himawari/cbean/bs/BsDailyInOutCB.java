@@ -350,15 +350,25 @@ public class BsDailyInOutCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnBizDate() { return doColumn("BIZ_DATE"); }
         /**
-         * IN_DATETIME: {DATETIME(19)}
+         * START_DATETIME: {DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnInDatetime() { return doColumn("IN_DATETIME"); }
+        public SpecifiedColumn columnStartDatetime() { return doColumn("START_DATETIME"); }
         /**
-         * OUT_DATETIME: {DATETIME(19)}
+         * FINISH_DATETIME: {DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnOutDatetime() { return doColumn("OUT_DATETIME"); }
+        public SpecifiedColumn columnFinishDatetime() { return doColumn("FINISH_DATETIME"); }
+        /**
+         * AMENDED_START_TIME: {DATETIME(19)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnAmendedStartTime() { return doColumn("AMENDED_START_TIME"); }
+        /**
+         * AMENDED_FINISH_TIME: {DATETIME(19)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnAmendedFinishTime() { return doColumn("AMENDED_FINISH_TIME"); }
         /**
          * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
          * @return The information object of specified column. (NotNull)
