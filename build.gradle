@@ -32,8 +32,8 @@ dependencies {
   compile "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
   compile "mysql:mysql-connector-java:6.0.5"
   compile "org.codehaus.janino:janino:3.0.0"
-  compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
-  compile("org.dbflute:dbflute-runtime:1.1.2")
+  compile "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+  compile "org.dbflute:dbflute-runtime:1.1.2"
   testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
   testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M3")
   testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M3")
