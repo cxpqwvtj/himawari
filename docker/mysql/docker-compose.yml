@@ -5,6 +5,6 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./mysql/conf.d:/etc/mysql/conf.d:ro
+      - ./conf.d:/etc/mysql/conf.d:ro
     environment:
       - MYSQL_ROOT_PASSWORD=pass
