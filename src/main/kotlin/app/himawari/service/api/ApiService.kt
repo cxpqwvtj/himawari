@@ -25,8 +25,8 @@ class ApiService(
                 days = list.map { day ->
                     TimeCardResponse.Result.Days().apply {
                         bizDate = day.bizDate.format(DateTimeFormatter.ISO_DATE)
-                        startDate = day.inDatetime.format(DateTimeFormatter.ISO_DATE_TIME)
-                        endDate = day.outDatetime.format(DateTimeFormatter.ISO_DATE_TIME)
+                        startDate = day.startDatetime.format(DateTimeFormatter.ISO_DATE_TIME)
+                        endDate = day.finishDatetime.format(DateTimeFormatter.ISO_DATE_TIME)
                         remarks = day.note
                     }
                 }
