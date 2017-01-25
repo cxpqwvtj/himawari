@@ -12,4 +12,3 @@ RUN gem install bundler && \
 bundle install
 
 CMD ["bundle", "exec", "prmd", "combine", "--meta", "docs/schema/meta.yml", "docs/schema/schemata/", ">", "docs/schema/schema.json"]
-       
