@@ -14,19 +14,19 @@ import javax.servlet.http.HttpServletRequest
  * Created by masahiro on 2016/10/15.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 open class ApiController(
         val service: ApiService
 ) {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
-    @RequestMapping(path = arrayOf("/v1/**"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
+    @RequestMapping(path = arrayOf("/**"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
     open fun root(request: HttpServletRequest) {
         logger.debug(request.requestURL.toString())
     }
 
-    @RequestMapping(path = arrayOf("/v1/users/{userId}/timecards/{yearMonth}"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
-    open fun timecard(@PathVariable userId: String, @PathVariable yearMonth: String): TimeCardResponse {
+    @RequestMapping(path = arrayOf("/users/{user_id}/timecards/{year_month}"), method = arrayOf(RequestMethod.GET))
+    open fun timecard(@PathVariable("user_id") userId: String, @PathVariable("year_month") yearMonth: String): TimeCardResponse {
         return service.selectMonthlyInOutData(userId, yearMonth)
     }
 }
