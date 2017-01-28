@@ -35,6 +35,10 @@ dependencies {
   compile "org.codehaus.janino:janino:3.0.0"
   compile "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
   compile "org.dbflute:dbflute-runtime:1.1.2"
+
+  compile "io.springfox:springfox-swagger2:2.6.1"
+  compile "io.springfox:springfox-swagger-ui:2.6.1"
+
   testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
   testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M3")
   testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M3")
