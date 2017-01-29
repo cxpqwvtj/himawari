@@ -3,7 +3,7 @@ swagger: '2.0'
 info:
   version: "0.0.1"
   title: himawariAPI
-basePath: /v1
+basePath: /api/v1
 produces:
   - application/json
 
