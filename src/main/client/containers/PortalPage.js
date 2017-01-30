@@ -29,6 +29,12 @@ class PortalPage extends AppBaseComponent {
         <div style={{margin: '10px'}}>
           <RaisedButton label='logout' onClick={() => {this.props.actions.logoutAction()}} />
         </div>
+        <div style={{margin: '10px'}}>
+          <a href='/swagger-ui'>swagger-ui</a>
+        </div>
+        <div style={{margin: '10px'}}>
+          <a href='/swagger-editor/#/?import=/swagger/swagger.yml'>swagger-editor</a>
+        </div>
       </div>
     )
   }
