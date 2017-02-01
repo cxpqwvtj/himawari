@@ -106,7 +106,7 @@
 	</tablespace_set>
 	<diagram_walkers>
 		<table>
-			<physical_name>DAILY_IN_OUT</physical_name>
+			<physical_name>DAILY_START_END</physical_name>
 			<logical_name>日次勤務時間記録</logical_name>
 			<description></description>
 			<height>251</height>
@@ -124,7 +124,7 @@
 				<relationship>
 					<name>FK_DAILY_IN_OUT_TIMECARD</name>
 					<source>table.TIMECARD</source>
-					<target>table.DAILY_IN_OUT</target>
+					<target>table.DAILY_START_END</target>
 					<fk_columns>
 						<fk_column>
 							<fk_column_name>TIMECARD_ID</fk_column_name>
@@ -139,7 +139,7 @@
 				<relationship>
 					<name>FK_DAILY_IN_OUT_VACATION_TYPE</name>
 					<source>table.VACATION_TYPE</source>
-					<target>table.DAILY_IN_OUT</target>
+					<target>table.DAILY_START_END</target>
 					<fk_columns>
 						<fk_column>
 							<fk_column_name>VACATION_TYPE_CODE</fk_column_name>
@@ -176,22 +176,22 @@
 				</normal_column>
 				<normal_column>
 					<physical_name>START_DATETIME</physical_name>
-					<logical_name>始業時間</logical_name>
+					<logical_name>開始時間</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>FINISH_DATETIME</physical_name>
-					<logical_name>就業時間</logical_name>
+					<physical_name>END_DATETIME</physical_name>
+					<logical_name>終了時間</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>AMENDED_START_TIME</physical_name>
-					<logical_name>補正後の始業時間</logical_name>
+					<physical_name>EDITED_START_TIME</physical_name>
+					<logical_name>補正後の開始時間</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>AMENDED_FINISH_TIME</physical_name>
-					<logical_name>補正後の就業時間</logical_name>
+					<physical_name>EDITED_FINISH_TIME</physical_name>
+					<logical_name>補正後の終了時間</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
