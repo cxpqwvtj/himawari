@@ -8,17 +8,17 @@ produces:
   - application/json
 
 paths:
-  /users/{user_id}/timecards/{year_month}:
+  /users/{userId}/timecards/{yearMonth}:
     get:
       description: |
         月の開始、終了時間のリストを返します。
       parameters:
-        - name: user_id
+        - name: userId
           in: path
           description: ユーザーID
           required: true
           type: string
-        - name: year_month
+        - name: yearMonth
           in: path
           description: 年月(yyyyMM)
           required: true
@@ -30,18 +30,18 @@ paths:
             title: Timecard
             type: object
             properties:
-              year_month:
+              yearMonth:
                 type: string
               days:
                 type: array
                 items:
                   type: object
                   properties:
-                    biz_date:
+                    bizDate:
                       type: string
-                    start_date:
+                    startDate:
                       type: string
-                    finish_date:
+                    finishDate:
                       type: string
                     remarks:
                       type: string
