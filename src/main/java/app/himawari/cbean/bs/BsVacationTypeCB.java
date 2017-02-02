@@ -20,7 +20,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-bean of vacation_type.
+ * The base condition-bean of VACATION_TYPE.
  * @author DBFlute(AutoGenerator)
  */
 public class BsVacationTypeCB extends AbstractConditionBean {
@@ -72,7 +72,7 @@ public class BsVacationTypeCB extends AbstractConditionBean {
     }
 
     public String asTableDbName() {
-        return "vacation_type";
+        return "VACATION_TYPE";
     }
 
     // ===================================================================================
@@ -324,23 +324,23 @@ public class BsVacationTypeCB extends AbstractConditionBean {
             columnVacationTypeCode(); // PK
         }
         @Override
-        protected String getTableDbName() { return "vacation_type"; }
+        protected String getTableDbName() { return "VACATION_TYPE"; }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
-         * {select max(FOO) from daily_in_out where ...) as FOO_MAX} <br>
-         * DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'.
+         * {select max(FOO) from DAILY_START_END where ...) as FOO_MAX} <br>
+         * DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndList'.
          * <pre>
-         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-         *     outCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *     outCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
-         * }, DailyInOut.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     endCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     endCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, DailyStartEnd.<span style="color: #CC4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
-        public HpSDRFunction<DailyInOutCB, VacationTypeCQ> derivedDailyInOut() {
-            assertDerived("dailyInOutList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<DailyInOutCB> sq, VacationTypeCQ cq, String al, DerivedReferrerOption op)
-                    -> cq.xsderiveDailyInOutList(fn, sq, al, op), _dbmetaProvider);
+        public HpSDRFunction<DailyStartEndCB, VacationTypeCQ> derivedDailyStartEnd() {
+            assertDerived("dailyStartEndList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<DailyStartEndCB> sq, VacationTypeCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveDailyStartEndList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

@@ -16,15 +16,15 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The abstract condition-query of daily_in_out.
+ * The abstract condition-query of DAILY_START_END.
  * @author DBFlute(AutoGenerator)
  */
-public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
+public abstract class AbstractBsDailyStartEndCQ extends AbstractConditionQuery {
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsDailyInOutCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+    public AbstractBsDailyStartEndCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
@@ -37,7 +37,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
     }
 
     public String asTableDbName() {
-        return "daily_in_out";
+        return "DAILY_START_END";
     }
 
     // ===================================================================================
@@ -45,136 +45,136 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param dailyInOutId The value of dailyInOutId as equal. (basically NotNull: error as default, or no condition as option)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param dailyStartEndId The value of dailyStartEndId as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setDailyInOutId_Equal(Long dailyInOutId) {
-        doSetDailyInOutId_Equal(dailyInOutId);
+    public void setDailyStartEndId_Equal(Long dailyStartEndId) {
+        doSetDailyStartEndId_Equal(dailyStartEndId);
     }
 
-    protected void doSetDailyInOutId_Equal(Long dailyInOutId) {
-        regDailyInOutId(CK_EQ, dailyInOutId);
+    protected void doSetDailyStartEndId_Equal(Long dailyStartEndId) {
+        regDailyStartEndId(CK_EQ, dailyStartEndId);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param dailyInOutId The value of dailyInOutId as notEqual. (basically NotNull: error as default, or no condition as option)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param dailyStartEndId The value of dailyStartEndId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setDailyInOutId_NotEqual(Long dailyInOutId) {
-        doSetDailyInOutId_NotEqual(dailyInOutId);
+    public void setDailyStartEndId_NotEqual(Long dailyStartEndId) {
+        doSetDailyStartEndId_NotEqual(dailyStartEndId);
     }
 
-    protected void doSetDailyInOutId_NotEqual(Long dailyInOutId) {
-        regDailyInOutId(CK_NES, dailyInOutId);
+    protected void doSetDailyStartEndId_NotEqual(Long dailyStartEndId) {
+        regDailyStartEndId(CK_NES, dailyStartEndId);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param dailyInOutId The value of dailyInOutId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param dailyStartEndId The value of dailyStartEndId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setDailyInOutId_GreaterThan(Long dailyInOutId) {
-        regDailyInOutId(CK_GT, dailyInOutId);
+    public void setDailyStartEndId_GreaterThan(Long dailyStartEndId) {
+        regDailyStartEndId(CK_GT, dailyStartEndId);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param dailyInOutId The value of dailyInOutId as lessThan. (basically NotNull: error as default, or no condition as option)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param dailyStartEndId The value of dailyStartEndId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setDailyInOutId_LessThan(Long dailyInOutId) {
-        regDailyInOutId(CK_LT, dailyInOutId);
+    public void setDailyStartEndId_LessThan(Long dailyStartEndId) {
+        regDailyStartEndId(CK_LT, dailyStartEndId);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param dailyInOutId The value of dailyInOutId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param dailyStartEndId The value of dailyStartEndId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setDailyInOutId_GreaterEqual(Long dailyInOutId) {
-        regDailyInOutId(CK_GE, dailyInOutId);
+    public void setDailyStartEndId_GreaterEqual(Long dailyStartEndId) {
+        regDailyStartEndId(CK_GE, dailyStartEndId);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param dailyInOutId The value of dailyInOutId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param dailyStartEndId The value of dailyStartEndId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setDailyInOutId_LessEqual(Long dailyInOutId) {
-        regDailyInOutId(CK_LE, dailyInOutId);
+    public void setDailyStartEndId_LessEqual(Long dailyStartEndId) {
+        regDailyStartEndId(CK_LE, dailyStartEndId);
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param minNumber The min number of dailyInOutId. (NullAllowed: if null, no from-condition)
-     * @param maxNumber The max number of dailyInOutId. (NullAllowed: if null, no to-condition)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param minNumber The min number of dailyStartEndId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of dailyStartEndId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
      */
-    public void setDailyInOutId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
-        setDailyInOutId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    public void setDailyStartEndId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setDailyStartEndId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param minNumber The min number of dailyInOutId. (NullAllowed: if null, no from-condition)
-     * @param maxNumber The max number of dailyInOutId. (NullAllowed: if null, no to-condition)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param minNumber The min number of dailyStartEndId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of dailyStartEndId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
      */
-    protected void setDailyInOutId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
-        regROO(minNumber, maxNumber, xgetCValueDailyInOutId(), "DAILY_IN_OUT_ID", rangeOfOption);
+    protected void setDailyStartEndId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueDailyStartEndId(), "DAILY_START_END_ID", rangeOfOption);
     }
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param dailyInOutIdList The collection of dailyInOutId as inScope. (NullAllowed: if null (or empty), no condition)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param dailyStartEndIdList The collection of dailyStartEndId as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setDailyInOutId_InScope(Collection<Long> dailyInOutIdList) {
-        doSetDailyInOutId_InScope(dailyInOutIdList);
+    public void setDailyStartEndId_InScope(Collection<Long> dailyStartEndIdList) {
+        doSetDailyStartEndId_InScope(dailyStartEndIdList);
     }
 
-    protected void doSetDailyInOutId_InScope(Collection<Long> dailyInOutIdList) {
-        regINS(CK_INS, cTL(dailyInOutIdList), xgetCValueDailyInOutId(), "DAILY_IN_OUT_ID");
+    protected void doSetDailyStartEndId_InScope(Collection<Long> dailyStartEndIdList) {
+        regINS(CK_INS, cTL(dailyStartEndIdList), xgetCValueDailyStartEndId(), "DAILY_START_END_ID");
     }
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @param dailyInOutIdList The collection of dailyInOutId as notInScope. (NullAllowed: if null (or empty), no condition)
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
+     * @param dailyStartEndIdList The collection of dailyStartEndId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setDailyInOutId_NotInScope(Collection<Long> dailyInOutIdList) {
-        doSetDailyInOutId_NotInScope(dailyInOutIdList);
+    public void setDailyStartEndId_NotInScope(Collection<Long> dailyStartEndIdList) {
+        doSetDailyStartEndId_NotInScope(dailyStartEndIdList);
     }
 
-    protected void doSetDailyInOutId_NotInScope(Collection<Long> dailyInOutIdList) {
-        regINS(CK_NINS, cTL(dailyInOutIdList), xgetCValueDailyInOutId(), "DAILY_IN_OUT_ID");
+    protected void doSetDailyStartEndId_NotInScope(Collection<Long> dailyStartEndIdList) {
+        regINS(CK_NINS, cTL(dailyStartEndIdList), xgetCValueDailyStartEndId(), "DAILY_START_END_ID");
     }
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
      */
-    public void setDailyInOutId_IsNull() { regDailyInOutId(CK_ISN, DOBJ); }
+    public void setDailyStartEndId_IsNull() { regDailyStartEndId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
      */
-    public void setDailyInOutId_IsNotNull() { regDailyInOutId(CK_ISNN, DOBJ); }
+    public void setDailyStartEndId_IsNotNull() { regDailyStartEndId(CK_ISNN, DOBJ); }
 
-    protected void regDailyInOutId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueDailyInOutId(), "DAILY_IN_OUT_ID"); }
-    protected abstract ConditionValue xgetCValueDailyInOutId();
+    protected void regDailyStartEndId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueDailyStartEndId(), "DAILY_START_END_ID"); }
+    protected abstract ConditionValue xgetCValueDailyStartEndId();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param timecardId The value of timecardId as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardId_Equal(Long timecardId) {
@@ -187,7 +187,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param timecardId The value of timecardId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardId_NotEqual(Long timecardId) {
@@ -200,7 +200,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param timecardId The value of timecardId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardId_GreaterThan(Long timecardId) {
@@ -209,7 +209,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param timecardId The value of timecardId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardId_LessThan(Long timecardId) {
@@ -218,7 +218,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param timecardId The value of timecardId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardId_GreaterEqual(Long timecardId) {
@@ -227,7 +227,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param timecardId The value of timecardId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardId_LessEqual(Long timecardId) {
@@ -238,7 +238,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param minNumber The min number of timecardId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of timecardId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -251,7 +251,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param minNumber The min number of timecardId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of timecardId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -262,7 +262,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param timecardIdList The collection of timecardId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardId_InScope(Collection<Long> timecardIdList) {
@@ -275,7 +275,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @param timecardIdList The collection of timecardId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardId_NotInScope(Collection<Long> timecardIdList) {
@@ -453,268 +453,268 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * @param finishDatetime The value of finishDatetime as equal. (basically NotNull: error as default, or no condition as option)
+     * END_DATETIME: {DATETIME(19)}
+     * @param endDatetime The value of endDatetime as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setFinishDatetime_Equal(java.time.LocalDateTime finishDatetime) {
-        regFinishDatetime(CK_EQ,  finishDatetime);
+    public void setEndDatetime_Equal(java.time.LocalDateTime endDatetime) {
+        regEndDatetime(CK_EQ,  endDatetime);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * @param finishDatetime The value of finishDatetime as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * END_DATETIME: {DATETIME(19)}
+     * @param endDatetime The value of endDatetime as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setFinishDatetime_GreaterThan(java.time.LocalDateTime finishDatetime) {
-        regFinishDatetime(CK_GT,  finishDatetime);
+    public void setEndDatetime_GreaterThan(java.time.LocalDateTime endDatetime) {
+        regEndDatetime(CK_GT,  endDatetime);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * @param finishDatetime The value of finishDatetime as lessThan. (basically NotNull: error as default, or no condition as option)
+     * END_DATETIME: {DATETIME(19)}
+     * @param endDatetime The value of endDatetime as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setFinishDatetime_LessThan(java.time.LocalDateTime finishDatetime) {
-        regFinishDatetime(CK_LT,  finishDatetime);
+    public void setEndDatetime_LessThan(java.time.LocalDateTime endDatetime) {
+        regEndDatetime(CK_LT,  endDatetime);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * @param finishDatetime The value of finishDatetime as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * END_DATETIME: {DATETIME(19)}
+     * @param endDatetime The value of endDatetime as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setFinishDatetime_GreaterEqual(java.time.LocalDateTime finishDatetime) {
-        regFinishDatetime(CK_GE,  finishDatetime);
+    public void setEndDatetime_GreaterEqual(java.time.LocalDateTime endDatetime) {
+        regEndDatetime(CK_GE,  endDatetime);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * @param finishDatetime The value of finishDatetime as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * END_DATETIME: {DATETIME(19)}
+     * @param endDatetime The value of endDatetime as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setFinishDatetime_LessEqual(java.time.LocalDateTime finishDatetime) {
-        regFinishDatetime(CK_LE, finishDatetime);
+    public void setEndDatetime_LessEqual(java.time.LocalDateTime endDatetime) {
+        regEndDatetime(CK_LE, endDatetime);
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * <pre>e.g. setFinishDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of finishDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of finishDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * END_DATETIME: {DATETIME(19)}
+     * <pre>e.g. setEndDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of endDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of endDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of from-to. (NotNull)
      */
-    public void setFinishDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
-        setFinishDatetime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
+    public void setEndDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
+        setEndDatetime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * <pre>e.g. setFinishDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of finishDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of finishDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * END_DATETIME: {DATETIME(19)}
+     * <pre>e.g. setEndDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of endDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of endDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    protected void setFinishDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
-        String nm = "FINISH_DATETIME"; FromToOption op = fromToOption;
-        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueFinishDatetime(), nm, op);
+    protected void setEndDatetime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
+        String nm = "END_DATETIME"; FromToOption op = fromToOption;
+        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueEndDatetime(), nm, op);
     }
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
+     * END_DATETIME: {DATETIME(19)}
      */
-    public void setFinishDatetime_IsNull() { regFinishDatetime(CK_ISN, DOBJ); }
+    public void setEndDatetime_IsNull() { regEndDatetime(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
+     * END_DATETIME: {DATETIME(19)}
      */
-    public void setFinishDatetime_IsNotNull() { regFinishDatetime(CK_ISNN, DOBJ); }
+    public void setEndDatetime_IsNotNull() { regEndDatetime(CK_ISNN, DOBJ); }
 
-    protected void regFinishDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueFinishDatetime(), "FINISH_DATETIME"); }
-    protected abstract ConditionValue xgetCValueFinishDatetime();
+    protected void regEndDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueEndDatetime(), "END_DATETIME"); }
+    protected abstract ConditionValue xgetCValueEndDatetime();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
-     * @param amendedStartTime The value of amendedStartTime as equal. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
+     * @param scaleFittedStartTime The value of scaleFittedStartTime as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedStartTime_Equal(java.time.LocalDateTime amendedStartTime) {
-        regAmendedStartTime(CK_EQ,  amendedStartTime);
+    public void setScaleFittedStartTime_Equal(java.time.LocalDateTime scaleFittedStartTime) {
+        regScaleFittedStartTime(CK_EQ,  scaleFittedStartTime);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
-     * @param amendedStartTime The value of amendedStartTime as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
+     * @param scaleFittedStartTime The value of scaleFittedStartTime as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedStartTime_GreaterThan(java.time.LocalDateTime amendedStartTime) {
-        regAmendedStartTime(CK_GT,  amendedStartTime);
+    public void setScaleFittedStartTime_GreaterThan(java.time.LocalDateTime scaleFittedStartTime) {
+        regScaleFittedStartTime(CK_GT,  scaleFittedStartTime);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
-     * @param amendedStartTime The value of amendedStartTime as lessThan. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
+     * @param scaleFittedStartTime The value of scaleFittedStartTime as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedStartTime_LessThan(java.time.LocalDateTime amendedStartTime) {
-        regAmendedStartTime(CK_LT,  amendedStartTime);
+    public void setScaleFittedStartTime_LessThan(java.time.LocalDateTime scaleFittedStartTime) {
+        regScaleFittedStartTime(CK_LT,  scaleFittedStartTime);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
-     * @param amendedStartTime The value of amendedStartTime as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
+     * @param scaleFittedStartTime The value of scaleFittedStartTime as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedStartTime_GreaterEqual(java.time.LocalDateTime amendedStartTime) {
-        regAmendedStartTime(CK_GE,  amendedStartTime);
+    public void setScaleFittedStartTime_GreaterEqual(java.time.LocalDateTime scaleFittedStartTime) {
+        regScaleFittedStartTime(CK_GE,  scaleFittedStartTime);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
-     * @param amendedStartTime The value of amendedStartTime as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
+     * @param scaleFittedStartTime The value of scaleFittedStartTime as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedStartTime_LessEqual(java.time.LocalDateTime amendedStartTime) {
-        regAmendedStartTime(CK_LE, amendedStartTime);
+    public void setScaleFittedStartTime_LessEqual(java.time.LocalDateTime scaleFittedStartTime) {
+        regScaleFittedStartTime(CK_LE, scaleFittedStartTime);
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
-     * <pre>e.g. setAmendedStartTime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
+     * <pre>e.g. setScaleFittedStartTime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of scaleFittedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of scaleFittedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of from-to. (NotNull)
      */
-    public void setAmendedStartTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
-        setAmendedStartTime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
+    public void setScaleFittedStartTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
+        setScaleFittedStartTime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
-     * <pre>e.g. setAmendedStartTime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
+     * <pre>e.g. setScaleFittedStartTime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of scaleFittedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of scaleFittedStartTime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    protected void setAmendedStartTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
-        String nm = "AMENDED_START_TIME"; FromToOption op = fromToOption;
-        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueAmendedStartTime(), nm, op);
+    protected void setScaleFittedStartTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
+        String nm = "SCALE_FITTED_START_TIME"; FromToOption op = fromToOption;
+        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueScaleFittedStartTime(), nm, op);
     }
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
      */
-    public void setAmendedStartTime_IsNull() { regAmendedStartTime(CK_ISN, DOBJ); }
+    public void setScaleFittedStartTime_IsNull() { regScaleFittedStartTime(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
      */
-    public void setAmendedStartTime_IsNotNull() { regAmendedStartTime(CK_ISNN, DOBJ); }
+    public void setScaleFittedStartTime_IsNotNull() { regScaleFittedStartTime(CK_ISNN, DOBJ); }
 
-    protected void regAmendedStartTime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueAmendedStartTime(), "AMENDED_START_TIME"); }
-    protected abstract ConditionValue xgetCValueAmendedStartTime();
+    protected void regScaleFittedStartTime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueScaleFittedStartTime(), "SCALE_FITTED_START_TIME"); }
+    protected abstract ConditionValue xgetCValueScaleFittedStartTime();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
-     * @param amendedFinishTime The value of amendedFinishTime as equal. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * @param scaleFittedEndTime The value of scaleFittedEndTime as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedFinishTime_Equal(java.time.LocalDateTime amendedFinishTime) {
-        regAmendedFinishTime(CK_EQ,  amendedFinishTime);
+    public void setScaleFittedEndTime_Equal(java.time.LocalDateTime scaleFittedEndTime) {
+        regScaleFittedEndTime(CK_EQ,  scaleFittedEndTime);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
-     * @param amendedFinishTime The value of amendedFinishTime as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * @param scaleFittedEndTime The value of scaleFittedEndTime as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedFinishTime_GreaterThan(java.time.LocalDateTime amendedFinishTime) {
-        regAmendedFinishTime(CK_GT,  amendedFinishTime);
+    public void setScaleFittedEndTime_GreaterThan(java.time.LocalDateTime scaleFittedEndTime) {
+        regScaleFittedEndTime(CK_GT,  scaleFittedEndTime);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
-     * @param amendedFinishTime The value of amendedFinishTime as lessThan. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * @param scaleFittedEndTime The value of scaleFittedEndTime as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedFinishTime_LessThan(java.time.LocalDateTime amendedFinishTime) {
-        regAmendedFinishTime(CK_LT,  amendedFinishTime);
+    public void setScaleFittedEndTime_LessThan(java.time.LocalDateTime scaleFittedEndTime) {
+        regScaleFittedEndTime(CK_LT,  scaleFittedEndTime);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
-     * @param amendedFinishTime The value of amendedFinishTime as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * @param scaleFittedEndTime The value of scaleFittedEndTime as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedFinishTime_GreaterEqual(java.time.LocalDateTime amendedFinishTime) {
-        regAmendedFinishTime(CK_GE,  amendedFinishTime);
+    public void setScaleFittedEndTime_GreaterEqual(java.time.LocalDateTime scaleFittedEndTime) {
+        regScaleFittedEndTime(CK_GE,  scaleFittedEndTime);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
-     * @param amendedFinishTime The value of amendedFinishTime as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * @param scaleFittedEndTime The value of scaleFittedEndTime as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setAmendedFinishTime_LessEqual(java.time.LocalDateTime amendedFinishTime) {
-        regAmendedFinishTime(CK_LE, amendedFinishTime);
+    public void setScaleFittedEndTime_LessEqual(java.time.LocalDateTime scaleFittedEndTime) {
+        regScaleFittedEndTime(CK_LE, scaleFittedEndTime);
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
-     * <pre>e.g. setAmendedFinishTime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedFinishTime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedFinishTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * <pre>e.g. setScaleFittedEndTime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of scaleFittedEndTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of scaleFittedEndTime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of from-to. (NotNull)
      */
-    public void setAmendedFinishTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
-        setAmendedFinishTime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
+    public void setScaleFittedEndTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, ConditionOptionCall<FromToOption> opLambda) {
+        setScaleFittedEndTime_FromTo(fromDatetime, toDatetime, xcFTOP(opLambda));
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
-     * <pre>e.g. setAmendedFinishTime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
-     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedFinishTime. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of amendedFinishTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * <pre>e.g. setScaleFittedEndTime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
+     * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of scaleFittedEndTime. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of scaleFittedEndTime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    protected void setAmendedFinishTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
-        String nm = "AMENDED_FINISH_TIME"; FromToOption op = fromToOption;
-        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueAmendedFinishTime(), nm, op);
+    protected void setScaleFittedEndTime_FromTo(java.time.LocalDateTime fromDatetime, java.time.LocalDateTime toDatetime, FromToOption fromToOption) {
+        String nm = "SCALE_FITTED_END_TIME"; FromToOption op = fromToOption;
+        regFTQ(xfFTHD(fromDatetime, nm, op), xfFTHD(toDatetime, nm, op), xgetCValueScaleFittedEndTime(), nm, op);
     }
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
      */
-    public void setAmendedFinishTime_IsNull() { regAmendedFinishTime(CK_ISN, DOBJ); }
+    public void setScaleFittedEndTime_IsNull() { regScaleFittedEndTime(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
      */
-    public void setAmendedFinishTime_IsNotNull() { regAmendedFinishTime(CK_ISNN, DOBJ); }
+    public void setScaleFittedEndTime_IsNotNull() { regScaleFittedEndTime(CK_ISNN, DOBJ); }
 
-    protected void regAmendedFinishTime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueAmendedFinishTime(), "AMENDED_FINISH_TIME"); }
-    protected abstract ConditionValue xgetCValueAmendedFinishTime();
+    protected void regScaleFittedEndTime(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueScaleFittedEndTime(), "SCALE_FITTED_END_TIME"); }
+    protected abstract ConditionValue xgetCValueScaleFittedEndTime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCode The value of vacationTypeCode as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_Equal(String vacationTypeCode) {
@@ -727,7 +727,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCode The value of vacationTypeCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_NotEqual(String vacationTypeCode) {
@@ -740,7 +740,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCode The value of vacationTypeCode as greaterThan. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_GreaterThan(String vacationTypeCode) {
@@ -749,7 +749,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCode The value of vacationTypeCode as lessThan. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_LessThan(String vacationTypeCode) {
@@ -758,7 +758,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCode The value of vacationTypeCode as greaterEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_GreaterEqual(String vacationTypeCode) {
@@ -767,7 +767,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCode The value of vacationTypeCode as lessEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_LessEqual(String vacationTypeCode) {
@@ -776,7 +776,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCodeList The collection of vacationTypeCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_InScope(Collection<String> vacationTypeCodeList) {
@@ -789,7 +789,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCodeList The collection of vacationTypeCode as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setVacationTypeCode_NotInScope(Collection<String> vacationTypeCodeList) {
@@ -802,7 +802,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} <br>
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE} <br>
      * <pre>e.g. setVacationTypeCode_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
      * @param vacationTypeCode The value of vacationTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
@@ -813,7 +813,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} <br>
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE} <br>
      * <pre>e.g. setVacationTypeCode_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
      * @param vacationTypeCode The value of vacationTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -825,7 +825,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCode The value of vacationTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
@@ -836,7 +836,7 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @param vacationTypeCode The value of vacationTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -846,19 +846,19 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      */
     public void setVacationTypeCode_IsNull() { regVacationTypeCode(CK_ISN, DOBJ); }
 
     /**
      * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      */
     public void setVacationTypeCode_IsNullOrEmpty() { regVacationTypeCode(CK_ISNOE, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      */
     public void setVacationTypeCode_IsNotNull() { regVacationTypeCode(CK_ISNN, DOBJ); }
 
@@ -1569,8 +1569,8 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<DailyInOutCB> scalar_Equal() {
-        return xcreateSLCFunction(CK_EQ, DailyInOutCB.class);
+    public HpSLCFunction<DailyStartEndCB> scalar_Equal() {
+        return xcreateSLCFunction(CK_EQ, DailyStartEndCB.class);
     }
 
     /**
@@ -1584,8 +1584,8 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<DailyInOutCB> scalar_NotEqual() {
-        return xcreateSLCFunction(CK_NES, DailyInOutCB.class);
+    public HpSLCFunction<DailyStartEndCB> scalar_NotEqual() {
+        return xcreateSLCFunction(CK_NES, DailyStartEndCB.class);
     }
 
     /**
@@ -1599,8 +1599,8 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<DailyInOutCB> scalar_GreaterThan() {
-        return xcreateSLCFunction(CK_GT, DailyInOutCB.class);
+    public HpSLCFunction<DailyStartEndCB> scalar_GreaterThan() {
+        return xcreateSLCFunction(CK_GT, DailyStartEndCB.class);
     }
 
     /**
@@ -1614,8 +1614,8 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<DailyInOutCB> scalar_LessThan() {
-        return xcreateSLCFunction(CK_LT, DailyInOutCB.class);
+    public HpSLCFunction<DailyStartEndCB> scalar_LessThan() {
+        return xcreateSLCFunction(CK_LT, DailyStartEndCB.class);
     }
 
     /**
@@ -1629,16 +1629,16 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<DailyInOutCB> scalar_GreaterEqual() {
-        return xcreateSLCFunction(CK_GE, DailyInOutCB.class);
+    public HpSLCFunction<DailyStartEndCB> scalar_GreaterEqual() {
+        return xcreateSLCFunction(CK_GE, DailyStartEndCB.class);
     }
 
     /**
      * Prepare ScalarCondition as lessEqual. <br>
      * {where FOO &lt;= (select max(BAR) from ...)}
      * <pre>
-     * cb.query().<span style="color: #CC4747">scalar_LessEqual()</span>.max(new SubQuery&lt;DailyInOutCB&gt;() {
-     *     public void query(DailyInOutCB subCB) {
+     * cb.query().<span style="color: #CC4747">scalar_LessEqual()</span>.max(new SubQuery&lt;DailyStartEndCB&gt;() {
+     *     public void query(DailyStartEndCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
      *     }
@@ -1646,56 +1646,56 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * </pre>
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<DailyInOutCB> scalar_LessEqual() {
-        return xcreateSLCFunction(CK_LE, DailyInOutCB.class);
+    public HpSLCFunction<DailyStartEndCB> scalar_LessEqual() {
+        return xcreateSLCFunction(CK_LE, DailyStartEndCB.class);
     }
 
     @SuppressWarnings("unchecked")
     protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSLCCustomized<CB> cs, ScalarConditionOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyInOutCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
+        DailyStartEndCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
         cs.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, cs, op);
     }
-    public abstract String keepScalarCondition(DailyInOutCQ sq);
+    public abstract String keepScalarCondition(DailyStartEndCQ sq);
 
-    protected DailyInOutCB xcreateScalarConditionCB() {
-        DailyInOutCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
+    protected DailyStartEndCB xcreateScalarConditionCB() {
+        DailyStartEndCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
-    protected DailyInOutCB xcreateScalarConditionPartitionByCB() {
-        DailyInOutCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
+    protected DailyStartEndCB xcreateScalarConditionPartitionByCB() {
+        DailyStartEndCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String fn, SubQuery<DailyInOutCB> sq, String al, DerivedReferrerOption op) {
+    public void xsmyselfDerive(String fn, SubQuery<DailyStartEndCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepSpecifyMyselfDerived(cb.query()); String pk = "DAILY_IN_OUT_ID";
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepSpecifyMyselfDerived(cb.query()); String pk = "DAILY_START_END_ID";
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(DailyInOutCQ sq);
+    public abstract String keepSpecifyMyselfDerived(DailyStartEndCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
-    public HpQDRFunction<DailyInOutCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived(DailyInOutCB.class);
+    public HpQDRFunction<DailyStartEndCB> myselfDerived() {
+        return xcreateQDRFunctionMyselfDerived(DailyStartEndCB.class);
     }
     @SuppressWarnings("unchecked")
     protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
-        String pk = "DAILY_IN_OUT_ID";
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
+        String pk = "DAILY_START_END_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
         registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(DailyInOutCQ sq);
+    public abstract String keepQueryMyselfDerived(DailyStartEndCQ sq);
     public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
@@ -1705,13 +1705,13 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
      * Prepare for MyselfExists (correlated sub-query).
      * @param subCBLambda The implementation of sub-query. (NotNull)
      */
-    public void myselfExists(SubQuery<DailyInOutCB> subCBLambda) {
+    public void myselfExists(SubQuery<DailyStartEndCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForMyselfExists(this);
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForMyselfExists(this);
         lockCall(() -> subCBLambda.query(cb)); String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(DailyInOutCQ sq);
+    public abstract String keepMyselfExists(DailyStartEndCQ sq);
 
     // ===================================================================================
     //                                                                        Manual Order
@@ -1756,12 +1756,12 @@ public abstract class AbstractBsDailyInOutCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    protected DailyInOutCB newMyCB() {
-        return new DailyInOutCB();
+    protected DailyStartEndCB newMyCB() {
+        return new DailyStartEndCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xabUDT() { return Date.class.getName(); }
-    protected String xabCQ() { return DailyInOutCQ.class.getName(); }
+    protected String xabCQ() { return DailyStartEndCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSLCS() { return HpSLCSetupper.class.getName(); }
     protected String xabSCP() { return SubQuery.class.getName(); }

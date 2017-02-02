@@ -43,13 +43,13 @@ import app.himawari.cbean.*;
  *     MEMBER
  *
  * [referrer table]
- *     DAILY_IN_OUT
+ *     DAILY_START_END
  *
  * [foreign property]
  *     member
  *
  * [referrer property]
- *     dailyInOutList
+ *     dailyStartEndList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -67,7 +67,7 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
     /** {@inheritDoc} */
     public TimecardDbm asDBMeta() { return TimecardDbm.getInstance(); }
     /** {@inheritDoc} */
-    public String asTableDbName() { return "timecard"; }
+    public String asTableDbName() { return "TIMECARD"; }
 
     // ===================================================================================
     //                                                                        New Instance
@@ -188,7 +188,7 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
 
     /**
      * Select the entity by the unique-key value.
-     * @param memberId : UQ+, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param memberId : UQ+, NotNull, BIGINT(19), FK to MEMBER. (NotNull)
      * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
      * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
@@ -388,19 +388,19 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
     }
 
     /**
-     * Load referrer of dailyInOutList by the set-upper of referrer. <br>
-     * DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'.
+     * Load referrer of dailyStartEndList by the set-upper of referrer. <br>
+     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndList'.
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">loadDailyInOut</span>(<span style="color: #553000">timecardList</span>, <span style="color: #553000">outCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">outCB</span>.setupSelect...
-     *     <span style="color: #553000">outCB</span>.query().set...
-     *     <span style="color: #553000">outCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">loadDailyStartEnd</span>(<span style="color: #553000">timecardList</span>, <span style="color: #553000">endCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">endCB</span>.setupSelect...
+     *     <span style="color: #553000">endCB</span>.query().set...
+     *     <span style="color: #553000">endCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
      * <span style="color: #70226C">for</span> (Timecard timecard : <span style="color: #553000">timecardList</span>) {
-     *     ... = timecard.<span style="color: #CC4747">getDailyInOutList()</span>;
+     *     ... = timecard.<span style="color: #CC4747">getDailyStartEndList()</span>;
      * }
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
@@ -413,24 +413,24 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<DailyInOut> loadDailyInOut(List<Timecard> timecardList, ReferrerConditionSetupper<DailyInOutCB> refCBLambda) {
+    public NestedReferrerListGateway<DailyStartEnd> loadDailyStartEnd(List<Timecard> timecardList, ReferrerConditionSetupper<DailyStartEndCB> refCBLambda) {
         xassLRArg(timecardList, refCBLambda);
-        return doLoadDailyInOut(timecardList, new LoadReferrerOption<DailyInOutCB, DailyInOut>().xinit(refCBLambda));
+        return doLoadDailyStartEnd(timecardList, new LoadReferrerOption<DailyStartEndCB, DailyStartEnd>().xinit(refCBLambda));
     }
 
     /**
-     * Load referrer of dailyInOutList by the set-upper of referrer. <br>
-     * DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'.
+     * Load referrer of dailyStartEndList by the set-upper of referrer. <br>
+     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndList'.
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">loadDailyInOut</span>(<span style="color: #553000">timecard</span>, <span style="color: #553000">outCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">outCB</span>.setupSelect...
-     *     <span style="color: #553000">outCB</span>.query().set...
-     *     <span style="color: #553000">outCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">loadDailyStartEnd</span>(<span style="color: #553000">timecard</span>, <span style="color: #553000">endCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">endCB</span>.setupSelect...
+     *     <span style="color: #553000">endCB</span>.query().set...
+     *     <span style="color: #553000">endCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
-     * ... = <span style="color: #553000">timecard</span>.<span style="color: #CC4747">getDailyInOutList()</span>;
+     * ... = <span style="color: #553000">timecard</span>.<span style="color: #CC4747">getDailyStartEndList()</span>;
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has settings before callback as follows:
@@ -442,13 +442,13 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<DailyInOut> loadDailyInOut(Timecard timecard, ReferrerConditionSetupper<DailyInOutCB> refCBLambda) {
+    public NestedReferrerListGateway<DailyStartEnd> loadDailyStartEnd(Timecard timecard, ReferrerConditionSetupper<DailyStartEndCB> refCBLambda) {
         xassLRArg(timecard, refCBLambda);
-        return doLoadDailyInOut(xnewLRLs(timecard), new LoadReferrerOption<DailyInOutCB, DailyInOut>().xinit(refCBLambda));
+        return doLoadDailyStartEnd(xnewLRLs(timecard), new LoadReferrerOption<DailyStartEndCB, DailyStartEnd>().xinit(refCBLambda));
     }
 
-    protected NestedReferrerListGateway<DailyInOut> doLoadDailyInOut(List<Timecard> timecardList, LoadReferrerOption<DailyInOutCB, DailyInOut> option) {
-        return helpLoadReferrerInternally(timecardList, option, "dailyInOutList");
+    protected NestedReferrerListGateway<DailyStartEnd> doLoadDailyStartEnd(List<Timecard> timecardList, LoadReferrerOption<DailyStartEndCB, DailyStartEnd> option) {
+        return helpLoadReferrerInternally(timecardList, option, "dailyStartEndList");
     }
 
     // ===================================================================================

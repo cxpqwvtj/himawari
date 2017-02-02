@@ -12,21 +12,21 @@ import app.himawari.cbean.cq.bs.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The condition-query for in-line of daily_in_out.
+ * The condition-query for in-line of DAILY_START_END.
  * @author DBFlute(AutoGenerator)
  */
-public class DailyInOutCIQ extends AbstractBsDailyInOutCQ {
+public class DailyStartEndCIQ extends AbstractBsDailyStartEndCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected BsDailyInOutCQ _myCQ;
+    protected BsDailyStartEndCQ _myCQ;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public DailyInOutCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
-                        , String aliasName, int nestLevel, BsDailyInOutCQ myCQ) {
+    public DailyStartEndCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
+                        , String aliasName, int nestLevel, BsDailyStartEndCQ myCQ) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
@@ -61,13 +61,13 @@ public class DailyInOutCIQ extends AbstractBsDailyInOutCQ {
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
-    protected ConditionValue xgetCValueDailyInOutId() { return _myCQ.xdfgetDailyInOutId(); }
+    protected ConditionValue xgetCValueDailyStartEndId() { return _myCQ.xdfgetDailyStartEndId(); }
     protected ConditionValue xgetCValueTimecardId() { return _myCQ.xdfgetTimecardId(); }
     protected ConditionValue xgetCValueBizDate() { return _myCQ.xdfgetBizDate(); }
     protected ConditionValue xgetCValueStartDatetime() { return _myCQ.xdfgetStartDatetime(); }
-    protected ConditionValue xgetCValueFinishDatetime() { return _myCQ.xdfgetFinishDatetime(); }
-    protected ConditionValue xgetCValueAmendedStartTime() { return _myCQ.xdfgetAmendedStartTime(); }
-    protected ConditionValue xgetCValueAmendedFinishTime() { return _myCQ.xdfgetAmendedFinishTime(); }
+    protected ConditionValue xgetCValueEndDatetime() { return _myCQ.xdfgetEndDatetime(); }
+    protected ConditionValue xgetCValueScaleFittedStartTime() { return _myCQ.xdfgetScaleFittedStartTime(); }
+    protected ConditionValue xgetCValueScaleFittedEndTime() { return _myCQ.xdfgetScaleFittedEndTime(); }
     protected ConditionValue xgetCValueVacationTypeCode() { return _myCQ.xdfgetVacationTypeCode(); }
     protected ConditionValue xgetCValueNote() { return _myCQ.xdfgetNote(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
@@ -76,15 +76,15 @@ public class DailyInOutCIQ extends AbstractBsDailyInOutCQ {
     protected ConditionValue xgetCValueUpdateUser() { return _myCQ.xdfgetUpdateUser(); }
     protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
-    public String keepScalarCondition(DailyInOutCQ sq)
+    public String keepScalarCondition(DailyStartEndCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(DailyInOutCQ sq)
+    public String keepSpecifyMyselfDerived(DailyStartEndCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(DailyInOutCQ sq)
+    public String keepQueryMyselfDerived(DailyStartEndCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
     public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(DailyInOutCQ sq)
+    public String keepMyselfExists(DailyStartEndCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
 
     protected void throwIICBOE(String name)
@@ -94,6 +94,6 @@ public class DailyInOutCIQ extends AbstractBsDailyInOutCQ {
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xinCB() { return DailyInOutCB.class.getName(); }
-    protected String xinCQ() { return DailyInOutCQ.class.getName(); }
+    protected String xinCB() { return DailyStartEndCB.class.getName(); }
+    protected String xinCQ() { return DailyStartEndCQ.class.getName(); }
 }

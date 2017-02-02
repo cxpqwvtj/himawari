@@ -12,7 +12,7 @@ import app.himawari.cbean.cq.bs.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The condition-query for in-line of vacation_type.
+ * The condition-query for in-line of VACATION_TYPE.
  * @author DBFlute(AutoGenerator)
  */
 public class VacationTypeCIQ extends AbstractBsVacationTypeCQ {
@@ -62,15 +62,15 @@ public class VacationTypeCIQ extends AbstractBsVacationTypeCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueVacationTypeCode() { return _myCQ.xdfgetVacationTypeCode(); }
-    public String keepVacationTypeCode_ExistsReferrer_DailyInOutList(DailyInOutCQ sq)
+    public String keepVacationTypeCode_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepVacationTypeCode_NotExistsReferrer_DailyInOutList(DailyInOutCQ sq)
+    public String keepVacationTypeCode_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepVacationTypeCode_SpecifyDerivedReferrer_DailyInOutList(DailyInOutCQ sq)
+    public String keepVacationTypeCode_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepVacationTypeCode_QueryDerivedReferrer_DailyInOutList(DailyInOutCQ sq)
+    public String keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepVacationTypeCode_QueryDerivedReferrer_DailyInOutListParameter(Object vl)
+    public String keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueVacationTypeName() { return _myCQ.xdfgetVacationTypeName(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }

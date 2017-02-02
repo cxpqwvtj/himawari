@@ -16,7 +16,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The abstract condition-query of vacation_type.
+ * The abstract condition-query of VACATION_TYPE.
  * @author DBFlute(AutoGenerator)
  */
 public abstract class AbstractBsVacationTypeCQ extends AbstractConditionQuery {
@@ -37,7 +37,7 @@ public abstract class AbstractBsVacationTypeCQ extends AbstractConditionQuery {
     }
 
     public String asTableDbName() {
-        return "vacation_type";
+        return "VACATION_TYPE";
     }
 
     // ===================================================================================
@@ -177,76 +177,76 @@ public abstract class AbstractBsVacationTypeCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select VACATION_TYPE_CODE from daily_in_out where ...)} <br>
-     * daily_in_out by VACATION_TYPE_CODE, named 'dailyInOutAsOne'.
+     * {exists (select VACATION_TYPE_CODE from DAILY_START_END where ...)} <br>
+     * DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">existsDailyInOut</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     outCB.query().set...
+     * cb.query().<span style="color: #CC4747">existsDailyStartEnd</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     endCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of DailyInOutList for 'exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of DailyStartEndList for 'exists'. (NotNull)
      */
-    public void existsDailyInOut(SubQuery<DailyInOutCB> subCBLambda) {
+    public void existsDailyStartEnd(SubQuery<DailyStartEndCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepVacationTypeCode_ExistsReferrer_DailyInOutList(cb.query());
-        registerExistsReferrer(cb.query(), "VACATION_TYPE_CODE", "VACATION_TYPE_CODE", pp, "dailyInOutList");
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepVacationTypeCode_ExistsReferrer_DailyStartEndList(cb.query());
+        registerExistsReferrer(cb.query(), "VACATION_TYPE_CODE", "VACATION_TYPE_CODE", pp, "dailyStartEndList");
     }
-    public abstract String keepVacationTypeCode_ExistsReferrer_DailyInOutList(DailyInOutCQ sq);
+    public abstract String keepVacationTypeCode_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select VACATION_TYPE_CODE from daily_in_out where ...)} <br>
-     * daily_in_out by VACATION_TYPE_CODE, named 'dailyInOutAsOne'.
+     * {not exists (select VACATION_TYPE_CODE from DAILY_START_END where ...)} <br>
+     * DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsDailyInOut</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     outCB.query().set...
+     * cb.query().<span style="color: #CC4747">notExistsDailyStartEnd</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     endCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of VacationTypeCode_NotExistsReferrer_DailyInOutList for 'not exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of VacationTypeCode_NotExistsReferrer_DailyStartEndList for 'not exists'. (NotNull)
      */
-    public void notExistsDailyInOut(SubQuery<DailyInOutCB> subCBLambda) {
+    public void notExistsDailyStartEnd(SubQuery<DailyStartEndCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepVacationTypeCode_NotExistsReferrer_DailyInOutList(cb.query());
-        registerNotExistsReferrer(cb.query(), "VACATION_TYPE_CODE", "VACATION_TYPE_CODE", pp, "dailyInOutList");
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepVacationTypeCode_NotExistsReferrer_DailyStartEndList(cb.query());
+        registerNotExistsReferrer(cb.query(), "VACATION_TYPE_CODE", "VACATION_TYPE_CODE", pp, "dailyStartEndList");
     }
-    public abstract String keepVacationTypeCode_NotExistsReferrer_DailyInOutList(DailyInOutCQ sq);
+    public abstract String keepVacationTypeCode_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq);
 
-    public void xsderiveDailyInOutList(String fn, SubQuery<DailyInOutCB> sq, String al, DerivedReferrerOption op) {
+    public void xsderiveDailyStartEndList(String fn, SubQuery<DailyStartEndCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepVacationTypeCode_SpecifyDerivedReferrer_DailyInOutList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "VACATION_TYPE_CODE", "VACATION_TYPE_CODE", pp, "dailyInOutList", al, op);
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepVacationTypeCode_SpecifyDerivedReferrer_DailyStartEndList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "VACATION_TYPE_CODE", "VACATION_TYPE_CODE", pp, "dailyStartEndList", al, op);
     }
-    public abstract String keepVacationTypeCode_SpecifyDerivedReferrer_DailyInOutList(DailyInOutCQ sq);
+    public abstract String keepVacationTypeCode_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from daily_in_out where ...)} <br>
-     * daily_in_out by VACATION_TYPE_CODE, named 'dailyInOutAsOne'.
+     * {FOO &lt;= (select max(BAR) from DAILY_START_END where ...)} <br>
+     * DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">derivedDailyInOut()</span>.<span style="color: #CC4747">max</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     outCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     outCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * cb.query().<span style="color: #CC4747">derivedDailyStartEnd()</span>.<span style="color: #CC4747">max</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     endCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     endCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
-    public HpQDRFunction<DailyInOutCB> derivedDailyInOut() {
-        return xcreateQDRFunctionDailyInOutList();
+    public HpQDRFunction<DailyStartEndCB> derivedDailyStartEnd() {
+        return xcreateQDRFunctionDailyStartEndList();
     }
-    protected HpQDRFunction<DailyInOutCB> xcreateQDRFunctionDailyInOutList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveDailyInOutList(fn, sq, rd, vl, op));
+    protected HpQDRFunction<DailyStartEndCB> xcreateQDRFunctionDailyStartEndList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveDailyStartEndList(fn, sq, rd, vl, op));
     }
-    public void xqderiveDailyInOutList(String fn, SubQuery<DailyInOutCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    public void xqderiveDailyStartEndList(String fn, SubQuery<DailyStartEndCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepVacationTypeCode_QueryDerivedReferrer_DailyInOutList(cb.query()); String prpp = keepVacationTypeCode_QueryDerivedReferrer_DailyInOutListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "VACATION_TYPE_CODE", "VACATION_TYPE_CODE", sqpp, "dailyInOutList", rd, vl, prpp, op);
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndList(cb.query()); String prpp = keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "VACATION_TYPE_CODE", "VACATION_TYPE_CODE", sqpp, "dailyStartEndList", rd, vl, prpp, op);
     }
-    public abstract String keepVacationTypeCode_QueryDerivedReferrer_DailyInOutList(DailyInOutCQ sq);
-    public abstract String keepVacationTypeCode_QueryDerivedReferrer_DailyInOutListParameter(Object vl);
+    public abstract String keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq);
+    public abstract String keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>

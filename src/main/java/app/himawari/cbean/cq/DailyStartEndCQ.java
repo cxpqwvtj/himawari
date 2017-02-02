@@ -2,17 +2,17 @@ package app.himawari.cbean.cq;
 
 import org.dbflute.cbean.ConditionQuery;
 import org.dbflute.cbean.sqlclause.SqlClause;
-import app.himawari.cbean.cq.bs.BsDailyInOutCQ;
+import app.himawari.cbean.cq.bs.BsDailyStartEndCQ;
 
 /**
- * The condition-query of daily_in_out.
+ * The condition-query of DAILY_START_END.
  * <p>
  * You can implement your original methods here.
  * This class remains when re-generating.
  * </p>
  * @author DBFlute(AutoGenerator)
  */
-public class DailyInOutCQ extends BsDailyInOutCQ {
+public class DailyStartEndCQ extends BsDailyStartEndCQ {
 
     // ===================================================================================
     //                                                                         Constructor
@@ -25,7 +25,7 @@ public class DailyInOutCQ extends BsDailyInOutCQ {
      * @param aliasName The alias name for this query. (NotNull)
      * @param nestLevel The nest level of this query. (if zero, this is base query)
      */
-    public DailyInOutCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+    public DailyStartEndCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 

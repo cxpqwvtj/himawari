@@ -13,7 +13,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-query of timecard.
+ * The base condition-query of TIMECARD.
  * @author DBFlute(AutoGenerator)
  */
 public class BsTimecardCQ extends AbstractBsTimecardCQ {
@@ -35,7 +35,7 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
     //                                                                 ===================
     /**
      * Prepare InlineView query. <br>
-     * {select ... from ... left outer join (select * from timecard) where FOO = [value] ...}
+     * {select ... from ... left outer join (select * from TIMECARD) where FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">inline()</span>.setFoo...;
      * </pre>
@@ -58,7 +58,7 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
 
     /**
      * Prepare OnClause query. <br>
-     * {select ... from ... left outer join timecard on ... and FOO = [value] ...}
+     * {select ... from ... left outer join TIMECARD on ... and FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">on()</span>.setFoo...;
      * </pre>
@@ -79,19 +79,19 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
       return _timecardId; }
     protected ConditionValue xgetCValueTimecardId() { return xdfgetTimecardId(); }
 
-    public Map<String, DailyInOutCQ> xdfgetTimecardId_ExistsReferrer_DailyInOutList() { return xgetSQueMap("timecardId_ExistsReferrer_DailyInOutList"); }
-    public String keepTimecardId_ExistsReferrer_DailyInOutList(DailyInOutCQ sq) { return xkeepSQue("timecardId_ExistsReferrer_DailyInOutList", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetTimecardId_ExistsReferrer_DailyStartEndList() { return xgetSQueMap("timecardId_ExistsReferrer_DailyStartEndList"); }
+    public String keepTimecardId_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("timecardId_ExistsReferrer_DailyStartEndList", sq); }
 
-    public Map<String, DailyInOutCQ> xdfgetTimecardId_NotExistsReferrer_DailyInOutList() { return xgetSQueMap("timecardId_NotExistsReferrer_DailyInOutList"); }
-    public String keepTimecardId_NotExistsReferrer_DailyInOutList(DailyInOutCQ sq) { return xkeepSQue("timecardId_NotExistsReferrer_DailyInOutList", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetTimecardId_NotExistsReferrer_DailyStartEndList() { return xgetSQueMap("timecardId_NotExistsReferrer_DailyStartEndList"); }
+    public String keepTimecardId_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("timecardId_NotExistsReferrer_DailyStartEndList", sq); }
 
-    public Map<String, DailyInOutCQ> xdfgetTimecardId_SpecifyDerivedReferrer_DailyInOutList() { return xgetSQueMap("timecardId_SpecifyDerivedReferrer_DailyInOutList"); }
-    public String keepTimecardId_SpecifyDerivedReferrer_DailyInOutList(DailyInOutCQ sq) { return xkeepSQue("timecardId_SpecifyDerivedReferrer_DailyInOutList", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetTimecardId_SpecifyDerivedReferrer_DailyStartEndList() { return xgetSQueMap("timecardId_SpecifyDerivedReferrer_DailyStartEndList"); }
+    public String keepTimecardId_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("timecardId_SpecifyDerivedReferrer_DailyStartEndList", sq); }
 
-    public Map<String, DailyInOutCQ> xdfgetTimecardId_QueryDerivedReferrer_DailyInOutList() { return xgetSQueMap("timecardId_QueryDerivedReferrer_DailyInOutList"); }
-    public String keepTimecardId_QueryDerivedReferrer_DailyInOutList(DailyInOutCQ sq) { return xkeepSQue("timecardId_QueryDerivedReferrer_DailyInOutList", sq); }
-    public Map<String, Object> xdfgetTimecardId_QueryDerivedReferrer_DailyInOutListParameter() { return xgetSQuePmMap("timecardId_QueryDerivedReferrer_DailyInOutList"); }
-    public String keepTimecardId_QueryDerivedReferrer_DailyInOutListParameter(Object pm) { return xkeepSQuePm("timecardId_QueryDerivedReferrer_DailyInOutList", pm); }
+    public Map<String, DailyStartEndCQ> xdfgetTimecardId_QueryDerivedReferrer_DailyStartEndList() { return xgetSQueMap("timecardId_QueryDerivedReferrer_DailyStartEndList"); }
+    public String keepTimecardId_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("timecardId_QueryDerivedReferrer_DailyStartEndList", sq); }
+    public Map<String, Object> xdfgetTimecardId_QueryDerivedReferrer_DailyStartEndListParameter() { return xgetSQuePmMap("timecardId_QueryDerivedReferrer_DailyStartEndList"); }
+    public String keepTimecardId_QueryDerivedReferrer_DailyStartEndListParameter(Object pm) { return xkeepSQuePm("timecardId_QueryDerivedReferrer_DailyStartEndList", pm); }
 
     /** 
      * Add order-by as ascend. <br>
@@ -115,14 +115,14 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @return this. (NotNull)
      */
     public BsTimecardCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @return this. (NotNull)
      */
     public BsTimecardCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
@@ -310,7 +310,7 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
         return xgetQueRlMap(prop);
     }
     protected MemberCQ xcreateQueryMember() {
-        String nrp = xresolveNRP("timecard", "member"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        String nrp = xresolveNRP("TIMECARD", "member"); String jan = xresolveJAN(nrp, xgetNNLvl());
         return xinitRelCQ(new MemberCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "member", nrp);
     }
     protected void xsetupOuterJoinMember() { xregOutJo("member"); }

@@ -43,13 +43,13 @@ import app.himawari.cbean.*;
  *     
  *
  * [referrer table]
- *     DAILY_IN_OUT
+ *     DAILY_START_END
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     dailyInOutList
+ *     dailyStartEndList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -67,7 +67,7 @@ public abstract class BsVacationTypeBhv extends AbstractBehaviorWritable<Vacatio
     /** {@inheritDoc} */
     public VacationTypeDbm asDBMeta() { return VacationTypeDbm.getInstance(); }
     /** {@inheritDoc} */
-    public String asTableDbName() { return "vacation_type"; }
+    public String asTableDbName() { return "VACATION_TYPE"; }
 
     // ===================================================================================
     //                                                                        New Instance
@@ -362,19 +362,19 @@ public abstract class BsVacationTypeBhv extends AbstractBehaviorWritable<Vacatio
     }
 
     /**
-     * Load referrer of dailyInOutList by the set-upper of referrer. <br>
-     * DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'.
+     * Load referrer of dailyStartEndList by the set-upper of referrer. <br>
+     * DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndList'.
      * <pre>
-     * <span style="color: #0000C0">vacationTypeBhv</span>.<span style="color: #CC4747">loadDailyInOut</span>(<span style="color: #553000">vacationTypeList</span>, <span style="color: #553000">outCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">outCB</span>.setupSelect...
-     *     <span style="color: #553000">outCB</span>.query().set...
-     *     <span style="color: #553000">outCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">vacationTypeBhv</span>.<span style="color: #CC4747">loadDailyStartEnd</span>(<span style="color: #553000">vacationTypeList</span>, <span style="color: #553000">endCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">endCB</span>.setupSelect...
+     *     <span style="color: #553000">endCB</span>.query().set...
+     *     <span style="color: #553000">endCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
      * <span style="color: #70226C">for</span> (VacationType vacationType : <span style="color: #553000">vacationTypeList</span>) {
-     *     ... = vacationType.<span style="color: #CC4747">getDailyInOutList()</span>;
+     *     ... = vacationType.<span style="color: #CC4747">getDailyStartEndList()</span>;
      * }
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
@@ -387,24 +387,24 @@ public abstract class BsVacationTypeBhv extends AbstractBehaviorWritable<Vacatio
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<DailyInOut> loadDailyInOut(List<VacationType> vacationTypeList, ReferrerConditionSetupper<DailyInOutCB> refCBLambda) {
+    public NestedReferrerListGateway<DailyStartEnd> loadDailyStartEnd(List<VacationType> vacationTypeList, ReferrerConditionSetupper<DailyStartEndCB> refCBLambda) {
         xassLRArg(vacationTypeList, refCBLambda);
-        return doLoadDailyInOut(vacationTypeList, new LoadReferrerOption<DailyInOutCB, DailyInOut>().xinit(refCBLambda));
+        return doLoadDailyStartEnd(vacationTypeList, new LoadReferrerOption<DailyStartEndCB, DailyStartEnd>().xinit(refCBLambda));
     }
 
     /**
-     * Load referrer of dailyInOutList by the set-upper of referrer. <br>
-     * DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'.
+     * Load referrer of dailyStartEndList by the set-upper of referrer. <br>
+     * DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndList'.
      * <pre>
-     * <span style="color: #0000C0">vacationTypeBhv</span>.<span style="color: #CC4747">loadDailyInOut</span>(<span style="color: #553000">vacationType</span>, <span style="color: #553000">outCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">outCB</span>.setupSelect...
-     *     <span style="color: #553000">outCB</span>.query().set...
-     *     <span style="color: #553000">outCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">vacationTypeBhv</span>.<span style="color: #CC4747">loadDailyStartEnd</span>(<span style="color: #553000">vacationType</span>, <span style="color: #553000">endCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">endCB</span>.setupSelect...
+     *     <span style="color: #553000">endCB</span>.query().set...
+     *     <span style="color: #553000">endCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
-     * ... = <span style="color: #553000">vacationType</span>.<span style="color: #CC4747">getDailyInOutList()</span>;
+     * ... = <span style="color: #553000">vacationType</span>.<span style="color: #CC4747">getDailyStartEndList()</span>;
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has settings before callback as follows:
@@ -416,13 +416,13 @@ public abstract class BsVacationTypeBhv extends AbstractBehaviorWritable<Vacatio
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<DailyInOut> loadDailyInOut(VacationType vacationType, ReferrerConditionSetupper<DailyInOutCB> refCBLambda) {
+    public NestedReferrerListGateway<DailyStartEnd> loadDailyStartEnd(VacationType vacationType, ReferrerConditionSetupper<DailyStartEndCB> refCBLambda) {
         xassLRArg(vacationType, refCBLambda);
-        return doLoadDailyInOut(xnewLRLs(vacationType), new LoadReferrerOption<DailyInOutCB, DailyInOut>().xinit(refCBLambda));
+        return doLoadDailyStartEnd(xnewLRLs(vacationType), new LoadReferrerOption<DailyStartEndCB, DailyStartEnd>().xinit(refCBLambda));
     }
 
-    protected NestedReferrerListGateway<DailyInOut> doLoadDailyInOut(List<VacationType> vacationTypeList, LoadReferrerOption<DailyInOutCB, DailyInOut> option) {
-        return helpLoadReferrerInternally(vacationTypeList, option, "dailyInOutList");
+    protected NestedReferrerListGateway<DailyStartEnd> doLoadDailyStartEnd(List<VacationType> vacationTypeList, LoadReferrerOption<DailyStartEndCB, DailyStartEnd> option) {
+        return helpLoadReferrerInternally(vacationTypeList, option, "dailyStartEndList");
     }
 
     // ===================================================================================

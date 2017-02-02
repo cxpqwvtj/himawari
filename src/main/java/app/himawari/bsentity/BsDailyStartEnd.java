@@ -13,20 +13,20 @@ import app.himawari.allcommon.DBMetaInstanceHandler;
 import app.himawari.exentity.*;
 
 /**
- * The entity of DAILY_IN_OUT as TABLE. <br>
- * 日次勤務時間記録
+ * The entity of DAILY_START_END as TABLE. <br>
+ * ????????
  * <pre>
  * [primary-key]
- *     DAILY_IN_OUT_ID
+ *     DAILY_START_END_ID
  *
  * [column]
- *     DAILY_IN_OUT_ID, TIMECARD_ID, BIZ_DATE, START_DATETIME, FINISH_DATETIME, AMENDED_START_TIME, AMENDED_FINISH_TIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     DAILY_START_END_ID, TIMECARD_ID, BIZ_DATE, START_DATETIME, END_DATETIME, SCALE_FITTED_START_TIME, SCALE_FITTED_END_TIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
  *
  * [identity]
- *     DAILY_IN_OUT_ID
+ *     DAILY_START_END_ID
  *
  * [version-no]
  *     VERSION_NO
@@ -45,13 +45,13 @@ import app.himawari.exentity.*;
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
- * Long dailyInOutId = entity.getDailyInOutId();
+ * Long dailyStartEndId = entity.getDailyStartEndId();
  * Long timecardId = entity.getTimecardId();
  * java.time.LocalDate bizDate = entity.getBizDate();
  * java.time.LocalDateTime startDatetime = entity.getStartDatetime();
- * java.time.LocalDateTime finishDatetime = entity.getFinishDatetime();
- * java.time.LocalDateTime amendedStartTime = entity.getAmendedStartTime();
- * java.time.LocalDateTime amendedFinishTime = entity.getAmendedFinishTime();
+ * java.time.LocalDateTime endDatetime = entity.getEndDatetime();
+ * java.time.LocalDateTime scaleFittedStartTime = entity.getScaleFittedStartTime();
+ * java.time.LocalDateTime scaleFittedEndTime = entity.getScaleFittedEndTime();
  * String vacationTypeCode = entity.getVacationTypeCode();
  * String note = entity.getNote();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
@@ -59,13 +59,13 @@ import app.himawari.exentity.*;
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * String updateUser = entity.getUpdateUser();
  * Long versionNo = entity.getVersionNo();
- * entity.setDailyInOutId(dailyInOutId);
+ * entity.setDailyStartEndId(dailyStartEndId);
  * entity.setTimecardId(timecardId);
  * entity.setBizDate(bizDate);
  * entity.setStartDatetime(startDatetime);
- * entity.setFinishDatetime(finishDatetime);
- * entity.setAmendedStartTime(amendedStartTime);
- * entity.setAmendedFinishTime(amendedFinishTime);
+ * entity.setEndDatetime(endDatetime);
+ * entity.setScaleFittedStartTime(scaleFittedStartTime);
+ * entity.setScaleFittedEndTime(scaleFittedEndTime);
  * entity.setVacationTypeCode(vacationTypeCode);
  * entity.setNote(note);
  * entity.setRegisterDatetime(registerDatetime);
@@ -77,7 +77,7 @@ import app.himawari.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsDailyInOut extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
+public abstract class BsDailyStartEnd extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition
@@ -88,10 +88,10 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)} */
-    protected Long _dailyInOutId;
+    /** DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)} */
+    protected Long _dailyStartEndId;
 
-    /** TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard} */
+    /** TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD} */
     protected Long _timecardId;
 
     /** BIZ_DATE: {NotNull, DATE(10)} */
@@ -100,16 +100,16 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     /** START_DATETIME: {DATETIME(19)} */
     protected java.time.LocalDateTime _startDatetime;
 
-    /** FINISH_DATETIME: {DATETIME(19)} */
-    protected java.time.LocalDateTime _finishDatetime;
+    /** END_DATETIME: {DATETIME(19)} */
+    protected java.time.LocalDateTime _endDatetime;
 
-    /** AMENDED_START_TIME: {DATETIME(19)} */
-    protected java.time.LocalDateTime _amendedStartTime;
+    /** SCALE_FITTED_START_TIME: {DATETIME(19)} */
+    protected java.time.LocalDateTime _scaleFittedStartTime;
 
-    /** AMENDED_FINISH_TIME: {DATETIME(19)} */
-    protected java.time.LocalDateTime _amendedFinishTime;
+    /** SCALE_FITTED_END_TIME: {DATETIME(19)} */
+    protected java.time.LocalDateTime _scaleFittedEndTime;
 
-    /** VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} */
+    /** VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE} */
     protected String _vacationTypeCode;
 
     /** NOTE: {TEXT(65535)} */
@@ -140,7 +140,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /** {@inheritDoc} */
     public String asTableDbName() {
-        return "daily_in_out";
+        return "DAILY_START_END";
     }
 
     // ===================================================================================
@@ -148,7 +148,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     //                                                                        ============
     /** {@inheritDoc} */
     public boolean hasPrimaryKeyValue() {
-        if (_dailyInOutId == null) { return false; }
+        if (_dailyStartEndId == null) { return false; }
         return true;
     }
 
@@ -209,9 +209,9 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     //                                                                      ==============
     @Override
     protected boolean doEquals(Object obj) {
-        if (obj instanceof BsDailyInOut) {
-            BsDailyInOut other = (BsDailyInOut)obj;
-            if (!xSV(_dailyInOutId, other._dailyInOutId)) { return false; }
+        if (obj instanceof BsDailyStartEnd) {
+            BsDailyStartEnd other = (BsDailyStartEnd)obj;
+            if (!xSV(_dailyStartEndId, other._dailyStartEndId)) { return false; }
             return true;
         } else {
             return false;
@@ -222,7 +222,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     protected int doHashCode(int initial) {
         int hs = initial;
         hs = xCH(hs, asTableDbName());
-        hs = xCH(hs, _dailyInOutId);
+        hs = xCH(hs, _dailyStartEndId);
         return hs;
     }
 
@@ -242,13 +242,13 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     @Override
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(dm).append(xfND(_dailyInOutId));
+        sb.append(dm).append(xfND(_dailyStartEndId));
         sb.append(dm).append(xfND(_timecardId));
         sb.append(dm).append(xfND(_bizDate));
         sb.append(dm).append(xfND(_startDatetime));
-        sb.append(dm).append(xfND(_finishDatetime));
-        sb.append(dm).append(xfND(_amendedStartTime));
-        sb.append(dm).append(xfND(_amendedFinishTime));
+        sb.append(dm).append(xfND(_endDatetime));
+        sb.append(dm).append(xfND(_scaleFittedStartTime));
+        sb.append(dm).append(xfND(_scaleFittedEndTime));
         sb.append(dm).append(xfND(_vacationTypeCode));
         sb.append(dm).append(xfND(_note));
         sb.append(dm).append(xfND(_registerDatetime));
@@ -277,36 +277,36 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     @Override
-    public DailyInOut clone() {
-        return (DailyInOut)super.clone();
+    public DailyStartEnd clone() {
+        return (DailyStartEnd)super.clone();
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * 日次勤務時間記録ID
-     * @return The value of the column 'DAILY_IN_OUT_ID'. (basically NotNull if selected: for the constraint)
+     * [get] DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)} <br>
+     * ????????ID
+     * @return The value of the column 'DAILY_START_END_ID'. (basically NotNull if selected: for the constraint)
      */
-    public Long getDailyInOutId() {
-        checkSpecifiedProperty("dailyInOutId");
-        return _dailyInOutId;
+    public Long getDailyStartEndId() {
+        checkSpecifiedProperty("dailyStartEndId");
+        return _dailyStartEndId;
     }
 
     /**
-     * [set] DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * 日次勤務時間記録ID
-     * @param dailyInOutId The value of the column 'DAILY_IN_OUT_ID'. (basically NotNull if update: for the constraint)
+     * [set] DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)} <br>
+     * ????????ID
+     * @param dailyStartEndId The value of the column 'DAILY_START_END_ID'. (basically NotNull if update: for the constraint)
      */
-    public void setDailyInOutId(Long dailyInOutId) {
-        registerModifiedProperty("dailyInOutId");
-        _dailyInOutId = dailyInOutId;
+    public void setDailyStartEndId(Long dailyStartEndId) {
+        registerModifiedProperty("dailyStartEndId");
+        _dailyStartEndId = dailyStartEndId;
     }
 
     /**
-     * [get] TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard} <br>
-     * タイムカードID
+     * [get] TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD} <br>
+     * ??????ID
      * @return The value of the column 'TIMECARD_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getTimecardId() {
@@ -315,8 +315,8 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [set] TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard} <br>
-     * タイムカードID
+     * [set] TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD} <br>
+     * ??????ID
      * @param timecardId The value of the column 'TIMECARD_ID'. (basically NotNull if update: for the constraint)
      */
     public void setTimecardId(Long timecardId) {
@@ -326,7 +326,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] BIZ_DATE: {NotNull, DATE(10)} <br>
-     * 業務日
+     * ???
      * @return The value of the column 'BIZ_DATE'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDate getBizDate() {
@@ -336,7 +336,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] BIZ_DATE: {NotNull, DATE(10)} <br>
-     * 業務日
+     * ???
      * @param bizDate The value of the column 'BIZ_DATE'. (basically NotNull if update: for the constraint)
      */
     public void setBizDate(java.time.LocalDate bizDate) {
@@ -346,7 +346,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] START_DATETIME: {DATETIME(19)} <br>
-     * 始業時間
+     * ????
      * @return The value of the column 'START_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getStartDatetime() {
@@ -356,7 +356,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] START_DATETIME: {DATETIME(19)} <br>
-     * 始業時間
+     * ????
      * @param startDatetime The value of the column 'START_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStartDatetime(java.time.LocalDateTime startDatetime) {
@@ -365,68 +365,68 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [get] FINISH_DATETIME: {DATETIME(19)} <br>
-     * 就業時間
-     * @return The value of the column 'FINISH_DATETIME'. (NullAllowed even if selected: for no constraint)
+     * [get] END_DATETIME: {DATETIME(19)} <br>
+     * ????
+     * @return The value of the column 'END_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
-    public java.time.LocalDateTime getFinishDatetime() {
-        checkSpecifiedProperty("finishDatetime");
-        return _finishDatetime;
+    public java.time.LocalDateTime getEndDatetime() {
+        checkSpecifiedProperty("endDatetime");
+        return _endDatetime;
     }
 
     /**
-     * [set] FINISH_DATETIME: {DATETIME(19)} <br>
-     * 就業時間
-     * @param finishDatetime The value of the column 'FINISH_DATETIME'. (NullAllowed: null update allowed for no constraint)
+     * [set] END_DATETIME: {DATETIME(19)} <br>
+     * ????
+     * @param endDatetime The value of the column 'END_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setFinishDatetime(java.time.LocalDateTime finishDatetime) {
-        registerModifiedProperty("finishDatetime");
-        _finishDatetime = finishDatetime;
+    public void setEndDatetime(java.time.LocalDateTime endDatetime) {
+        registerModifiedProperty("endDatetime");
+        _endDatetime = endDatetime;
     }
 
     /**
-     * [get] AMENDED_START_TIME: {DATETIME(19)} <br>
-     * 補正後の始業時間
-     * @return The value of the column 'AMENDED_START_TIME'. (NullAllowed even if selected: for no constraint)
+     * [get] SCALE_FITTED_START_TIME: {DATETIME(19)} <br>
+     * ????????
+     * @return The value of the column 'SCALE_FITTED_START_TIME'. (NullAllowed even if selected: for no constraint)
      */
-    public java.time.LocalDateTime getAmendedStartTime() {
-        checkSpecifiedProperty("amendedStartTime");
-        return _amendedStartTime;
+    public java.time.LocalDateTime getScaleFittedStartTime() {
+        checkSpecifiedProperty("scaleFittedStartTime");
+        return _scaleFittedStartTime;
     }
 
     /**
-     * [set] AMENDED_START_TIME: {DATETIME(19)} <br>
-     * 補正後の始業時間
-     * @param amendedStartTime The value of the column 'AMENDED_START_TIME'. (NullAllowed: null update allowed for no constraint)
+     * [set] SCALE_FITTED_START_TIME: {DATETIME(19)} <br>
+     * ????????
+     * @param scaleFittedStartTime The value of the column 'SCALE_FITTED_START_TIME'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setAmendedStartTime(java.time.LocalDateTime amendedStartTime) {
-        registerModifiedProperty("amendedStartTime");
-        _amendedStartTime = amendedStartTime;
+    public void setScaleFittedStartTime(java.time.LocalDateTime scaleFittedStartTime) {
+        registerModifiedProperty("scaleFittedStartTime");
+        _scaleFittedStartTime = scaleFittedStartTime;
     }
 
     /**
-     * [get] AMENDED_FINISH_TIME: {DATETIME(19)} <br>
-     * 補正後の就業時間
-     * @return The value of the column 'AMENDED_FINISH_TIME'. (NullAllowed even if selected: for no constraint)
+     * [get] SCALE_FITTED_END_TIME: {DATETIME(19)} <br>
+     * ????????
+     * @return The value of the column 'SCALE_FITTED_END_TIME'. (NullAllowed even if selected: for no constraint)
      */
-    public java.time.LocalDateTime getAmendedFinishTime() {
-        checkSpecifiedProperty("amendedFinishTime");
-        return _amendedFinishTime;
+    public java.time.LocalDateTime getScaleFittedEndTime() {
+        checkSpecifiedProperty("scaleFittedEndTime");
+        return _scaleFittedEndTime;
     }
 
     /**
-     * [set] AMENDED_FINISH_TIME: {DATETIME(19)} <br>
-     * 補正後の就業時間
-     * @param amendedFinishTime The value of the column 'AMENDED_FINISH_TIME'. (NullAllowed: null update allowed for no constraint)
+     * [set] SCALE_FITTED_END_TIME: {DATETIME(19)} <br>
+     * ????????
+     * @param scaleFittedEndTime The value of the column 'SCALE_FITTED_END_TIME'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setAmendedFinishTime(java.time.LocalDateTime amendedFinishTime) {
-        registerModifiedProperty("amendedFinishTime");
-        _amendedFinishTime = amendedFinishTime;
+    public void setScaleFittedEndTime(java.time.LocalDateTime scaleFittedEndTime) {
+        registerModifiedProperty("scaleFittedEndTime");
+        _scaleFittedEndTime = scaleFittedEndTime;
     }
 
     /**
-     * [get] VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} <br>
-     * 休暇タイプコード
+     * [get] VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE} <br>
+     * ????????
      * @return The value of the column 'VACATION_TYPE_CODE'. (NullAllowed even if selected: for no constraint)
      */
     public String getVacationTypeCode() {
@@ -435,8 +435,8 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [set] VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type} <br>
-     * 休暇タイプコード
+     * [set] VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE} <br>
+     * ????????
      * @param vacationTypeCode The value of the column 'VACATION_TYPE_CODE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setVacationTypeCode(String vacationTypeCode) {
@@ -446,7 +446,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] NOTE: {TEXT(65535)} <br>
-     * 備考入力テキスト
+     * ????????
      * @return The value of the column 'NOTE'. (NullAllowed even if selected: for no constraint)
      */
     public String getNote() {
@@ -456,7 +456,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] NOTE: {TEXT(65535)} <br>
-     * 備考入力テキスト
+     * ????????
      * @param note The value of the column 'NOTE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNote(String note) {
@@ -466,7 +466,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 登録日時
+     * ????
      * @return The value of the column 'REGISTER_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -476,7 +476,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 登録日時
+     * ????
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -486,7 +486,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * 登録ユーザ
+     * ?????
      * @return The value of the column 'REGISTER_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getRegisterUser() {
@@ -496,7 +496,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * 登録ユーザ
+     * ?????
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
@@ -506,7 +506,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 更新日時
+     * ????
      * @return The value of the column 'UPDATE_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -516,7 +516,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 更新日時
+     * ????
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {
@@ -526,7 +526,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * 更新ユーザ
+     * ?????
      * @return The value of the column 'UPDATE_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getUpdateUser() {
@@ -536,7 +536,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * 更新ユーザ
+     * ?????
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
@@ -546,7 +546,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [get] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * バージョン番号
+     * ???????
      * @return The value of the column 'VERSION_NO'. (basically NotNull if selected: for the constraint)
      */
     public Long getVersionNo() {
@@ -556,7 +556,7 @@ public abstract class BsDailyInOut extends AbstractEntity implements DomainEntit
 
     /**
      * [set] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * バージョン番号
+     * ???????
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {

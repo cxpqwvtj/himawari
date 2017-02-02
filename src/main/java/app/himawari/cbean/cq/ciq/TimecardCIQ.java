@@ -12,7 +12,7 @@ import app.himawari.cbean.cq.bs.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The condition-query for in-line of timecard.
+ * The condition-query for in-line of TIMECARD.
  * @author DBFlute(AutoGenerator)
  */
 public class TimecardCIQ extends AbstractBsTimecardCQ {
@@ -62,15 +62,15 @@ public class TimecardCIQ extends AbstractBsTimecardCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueTimecardId() { return _myCQ.xdfgetTimecardId(); }
-    public String keepTimecardId_ExistsReferrer_DailyInOutList(DailyInOutCQ sq)
+    public String keepTimecardId_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepTimecardId_NotExistsReferrer_DailyInOutList(DailyInOutCQ sq)
+    public String keepTimecardId_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepTimecardId_SpecifyDerivedReferrer_DailyInOutList(DailyInOutCQ sq)
+    public String keepTimecardId_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepTimecardId_QueryDerivedReferrer_DailyInOutList(DailyInOutCQ sq)
+    public String keepTimecardId_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepTimecardId_QueryDerivedReferrer_DailyInOutListParameter(Object vl)
+    public String keepTimecardId_QueryDerivedReferrer_DailyStartEndListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueMemberId() { return _myCQ.xdfgetMemberId(); }
     protected ConditionValue xgetCValueTimecardYearMonth() { return _myCQ.xdfgetTimecardYearMonth(); }

@@ -20,7 +20,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-bean of timecard.
+ * The base condition-bean of TIMECARD.
  * @author DBFlute(AutoGenerator)
  */
 public class BsTimecardCB extends AbstractConditionBean {
@@ -72,7 +72,7 @@ public class BsTimecardCB extends AbstractConditionBean {
     }
 
     public String asTableDbName() {
-        return "timecard";
+        return "TIMECARD";
     }
 
     // ===================================================================================
@@ -92,7 +92,7 @@ public class BsTimecardCB extends AbstractConditionBean {
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param memberId : UQ+, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param memberId : UQ+, NotNull, BIGINT(19), FK to MEMBER. (NotNull)
      * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
      * @return this. (NotNull)
      */
@@ -322,7 +322,7 @@ public class BsTimecardCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnTimecardId() { return doColumn("TIMECARD_ID"); }
         /**
-         * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+         * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
@@ -367,7 +367,7 @@ public class BsTimecardCB extends AbstractConditionBean {
             }
         }
         @Override
-        protected String getTableDbName() { return "timecard"; }
+        protected String getTableDbName() { return "TIMECARD"; }
         /**
          * Prepare to specify functions about relation table. <br>
          * MEMBER by my MEMBER_ID, named 'member'.
@@ -390,20 +390,20 @@ public class BsTimecardCB extends AbstractConditionBean {
         }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
-         * {select max(FOO) from daily_in_out where ...) as FOO_MAX} <br>
-         * DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'.
+         * {select max(FOO) from DAILY_START_END where ...) as FOO_MAX} <br>
+         * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndList'.
          * <pre>
-         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-         *     outCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *     outCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
-         * }, DailyInOut.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     endCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     endCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, DailyStartEnd.<span style="color: #CC4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
-        public HpSDRFunction<DailyInOutCB, TimecardCQ> derivedDailyInOut() {
-            assertDerived("dailyInOutList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<DailyInOutCB> sq, TimecardCQ cq, String al, DerivedReferrerOption op)
-                    -> cq.xsderiveDailyInOutList(fn, sq, al, op), _dbmetaProvider);
+        public HpSDRFunction<DailyStartEndCB, TimecardCQ> derivedDailyStartEnd() {
+            assertDerived("dailyStartEndList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<DailyStartEndCB> sq, TimecardCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveDailyStartEndList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

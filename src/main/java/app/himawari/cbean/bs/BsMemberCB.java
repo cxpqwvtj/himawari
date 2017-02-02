@@ -20,7 +20,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-bean of member.
+ * The base condition-bean of MEMBER.
  * @author DBFlute(AutoGenerator)
  */
 public class BsMemberCB extends AbstractConditionBean {
@@ -72,7 +72,7 @@ public class BsMemberCB extends AbstractConditionBean {
     }
 
     public String asTableDbName() {
-        return "member";
+        return "MEMBER";
     }
 
     // ===================================================================================
@@ -341,10 +341,10 @@ public class BsMemberCB extends AbstractConditionBean {
             columnMemberId(); // PK
         }
         @Override
-        protected String getTableDbName() { return "member"; }
+        protected String getTableDbName() { return "MEMBER"; }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
-         * {select max(FOO) from timecard where ...) as FOO_MAX} <br>
+         * {select max(FOO) from TIMECARD where ...) as FOO_MAX} <br>
          * TIMECARD by MEMBER_ID, named 'timecardList'.
          * <pre>
          * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {

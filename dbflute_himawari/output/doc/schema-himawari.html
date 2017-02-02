@@ -295,12 +295,12 @@ dl.procedurelist dd.column pre {
 	<tbody id="table-list-body">
 	<tr>
 		<td class="rownumcell">1</td>
-		<td><a href="#daily_in_out" title="type=TABLE, primaryKey={DAILY_IN_OUT_ID}, nameLength=12, columnCount=14">DAILY_IN_OUT</a></td>
+		<td><a href="#daily_start_end" title="type=TABLE, primaryKey={DAILY_START_END_ID}, nameLength=15, columnCount=14">DAILY_START_END</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#timecard" title="FK_DAILY_IN_OUT_TIMECARD">TIMECARD</a>, <a href="#vacation_type" title="FK_DAILY_IN_OUT_VACATION_TYPE">VACATION_TYPE</a></td>
 		<td class="relcell">&nbsp;</td>
-		<td class="commentcell"> 日次勤務時間記録</td>
-		<td class="subcell">DailyInOut</td>
+		<td class="commentcell"> ????????</td>
+		<td class="subcell">DailyStartEnd</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">2</td>
@@ -308,7 +308,7 @@ dl.procedurelist dd.column pre {
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"><a href="#timecard" title="FK_TIMECARD_MEMBER">TIMECARD</a></td>
-		<td class="commentcell"> メンバー</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">Member</td>
 	</tr>
 	<tr>
@@ -316,8 +316,8 @@ dl.procedurelist dd.column pre {
 		<td><a href="#timecard" title="type=TABLE, primaryKey={TIMECARD_ID}, nameLength=8, columnCount=8">TIMECARD</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#member" title="FK_TIMECARD_MEMBER">MEMBER</a></td>
-		<td class="relcell"><a href="#daily_in_out" title="FK_DAILY_IN_OUT_TIMECARD">DAILY_IN_OUT</a></td>
-		<td class="commentcell"> タイムカード</td>
+		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_IN_OUT_TIMECARD">DAILY_START_END</a></td>
+		<td class="commentcell"> ??????</td>
 		<td class="subcell">Timecard</td>
 	</tr>
 	<tr>
@@ -325,17 +325,17 @@ dl.procedurelist dd.column pre {
 		<td><a href="#vacation_type" title="type=TABLE, primaryKey={VACATION_TYPE_CODE}, nameLength=13, columnCount=7">VACATION_TYPE</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell"><a href="#daily_in_out" title="FK_DAILY_IN_OUT_VACATION_TYPE">DAILY_IN_OUT</a></td>
-		<td class="commentcell"> 休暇タイプ</td>
+		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_IN_OUT_VACATION_TYPE">DAILY_START_END</a></td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">VacationType</td>
 	</tr>
 	</tbody>
 </table>
 
-<h2 id="daily_in_out" title="type=TABLE, primaryKey={DAILY_IN_OUT_ID}, nameLength=12, columnCount=14">
-DAILY_IN_OUT
+<h2 id="daily_start_end" title="type=TABLE, primaryKey={DAILY_START_END_ID}, nameLength=15, columnCount=14">
+DAILY_START_END
 </h2>
-<p class="tablecomment">日次勤務時間記録</p>
+<p class="tablecomment">????????</p>
 <table>
 	<thead>
 	<tr>
@@ -363,14 +363,14 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
-		<td id="daily_in_out_daily_in_out_id">DAILY_IN_OUT_ID</td>
+		<td id="daily_start_end_daily_start_end_id">DAILY_START_END_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 日次勤務時間記録ID</td>
-		<td class="subcell">dailyInOutId</td>
+		<td class="commentcell"> ????????ID</td>
+		<td class="subcell">dailyStartEndId</td>
 		<td class="subcell">Long</td>
 	</tr>
 	<tr>
@@ -380,13 +380,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell" title="FK_DAILY_IN_OUT_TIMECARD(TIMECARD_ID)">o</td>
 		<td class="flgcell">*</td>
-		<td id="daily_in_out_timecard_id">TIMECARD_ID</td>
+		<td id="daily_start_end_timecard_id">TIMECARD_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell"><a href="#timecard" title="FK_DAILY_IN_OUT_TIMECARD">TIMECARD</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> タイムカードID</td>
+		<td class="commentcell"> ??????ID</td>
 		<td class="subcell">timecardId</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -397,13 +397,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
-		<td id="daily_in_out_biz_date">BIZ_DATE</td>
+		<td id="daily_start_end_biz_date">BIZ_DATE</td>
 		<td class="typecell">DATE</td>
 		<td class="sizecell"> 10 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 業務日</td>
+		<td class="commentcell"> ???</td>
 		<td class="subcell">bizDate</td>
 		<td class="subcell">LocalDate</td>
 	</tr>
@@ -414,13 +414,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_in_out_start_datetime">START_DATETIME</td>
+		<td id="daily_start_end_start_datetime">START_DATETIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 始業時間</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">startDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -431,14 +431,14 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_in_out_finish_datetime">FINISH_DATETIME</td>
+		<td id="daily_start_end_end_datetime">END_DATETIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 就業時間</td>
-		<td class="subcell">finishDatetime</td>
+		<td class="commentcell"> ????</td>
+		<td class="subcell">endDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
@@ -448,14 +448,14 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_in_out_amended_start_time">AMENDED_START_TIME</td>
+		<td id="daily_start_end_scale_fitted_start_time">SCALE_FITTED_START_TIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 補正後の始業時間</td>
-		<td class="subcell">amendedStartTime</td>
+		<td class="commentcell"> ????????</td>
+		<td class="subcell">scaleFittedStartTime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
@@ -465,14 +465,14 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_in_out_amended_finish_time">AMENDED_FINISH_TIME</td>
+		<td id="daily_start_end_scale_fitted_end_time">SCALE_FITTED_END_TIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 補正後の就業時間</td>
-		<td class="subcell">amendedFinishTime</td>
+		<td class="commentcell"> ????????</td>
+		<td class="subcell">scaleFittedEndTime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
@@ -482,13 +482,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell" title="FK_DAILY_IN_OUT_VACATION_TYPE(VACATION_TYPE_CODE)">o</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_in_out_vacation_type_code">VACATION_TYPE_CODE</td>
+		<td id="daily_start_end_vacation_type_code">VACATION_TYPE_CODE</td>
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 3 </td>
 		<td class="relcell"><a href="#vacation_type" title="FK_DAILY_IN_OUT_VACATION_TYPE">VACATION_TYPE</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 休暇タイプコード</td>
+		<td class="commentcell"> ????????</td>
 		<td class="subcell">vacationTypeCode</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -499,13 +499,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_in_out_note">NOTE</td>
+		<td id="daily_start_end_note">NOTE</td>
 		<td class="typecell">TEXT</td>
 		<td class="sizecell"> 65535 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 備考入力テキスト</td>
+		<td class="commentcell"> ????????</td>
 		<td class="subcell">note</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -516,13 +516,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
-		<td class="comcolcell" id="daily_in_out_register_datetime">REGISTER_DATETIME</td>
+		<td class="comcolcell" id="daily_start_end_register_datetime">REGISTER_DATETIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 登録日時</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -533,13 +533,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
-		<td class="comcolcell" id="daily_in_out_register_user">REGISTER_USER</td>
+		<td class="comcolcell" id="daily_start_end_register_user">REGISTER_USER</td>
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 200 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 登録ユーザ</td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">registerUser</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -550,13 +550,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
-		<td class="comcolcell" id="daily_in_out_update_datetime">UPDATE_DATETIME</td>
+		<td class="comcolcell" id="daily_start_end_update_datetime">UPDATE_DATETIME</td>
 		<td class="typecell">DATETIME</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 更新日時</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -567,13 +567,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
-		<td class="comcolcell" id="daily_in_out_update_user">UPDATE_USER</td>
+		<td class="comcolcell" id="daily_start_end_update_user">UPDATE_USER</td>
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 200 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 更新ユーザ</td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">updateUser</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -584,13 +584,13 @@ DAILY_IN_OUT
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
-		<td class="optcell" id="daily_in_out_version_no">VERSION_NO</td>
+		<td class="optcell" id="daily_start_end_version_no">VERSION_NO</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> バージョン番号</td>
+		<td class="commentcell"> ???????</td>
 		<td class="subcell">versionNo</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -598,7 +598,7 @@ DAILY_IN_OUT
 <h2 id="member" title="type=TABLE, primaryKey={MEMBER_ID}, nameLength=6, columnCount=8">
 MEMBER
 </h2>
-<p class="tablecomment">メンバー</p>
+<p class="tablecomment">????</p>
 <table>
 	<thead>
 	<tr>
@@ -632,7 +632,7 @@ MEMBER
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell"><a href="#timecard" title="FK_TIMECARD_MEMBER">TIMECARD</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> メンバーID</td>
+		<td class="commentcell"> ????ID</td>
 		<td class="subcell">memberId</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -649,7 +649,7 @@ MEMBER
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> メンバー名称</td>
+		<td class="commentcell"> ??????</td>
 		<td class="subcell">memberName</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -666,7 +666,7 @@ MEMBER
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> メンバーアカウント</td>
+		<td class="commentcell"> ?????????</td>
 		<td class="subcell">memberAccountId</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -683,7 +683,7 @@ MEMBER
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 登録日時</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -700,7 +700,7 @@ MEMBER
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 登録ユーザ</td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">registerUser</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -717,7 +717,7 @@ MEMBER
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 更新日時</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -734,7 +734,7 @@ MEMBER
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 更新ユーザ</td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">updateUser</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -751,7 +751,7 @@ MEMBER
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> バージョン番号</td>
+		<td class="commentcell"> ???????</td>
 		<td class="subcell">versionNo</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -759,7 +759,7 @@ MEMBER
 <h2 id="timecard" title="type=TABLE, primaryKey={TIMECARD_ID}, nameLength=8, columnCount=8">
 TIMECARD
 </h2>
-<p class="tablecomment">タイムカード</p>
+<p class="tablecomment">??????</p>
 <table>
 	<thead>
 	<tr>
@@ -791,7 +791,7 @@ TIMECARD
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#daily_in_out" title="FK_DAILY_IN_OUT_TIMECARD">DAILY_IN_OUT</a>&nbsp;</td>
+		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_IN_OUT_TIMECARD">DAILY_START_END</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> TIMECARD_ID</td>
 		<td class="subcell">timecardId</td>
@@ -810,7 +810,7 @@ TIMECARD
 		<td class="relcell"><a href="#member" title="FK_TIMECARD_MEMBER">MEMBER</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> メンバーID</td>
+		<td class="commentcell"> ????ID</td>
 		<td class="subcell">memberId</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -827,7 +827,7 @@ TIMECARD
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 年月&nbsp;:&nbsp;YYYYMM</td>
+		<td class="commentcell"> ??&nbsp;:&nbsp;YYYYMM</td>
 		<td class="subcell">timecardYearMonth</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -844,7 +844,7 @@ TIMECARD
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 登録日時</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -861,7 +861,7 @@ TIMECARD
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 登録ユーザ</td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">registerUser</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -878,7 +878,7 @@ TIMECARD
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 更新日時</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -895,7 +895,7 @@ TIMECARD
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 更新ユーザ</td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">updateUser</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -912,7 +912,7 @@ TIMECARD
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> バージョン番号</td>
+		<td class="commentcell"> ???????</td>
 		<td class="subcell">versionNo</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -920,7 +920,7 @@ TIMECARD
 <h2 id="vacation_type" title="type=TABLE, primaryKey={VACATION_TYPE_CODE}, nameLength=13, columnCount=7">
 VACATION_TYPE
 </h2>
-<p class="tablecomment">休暇タイプ</p>
+<p class="tablecomment">?????</p>
 <table>
 	<thead>
 	<tr>
@@ -952,9 +952,9 @@ VACATION_TYPE
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 3 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#daily_in_out" title="FK_DAILY_IN_OUT_VACATION_TYPE">DAILY_IN_OUT</a>&nbsp;</td>
+		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_IN_OUT_VACATION_TYPE">DAILY_START_END</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 休暇タイプコード</td>
+		<td class="commentcell"> ????????</td>
 		<td class="subcell">vacationTypeCode</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -971,7 +971,7 @@ VACATION_TYPE
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 休暇タイプ名称</td>
+		<td class="commentcell"> ???????</td>
 		<td class="subcell">vacationTypeName</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -988,7 +988,7 @@ VACATION_TYPE
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 登録日時</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -1005,7 +1005,7 @@ VACATION_TYPE
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 登録ユーザ</td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">registerUser</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1022,7 +1022,7 @@ VACATION_TYPE
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 更新日時</td>
+		<td class="commentcell"> ????</td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -1039,7 +1039,7 @@ VACATION_TYPE
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> 更新ユーザ</td>
+		<td class="commentcell"> ?????</td>
 		<td class="subcell">updateUser</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1056,7 +1056,7 @@ VACATION_TYPE
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> バージョン番号</td>
+		<td class="commentcell"> ???????</td>
 		<td class="subcell">versionNo</td>
 		<td class="subcell">Long</td>
 	</tr>

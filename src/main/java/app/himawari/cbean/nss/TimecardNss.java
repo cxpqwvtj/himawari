@@ -3,7 +3,7 @@ package app.himawari.cbean.nss;
 import app.himawari.cbean.cq.TimecardCQ;
 
 /**
- * The nest select set-upper of timecard.
+ * The nest select set-upper of TIMECARD.
  * @author DBFlute(AutoGenerator)
  */
 public class TimecardNss {

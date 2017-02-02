@@ -13,7 +13,7 @@ import app.himawari.allcommon.*;
 import app.himawari.exentity.*;
 
 /**
- * The DB meta of vacation_type. (Singleton)
+ * The DB meta of VACATION_TYPE. (Singleton)
  * @author DBFlute(AutoGenerator)
  */
 public class VacationTypeDbm extends AbstractDBMeta {
@@ -56,7 +56,7 @@ public class VacationTypeDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
-    protected final String _tableDbName = "vacation_type";
+    protected final String _tableDbName = "VACATION_TYPE";
     protected final String _tableDispName = "VACATION_TYPE";
     protected final String _tablePropertyName = "vacationType";
     protected final TableSqlName _tableSqlName = new TableSqlName("VACATION_TYPE", _tableDbName);
@@ -69,7 +69,7 @@ public class VacationTypeDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, true, false, true, "VARCHAR", 3, 0, null, false, null, null, null, "dailyInOutList", null, false);
+    protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, true, false, true, "VARCHAR", 3, 0, null, false, null, null, null, "dailyStartEndList", null, false);
     protected final ColumnInfo _columnVacationTypeName = cci("VACATION_TYPE_NAME", "VACATION_TYPE_NAME", null, null, String.class, "vacationTypeName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
@@ -150,12 +150,12 @@ public class VacationTypeDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     /**
-     * DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'.
+     * DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndList'.
      * @return The information object of referrer property. (NotNull)
      */
-    public ReferrerInfo referrerDailyInOutList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVacationTypeCode(), DailyInOutDbm.getInstance().columnVacationTypeCode());
-        return cri("FK_DAILY_IN_OUT_VACATION_TYPE", "dailyInOutList", this, DailyInOutDbm.getInstance(), mp, false, "vacationType");
+    public ReferrerInfo referrerDailyStartEndList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnVacationTypeCode(), DailyStartEndDbm.getInstance().columnVacationTypeCode());
+        return cri("FK_DAILY_IN_OUT_VACATION_TYPE", "dailyStartEndList", this, DailyStartEndDbm.getInstance(), mp, false, "vacationType");
     }
 
     // ===================================================================================

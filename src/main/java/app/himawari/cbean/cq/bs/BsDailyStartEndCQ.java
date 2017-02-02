@@ -13,20 +13,20 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-query of daily_in_out.
+ * The base condition-query of DAILY_START_END.
  * @author DBFlute(AutoGenerator)
  */
-public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
+public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected DailyInOutCIQ _inlineQuery;
+    protected DailyStartEndCIQ _inlineQuery;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsDailyInOutCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+    public BsDailyStartEndCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
@@ -35,63 +35,63 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
     //                                                                 ===================
     /**
      * Prepare InlineView query. <br>
-     * {select ... from ... left outer join (select * from daily_in_out) where FOO = [value] ...}
+     * {select ... from ... left outer join (select * from DAILY_START_END) where FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">inline()</span>.setFoo...;
      * </pre>
      * @return The condition-query for InlineView query. (NotNull)
      */
-    public DailyInOutCIQ inline() {
+    public DailyStartEndCIQ inline() {
         if (_inlineQuery == null) { _inlineQuery = xcreateCIQ(); }
         _inlineQuery.xsetOnClause(false); return _inlineQuery;
     }
 
-    protected DailyInOutCIQ xcreateCIQ() {
-        DailyInOutCIQ ciq = xnewCIQ();
+    protected DailyStartEndCIQ xcreateCIQ() {
+        DailyStartEndCIQ ciq = xnewCIQ();
         ciq.xsetBaseCB(_baseCB);
         return ciq;
     }
 
-    protected DailyInOutCIQ xnewCIQ() {
-        return new DailyInOutCIQ(xgetReferrerQuery(), xgetSqlClause(), xgetAliasName(), xgetNestLevel(), this);
+    protected DailyStartEndCIQ xnewCIQ() {
+        return new DailyStartEndCIQ(xgetReferrerQuery(), xgetSqlClause(), xgetAliasName(), xgetNestLevel(), this);
     }
 
     /**
      * Prepare OnClause query. <br>
-     * {select ... from ... left outer join daily_in_out on ... and FOO = [value] ...}
+     * {select ... from ... left outer join DAILY_START_END on ... and FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">on()</span>.setFoo...;
      * </pre>
      * @return The condition-query for OnClause query. (NotNull)
      * @throws IllegalConditionBeanOperationException When this condition-query is base query.
      */
-    public DailyInOutCIQ on() {
+    public DailyStartEndCIQ on() {
         if (isBaseQuery()) { throw new IllegalConditionBeanOperationException("OnClause for local table is unavailable!"); }
-        DailyInOutCIQ inlineQuery = inline(); inlineQuery.xsetOnClause(true); return inlineQuery;
+        DailyStartEndCIQ inlineQuery = inline(); inlineQuery.xsetOnClause(true); return inlineQuery;
     }
 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    protected ConditionValue _dailyInOutId;
-    public ConditionValue xdfgetDailyInOutId()
-    { if (_dailyInOutId == null) { _dailyInOutId = nCV(); }
-      return _dailyInOutId; }
-    protected ConditionValue xgetCValueDailyInOutId() { return xdfgetDailyInOutId(); }
+    protected ConditionValue _dailyStartEndId;
+    public ConditionValue xdfgetDailyStartEndId()
+    { if (_dailyStartEndId == null) { _dailyStartEndId = nCV(); }
+      return _dailyStartEndId; }
+    protected ConditionValue xgetCValueDailyStartEndId() { return xdfgetDailyStartEndId(); }
 
     /** 
      * Add order-by as ascend. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_DailyInOutId_Asc() { regOBA("DAILY_IN_OUT_ID"); return this; }
+    public BsDailyStartEndCQ addOrderBy_DailyStartEndId_Asc() { regOBA("DAILY_START_END_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
+     * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_DailyInOutId_Desc() { regOBD("DAILY_IN_OUT_ID"); return this; }
+    public BsDailyStartEndCQ addOrderBy_DailyStartEndId_Desc() { regOBD("DAILY_START_END_ID"); return this; }
 
     protected ConditionValue _timecardId;
     public ConditionValue xdfgetTimecardId()
@@ -101,17 +101,17 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_TimecardId_Asc() { regOBA("TIMECARD_ID"); return this; }
+    public BsDailyStartEndCQ addOrderBy_TimecardId_Asc() { regOBA("TIMECARD_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_TimecardId_Desc() { regOBD("TIMECARD_ID"); return this; }
+    public BsDailyStartEndCQ addOrderBy_TimecardId_Desc() { regOBD("TIMECARD_ID"); return this; }
 
     protected ConditionValue _bizDate;
     public ConditionValue xdfgetBizDate()
@@ -124,14 +124,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * BIZ_DATE: {NotNull, DATE(10)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_BizDate_Asc() { regOBA("BIZ_DATE"); return this; }
+    public BsDailyStartEndCQ addOrderBy_BizDate_Asc() { regOBA("BIZ_DATE"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * BIZ_DATE: {NotNull, DATE(10)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_BizDate_Desc() { regOBD("BIZ_DATE"); return this; }
+    public BsDailyStartEndCQ addOrderBy_BizDate_Desc() { regOBD("BIZ_DATE"); return this; }
 
     protected ConditionValue _startDatetime;
     public ConditionValue xdfgetStartDatetime()
@@ -144,74 +144,74 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * START_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_StartDatetime_Asc() { regOBA("START_DATETIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_StartDatetime_Asc() { regOBA("START_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * START_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_StartDatetime_Desc() { regOBD("START_DATETIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_StartDatetime_Desc() { regOBD("START_DATETIME"); return this; }
 
-    protected ConditionValue _finishDatetime;
-    public ConditionValue xdfgetFinishDatetime()
-    { if (_finishDatetime == null) { _finishDatetime = nCV(); }
-      return _finishDatetime; }
-    protected ConditionValue xgetCValueFinishDatetime() { return xdfgetFinishDatetime(); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * @return this. (NotNull)
-     */
-    public BsDailyInOutCQ addOrderBy_FinishDatetime_Asc() { regOBA("FINISH_DATETIME"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * FINISH_DATETIME: {DATETIME(19)}
-     * @return this. (NotNull)
-     */
-    public BsDailyInOutCQ addOrderBy_FinishDatetime_Desc() { regOBD("FINISH_DATETIME"); return this; }
-
-    protected ConditionValue _amendedStartTime;
-    public ConditionValue xdfgetAmendedStartTime()
-    { if (_amendedStartTime == null) { _amendedStartTime = nCV(); }
-      return _amendedStartTime; }
-    protected ConditionValue xgetCValueAmendedStartTime() { return xdfgetAmendedStartTime(); }
+    protected ConditionValue _endDatetime;
+    public ConditionValue xdfgetEndDatetime()
+    { if (_endDatetime == null) { _endDatetime = nCV(); }
+      return _endDatetime; }
+    protected ConditionValue xgetCValueEndDatetime() { return xdfgetEndDatetime(); }
 
     /** 
      * Add order-by as ascend. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
+     * END_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_AmendedStartTime_Asc() { regOBA("AMENDED_START_TIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_EndDatetime_Asc() { regOBA("END_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * AMENDED_START_TIME: {DATETIME(19)}
+     * END_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_AmendedStartTime_Desc() { regOBD("AMENDED_START_TIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_EndDatetime_Desc() { regOBD("END_DATETIME"); return this; }
 
-    protected ConditionValue _amendedFinishTime;
-    public ConditionValue xdfgetAmendedFinishTime()
-    { if (_amendedFinishTime == null) { _amendedFinishTime = nCV(); }
-      return _amendedFinishTime; }
-    protected ConditionValue xgetCValueAmendedFinishTime() { return xdfgetAmendedFinishTime(); }
+    protected ConditionValue _scaleFittedStartTime;
+    public ConditionValue xdfgetScaleFittedStartTime()
+    { if (_scaleFittedStartTime == null) { _scaleFittedStartTime = nCV(); }
+      return _scaleFittedStartTime; }
+    protected ConditionValue xgetCValueScaleFittedStartTime() { return xdfgetScaleFittedStartTime(); }
 
     /** 
      * Add order-by as ascend. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_AmendedFinishTime_Asc() { regOBA("AMENDED_FINISH_TIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_ScaleFittedStartTime_Asc() { regOBA("SCALE_FITTED_START_TIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * AMENDED_FINISH_TIME: {DATETIME(19)}
+     * SCALE_FITTED_START_TIME: {DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_AmendedFinishTime_Desc() { regOBD("AMENDED_FINISH_TIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_ScaleFittedStartTime_Desc() { regOBD("SCALE_FITTED_START_TIME"); return this; }
+
+    protected ConditionValue _scaleFittedEndTime;
+    public ConditionValue xdfgetScaleFittedEndTime()
+    { if (_scaleFittedEndTime == null) { _scaleFittedEndTime = nCV(); }
+      return _scaleFittedEndTime; }
+    protected ConditionValue xgetCValueScaleFittedEndTime() { return xdfgetScaleFittedEndTime(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * @return this. (NotNull)
+     */
+    public BsDailyStartEndCQ addOrderBy_ScaleFittedEndTime_Asc() { regOBA("SCALE_FITTED_END_TIME"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * SCALE_FITTED_END_TIME: {DATETIME(19)}
+     * @return this. (NotNull)
+     */
+    public BsDailyStartEndCQ addOrderBy_ScaleFittedEndTime_Desc() { regOBD("SCALE_FITTED_END_TIME"); return this; }
 
     protected ConditionValue _vacationTypeCode;
     public ConditionValue xdfgetVacationTypeCode()
@@ -221,17 +221,17 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_VacationTypeCode_Asc() { regOBA("VACATION_TYPE_CODE"); return this; }
+    public BsDailyStartEndCQ addOrderBy_VacationTypeCode_Asc() { regOBA("VACATION_TYPE_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_VacationTypeCode_Desc() { regOBD("VACATION_TYPE_CODE"); return this; }
+    public BsDailyStartEndCQ addOrderBy_VacationTypeCode_Desc() { regOBD("VACATION_TYPE_CODE"); return this; }
 
     protected ConditionValue _note;
     public ConditionValue xdfgetNote()
@@ -244,14 +244,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * NOTE: {TEXT(65535)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_Note_Asc() { regOBA("NOTE"); return this; }
+    public BsDailyStartEndCQ addOrderBy_Note_Asc() { regOBA("NOTE"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * NOTE: {TEXT(65535)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_Note_Desc() { regOBD("NOTE"); return this; }
+    public BsDailyStartEndCQ addOrderBy_Note_Desc() { regOBD("NOTE"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()
@@ -264,14 +264,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_RegisterDatetime_Asc() { regOBA("REGISTER_DATETIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_RegisterDatetime_Asc() { regOBA("REGISTER_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
 
     protected ConditionValue _registerUser;
     public ConditionValue xdfgetRegisterUser()
@@ -284,14 +284,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_RegisterUser_Asc() { regOBA("REGISTER_USER"); return this; }
+    public BsDailyStartEndCQ addOrderBy_RegisterUser_Asc() { regOBA("REGISTER_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
+    public BsDailyStartEndCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
 
     protected ConditionValue _updateDatetime;
     public ConditionValue xdfgetUpdateDatetime()
@@ -304,14 +304,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_UpdateDatetime_Asc() { regOBA("UPDATE_DATETIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_UpdateDatetime_Asc() { regOBA("UPDATE_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
+    public BsDailyStartEndCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
 
     protected ConditionValue _updateUser;
     public ConditionValue xdfgetUpdateUser()
@@ -324,14 +324,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_UpdateUser_Asc() { regOBA("UPDATE_USER"); return this; }
+    public BsDailyStartEndCQ addOrderBy_UpdateUser_Asc() { regOBA("UPDATE_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
+    public BsDailyStartEndCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
 
     protected ConditionValue _versionNo;
     public ConditionValue xdfgetVersionNo()
@@ -344,14 +344,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_VersionNo_Asc() { regOBA("VERSION_NO"); return this; }
+    public BsDailyStartEndCQ addOrderBy_VersionNo_Asc() { regOBA("VERSION_NO"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addOrderBy_VersionNo_Desc() { regOBD("VERSION_NO"); return this; }
+    public BsDailyStartEndCQ addOrderBy_VersionNo_Desc() { regOBD("VERSION_NO"); return this; }
 
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy
@@ -370,7 +370,7 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsDailyStartEndCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -386,14 +386,14 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsDailyInOutCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsDailyStartEndCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
-        DailyInOutCQ bq = (DailyInOutCQ)bqs;
-        DailyInOutCQ uq = (DailyInOutCQ)uqs;
+        DailyStartEndCQ bq = (DailyStartEndCQ)bqs;
+        DailyStartEndCQ uq = (DailyStartEndCQ)uqs;
         if (bq.hasConditionQueryTimecard()) {
             uq.queryTimecard().reflectRelationOnUnionQuery(bq.queryTimecard(), uq.queryTimecard());
         }
@@ -419,7 +419,7 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
         return xgetQueRlMap(prop);
     }
     protected TimecardCQ xcreateQueryTimecard() {
-        String nrp = xresolveNRP("daily_in_out", "timecard"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        String nrp = xresolveNRP("DAILY_START_END", "timecard"); String jan = xresolveJAN(nrp, xgetNNLvl());
         return xinitRelCQ(new TimecardCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "timecard", nrp);
     }
     protected void xsetupOuterJoinTimecard() { xregOutJo("timecard"); }
@@ -439,7 +439,7 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
         return xgetQueRlMap(prop);
     }
     protected VacationTypeCQ xcreateQueryVacationType() {
-        String nrp = xresolveNRP("daily_in_out", "vacationType"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        String nrp = xresolveNRP("DAILY_START_END", "vacationType"); String jan = xresolveJAN(nrp, xgetNNLvl());
         return xinitRelCQ(new VacationTypeCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vacationType", nrp);
     }
     protected void xsetupOuterJoinVacationType() { xregOutJo("vacationType"); }
@@ -452,39 +452,39 @@ public class BsDailyInOutCQ extends AbstractBsDailyInOutCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    public Map<String, DailyInOutCQ> xdfgetScalarCondition() { return xgetSQueMap("scalarCondition"); }
-    public String keepScalarCondition(DailyInOutCQ sq) { return xkeepSQue("scalarCondition", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(DailyStartEndCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public Map<String, DailyInOutCQ> xdfgetSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
-    public String keepSpecifyMyselfDerived(DailyInOutCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(DailyStartEndCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    public Map<String, DailyInOutCQ> xdfgetQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
-    public String keepQueryMyselfDerived(DailyInOutCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(DailyStartEndCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
     public Map<String, Object> xdfgetQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
     public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
-    protected Map<String, DailyInOutCQ> _myselfExistsMap;
-    public Map<String, DailyInOutCQ> xdfgetMyselfExists() { return xgetSQueMap("myselfExists"); }
-    public String keepMyselfExists(DailyInOutCQ sq) { return xkeepSQue("myselfExists", sq); }
+    protected Map<String, DailyStartEndCQ> _myselfExistsMap;
+    public Map<String, DailyStartEndCQ> xdfgetMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(DailyStartEndCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    public Map<String, DailyInOutCQ> xdfgetMyselfInScope() { return xgetSQueMap("myselfInScope"); }
-    public String keepMyselfInScope(DailyInOutCQ sq) { return xkeepSQue("myselfInScope", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(DailyStartEndCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xCB() { return DailyInOutCB.class.getName(); }
-    protected String xCQ() { return DailyInOutCQ.class.getName(); }
+    protected String xCB() { return DailyStartEndCB.class.getName(); }
+    protected String xCQ() { return DailyStartEndCQ.class.getName(); }
     protected String xCHp() { return HpQDRFunction.class.getName(); }
     protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }

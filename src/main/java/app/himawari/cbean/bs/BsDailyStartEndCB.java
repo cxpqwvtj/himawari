@@ -21,20 +21,20 @@ import app.himawari.cbean.cq.*;
 import app.himawari.cbean.nss.*;
 
 /**
- * The base condition-bean of daily_in_out.
+ * The base condition-bean of DAILY_START_END.
  * @author DBFlute(AutoGenerator)
  */
-public class BsDailyInOutCB extends AbstractConditionBean {
+public class BsDailyStartEndCB extends AbstractConditionBean {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected DailyInOutCQ _conditionQuery;
+    protected DailyStartEndCQ _conditionQuery;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsDailyInOutCB() {
+    public BsDailyStartEndCB() {
         if (DBFluteConfig.getInstance().isPagingCountLater()) {
             enablePagingCountLater();
         }
@@ -73,7 +73,7 @@ public class BsDailyInOutCB extends AbstractConditionBean {
     }
 
     public String asTableDbName() {
-        return "daily_in_out";
+        return "DAILY_START_END";
     }
 
     // ===================================================================================
@@ -81,23 +81,23 @@ public class BsDailyInOutCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param dailyInOutId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @param dailyStartEndId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return this. (NotNull)
      */
-    public DailyInOutCB acceptPK(Long dailyInOutId) {
-        assertObjectNotNull("dailyInOutId", dailyInOutId);
-        BsDailyInOutCB cb = this;
-        cb.query().setDailyInOutId_Equal(dailyInOutId);
-        return (DailyInOutCB)this;
+    public DailyStartEndCB acceptPK(Long dailyStartEndId) {
+        assertObjectNotNull("dailyStartEndId", dailyStartEndId);
+        BsDailyStartEndCB cb = this;
+        cb.query().setDailyStartEndId_Equal(dailyStartEndId);
+        return (DailyStartEndCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
-        query().addOrderBy_DailyInOutId_Asc();
+        query().addOrderBy_DailyStartEndId_Asc();
         return this;
     }
 
     public ConditionBean addOrderBy_PK_Desc() {
-        query().addOrderBy_DailyInOutId_Desc();
+        query().addOrderBy_DailyStartEndId_Desc();
         return this;
     }
 
@@ -161,34 +161,34 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * </pre>
      * @return The instance of condition-query for base-point table to set up query. (NotNull)
      */
-    public DailyInOutCQ query() {
+    public DailyStartEndCQ query() {
         assertQueryPurpose(); // assert only when user-public query 
         return doGetConditionQuery();
     }
 
-    public DailyInOutCQ xdfgetConditionQuery() { // public for parameter comment and internal
+    public DailyStartEndCQ xdfgetConditionQuery() { // public for parameter comment and internal
         return doGetConditionQuery();
     }
 
-    protected DailyInOutCQ doGetConditionQuery() {
+    protected DailyStartEndCQ doGetConditionQuery() {
         if (_conditionQuery == null) {
             _conditionQuery = createLocalCQ();
         }
         return _conditionQuery;
     }
 
-    protected DailyInOutCQ createLocalCQ() {
+    protected DailyStartEndCQ createLocalCQ() {
         return xcreateCQ(null, getSqlClause(), getSqlClause().getBasePointAliasName(), 0);
     }
 
-    protected DailyInOutCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        DailyInOutCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected DailyStartEndCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        DailyStartEndCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
         cq.xsetBaseCB(this);
         return cq;
     }
 
-    protected DailyInOutCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        return new DailyInOutCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected DailyStartEndCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        return new DailyStartEndCQ(childQuery, sqlClause, aliasName, nestLevel);
     }
 
     /**
@@ -212,10 +212,10 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * </pre>
      * @param unionCBLambda The callback for query of 'union'. (NotNull)
      */
-    public void union(UnionQuery<DailyInOutCB> unionCBLambda) {
-        final DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+    public void union(UnionQuery<DailyStartEndCB> unionCBLambda) {
+        final DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
         try { lock(); unionCBLambda.query(cb); } finally { unlock(); } xsaveUCB(cb);
-        final DailyInOutCQ cq = cb.query(); query().xsetUnionQuery(cq);
+        final DailyStartEndCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
     /**
@@ -229,10 +229,10 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * </pre>
      * @param unionCBLambda The callback for query of 'union all'. (NotNull)
      */
-    public void unionAll(UnionQuery<DailyInOutCB> unionCBLambda) {
-        final DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+    public void unionAll(UnionQuery<DailyStartEndCB> unionCBLambda) {
+        final DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
         try { lock(); unionCBLambda.query(cb); } finally { unlock(); } xsaveUCB(cb);
-        final DailyInOutCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
+        final DailyStartEndCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
     // ===================================================================================
@@ -247,11 +247,11 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * Set up relation columns to select clause. <br>
      * TIMECARD by my TIMECARD_ID, named 'timecard'.
      * <pre>
-     * <span style="color: #0000C0">dailyInOutBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">dailyStartEndBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Timecard()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      *     <span style="color: #553000">cb</span>.query().set...
-     * }).alwaysPresent(<span style="color: #553000">dailyInOut</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">dailyInOut</span>.<span style="color: #CC4747">getTimecard()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * }).alwaysPresent(<span style="color: #553000">dailyStartEnd</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">dailyStartEnd</span>.<span style="color: #CC4747">getTimecard()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * });
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
@@ -271,11 +271,11 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * Set up relation columns to select clause. <br>
      * VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'.
      * <pre>
-     * <span style="color: #0000C0">dailyInOutBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">dailyStartEndBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_VacationType()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      *     <span style="color: #553000">cb</span>.query().set...
-     * }).alwaysPresent(<span style="color: #553000">dailyInOut</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">dailyInOut</span>.<span style="color: #CC4747">getVacationType()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * }).alwaysPresent(<span style="color: #553000">dailyStartEnd</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">dailyStartEnd</span>.<span style="color: #CC4747">getVacationType()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * });
      * </pre>
      */
@@ -327,20 +327,20 @@ public class BsDailyInOutCB extends AbstractConditionBean {
         return _specification != null && _specification.hasSpecifiedColumn();
     }
 
-    public static class HpSpecification extends HpAbstractSpecification<DailyInOutCQ> {
+    public static class HpSpecification extends HpAbstractSpecification<DailyStartEndCQ> {
         protected TimecardCB.HpSpecification _timecard;
         protected VacationTypeCB.HpSpecification _vacationType;
-        public HpSpecification(ConditionBean baseCB, HpSpQyCall<DailyInOutCQ> qyCall
+        public HpSpecification(ConditionBean baseCB, HpSpQyCall<DailyStartEndCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * DAILY_IN_OUT_ID: {PK, ID, NotNull, BIGINT(19)}
+         * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnDailyInOutId() { return doColumn("DAILY_IN_OUT_ID"); }
+        public SpecifiedColumn columnDailyStartEndId() { return doColumn("DAILY_START_END_ID"); }
         /**
-         * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to timecard}
+         * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnTimecardId() { return doColumn("TIMECARD_ID"); }
@@ -355,22 +355,22 @@ public class BsDailyInOutCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnStartDatetime() { return doColumn("START_DATETIME"); }
         /**
-         * FINISH_DATETIME: {DATETIME(19)}
+         * END_DATETIME: {DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnFinishDatetime() { return doColumn("FINISH_DATETIME"); }
+        public SpecifiedColumn columnEndDatetime() { return doColumn("END_DATETIME"); }
         /**
-         * AMENDED_START_TIME: {DATETIME(19)}
+         * SCALE_FITTED_START_TIME: {DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnAmendedStartTime() { return doColumn("AMENDED_START_TIME"); }
+        public SpecifiedColumn columnScaleFittedStartTime() { return doColumn("SCALE_FITTED_START_TIME"); }
         /**
-         * AMENDED_FINISH_TIME: {DATETIME(19)}
+         * SCALE_FITTED_END_TIME: {DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnAmendedFinishTime() { return doColumn("AMENDED_FINISH_TIME"); }
+        public SpecifiedColumn columnScaleFittedEndTime() { return doColumn("SCALE_FITTED_END_TIME"); }
         /**
-         * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to vacation_type}
+         * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnVacationTypeCode() { return doColumn("VACATION_TYPE_CODE"); }
@@ -408,7 +408,7 @@ public class BsDailyInOutCB extends AbstractConditionBean {
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
-            columnDailyInOutId(); // PK
+            columnDailyStartEndId(); // PK
             if (qyCall().qy().hasConditionQueryTimecard()
                     || qyCall().qy().xgetReferrerQuery() instanceof TimecardCQ) {
                 columnTimecardId(); // FK or one-to-one referrer
@@ -419,7 +419,7 @@ public class BsDailyInOutCB extends AbstractConditionBean {
             }
         }
         @Override
-        protected String getTableDbName() { return "daily_in_out"; }
+        protected String getTableDbName() { return "DAILY_START_END"; }
         /**
          * Prepare to specify functions about relation table. <br>
          * TIMECARD by my TIMECARD_ID, named 'timecard'.
@@ -464,9 +464,9 @@ public class BsDailyInOutCB extends AbstractConditionBean {
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)
          */
-        public HpSDRFunction<DailyInOutCB, DailyInOutCQ> myselfDerived() {
+        public HpSDRFunction<DailyStartEndCB, DailyStartEndCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<DailyInOutCB> sq, DailyInOutCQ cq, String al, DerivedReferrerOption op)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<DailyStartEndCB> sq, DailyStartEndCQ cq, String al, DerivedReferrerOption op)
                     -> cq.xsmyselfDerive(fn, sq, al, op), _dbmetaProvider);
         }
     }
@@ -479,9 +479,9 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * This is very specialty so you can get the frontier spirit. Bon voyage!
      * @return The condition-bean for dream cruise, which is linked to main condition-bean.
      */
-    public DailyInOutCB dreamCruiseCB() {
-        DailyInOutCB cb = new DailyInOutCB();
-        cb.xsetupForDreamCruise((DailyInOutCB) this);
+    public DailyStartEndCB dreamCruiseCB() {
+        DailyStartEndCB cb = new DailyStartEndCB();
+        cb.xsetupForDreamCruise((DailyStartEndCB) this);
         return cb;
     }
 
@@ -506,15 +506,15 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * @param colCBLambda The callback for specify-query of left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<DailyInOutCB> columnQuery(final SpecifyQuery<DailyInOutCB> colCBLambda) {
+    public HpColQyOperand<DailyStartEndCB> columnQuery(final SpecifyQuery<DailyStartEndCB> colCBLambda) {
         return xcreateColQyOperand((rightSp, operand) -> {
             return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), colCBLambda, rightSp, operand);
         });
     }
 
-    protected DailyInOutCB xcreateColumnQueryCB() {
-        DailyInOutCB cb = new DailyInOutCB();
-        cb.xsetupForColumnQuery((DailyInOutCB)this);
+    protected DailyStartEndCB xcreateColumnQueryCB() {
+        DailyStartEndCB cb = new DailyStartEndCB();
+        cb.xsetupForColumnQuery((DailyStartEndCB)this);
         return cb;
     }
 
@@ -534,8 +534,8 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * </pre>
      * @param orCBLambda The callback for query of or-condition. (NotNull)
      */
-    public void orScopeQuery(OrQuery<DailyInOutCB> orCBLambda) {
-        xorSQ((DailyInOutCB)this, orCBLambda);
+    public void orScopeQuery(OrQuery<DailyStartEndCB> orCBLambda) {
+        xorSQ((DailyStartEndCB)this, orCBLambda);
     }
 
     /**
@@ -553,8 +553,8 @@ public class BsDailyInOutCB extends AbstractConditionBean {
      * </pre>
      * @param andCBLambda The callback for query of and-condition. (NotNull)
      */
-    public void orScopeQueryAndPart(AndQuery<DailyInOutCB> andCBLambda) {
-        xorSQAP((DailyInOutCB)this, andCBLambda);
+    public void orScopeQueryAndPart(AndQuery<DailyStartEndCB> andCBLambda) {
+        xorSQAP((DailyStartEndCB)this, andCBLambda);
     }
 
     // ===================================================================================
@@ -584,11 +584,11 @@ public class BsDailyInOutCB extends AbstractConditionBean {
     //                                                                        ============
     @Override
     protected void xprepareSyncQyCall(ConditionBean mainCB) {
-        final DailyInOutCB cb;
+        final DailyStartEndCB cb;
         if (mainCB != null) {
-            cb = (DailyInOutCB)mainCB;
+            cb = (DailyStartEndCB)mainCB;
         } else {
-            cb = new DailyInOutCB();
+            cb = new DailyStartEndCB();
         }
         specify().xsetSyncQyCall(xcreateSpQyCall(() -> true, () -> cb.query()));
     }
@@ -597,8 +597,8 @@ public class BsDailyInOutCB extends AbstractConditionBean {
     //                                                                            Internal
     //                                                                            ========
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xgetConditionBeanClassNameInternally() { return DailyInOutCB.class.getName(); }
-    protected String xgetConditionQueryClassNameInternally() { return DailyInOutCQ.class.getName(); }
+    protected String xgetConditionBeanClassNameInternally() { return DailyStartEndCB.class.getName(); }
+    protected String xgetConditionQueryClassNameInternally() { return DailyStartEndCQ.class.getName(); }
     protected String xgetSubQueryClassNameInternally() { return SubQuery.class.getName(); }
     protected String xgetConditionOptionClassNameInternally() { return ConditionOption.class.getName(); }
 }

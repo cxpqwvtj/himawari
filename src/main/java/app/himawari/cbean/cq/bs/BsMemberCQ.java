@@ -13,7 +13,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-query of member.
+ * The base condition-query of MEMBER.
  * @author DBFlute(AutoGenerator)
  */
 public class BsMemberCQ extends AbstractBsMemberCQ {
@@ -35,7 +35,7 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     //                                                                 ===================
     /**
      * Prepare InlineView query. <br>
-     * {select ... from ... left outer join (select * from member) where FOO = [value] ...}
+     * {select ... from ... left outer join (select * from MEMBER) where FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">inline()</span>.setFoo...;
      * </pre>
@@ -58,7 +58,7 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     /**
      * Prepare OnClause query. <br>
-     * {select ... from ... left outer join member on ... and FOO = [value] ...}
+     * {select ... from ... left outer join MEMBER on ... and FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">on()</span>.setFoo...;
      * </pre>

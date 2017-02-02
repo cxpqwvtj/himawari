@@ -1,18 +1,18 @@
 package app.himawari.cbean.nss;
 
-import app.himawari.cbean.cq.DailyInOutCQ;
+import app.himawari.cbean.cq.DailyStartEndCQ;
 
 /**
- * The nest select set-upper of daily_in_out.
+ * The nest select set-upper of DAILY_START_END.
  * @author DBFlute(AutoGenerator)
  */
-public class DailyInOutNss {
+public class DailyStartEndNss {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected final DailyInOutCQ _query;
-    public DailyInOutNss(DailyInOutCQ query) { _query = query; }
+    protected final DailyStartEndCQ _query;
+    public DailyStartEndNss(DailyStartEndCQ query) { _query = query; }
     public boolean hasConditionQuery() { return _query != null; }
 
     // ===================================================================================

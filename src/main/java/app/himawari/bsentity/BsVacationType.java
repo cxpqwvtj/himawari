@@ -12,7 +12,7 @@ import app.himawari.exentity.*;
 
 /**
  * The entity of VACATION_TYPE as TABLE. <br>
- * 休暇タイプ
+ * ?????
  * <pre>
  * [primary-key]
  *     VACATION_TYPE_CODE
@@ -33,13 +33,13 @@ import app.himawari.exentity.*;
  *     
  *
  * [referrer table]
- *     DAILY_IN_OUT
+ *     DAILY_START_END
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     dailyInOutList
+ *     dailyStartEndList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -103,7 +103,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /** {@inheritDoc} */
     public String asTableDbName() {
-        return "vacation_type";
+        return "VACATION_TYPE";
     }
 
     // ===================================================================================
@@ -121,24 +121,24 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'. */
-    protected List<DailyInOut> _dailyInOutList;
+    /** DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndList'. */
+    protected List<DailyStartEnd> _dailyStartEndList;
 
     /**
-     * [get] DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'.
-     * @return The entity list of referrer property 'dailyInOutList'. (NotNull: even if no loading, returns empty list)
+     * [get] DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndList'.
+     * @return The entity list of referrer property 'dailyStartEndList'. (NotNull: even if no loading, returns empty list)
      */
-    public List<DailyInOut> getDailyInOutList() {
-        if (_dailyInOutList == null) { _dailyInOutList = newReferrerList(); }
-        return _dailyInOutList;
+    public List<DailyStartEnd> getDailyStartEndList() {
+        if (_dailyStartEndList == null) { _dailyStartEndList = newReferrerList(); }
+        return _dailyStartEndList;
     }
 
     /**
-     * [set] DAILY_IN_OUT by VACATION_TYPE_CODE, named 'dailyInOutList'.
-     * @param dailyInOutList The entity list of referrer property 'dailyInOutList'. (NullAllowed)
+     * [set] DAILY_START_END by VACATION_TYPE_CODE, named 'dailyStartEndList'.
+     * @param dailyStartEndList The entity list of referrer property 'dailyStartEndList'. (NullAllowed)
      */
-    public void setDailyInOutList(List<DailyInOut> dailyInOutList) {
-        _dailyInOutList = dailyInOutList;
+    public void setDailyStartEndList(List<DailyStartEnd> dailyStartEndList) {
+        _dailyStartEndList = dailyStartEndList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
@@ -170,8 +170,8 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_dailyInOutList != null) { for (DailyInOut et : _dailyInOutList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "dailyInOutList")); } } }
+        if (_dailyStartEndList != null) { for (DailyStartEnd et : _dailyStartEndList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "dailyStartEndList")); } } }
         return sb.toString();
     }
 
@@ -195,8 +195,8 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_dailyInOutList != null && !_dailyInOutList.isEmpty())
-        { sb.append(dm).append("dailyInOutList"); }
+        if (_dailyStartEndList != null && !_dailyStartEndList.isEmpty())
+        { sb.append(dm).append("dailyStartEndList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -213,7 +213,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
     //                                                                            ========
     /**
      * [get] VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)} <br>
-     * 休暇タイプコード
+     * ????????
      * @return The value of the column 'VACATION_TYPE_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getVacationTypeCode() {
@@ -223,7 +223,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [set] VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)} <br>
-     * 休暇タイプコード
+     * ????????
      * @param vacationTypeCode The value of the column 'VACATION_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setVacationTypeCode(String vacationTypeCode) {
@@ -233,7 +233,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [get] VACATION_TYPE_NAME: {NotNull, VARCHAR(200)} <br>
-     * 休暇タイプ名称
+     * ???????
      * @return The value of the column 'VACATION_TYPE_NAME'. (basically NotNull if selected: for the constraint)
      */
     public String getVacationTypeName() {
@@ -243,7 +243,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [set] VACATION_TYPE_NAME: {NotNull, VARCHAR(200)} <br>
-     * 休暇タイプ名称
+     * ???????
      * @param vacationTypeName The value of the column 'VACATION_TYPE_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setVacationTypeName(String vacationTypeName) {
@@ -253,7 +253,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [get] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 登録日時
+     * ????
      * @return The value of the column 'REGISTER_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -263,7 +263,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [set] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 登録日時
+     * ????
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -273,7 +273,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [get] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * 登録ユーザ
+     * ?????
      * @return The value of the column 'REGISTER_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getRegisterUser() {
@@ -283,7 +283,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [set] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * 登録ユーザ
+     * ?????
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
@@ -293,7 +293,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [get] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 更新日時
+     * ????
      * @return The value of the column 'UPDATE_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -303,7 +303,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [set] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 更新日時
+     * ????
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {
@@ -313,7 +313,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [get] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * 更新ユーザ
+     * ?????
      * @return The value of the column 'UPDATE_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getUpdateUser() {
@@ -323,7 +323,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [set] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * 更新ユーザ
+     * ?????
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
@@ -333,7 +333,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [get] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * バージョン番号
+     * ???????
      * @return The value of the column 'VERSION_NO'. (basically NotNull if selected: for the constraint)
      */
     public Long getVersionNo() {
@@ -343,7 +343,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
 
     /**
      * [set] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * バージョン番号
+     * ???????
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {

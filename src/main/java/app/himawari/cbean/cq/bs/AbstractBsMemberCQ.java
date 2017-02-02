@@ -16,7 +16,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The abstract condition-query of member.
+ * The abstract condition-query of MEMBER.
  * @author DBFlute(AutoGenerator)
  */
 public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
@@ -37,7 +37,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     }
 
     public String asTableDbName() {
-        return "member";
+        return "MEMBER";
     }
 
     // ===================================================================================
@@ -159,8 +159,8 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select MEMBER_ID from timecard where ...)} <br>
-     * timecard by MEMBER_ID, named 'timecardAsOne'.
+     * {exists (select MEMBER_ID from TIMECARD where ...)} <br>
+     * TIMECARD by MEMBER_ID, named 'timecardAsOne'.
      * <pre>
      * cb.query().<span style="color: #CC4747">existsTimecard</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     timecardCB.query().set...
@@ -178,8 +178,8 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select MEMBER_ID from timecard where ...)} <br>
-     * timecard by MEMBER_ID, named 'timecardAsOne'.
+     * {not exists (select MEMBER_ID from TIMECARD where ...)} <br>
+     * TIMECARD by MEMBER_ID, named 'timecardAsOne'.
      * <pre>
      * cb.query().<span style="color: #CC4747">notExistsTimecard</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     timecardCB.query().set...
@@ -205,8 +205,8 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from timecard where ...)} <br>
-     * timecard by MEMBER_ID, named 'timecardAsOne'.
+     * {FOO &lt;= (select max(BAR) from TIMECARD where ...)} <br>
+     * TIMECARD by MEMBER_ID, named 'timecardAsOne'.
      * <pre>
      * cb.query().<span style="color: #CC4747">derivedTimecard()</span>.<span style="color: #CC4747">max</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     timecardCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>

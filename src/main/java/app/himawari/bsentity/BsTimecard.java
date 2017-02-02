@@ -14,7 +14,7 @@ import app.himawari.exentity.*;
 
 /**
  * The entity of TIMECARD as TABLE. <br>
- * タイムカード
+ * ??????
  * <pre>
  * [primary-key]
  *     TIMECARD_ID
@@ -35,13 +35,13 @@ import app.himawari.exentity.*;
  *     MEMBER
  *
  * [referrer table]
- *     DAILY_IN_OUT
+ *     DAILY_START_END
  *
  * [foreign property]
  *     member
  *
  * [referrer property]
- *     dailyInOutList
+ *     dailyStartEndList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -79,7 +79,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     /** TIMECARD_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _timecardId;
 
-    /** MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member} */
+    /** MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER} */
     protected Long _memberId;
 
     /** TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} */
@@ -110,7 +110,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /** {@inheritDoc} */
     public String asTableDbName() {
-        return "timecard";
+        return "TIMECARD";
     }
 
     // ===================================================================================
@@ -125,7 +125,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     /**
      * To be unique by the unique column. <br>
      * You can update the entity by the key when entity update (NOT batch update).
-     * @param memberId : UQ+, NotNull, BIGINT(19), FK to member. (NotNull)
+     * @param memberId : UQ+, NotNull, BIGINT(19), FK to MEMBER. (NotNull)
      * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
      */
     public void uniqueBy(Long memberId, String timecardYearMonth) {
@@ -162,24 +162,24 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'. */
-    protected List<DailyInOut> _dailyInOutList;
+    /** DAILY_START_END by TIMECARD_ID, named 'dailyStartEndList'. */
+    protected List<DailyStartEnd> _dailyStartEndList;
 
     /**
-     * [get] DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'.
-     * @return The entity list of referrer property 'dailyInOutList'. (NotNull: even if no loading, returns empty list)
+     * [get] DAILY_START_END by TIMECARD_ID, named 'dailyStartEndList'.
+     * @return The entity list of referrer property 'dailyStartEndList'. (NotNull: even if no loading, returns empty list)
      */
-    public List<DailyInOut> getDailyInOutList() {
-        if (_dailyInOutList == null) { _dailyInOutList = newReferrerList(); }
-        return _dailyInOutList;
+    public List<DailyStartEnd> getDailyStartEndList() {
+        if (_dailyStartEndList == null) { _dailyStartEndList = newReferrerList(); }
+        return _dailyStartEndList;
     }
 
     /**
-     * [set] DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'.
-     * @param dailyInOutList The entity list of referrer property 'dailyInOutList'. (NullAllowed)
+     * [set] DAILY_START_END by TIMECARD_ID, named 'dailyStartEndList'.
+     * @param dailyStartEndList The entity list of referrer property 'dailyStartEndList'. (NullAllowed)
      */
-    public void setDailyInOutList(List<DailyInOut> dailyInOutList) {
-        _dailyInOutList = dailyInOutList;
+    public void setDailyStartEndList(List<DailyStartEnd> dailyStartEndList) {
+        _dailyStartEndList = dailyStartEndList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
@@ -213,8 +213,8 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
         StringBuilder sb = new StringBuilder();
         if (_member != null && _member.isPresent())
         { sb.append(li).append(xbRDS(_member, "member")); }
-        if (_dailyInOutList != null) { for (DailyInOut et : _dailyInOutList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "dailyInOutList")); } } }
+        if (_dailyStartEndList != null) { for (DailyStartEnd et : _dailyStartEndList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "dailyStartEndList")); } } }
         return sb.toString();
     }
     protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
@@ -244,8 +244,8 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
         StringBuilder sb = new StringBuilder();
         if (_member != null && _member.isPresent())
         { sb.append(dm).append("member"); }
-        if (_dailyInOutList != null && !_dailyInOutList.isEmpty())
-        { sb.append(dm).append("dailyInOutList"); }
+        if (_dailyStartEndList != null && !_dailyStartEndList.isEmpty())
+        { sb.append(dm).append("dailyStartEndList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -281,8 +281,8 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [get] MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member} <br>
-     * メンバーID
+     * [get] MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER} <br>
+     * ????ID
      * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getMemberId() {
@@ -291,8 +291,8 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [set] MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member} <br>
-     * メンバーID
+     * [set] MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER} <br>
+     * ????ID
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Long memberId) {
@@ -302,7 +302,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} <br>
-     * 年月 : YYYYMM
+     * ?? : YYYYMM
      * @return The value of the column 'TIMECARD_YEAR_MONTH'. (basically NotNull if selected: for the constraint)
      */
     public String getTimecardYearMonth() {
@@ -312,7 +312,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} <br>
-     * 年月 : YYYYMM
+     * ?? : YYYYMM
      * @param timecardYearMonth The value of the column 'TIMECARD_YEAR_MONTH'. (basically NotNull if update: for the constraint)
      */
     public void setTimecardYearMonth(String timecardYearMonth) {
@@ -322,7 +322,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 登録日時
+     * ????
      * @return The value of the column 'REGISTER_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -332,7 +332,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 登録日時
+     * ????
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -342,7 +342,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * 登録ユーザ
+     * ?????
      * @return The value of the column 'REGISTER_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getRegisterUser() {
@@ -352,7 +352,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * 登録ユーザ
+     * ?????
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
@@ -362,7 +362,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 更新日時
+     * ????
      * @return The value of the column 'UPDATE_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -372,7 +372,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * 更新日時
+     * ????
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {
@@ -382,7 +382,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * 更新ユーザ
+     * ?????
      * @return The value of the column 'UPDATE_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getUpdateUser() {
@@ -392,7 +392,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * 更新ユーザ
+     * ?????
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
@@ -402,7 +402,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * バージョン番号
+     * ???????
      * @return The value of the column 'VERSION_NO'. (basically NotNull if selected: for the constraint)
      */
     public Long getVersionNo() {
@@ -412,7 +412,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * バージョン番号
+     * ???????
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {

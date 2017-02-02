@@ -13,7 +13,7 @@ import app.himawari.allcommon.*;
 import app.himawari.exentity.*;
 
 /**
- * The DB meta of member. (Singleton)
+ * The DB meta of MEMBER. (Singleton)
  * @author DBFlute(AutoGenerator)
  */
 public class MemberDbm extends AbstractDBMeta {
@@ -57,7 +57,7 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
-    protected final String _tableDbName = "member";
+    protected final String _tableDbName = "MEMBER";
     protected final String _tableDispName = "MEMBER";
     protected final String _tablePropertyName = "member";
     protected final TableSqlName _tableSqlName = new TableSqlName("MEMBER", _tableDbName);

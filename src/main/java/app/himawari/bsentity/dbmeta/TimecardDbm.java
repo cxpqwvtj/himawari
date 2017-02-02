@@ -14,7 +14,7 @@ import app.himawari.allcommon.*;
 import app.himawari.exentity.*;
 
 /**
- * The DB meta of timecard. (Singleton)
+ * The DB meta of TIMECARD. (Singleton)
  * @author DBFlute(AutoGenerator)
  */
 public class TimecardDbm extends AbstractDBMeta {
@@ -70,7 +70,7 @@ public class TimecardDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
-    protected final String _tableDbName = "timecard";
+    protected final String _tableDbName = "TIMECARD";
     protected final String _tableDispName = "TIMECARD";
     protected final String _tablePropertyName = "timecard";
     protected final TableSqlName _tableSqlName = new TableSqlName("TIMECARD", _tableDbName);
@@ -83,7 +83,7 @@ public class TimecardDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnTimecardId = cci("TIMECARD_ID", "TIMECARD_ID", null, null, Long.class, "timecardId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "dailyInOutList", null, false);
+    protected final ColumnInfo _columnTimecardId = cci("TIMECARD_ID", "TIMECARD_ID", null, null, Long.class, "timecardId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "dailyStartEndList", null, false);
     protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "member", null, null, false);
     protected final ColumnInfo _columnTimecardYearMonth = cci("TIMECARD_YEAR_MONTH", "TIMECARD_YEAR_MONTH", null, null, String.class, "timecardYearMonth", null, false, false, true, "VARCHAR", 6, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -98,7 +98,7 @@ public class TimecardDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnTimecardId() { return _columnTimecardId; }
     /**
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
@@ -189,12 +189,12 @@ public class TimecardDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     /**
-     * DAILY_IN_OUT by TIMECARD_ID, named 'dailyInOutList'.
+     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndList'.
      * @return The information object of referrer property. (NotNull)
      */
-    public ReferrerInfo referrerDailyInOutList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTimecardId(), DailyInOutDbm.getInstance().columnTimecardId());
-        return cri("FK_DAILY_IN_OUT_TIMECARD", "dailyInOutList", this, DailyInOutDbm.getInstance(), mp, false, "timecard");
+    public ReferrerInfo referrerDailyStartEndList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTimecardId(), DailyStartEndDbm.getInstance().columnTimecardId());
+        return cri("FK_DAILY_IN_OUT_TIMECARD", "dailyStartEndList", this, DailyStartEndDbm.getInstance(), mp, false, "timecard");
     }
 
     // ===================================================================================

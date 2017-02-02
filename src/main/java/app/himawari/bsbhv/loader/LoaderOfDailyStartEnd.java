@@ -7,19 +7,19 @@ import app.himawari.exbhv.*;
 import app.himawari.exentity.*;
 
 /**
- * The referrer loader of DAILY_IN_OUT as TABLE. <br>
+ * The referrer loader of DAILY_START_END as TABLE. <br>
  * <pre>
  * [primary key]
- *     DAILY_IN_OUT_ID
+ *     DAILY_START_END_ID
  *
  * [column]
- *     DAILY_IN_OUT_ID, TIMECARD_ID, BIZ_DATE, START_DATETIME, FINISH_DATETIME, AMENDED_START_TIME, AMENDED_FINISH_TIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     DAILY_START_END_ID, TIMECARD_ID, BIZ_DATE, START_DATETIME, END_DATETIME, SCALE_FITTED_START_TIME, SCALE_FITTED_END_TIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
  *
  * [identity]
- *     DAILY_IN_OUT_ID
+ *     DAILY_START_END_ID
  *
  * [version-no]
  *     VERSION_NO
@@ -38,23 +38,23 @@ import app.himawari.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public class LoaderOfDailyInOut {
+public class LoaderOfDailyStartEnd {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected List<DailyInOut> _selectedList;
+    protected List<DailyStartEnd> _selectedList;
     protected BehaviorSelector _selector;
-    protected DailyInOutBhv _myBhv; // lazy-loaded
+    protected DailyStartEndBhv _myBhv; // lazy-loaded
 
     // ===================================================================================
     //                                                                   Ready for Loading
     //                                                                   =================
-    public LoaderOfDailyInOut ready(List<DailyInOut> selectedList, BehaviorSelector selector)
+    public LoaderOfDailyStartEnd ready(List<DailyStartEnd> selectedList, BehaviorSelector selector)
     { _selectedList = selectedList; _selector = selector; return this; }
 
-    protected DailyInOutBhv myBhv()
-    { if (_myBhv != null) { return _myBhv; } else { _myBhv = _selector.select(DailyInOutBhv.class); return _myBhv; } }
+    protected DailyStartEndBhv myBhv()
+    { if (_myBhv != null) { return _myBhv; } else { _myBhv = _selector.select(DailyStartEndBhv.class); return _myBhv; } }
 
     // ===================================================================================
     //                                                                    Pull out Foreign
@@ -76,6 +76,6 @@ public class LoaderOfDailyInOut {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    public List<DailyInOut> getSelectedList() { return _selectedList; }
+    public List<DailyStartEnd> getSelectedList() { return _selectedList; }
     public BehaviorSelector getSelector() { return _selector; }
 }

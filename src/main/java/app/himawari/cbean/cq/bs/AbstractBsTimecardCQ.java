@@ -16,7 +16,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The abstract condition-query of timecard.
+ * The abstract condition-query of TIMECARD.
  * @author DBFlute(AutoGenerator)
  */
 public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
@@ -37,7 +37,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
     }
 
     public String asTableDbName() {
-        return "timecard";
+        return "TIMECARD";
     }
 
     // ===================================================================================
@@ -159,76 +159,76 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select TIMECARD_ID from daily_in_out where ...)} <br>
-     * daily_in_out by TIMECARD_ID, named 'dailyInOutAsOne'.
+     * {exists (select TIMECARD_ID from DAILY_START_END where ...)} <br>
+     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">existsDailyInOut</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     outCB.query().set...
+     * cb.query().<span style="color: #CC4747">existsDailyStartEnd</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     endCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of DailyInOutList for 'exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of DailyStartEndList for 'exists'. (NotNull)
      */
-    public void existsDailyInOut(SubQuery<DailyInOutCB> subCBLambda) {
+    public void existsDailyStartEnd(SubQuery<DailyStartEndCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepTimecardId_ExistsReferrer_DailyInOutList(cb.query());
-        registerExistsReferrer(cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyInOutList");
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepTimecardId_ExistsReferrer_DailyStartEndList(cb.query());
+        registerExistsReferrer(cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyStartEndList");
     }
-    public abstract String keepTimecardId_ExistsReferrer_DailyInOutList(DailyInOutCQ sq);
+    public abstract String keepTimecardId_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select TIMECARD_ID from daily_in_out where ...)} <br>
-     * daily_in_out by TIMECARD_ID, named 'dailyInOutAsOne'.
+     * {not exists (select TIMECARD_ID from DAILY_START_END where ...)} <br>
+     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsDailyInOut</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     outCB.query().set...
+     * cb.query().<span style="color: #CC4747">notExistsDailyStartEnd</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     endCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of TimecardId_NotExistsReferrer_DailyInOutList for 'not exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of TimecardId_NotExistsReferrer_DailyStartEndList for 'not exists'. (NotNull)
      */
-    public void notExistsDailyInOut(SubQuery<DailyInOutCB> subCBLambda) {
+    public void notExistsDailyStartEnd(SubQuery<DailyStartEndCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepTimecardId_NotExistsReferrer_DailyInOutList(cb.query());
-        registerNotExistsReferrer(cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyInOutList");
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepTimecardId_NotExistsReferrer_DailyStartEndList(cb.query());
+        registerNotExistsReferrer(cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyStartEndList");
     }
-    public abstract String keepTimecardId_NotExistsReferrer_DailyInOutList(DailyInOutCQ sq);
+    public abstract String keepTimecardId_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq);
 
-    public void xsderiveDailyInOutList(String fn, SubQuery<DailyInOutCB> sq, String al, DerivedReferrerOption op) {
+    public void xsderiveDailyStartEndList(String fn, SubQuery<DailyStartEndCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepTimecardId_SpecifyDerivedReferrer_DailyInOutList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyInOutList", al, op);
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepTimecardId_SpecifyDerivedReferrer_DailyStartEndList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyStartEndList", al, op);
     }
-    public abstract String keepTimecardId_SpecifyDerivedReferrer_DailyInOutList(DailyInOutCQ sq);
+    public abstract String keepTimecardId_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from daily_in_out where ...)} <br>
-     * daily_in_out by TIMECARD_ID, named 'dailyInOutAsOne'.
+     * {FOO &lt;= (select max(BAR) from DAILY_START_END where ...)} <br>
+     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">derivedDailyInOut()</span>.<span style="color: #CC4747">max</span>(outCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     outCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     outCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * cb.query().<span style="color: #CC4747">derivedDailyStartEnd()</span>.<span style="color: #CC4747">max</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     endCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     endCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
-    public HpQDRFunction<DailyInOutCB> derivedDailyInOut() {
-        return xcreateQDRFunctionDailyInOutList();
+    public HpQDRFunction<DailyStartEndCB> derivedDailyStartEnd() {
+        return xcreateQDRFunctionDailyStartEndList();
     }
-    protected HpQDRFunction<DailyInOutCB> xcreateQDRFunctionDailyInOutList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveDailyInOutList(fn, sq, rd, vl, op));
+    protected HpQDRFunction<DailyStartEndCB> xcreateQDRFunctionDailyStartEndList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveDailyStartEndList(fn, sq, rd, vl, op));
     }
-    public void xqderiveDailyInOutList(String fn, SubQuery<DailyInOutCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    public void xqderiveDailyStartEndList(String fn, SubQuery<DailyStartEndCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyInOutCB cb = new DailyInOutCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepTimecardId_QueryDerivedReferrer_DailyInOutList(cb.query()); String prpp = keepTimecardId_QueryDerivedReferrer_DailyInOutListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "TIMECARD_ID", "TIMECARD_ID", sqpp, "dailyInOutList", rd, vl, prpp, op);
+        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepTimecardId_QueryDerivedReferrer_DailyStartEndList(cb.query()); String prpp = keepTimecardId_QueryDerivedReferrer_DailyStartEndListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "TIMECARD_ID", "TIMECARD_ID", sqpp, "dailyStartEndList", rd, vl, prpp, op);
     }
-    public abstract String keepTimecardId_QueryDerivedReferrer_DailyInOutList(DailyInOutCQ sq);
-    public abstract String keepTimecardId_QueryDerivedReferrer_DailyInOutListParameter(Object vl);
+    public abstract String keepTimecardId_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq);
+    public abstract String keepTimecardId_QueryDerivedReferrer_DailyStartEndListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
@@ -247,7 +247,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberId The value of memberId as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_Equal(Long memberId) {
@@ -260,7 +260,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberId The value of memberId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_NotEqual(Long memberId) {
@@ -273,7 +273,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberId The value of memberId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_GreaterThan(Long memberId) {
@@ -282,7 +282,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberId The value of memberId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_LessThan(Long memberId) {
@@ -291,7 +291,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberId The value of memberId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_GreaterEqual(Long memberId) {
@@ -300,7 +300,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberId The value of memberId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_LessEqual(Long memberId) {
@@ -311,7 +311,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -324,7 +324,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -335,7 +335,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberIdList The collection of memberId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_InScope(Collection<Long> memberIdList) {
@@ -348,7 +348,7 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to member}
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberIdList The collection of memberId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_NotInScope(Collection<Long> memberIdList) {

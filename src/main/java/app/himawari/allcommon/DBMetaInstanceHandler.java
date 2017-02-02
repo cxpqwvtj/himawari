@@ -31,10 +31,10 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
     protected static final Map<String, String> _tableDbNameClassNameMap;
     static {
         final Map<String, String> tmpMap = newHashMap();
-        tmpMap.put("daily_in_out", "app.himawari.bsentity.dbmeta.DailyInOutDbm");
-        tmpMap.put("member", "app.himawari.bsentity.dbmeta.MemberDbm");
-        tmpMap.put("timecard", "app.himawari.bsentity.dbmeta.TimecardDbm");
-        tmpMap.put("vacation_type", "app.himawari.bsentity.dbmeta.VacationTypeDbm");
+        tmpMap.put("DAILY_START_END", "app.himawari.bsentity.dbmeta.DailyStartEndDbm");
+        tmpMap.put("MEMBER", "app.himawari.bsentity.dbmeta.MemberDbm");
+        tmpMap.put("TIMECARD", "app.himawari.bsentity.dbmeta.TimecardDbm");
+        tmpMap.put("VACATION_TYPE", "app.himawari.bsentity.dbmeta.VacationTypeDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);
     }
 

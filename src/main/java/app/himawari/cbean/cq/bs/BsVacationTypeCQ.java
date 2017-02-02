@@ -13,7 +13,7 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-query of vacation_type.
+ * The base condition-query of VACATION_TYPE.
  * @author DBFlute(AutoGenerator)
  */
 public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
@@ -35,7 +35,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
     //                                                                 ===================
     /**
      * Prepare InlineView query. <br>
-     * {select ... from ... left outer join (select * from vacation_type) where FOO = [value] ...}
+     * {select ... from ... left outer join (select * from VACATION_TYPE) where FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">inline()</span>.setFoo...;
      * </pre>
@@ -58,7 +58,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
 
     /**
      * Prepare OnClause query. <br>
-     * {select ... from ... left outer join vacation_type on ... and FOO = [value] ...}
+     * {select ... from ... left outer join VACATION_TYPE on ... and FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">on()</span>.setFoo...;
      * </pre>
@@ -79,19 +79,19 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
       return _vacationTypeCode; }
     protected ConditionValue xgetCValueVacationTypeCode() { return xdfgetVacationTypeCode(); }
 
-    public Map<String, DailyInOutCQ> xdfgetVacationTypeCode_ExistsReferrer_DailyInOutList() { return xgetSQueMap("vacationTypeCode_ExistsReferrer_DailyInOutList"); }
-    public String keepVacationTypeCode_ExistsReferrer_DailyInOutList(DailyInOutCQ sq) { return xkeepSQue("vacationTypeCode_ExistsReferrer_DailyInOutList", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetVacationTypeCode_ExistsReferrer_DailyStartEndList() { return xgetSQueMap("vacationTypeCode_ExistsReferrer_DailyStartEndList"); }
+    public String keepVacationTypeCode_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("vacationTypeCode_ExistsReferrer_DailyStartEndList", sq); }
 
-    public Map<String, DailyInOutCQ> xdfgetVacationTypeCode_NotExistsReferrer_DailyInOutList() { return xgetSQueMap("vacationTypeCode_NotExistsReferrer_DailyInOutList"); }
-    public String keepVacationTypeCode_NotExistsReferrer_DailyInOutList(DailyInOutCQ sq) { return xkeepSQue("vacationTypeCode_NotExistsReferrer_DailyInOutList", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetVacationTypeCode_NotExistsReferrer_DailyStartEndList() { return xgetSQueMap("vacationTypeCode_NotExistsReferrer_DailyStartEndList"); }
+    public String keepVacationTypeCode_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("vacationTypeCode_NotExistsReferrer_DailyStartEndList", sq); }
 
-    public Map<String, DailyInOutCQ> xdfgetVacationTypeCode_SpecifyDerivedReferrer_DailyInOutList() { return xgetSQueMap("vacationTypeCode_SpecifyDerivedReferrer_DailyInOutList"); }
-    public String keepVacationTypeCode_SpecifyDerivedReferrer_DailyInOutList(DailyInOutCQ sq) { return xkeepSQue("vacationTypeCode_SpecifyDerivedReferrer_DailyInOutList", sq); }
+    public Map<String, DailyStartEndCQ> xdfgetVacationTypeCode_SpecifyDerivedReferrer_DailyStartEndList() { return xgetSQueMap("vacationTypeCode_SpecifyDerivedReferrer_DailyStartEndList"); }
+    public String keepVacationTypeCode_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("vacationTypeCode_SpecifyDerivedReferrer_DailyStartEndList", sq); }
 
-    public Map<String, DailyInOutCQ> xdfgetVacationTypeCode_QueryDerivedReferrer_DailyInOutList() { return xgetSQueMap("vacationTypeCode_QueryDerivedReferrer_DailyInOutList"); }
-    public String keepVacationTypeCode_QueryDerivedReferrer_DailyInOutList(DailyInOutCQ sq) { return xkeepSQue("vacationTypeCode_QueryDerivedReferrer_DailyInOutList", sq); }
-    public Map<String, Object> xdfgetVacationTypeCode_QueryDerivedReferrer_DailyInOutListParameter() { return xgetSQuePmMap("vacationTypeCode_QueryDerivedReferrer_DailyInOutList"); }
-    public String keepVacationTypeCode_QueryDerivedReferrer_DailyInOutListParameter(Object pm) { return xkeepSQuePm("vacationTypeCode_QueryDerivedReferrer_DailyInOutList", pm); }
+    public Map<String, DailyStartEndCQ> xdfgetVacationTypeCode_QueryDerivedReferrer_DailyStartEndList() { return xgetSQueMap("vacationTypeCode_QueryDerivedReferrer_DailyStartEndList"); }
+    public String keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("vacationTypeCode_QueryDerivedReferrer_DailyStartEndList", sq); }
+    public Map<String, Object> xdfgetVacationTypeCode_QueryDerivedReferrer_DailyStartEndListParameter() { return xgetSQuePmMap("vacationTypeCode_QueryDerivedReferrer_DailyStartEndList"); }
+    public String keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndListParameter(Object pm) { return xkeepSQuePm("vacationTypeCode_QueryDerivedReferrer_DailyStartEndList", pm); }
 
     /** 
      * Add order-by as ascend. <br>
