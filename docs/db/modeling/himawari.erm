@@ -154,7 +154,7 @@
 			</connections>
 			<columns>
 				<normal_column>
-					<physical_name>DAILY_IN_OUT_ID</physical_name>
+					<physical_name>DAILY_START_END_ID</physical_name>
 					<logical_name>日次勤務時間記録ID</logical_name>
 					<type>bigint</type>
 					<not_null>true</not_null>
@@ -185,12 +185,12 @@
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>EDITED_START_TIME</physical_name>
+					<physical_name>SCALE_FITTED_START_TIME</physical_name>
 					<logical_name>補正後の開始時間</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>EDITED_FINISH_TIME</physical_name>
+					<physical_name>SCALE_FITTED_END_TIME</physical_name>
 					<logical_name>補正後の終了時間</logical_name>
 					<type>datetime</type>
 				</normal_column>
