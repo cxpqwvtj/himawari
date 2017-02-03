@@ -176,22 +176,22 @@
 				</normal_column>
 				<normal_column>
 					<physical_name>START_DATETIME</physical_name>
-					<logical_name>開始時間</logical_name>
+					<logical_name>開始日時</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
 					<physical_name>END_DATETIME</physical_name>
-					<logical_name>終了時間</logical_name>
+					<logical_name>終了日時</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>SCALE_FITTED_START_TIME</physical_name>
-					<logical_name>補正後の開始時間</logical_name>
+					<physical_name>SCALE_FITTED_START_DATETIME</physical_name>
+					<logical_name>補正後の開始日時</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>SCALE_FITTED_END_TIME</physical_name>
-					<logical_name>補正後の終了時間</logical_name>
+					<physical_name>SCALE_FITTED_END_DATETIME</physical_name>
+					<logical_name>補正後の終了日時</logical_name>
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
