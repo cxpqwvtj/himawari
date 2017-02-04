@@ -62,15 +62,15 @@ public class TimecardCIQ extends AbstractBsTimecardCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueTimecardId() { return _myCQ.xdfgetTimecardId(); }
-    public String keepTimecardId_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq)
+    public String keepTimecardId_ExistsReferrer_TimecardDayList(TimecardDayCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepTimecardId_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq)
+    public String keepTimecardId_NotExistsReferrer_TimecardDayList(TimecardDayCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepTimecardId_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq)
+    public String keepTimecardId_SpecifyDerivedReferrer_TimecardDayList(TimecardDayCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepTimecardId_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq)
+    public String keepTimecardId_QueryDerivedReferrer_TimecardDayList(TimecardDayCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepTimecardId_QueryDerivedReferrer_DailyStartEndListParameter(Object vl)
+    public String keepTimecardId_QueryDerivedReferrer_TimecardDayListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueMemberId() { return _myCQ.xdfgetMemberId(); }
     protected ConditionValue xgetCValueTimecardYearMonth() { return _myCQ.xdfgetTimecardYearMonth(); }

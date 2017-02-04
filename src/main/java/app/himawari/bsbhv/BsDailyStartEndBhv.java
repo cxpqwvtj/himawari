@@ -28,7 +28,7 @@ import app.himawari.cbean.*;
  *     DAILY_START_END_ID
  *
  * [column]
- *     DAILY_START_END_ID, TIMECARD_ID, BIZ_DATE, START_DATETIME, END_DATETIME, SCALE_FITTED_START_TIME, SCALE_FITTED_END_TIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     DAILY_START_END_ID, TIMECARD_DAY_ID, START_DATETIME, END_DATETIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -40,13 +40,13 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     TIMECARD, VACATION_TYPE
+ *     TIMECARD_DAY, VACATION_TYPE
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     timecard, vacationType
+ *     timecardDay, vacationType
  *
  * [referrer property]
  *     
@@ -365,12 +365,12 @@ public abstract class BsDailyStartEndBhv extends AbstractBehaviorWritable<DailyS
     //                                                                   Pull out Relation
     //                                                                   =================
     /**
-     * Pull out the list of foreign table 'Timecard'.
+     * Pull out the list of foreign table 'TimecardDay'.
      * @param dailyStartEndList The list of dailyStartEnd. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Timecard> pulloutTimecard(List<DailyStartEnd> dailyStartEndList)
-    { return helpPulloutInternally(dailyStartEndList, "timecard"); }
+    public List<TimecardDay> pulloutTimecardDay(List<DailyStartEnd> dailyStartEndList)
+    { return helpPulloutInternally(dailyStartEndList, "timecardDay"); }
 
     /**
      * Pull out the list of foreign table 'VacationType'.

@@ -159,76 +159,76 @@ public abstract class AbstractBsTimecardCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select TIMECARD_ID from DAILY_START_END where ...)} <br>
-     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndAsOne'.
+     * {exists (select TIMECARD_ID from TIMECARD_DAY where ...)} <br>
+     * TIMECARD_DAY by TIMECARD_ID, named 'timecardDayAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">existsDailyStartEnd</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     endCB.query().set...
+     * cb.query().<span style="color: #CC4747">existsTimecardDay</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     dayCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of DailyStartEndList for 'exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of TimecardDayList for 'exists'. (NotNull)
      */
-    public void existsDailyStartEnd(SubQuery<DailyStartEndCB> subCBLambda) {
+    public void existsTimecardDay(SubQuery<TimecardDayCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepTimecardId_ExistsReferrer_DailyStartEndList(cb.query());
-        registerExistsReferrer(cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyStartEndList");
+        TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepTimecardId_ExistsReferrer_TimecardDayList(cb.query());
+        registerExistsReferrer(cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "timecardDayList");
     }
-    public abstract String keepTimecardId_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq);
+    public abstract String keepTimecardId_ExistsReferrer_TimecardDayList(TimecardDayCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select TIMECARD_ID from DAILY_START_END where ...)} <br>
-     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndAsOne'.
+     * {not exists (select TIMECARD_ID from TIMECARD_DAY where ...)} <br>
+     * TIMECARD_DAY by TIMECARD_ID, named 'timecardDayAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsDailyStartEnd</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     endCB.query().set...
+     * cb.query().<span style="color: #CC4747">notExistsTimecardDay</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     dayCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of TimecardId_NotExistsReferrer_DailyStartEndList for 'not exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of TimecardId_NotExistsReferrer_TimecardDayList for 'not exists'. (NotNull)
      */
-    public void notExistsDailyStartEnd(SubQuery<DailyStartEndCB> subCBLambda) {
+    public void notExistsTimecardDay(SubQuery<TimecardDayCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepTimecardId_NotExistsReferrer_DailyStartEndList(cb.query());
-        registerNotExistsReferrer(cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyStartEndList");
+        TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepTimecardId_NotExistsReferrer_TimecardDayList(cb.query());
+        registerNotExistsReferrer(cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "timecardDayList");
     }
-    public abstract String keepTimecardId_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq);
+    public abstract String keepTimecardId_NotExistsReferrer_TimecardDayList(TimecardDayCQ sq);
 
-    public void xsderiveDailyStartEndList(String fn, SubQuery<DailyStartEndCB> sq, String al, DerivedReferrerOption op) {
+    public void xsderiveTimecardDayList(String fn, SubQuery<TimecardDayCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepTimecardId_SpecifyDerivedReferrer_DailyStartEndList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "dailyStartEndList", al, op);
+        TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepTimecardId_SpecifyDerivedReferrer_TimecardDayList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "TIMECARD_ID", "TIMECARD_ID", pp, "timecardDayList", al, op);
     }
-    public abstract String keepTimecardId_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq);
+    public abstract String keepTimecardId_SpecifyDerivedReferrer_TimecardDayList(TimecardDayCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from DAILY_START_END where ...)} <br>
-     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndAsOne'.
+     * {FOO &lt;= (select max(BAR) from TIMECARD_DAY where ...)} <br>
+     * TIMECARD_DAY by TIMECARD_ID, named 'timecardDayAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">derivedDailyStartEnd()</span>.<span style="color: #CC4747">max</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     endCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     endCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * cb.query().<span style="color: #CC4747">derivedTimecardDay()</span>.<span style="color: #CC4747">max</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     dayCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     dayCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
-    public HpQDRFunction<DailyStartEndCB> derivedDailyStartEnd() {
-        return xcreateQDRFunctionDailyStartEndList();
+    public HpQDRFunction<TimecardDayCB> derivedTimecardDay() {
+        return xcreateQDRFunctionTimecardDayList();
     }
-    protected HpQDRFunction<DailyStartEndCB> xcreateQDRFunctionDailyStartEndList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveDailyStartEndList(fn, sq, rd, vl, op));
+    protected HpQDRFunction<TimecardDayCB> xcreateQDRFunctionTimecardDayList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveTimecardDayList(fn, sq, rd, vl, op));
     }
-    public void xqderiveDailyStartEndList(String fn, SubQuery<DailyStartEndCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    public void xqderiveTimecardDayList(String fn, SubQuery<TimecardDayCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        DailyStartEndCB cb = new DailyStartEndCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepTimecardId_QueryDerivedReferrer_DailyStartEndList(cb.query()); String prpp = keepTimecardId_QueryDerivedReferrer_DailyStartEndListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "TIMECARD_ID", "TIMECARD_ID", sqpp, "dailyStartEndList", rd, vl, prpp, op);
+        TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepTimecardId_QueryDerivedReferrer_TimecardDayList(cb.query()); String prpp = keepTimecardId_QueryDerivedReferrer_TimecardDayListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "TIMECARD_ID", "TIMECARD_ID", sqpp, "timecardDayList", rd, vl, prpp, op);
     }
-    public abstract String keepTimecardId_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq);
-    public abstract String keepTimecardId_QueryDerivedReferrer_DailyStartEndListParameter(Object vl);
+    public abstract String keepTimecardId_QueryDerivedReferrer_TimecardDayList(TimecardDayCQ sq);
+    public abstract String keepTimecardId_QueryDerivedReferrer_TimecardDayListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>

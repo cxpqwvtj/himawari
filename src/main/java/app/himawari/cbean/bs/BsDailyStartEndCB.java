@@ -238,33 +238,33 @@ public class BsDailyStartEndCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected TimecardNss _nssTimecard;
-    public TimecardNss xdfgetNssTimecard() {
-        if (_nssTimecard == null) { _nssTimecard = new TimecardNss(null); }
-        return _nssTimecard;
+    protected TimecardDayNss _nssTimecardDay;
+    public TimecardDayNss xdfgetNssTimecardDay() {
+        if (_nssTimecardDay == null) { _nssTimecardDay = new TimecardDayNss(null); }
+        return _nssTimecardDay;
     }
     /**
      * Set up relation columns to select clause. <br>
-     * TIMECARD by my TIMECARD_ID, named 'timecard'.
+     * TIMECARD_DAY by my TIMECARD_DAY_ID, named 'timecardDay'.
      * <pre>
      * <span style="color: #0000C0">dailyStartEndBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Timecard()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_TimecardDay()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      *     <span style="color: #553000">cb</span>.query().set...
      * }).alwaysPresent(<span style="color: #553000">dailyStartEnd</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">dailyStartEnd</span>.<span style="color: #CC4747">getTimecard()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     *     ... = <span style="color: #553000">dailyStartEnd</span>.<span style="color: #CC4747">getTimecardDay()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * });
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public TimecardNss setupSelect_Timecard() {
-        assertSetupSelectPurpose("timecard");
+    public TimecardDayNss setupSelect_TimecardDay() {
+        assertSetupSelectPurpose("timecardDay");
         if (hasSpecifiedLocalColumn()) {
-            specify().columnTimecardId();
+            specify().columnTimecardDayId();
         }
-        doSetupSelect(() -> query().queryTimecard());
-        if (_nssTimecard == null || !_nssTimecard.hasConditionQuery())
-        { _nssTimecard = new TimecardNss(query().queryTimecard()); }
-        return _nssTimecard;
+        doSetupSelect(() -> query().queryTimecardDay());
+        if (_nssTimecardDay == null || !_nssTimecardDay.hasConditionQuery())
+        { _nssTimecardDay = new TimecardDayNss(query().queryTimecardDay()); }
+        return _nssTimecardDay;
     }
 
     /**
@@ -328,7 +328,7 @@ public class BsDailyStartEndCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<DailyStartEndCQ> {
-        protected TimecardCB.HpSpecification _timecard;
+        protected TimecardDayCB.HpSpecification _timecardDay;
         protected VacationTypeCB.HpSpecification _vacationType;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<DailyStartEndCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
@@ -340,15 +340,10 @@ public class BsDailyStartEndCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnDailyStartEndId() { return doColumn("DAILY_START_END_ID"); }
         /**
-         * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
+         * TIMECARD_DAY_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD_DAY}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnTimecardId() { return doColumn("TIMECARD_ID"); }
-        /**
-         * BIZ_DATE: {NotNull, DATE(10)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnBizDate() { return doColumn("BIZ_DATE"); }
+        public SpecifiedColumn columnTimecardDayId() { return doColumn("TIMECARD_DAY_ID"); }
         /**
          * START_DATETIME: {DATETIME(19)}
          * @return The information object of specified column. (NotNull)
@@ -359,16 +354,6 @@ public class BsDailyStartEndCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnEndDatetime() { return doColumn("END_DATETIME"); }
-        /**
-         * SCALE_FITTED_START_TIME: {DATETIME(19)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnScaleFittedStartTime() { return doColumn("SCALE_FITTED_START_TIME"); }
-        /**
-         * SCALE_FITTED_END_TIME: {DATETIME(19)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnScaleFittedEndTime() { return doColumn("SCALE_FITTED_END_TIME"); }
         /**
          * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
          * @return The information object of specified column. (NotNull)
@@ -409,9 +394,9 @@ public class BsDailyStartEndCB extends AbstractConditionBean {
         @Override
         protected void doSpecifyRequiredColumn() {
             columnDailyStartEndId(); // PK
-            if (qyCall().qy().hasConditionQueryTimecard()
-                    || qyCall().qy().xgetReferrerQuery() instanceof TimecardCQ) {
-                columnTimecardId(); // FK or one-to-one referrer
+            if (qyCall().qy().hasConditionQueryTimecardDay()
+                    || qyCall().qy().xgetReferrerQuery() instanceof TimecardDayCQ) {
+                columnTimecardDayId(); // FK or one-to-one referrer
             }
             if (qyCall().qy().hasConditionQueryVacationType()
                     || qyCall().qy().xgetReferrerQuery() instanceof VacationTypeCQ) {
@@ -422,23 +407,23 @@ public class BsDailyStartEndCB extends AbstractConditionBean {
         protected String getTableDbName() { return "DAILY_START_END"; }
         /**
          * Prepare to specify functions about relation table. <br>
-         * TIMECARD by my TIMECARD_ID, named 'timecard'.
+         * TIMECARD_DAY by my TIMECARD_DAY_ID, named 'timecardDay'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
-        public TimecardCB.HpSpecification specifyTimecard() {
-            assertRelation("timecard");
-            if (_timecard == null) {
-                _timecard = new TimecardCB.HpSpecification(_baseCB
-                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryTimecard()
-                                    , () -> _qyCall.qy().queryTimecard())
+        public TimecardDayCB.HpSpecification specifyTimecardDay() {
+            assertRelation("timecardDay");
+            if (_timecardDay == null) {
+                _timecardDay = new TimecardDayCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryTimecardDay()
+                                    , () -> _qyCall.qy().queryTimecardDay())
                     , _purpose, _dbmetaProvider, xgetSDRFnFc());
                 if (xhasSyncQyCall()) { // inherits it
-                    _timecard.xsetSyncQyCall(xcreateSpQyCall(
-                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryTimecard()
-                      , () -> xsyncQyCall().qy().queryTimecard()));
+                    _timecardDay.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryTimecardDay()
+                      , () -> xsyncQyCall().qy().queryTimecardDay()));
                 }
             }
-            return _timecard;
+            return _timecardDay;
         }
         /**
          * Prepare to specify functions about relation table. <br>

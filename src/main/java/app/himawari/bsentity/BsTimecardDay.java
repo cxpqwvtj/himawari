@@ -13,49 +13,49 @@ import app.himawari.allcommon.DBMetaInstanceHandler;
 import app.himawari.exentity.*;
 
 /**
- * The entity of TIMECARD as TABLE. <br>
- * タイムカード
+ * The entity of TIMECARD_DAY as TABLE. <br>
+ * タイムカード年月日
  * <pre>
  * [primary-key]
- *     TIMECARD_ID
+ *     TIMECARD_DAY_ID
  *
  * [column]
- *     TIMECARD_ID, MEMBER_ID, TIMECARD_YEAR_MONTH, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     TIMECARD_DAY_ID, TIMECARD_ID, BIZ_DATE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
  *
  * [identity]
- *     TIMECARD_ID
+ *     
  *
  * [version-no]
  *     VERSION_NO
  *
  * [foreign table]
- *     MEMBER
+ *     TIMECARD
  *
  * [referrer table]
- *     TIMECARD_DAY
+ *     DAILY_START_END
  *
  * [foreign property]
- *     member
+ *     timecard
  *
  * [referrer property]
- *     timecardDayList
+ *     dailyStartEndList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+ * Long timecardDayId = entity.getTimecardDayId();
  * Long timecardId = entity.getTimecardId();
- * Long memberId = entity.getMemberId();
- * String timecardYearMonth = entity.getTimecardYearMonth();
+ * java.time.LocalDate bizDate = entity.getBizDate();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * String registerUser = entity.getRegisterUser();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * String updateUser = entity.getUpdateUser();
  * Long versionNo = entity.getVersionNo();
+ * entity.setTimecardDayId(timecardDayId);
  * entity.setTimecardId(timecardId);
- * entity.setMemberId(memberId);
- * entity.setTimecardYearMonth(timecardYearMonth);
+ * entity.setBizDate(bizDate);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setRegisterUser(registerUser);
  * entity.setUpdateDatetime(updateDatetime);
@@ -65,7 +65,7 @@ import app.himawari.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsTimecard extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
+public abstract class BsTimecardDay extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition
@@ -76,14 +76,14 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** TIMECARD_ID: {PK, ID, NotNull, BIGINT(19)} */
+    /** TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)} */
+    protected Long _timecardDayId;
+
+    /** TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD} */
     protected Long _timecardId;
 
-    /** MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER} */
-    protected Long _memberId;
-
-    /** TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} */
-    protected String _timecardYearMonth;
+    /** BIZ_DATE: {NotNull, DATE(10)} */
+    protected java.time.LocalDate _bizDate;
 
     /** REGISTER_DATETIME: {NotNull, DATETIME(19)} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -110,7 +110,7 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
 
     /** {@inheritDoc} */
     public String asTableDbName() {
-        return "TIMECARD";
+        return "TIMECARD_DAY";
     }
 
     // ===================================================================================
@@ -118,68 +118,55 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     //                                                                        ============
     /** {@inheritDoc} */
     public boolean hasPrimaryKeyValue() {
-        if (_timecardId == null) { return false; }
+        if (_timecardDayId == null) { return false; }
         return true;
-    }
-
-    /**
-     * To be unique by the unique column. <br>
-     * You can update the entity by the key when entity update (NOT batch update).
-     * @param memberId : UQ+, NotNull, BIGINT(19), FK to MEMBER. (NotNull)
-     * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
-     */
-    public void uniqueBy(Long memberId, String timecardYearMonth) {
-        __uniqueDrivenProperties.clear();
-        __uniqueDrivenProperties.addPropertyName("memberId");
-        __uniqueDrivenProperties.addPropertyName("timecardYearMonth");
-        setMemberId(memberId);setTimecardYearMonth(timecardYearMonth);
     }
 
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** MEMBER by my MEMBER_ID, named 'member'. */
-    protected OptionalEntity<Member> _member;
+    /** TIMECARD by my TIMECARD_ID, named 'timecard'. */
+    protected OptionalEntity<Timecard> _timecard;
 
     /**
-     * [get] MEMBER by my MEMBER_ID, named 'member'. <br>
+     * [get] TIMECARD by my TIMECARD_ID, named 'timecard'. <br>
      * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
-     * @return The entity of foreign property 'member'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     * @return The entity of foreign property 'timecard'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
      */
-    public OptionalEntity<Member> getMember() {
-        if (_member == null) { _member = OptionalEntity.relationEmpty(this, "member"); }
-        return _member;
+    public OptionalEntity<Timecard> getTimecard() {
+        if (_timecard == null) { _timecard = OptionalEntity.relationEmpty(this, "timecard"); }
+        return _timecard;
     }
 
     /**
-     * [set] MEMBER by my MEMBER_ID, named 'member'.
-     * @param member The entity of foreign property 'member'. (NullAllowed)
+     * [set] TIMECARD by my TIMECARD_ID, named 'timecard'.
+     * @param timecard The entity of foreign property 'timecard'. (NullAllowed)
      */
-    public void setMember(OptionalEntity<Member> member) {
-        _member = member;
+    public void setTimecard(OptionalEntity<Timecard> timecard) {
+        _timecard = timecard;
     }
 
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** TIMECARD_DAY by TIMECARD_ID, named 'timecardDayList'. */
-    protected List<TimecardDay> _timecardDayList;
+    /** DAILY_START_END by TIMECARD_DAY_ID, named 'dailyStartEndList'. */
+    protected List<DailyStartEnd> _dailyStartEndList;
 
     /**
-     * [get] TIMECARD_DAY by TIMECARD_ID, named 'timecardDayList'.
-     * @return The entity list of referrer property 'timecardDayList'. (NotNull: even if no loading, returns empty list)
+     * [get] DAILY_START_END by TIMECARD_DAY_ID, named 'dailyStartEndList'.
+     * @return The entity list of referrer property 'dailyStartEndList'. (NotNull: even if no loading, returns empty list)
      */
-    public List<TimecardDay> getTimecardDayList() {
-        if (_timecardDayList == null) { _timecardDayList = newReferrerList(); }
-        return _timecardDayList;
+    public List<DailyStartEnd> getDailyStartEndList() {
+        if (_dailyStartEndList == null) { _dailyStartEndList = newReferrerList(); }
+        return _dailyStartEndList;
     }
 
     /**
-     * [set] TIMECARD_DAY by TIMECARD_ID, named 'timecardDayList'.
-     * @param timecardDayList The entity list of referrer property 'timecardDayList'. (NullAllowed)
+     * [set] DAILY_START_END by TIMECARD_DAY_ID, named 'dailyStartEndList'.
+     * @param dailyStartEndList The entity list of referrer property 'dailyStartEndList'. (NullAllowed)
      */
-    public void setTimecardDayList(List<TimecardDay> timecardDayList) {
-        _timecardDayList = timecardDayList;
+    public void setDailyStartEndList(List<DailyStartEnd> dailyStartEndList) {
+        _dailyStartEndList = dailyStartEndList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
@@ -191,9 +178,9 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     //                                                                      ==============
     @Override
     protected boolean doEquals(Object obj) {
-        if (obj instanceof BsTimecard) {
-            BsTimecard other = (BsTimecard)obj;
-            if (!xSV(_timecardId, other._timecardId)) { return false; }
+        if (obj instanceof BsTimecardDay) {
+            BsTimecardDay other = (BsTimecardDay)obj;
+            if (!xSV(_timecardDayId, other._timecardDayId)) { return false; }
             return true;
         } else {
             return false;
@@ -204,17 +191,17 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     protected int doHashCode(int initial) {
         int hs = initial;
         hs = xCH(hs, asTableDbName());
-        hs = xCH(hs, _timecardId);
+        hs = xCH(hs, _timecardDayId);
         return hs;
     }
 
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_member != null && _member.isPresent())
-        { sb.append(li).append(xbRDS(_member, "member")); }
-        if (_timecardDayList != null) { for (TimecardDay et : _timecardDayList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "timecardDayList")); } } }
+        if (_timecard != null && _timecard.isPresent())
+        { sb.append(li).append(xbRDS(_timecard, "timecard")); }
+        if (_dailyStartEndList != null) { for (DailyStartEnd et : _dailyStartEndList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "dailyStartEndList")); } } }
         return sb.toString();
     }
     protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
@@ -224,9 +211,9 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     @Override
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
+        sb.append(dm).append(xfND(_timecardDayId));
         sb.append(dm).append(xfND(_timecardId));
-        sb.append(dm).append(xfND(_memberId));
-        sb.append(dm).append(xfND(_timecardYearMonth));
+        sb.append(dm).append(xfND(_bizDate));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_registerUser));
         sb.append(dm).append(xfND(_updateDatetime));
@@ -242,10 +229,10 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_member != null && _member.isPresent())
-        { sb.append(dm).append("member"); }
-        if (_timecardDayList != null && !_timecardDayList.isEmpty())
-        { sb.append(dm).append("timecardDayList"); }
+        if (_timecard != null && _timecard.isPresent())
+        { sb.append(dm).append("timecard"); }
+        if (_dailyStartEndList != null && !_dailyStartEndList.isEmpty())
+        { sb.append(dm).append("dailyStartEndList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -253,16 +240,36 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     @Override
-    public Timecard clone() {
-        return (Timecard)super.clone();
+    public TimecardDay clone() {
+        return (TimecardDay)super.clone();
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] TIMECARD_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * TIMECARD_ID
+     * [get] TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)} <br>
+     * タイムカード年月日ID
+     * @return The value of the column 'TIMECARD_DAY_ID'. (basically NotNull if selected: for the constraint)
+     */
+    public Long getTimecardDayId() {
+        checkSpecifiedProperty("timecardDayId");
+        return _timecardDayId;
+    }
+
+    /**
+     * [set] TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)} <br>
+     * タイムカード年月日ID
+     * @param timecardDayId The value of the column 'TIMECARD_DAY_ID'. (basically NotNull if update: for the constraint)
+     */
+    public void setTimecardDayId(Long timecardDayId) {
+        registerModifiedProperty("timecardDayId");
+        _timecardDayId = timecardDayId;
+    }
+
+    /**
+     * [get] TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD} <br>
+     * タイムカードID
      * @return The value of the column 'TIMECARD_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getTimecardId() {
@@ -271,8 +278,8 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [set] TIMECARD_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * TIMECARD_ID
+     * [set] TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD} <br>
+     * タイムカードID
      * @param timecardId The value of the column 'TIMECARD_ID'. (basically NotNull if update: for the constraint)
      */
     public void setTimecardId(Long timecardId) {
@@ -281,43 +288,23 @@ public abstract class BsTimecard extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [get] MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER} <br>
-     * メンバーID
-     * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
+     * [get] BIZ_DATE: {NotNull, DATE(10)} <br>
+     * 業務日
+     * @return The value of the column 'BIZ_DATE'. (basically NotNull if selected: for the constraint)
      */
-    public Long getMemberId() {
-        checkSpecifiedProperty("memberId");
-        return _memberId;
+    public java.time.LocalDate getBizDate() {
+        checkSpecifiedProperty("bizDate");
+        return _bizDate;
     }
 
     /**
-     * [set] MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER} <br>
-     * メンバーID
-     * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
+     * [set] BIZ_DATE: {NotNull, DATE(10)} <br>
+     * 業務日
+     * @param bizDate The value of the column 'BIZ_DATE'. (basically NotNull if update: for the constraint)
      */
-    public void setMemberId(Long memberId) {
-        registerModifiedProperty("memberId");
-        _memberId = memberId;
-    }
-
-    /**
-     * [get] TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} <br>
-     * 年月 : YYYYMM
-     * @return The value of the column 'TIMECARD_YEAR_MONTH'. (basically NotNull if selected: for the constraint)
-     */
-    public String getTimecardYearMonth() {
-        checkSpecifiedProperty("timecardYearMonth");
-        return _timecardYearMonth;
-    }
-
-    /**
-     * [set] TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)} <br>
-     * 年月 : YYYYMM
-     * @param timecardYearMonth The value of the column 'TIMECARD_YEAR_MONTH'. (basically NotNull if update: for the constraint)
-     */
-    public void setTimecardYearMonth(String timecardYearMonth) {
-        registerModifiedProperty("timecardYearMonth");
-        _timecardYearMonth = timecardYearMonth;
+    public void setBizDate(java.time.LocalDate bizDate) {
+        registerModifiedProperty("bizDate");
+        _bizDate = bizDate;
     }
 
     /**

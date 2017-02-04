@@ -79,19 +79,19 @@ public class BsTimecardCQ extends AbstractBsTimecardCQ {
       return _timecardId; }
     protected ConditionValue xgetCValueTimecardId() { return xdfgetTimecardId(); }
 
-    public Map<String, DailyStartEndCQ> xdfgetTimecardId_ExistsReferrer_DailyStartEndList() { return xgetSQueMap("timecardId_ExistsReferrer_DailyStartEndList"); }
-    public String keepTimecardId_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("timecardId_ExistsReferrer_DailyStartEndList", sq); }
+    public Map<String, TimecardDayCQ> xdfgetTimecardId_ExistsReferrer_TimecardDayList() { return xgetSQueMap("timecardId_ExistsReferrer_TimecardDayList"); }
+    public String keepTimecardId_ExistsReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("timecardId_ExistsReferrer_TimecardDayList", sq); }
 
-    public Map<String, DailyStartEndCQ> xdfgetTimecardId_NotExistsReferrer_DailyStartEndList() { return xgetSQueMap("timecardId_NotExistsReferrer_DailyStartEndList"); }
-    public String keepTimecardId_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("timecardId_NotExistsReferrer_DailyStartEndList", sq); }
+    public Map<String, TimecardDayCQ> xdfgetTimecardId_NotExistsReferrer_TimecardDayList() { return xgetSQueMap("timecardId_NotExistsReferrer_TimecardDayList"); }
+    public String keepTimecardId_NotExistsReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("timecardId_NotExistsReferrer_TimecardDayList", sq); }
 
-    public Map<String, DailyStartEndCQ> xdfgetTimecardId_SpecifyDerivedReferrer_DailyStartEndList() { return xgetSQueMap("timecardId_SpecifyDerivedReferrer_DailyStartEndList"); }
-    public String keepTimecardId_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("timecardId_SpecifyDerivedReferrer_DailyStartEndList", sq); }
+    public Map<String, TimecardDayCQ> xdfgetTimecardId_SpecifyDerivedReferrer_TimecardDayList() { return xgetSQueMap("timecardId_SpecifyDerivedReferrer_TimecardDayList"); }
+    public String keepTimecardId_SpecifyDerivedReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("timecardId_SpecifyDerivedReferrer_TimecardDayList", sq); }
 
-    public Map<String, DailyStartEndCQ> xdfgetTimecardId_QueryDerivedReferrer_DailyStartEndList() { return xgetSQueMap("timecardId_QueryDerivedReferrer_DailyStartEndList"); }
-    public String keepTimecardId_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq) { return xkeepSQue("timecardId_QueryDerivedReferrer_DailyStartEndList", sq); }
-    public Map<String, Object> xdfgetTimecardId_QueryDerivedReferrer_DailyStartEndListParameter() { return xgetSQuePmMap("timecardId_QueryDerivedReferrer_DailyStartEndList"); }
-    public String keepTimecardId_QueryDerivedReferrer_DailyStartEndListParameter(Object pm) { return xkeepSQuePm("timecardId_QueryDerivedReferrer_DailyStartEndList", pm); }
+    public Map<String, TimecardDayCQ> xdfgetTimecardId_QueryDerivedReferrer_TimecardDayList() { return xgetSQueMap("timecardId_QueryDerivedReferrer_TimecardDayList"); }
+    public String keepTimecardId_QueryDerivedReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("timecardId_QueryDerivedReferrer_TimecardDayList", sq); }
+    public Map<String, Object> xdfgetTimecardId_QueryDerivedReferrer_TimecardDayListParameter() { return xgetSQuePmMap("timecardId_QueryDerivedReferrer_TimecardDayList"); }
+    public String keepTimecardId_QueryDerivedReferrer_TimecardDayListParameter(Object pm) { return xkeepSQuePm("timecardId_QueryDerivedReferrer_TimecardDayList", pm); }
 
     /** 
      * Add order-by as ascend. <br>

@@ -295,9 +295,9 @@ dl.procedurelist dd.column pre {
 	<tbody id="table-list-body">
 	<tr>
 		<td class="rownumcell">1</td>
-		<td><a href="#daily_start_end" title="type=TABLE, primaryKey={DAILY_START_END_ID}, nameLength=15, columnCount=14">DAILY_START_END</a></td>
+		<td><a href="#daily_start_end" title="type=TABLE, primaryKey={DAILY_START_END_ID}, nameLength=15, columnCount=11">DAILY_START_END</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#timecard" title="FK_DAILY_IN_OUT_TIMECARD">TIMECARD</a>, <a href="#vacation_type" title="FK_DAILY_IN_OUT_VACATION_TYPE">VACATION_TYPE</a></td>
+		<td class="relcell"><a href="#timecard_day" title="FK_DAILY_START_END_TIMECARD_DAY">TIMECARD_DAY</a>, <a href="#vacation_type" title="FK_DAILY_IN_OUT_VACATION_TYPE">VACATION_TYPE</a></td>
 		<td class="relcell">&nbsp;</td>
 		<td class="commentcell"> ????????</td>
 		<td class="subcell">DailyStartEnd</td>
@@ -316,12 +316,21 @@ dl.procedurelist dd.column pre {
 		<td><a href="#timecard" title="type=TABLE, primaryKey={TIMECARD_ID}, nameLength=8, columnCount=8">TIMECARD</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#member" title="FK_TIMECARD_MEMBER">MEMBER</a></td>
-		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_IN_OUT_TIMECARD">DAILY_START_END</a></td>
+		<td class="relcell"><a href="#timecard_day" title="FK_TIMECARD_DAY_TIMECARD">TIMECARD_DAY</a></td>
 		<td class="commentcell"> ??????</td>
 		<td class="subcell">Timecard</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">4</td>
+		<td><a href="#timecard_day" title="type=TABLE, primaryKey={TIMECARD_DAY_ID}, nameLength=12, columnCount=8">TIMECARD_DAY</a></td>
+		<td class="typecell">TABLE</td>
+		<td class="relcell"><a href="#timecard" title="FK_TIMECARD_DAY_TIMECARD">TIMECARD</a></td>
+		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_START_END_TIMECARD_DAY">DAILY_START_END</a></td>
+		<td class="commentcell"> ?????????</td>
+		<td class="subcell">TimecardDay</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
 		<td><a href="#vacation_type" title="type=TABLE, primaryKey={VACATION_TYPE_CODE}, nameLength=13, columnCount=7">VACATION_TYPE</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
@@ -332,7 +341,7 @@ dl.procedurelist dd.column pre {
 	</tbody>
 </table>
 
-<h2 id="daily_start_end" title="type=TABLE, primaryKey={DAILY_START_END_ID}, nameLength=15, columnCount=14">
+<h2 id="daily_start_end" title="type=TABLE, primaryKey={DAILY_START_END_ID}, nameLength=15, columnCount=11">
 DAILY_START_END
 </h2>
 <p class="tablecomment">????????</p>
@@ -378,37 +387,20 @@ DAILY_START_END
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell" title="FK_DAILY_IN_OUT_TIMECARD(TIMECARD_ID)">o</td>
+		<td class="flgcell" title="FK_DAILY_START_END_TIMECARD_DAY(TIMECARD_DAY_ID)">o</td>
 		<td class="flgcell">*</td>
-		<td id="daily_start_end_timecard_id">TIMECARD_ID</td>
+		<td id="daily_start_end_timecard_day_id">TIMECARD_DAY_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
-		<td class="relcell"><a href="#timecard" title="FK_DAILY_IN_OUT_TIMECARD">TIMECARD</a>&nbsp;</td>
+		<td class="relcell"><a href="#timecard_day" title="FK_DAILY_START_END_TIMECARD_DAY">TIMECARD_DAY</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> ??????ID</td>
-		<td class="subcell">timecardId</td>
+		<td class="commentcell"> ?????????ID</td>
+		<td class="subcell">timecardDayId</td>
 		<td class="subcell">Long</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">3</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">*</td>
-		<td id="daily_start_end_biz_date">BIZ_DATE</td>
-		<td class="typecell">DATE</td>
-		<td class="sizecell"> 10 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> ???</td>
-		<td class="subcell">bizDate</td>
-		<td class="subcell">LocalDate</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">4</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -425,7 +417,7 @@ DAILY_START_END
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">4</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -442,41 +434,7 @@ DAILY_START_END
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_start_end_scale_fitted_start_time">SCALE_FITTED_START_TIME</td>
-		<td class="typecell">DATETIME</td>
-		<td class="sizecell"> 19 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> ????????</td>
-		<td class="subcell">scaleFittedStartTime</td>
-		<td class="subcell">LocalDateTime</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">7</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td id="daily_start_end_scale_fitted_end_time">SCALE_FITTED_END_TIME</td>
-		<td class="typecell">DATETIME</td>
-		<td class="sizecell"> 19 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> ????????</td>
-		<td class="subcell">scaleFittedEndTime</td>
-		<td class="subcell">LocalDateTime</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">5</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -493,7 +451,7 @@ DAILY_START_END
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -510,7 +468,7 @@ DAILY_START_END
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">10</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -527,7 +485,7 @@ DAILY_START_END
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">11</td>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -544,7 +502,7 @@ DAILY_START_END
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">12</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -561,7 +519,7 @@ DAILY_START_END
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">13</td>
+		<td class="rownumcell">10</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -578,7 +536,7 @@ DAILY_START_END
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">14</td>
+		<td class="rownumcell">11</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -791,7 +749,7 @@ TIMECARD
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_IN_OUT_TIMECARD">DAILY_START_END</a>&nbsp;</td>
+		<td class="relcell"><a href="#timecard_day" title="FK_TIMECARD_DAY_TIMECARD">TIMECARD_DAY</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> TIMECARD_ID</td>
 		<td class="subcell">timecardId</td>
@@ -907,6 +865,167 @@ TIMECARD
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
 		<td class="optcell" id="timecard_version_no">VERSION_NO</td>
+		<td class="typecell">BIGINT</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> ???????</td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Long</td>
+	</tr>
+</table>
+<h2 id="timecard_day" title="type=TABLE, primaryKey={TIMECARD_DAY_ID}, nameLength=12, columnCount=8">
+TIMECARD_DAY
+</h2>
+<p class="tablecomment">?????????</p>
+<table>
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>ColumnComment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="flgcell" title="PRIMARY">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td id="timecard_day_timecard_day_id">TIMECARD_DAY_ID</td>
+		<td class="typecell">BIGINT</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_START_END_TIMECARD_DAY">DAILY_START_END</a>&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> ?????????ID</td>
+		<td class="subcell">timecardDayId</td>
+		<td class="subcell">Long</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell" title="FK_TIMECARD_DAY_TIMECARD(TIMECARD_ID)">o</td>
+		<td class="flgcell">*</td>
+		<td id="timecard_day_timecard_id">TIMECARD_ID</td>
+		<td class="typecell">BIGINT</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell"><a href="#timecard" title="FK_TIMECARD_DAY_TIMECARD">TIMECARD</a>&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> ??????ID</td>
+		<td class="subcell">timecardId</td>
+		<td class="subcell">Long</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td id="timecard_day_biz_date">BIZ_DATE</td>
+		<td class="typecell">DATE</td>
+		<td class="sizecell"> 10 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> ???</td>
+		<td class="subcell">bizDate</td>
+		<td class="subcell">LocalDate</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="timecard_day_register_datetime">REGISTER_DATETIME</td>
+		<td class="typecell">DATETIME</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> ????</td>
+		<td class="subcell">registerDatetime</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="timecard_day_register_user">REGISTER_USER</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> ?????</td>
+		<td class="subcell">registerUser</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="timecard_day_update_datetime">UPDATE_DATETIME</td>
+		<td class="typecell">DATETIME</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> ????</td>
+		<td class="subcell">updateDatetime</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell" id="timecard_day_update_user">UPDATE_USER</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> ?????</td>
+		<td class="subcell">updateUser</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell" id="timecard_day_version_no">VERSION_NO</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>

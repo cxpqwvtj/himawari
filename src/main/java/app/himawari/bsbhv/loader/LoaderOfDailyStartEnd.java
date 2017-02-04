@@ -13,7 +13,7 @@ import app.himawari.exentity.*;
  *     DAILY_START_END_ID
  *
  * [column]
- *     DAILY_START_END_ID, TIMECARD_ID, BIZ_DATE, START_DATETIME, END_DATETIME, SCALE_FITTED_START_TIME, SCALE_FITTED_END_TIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     DAILY_START_END_ID, TIMECARD_DAY_ID, START_DATETIME, END_DATETIME, VACATION_TYPE_CODE, NOTE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -25,13 +25,13 @@ import app.himawari.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     TIMECARD, VACATION_TYPE
+ *     TIMECARD_DAY, VACATION_TYPE
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     timecard, vacationType
+ *     timecardDay, vacationType
  *
  * [referrer property]
  *     
@@ -59,11 +59,11 @@ public class LoaderOfDailyStartEnd {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
-    protected LoaderOfTimecard _foreignTimecardLoader;
-    public LoaderOfTimecard pulloutTimecard() {
-        if (_foreignTimecardLoader == null)
-        { _foreignTimecardLoader = new LoaderOfTimecard().ready(myBhv().pulloutTimecard(_selectedList), _selector); }
-        return _foreignTimecardLoader;
+    protected LoaderOfTimecardDay _foreignTimecardDayLoader;
+    public LoaderOfTimecardDay pulloutTimecardDay() {
+        if (_foreignTimecardDayLoader == null)
+        { _foreignTimecardDayLoader = new LoaderOfTimecardDay().ready(myBhv().pulloutTimecardDay(_selectedList), _selector); }
+        return _foreignTimecardDayLoader;
     }
 
     protected LoaderOfVacationType _foreignVacationTypeLoader;

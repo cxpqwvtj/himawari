@@ -12,21 +12,21 @@ import app.himawari.cbean.cq.bs.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The condition-query for in-line of DAILY_START_END.
+ * The condition-query for in-line of TIMECARD_DAY.
  * @author DBFlute(AutoGenerator)
  */
-public class DailyStartEndCIQ extends AbstractBsDailyStartEndCQ {
+public class TimecardDayCIQ extends AbstractBsTimecardDayCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected BsDailyStartEndCQ _myCQ;
+    protected BsTimecardDayCQ _myCQ;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public DailyStartEndCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
-                        , String aliasName, int nestLevel, BsDailyStartEndCQ myCQ) {
+    public TimecardDayCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
+                        , String aliasName, int nestLevel, BsTimecardDayCQ myCQ) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
@@ -61,27 +61,34 @@ public class DailyStartEndCIQ extends AbstractBsDailyStartEndCQ {
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
-    protected ConditionValue xgetCValueDailyStartEndId() { return _myCQ.xdfgetDailyStartEndId(); }
     protected ConditionValue xgetCValueTimecardDayId() { return _myCQ.xdfgetTimecardDayId(); }
-    protected ConditionValue xgetCValueStartDatetime() { return _myCQ.xdfgetStartDatetime(); }
-    protected ConditionValue xgetCValueEndDatetime() { return _myCQ.xdfgetEndDatetime(); }
-    protected ConditionValue xgetCValueVacationTypeCode() { return _myCQ.xdfgetVacationTypeCode(); }
-    protected ConditionValue xgetCValueNote() { return _myCQ.xdfgetNote(); }
+    public String keepTimecardDayId_ExistsReferrer_DailyStartEndList(DailyStartEndCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepTimecardDayId_NotExistsReferrer_DailyStartEndList(DailyStartEndCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepTimecardDayId_SpecifyDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepTimecardDayId_QueryDerivedReferrer_DailyStartEndList(DailyStartEndCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepTimecardDayId_QueryDerivedReferrer_DailyStartEndListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    protected ConditionValue xgetCValueTimecardId() { return _myCQ.xdfgetTimecardId(); }
+    protected ConditionValue xgetCValueBizDate() { return _myCQ.xdfgetBizDate(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueRegisterUser() { return _myCQ.xdfgetRegisterUser(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected ConditionValue xgetCValueUpdateUser() { return _myCQ.xdfgetUpdateUser(); }
     protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
-    public String keepScalarCondition(DailyStartEndCQ sq)
+    public String keepScalarCondition(TimecardDayCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(DailyStartEndCQ sq)
+    public String keepSpecifyMyselfDerived(TimecardDayCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(DailyStartEndCQ sq)
+    public String keepQueryMyselfDerived(TimecardDayCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
     public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(DailyStartEndCQ sq)
+    public String keepMyselfExists(TimecardDayCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
 
     protected void throwIICBOE(String name)
@@ -91,6 +98,6 @@ public class DailyStartEndCIQ extends AbstractBsDailyStartEndCQ {
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xinCB() { return DailyStartEndCB.class.getName(); }
-    protected String xinCQ() { return DailyStartEndCQ.class.getName(); }
+    protected String xinCB() { return TimecardDayCB.class.getName(); }
+    protected String xinCQ() { return TimecardDayCQ.class.getName(); }
 }

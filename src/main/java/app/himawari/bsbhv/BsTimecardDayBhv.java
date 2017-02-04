@@ -22,38 +22,38 @@ import app.himawari.bsentity.dbmeta.*;
 import app.himawari.cbean.*;
 
 /**
- * The behavior of TIMECARD as TABLE. <br>
+ * The behavior of TIMECARD_DAY as TABLE. <br>
  * <pre>
  * [primary key]
- *     TIMECARD_ID
+ *     TIMECARD_DAY_ID
  *
  * [column]
- *     TIMECARD_ID, MEMBER_ID, TIMECARD_YEAR_MONTH, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     TIMECARD_DAY_ID, TIMECARD_ID, BIZ_DATE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
  *
  * [identity]
- *     TIMECARD_ID
+ *     
  *
  * [version-no]
  *     VERSION_NO
  *
  * [foreign table]
- *     MEMBER
+ *     TIMECARD
  *
  * [referrer table]
- *     TIMECARD_DAY
+ *     DAILY_START_END
  *
  * [foreign property]
- *     member
+ *     timecard
  *
  * [referrer property]
- *     timecardDayList
+ *     dailyStartEndList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, TimecardCB> {
+public abstract class BsTimecardDayBhv extends AbstractBehaviorWritable<TimecardDay, TimecardDayCB> {
 
     // ===================================================================================
     //                                                                          Definition
@@ -65,15 +65,15 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
     //                                                                             DB Meta
     //                                                                             =======
     /** {@inheritDoc} */
-    public TimecardDbm asDBMeta() { return TimecardDbm.getInstance(); }
+    public TimecardDayDbm asDBMeta() { return TimecardDayDbm.getInstance(); }
     /** {@inheritDoc} */
-    public String asTableDbName() { return "TIMECARD"; }
+    public String asTableDbName() { return "TIMECARD_DAY"; }
 
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public TimecardCB newConditionBean() { return new TimecardCB(); }
+    public TimecardDayCB newConditionBean() { return new TimecardDayCB(); }
 
     // ===================================================================================
     //                                                                        Count Select
@@ -82,14 +82,14 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * Select the count of uniquely-selected records by the condition-bean. {IgnorePagingCondition, IgnoreSpecifyColumn}<br>
      * SpecifyColumn is ignored but you can use it only to remove text type column for union's distinct.
      * <pre>
-     * <span style="color: #70226C">int</span> count = <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">selectCount</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #70226C">int</span> count = <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">selectCount</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @return The count for the condition. (NotMinus)
      */
-    public int selectCount(CBCall<TimecardCB> cbLambda) {
+    public int selectCount(CBCall<TimecardDayCB> cbLambda) {
         return facadeSelectCount(createCB(cbLambda));
     }
 
@@ -103,38 +103,38 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * <span style="color: #AD4747; font-size: 120%">If it might be no data, isPresent() and orElse(), ...</span>
      * <pre>
      * <span style="color: #3F7E5E">// if the data always exists as your business rule</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
-     * }).<span style="color: #CC4747">alwaysPresent</span>(<span style="color: #553000">timecard</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * }).<span style="color: #CC4747">alwaysPresent</span>(<span style="color: #553000">timecardDay</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #3F7E5E">// called if present, or exception</span>
-     *     ... = <span style="color: #553000">timecard</span>.get...
+     *     ... = <span style="color: #553000">timecardDay</span>.get...
      * });
      * 
      * <span style="color: #3F7E5E">// if it might be no data, ...</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
-     * }).<span style="color: #CC4747">ifPresent</span>(<span style="color: #553000">timecard</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * }).<span style="color: #CC4747">ifPresent</span>(<span style="color: #553000">timecardDay</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #3F7E5E">// called if present</span>
-     *     ... = <span style="color: #553000">timecard</span>.get...
+     *     ... = <span style="color: #553000">timecardDay</span>.get...
      * }).<span style="color: #994747">orElse</span>(() <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #3F7E5E">// called if not present</span>
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @return The optional entity selected by the condition. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public OptionalEntity<Timecard> selectEntity(CBCall<TimecardCB> cbLambda) {
+    public OptionalEntity<TimecardDay> selectEntity(CBCall<TimecardDayCB> cbLambda) {
         return facadeSelectEntity(createCB(cbLambda));
     }
 
-    protected OptionalEntity<Timecard> facadeSelectEntity(TimecardCB cb) {
+    protected OptionalEntity<TimecardDay> facadeSelectEntity(TimecardDayCB cb) {
         return doSelectOptionalEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends Timecard> OptionalEntity<ENTITY> doSelectOptionalEntity(TimecardCB cb, Class<? extends ENTITY> tp) {
+    protected <ENTITY extends TimecardDay> OptionalEntity<ENTITY> doSelectOptionalEntity(TimecardDayCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -144,72 +144,46 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * Select the entity by the condition-bean with deleted check. <br>
      * <span style="color: #AD4747; font-size: 120%">If the data is always present as your business rule, this method is good.</span>
      * <pre>
-     * Timecard <span style="color: #553000">timecard</span> = <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">selectEntityWithDeletedCheck</span>(cb <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> cb.acceptPK(1));
-     * ... = <span style="color: #553000">timecard</span>.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
+     * TimecardDay <span style="color: #553000">timecardDay</span> = <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">selectEntityWithDeletedCheck</span>(cb <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> cb.acceptPK(1));
+     * ... = <span style="color: #553000">timecardDay</span>.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public Timecard selectEntityWithDeletedCheck(CBCall<TimecardCB> cbLambda) {
+    public TimecardDay selectEntityWithDeletedCheck(CBCall<TimecardDayCB> cbLambda) {
         return facadeSelectEntityWithDeletedCheck(createCB(cbLambda));
     }
 
     /**
      * Select the entity by the primary-key value.
-     * @param timecardId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @param timecardDayId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The optional entity selected by the PK. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public OptionalEntity<Timecard> selectByPK(Long timecardId) {
-        return facadeSelectByPK(timecardId);
+    public OptionalEntity<TimecardDay> selectByPK(Long timecardDayId) {
+        return facadeSelectByPK(timecardDayId);
     }
 
-    protected OptionalEntity<Timecard> facadeSelectByPK(Long timecardId) {
-        return doSelectOptionalByPK(timecardId, typeOfSelectedEntity());
+    protected OptionalEntity<TimecardDay> facadeSelectByPK(Long timecardDayId) {
+        return doSelectOptionalByPK(timecardDayId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends Timecard> ENTITY doSelectByPK(Long timecardId, Class<? extends ENTITY> tp) {
-        return doSelectEntity(xprepareCBAsPK(timecardId), tp);
+    protected <ENTITY extends TimecardDay> ENTITY doSelectByPK(Long timecardDayId, Class<? extends ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(timecardDayId), tp);
     }
 
-    protected <ENTITY extends Timecard> OptionalEntity<ENTITY> doSelectOptionalByPK(Long timecardId, Class<? extends ENTITY> tp) {
-        return createOptionalEntity(doSelectByPK(timecardId, tp), timecardId);
+    protected <ENTITY extends TimecardDay> OptionalEntity<ENTITY> doSelectOptionalByPK(Long timecardDayId, Class<? extends ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(timecardDayId, tp), timecardDayId);
     }
 
-    protected TimecardCB xprepareCBAsPK(Long timecardId) {
-        assertObjectNotNull("timecardId", timecardId);
-        return newConditionBean().acceptPK(timecardId);
-    }
-
-    /**
-     * Select the entity by the unique-key value.
-     * @param memberId : UQ+, NotNull, BIGINT(19), FK to MEMBER. (NotNull)
-     * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
-     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
-     * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
-     * @throws EntityDuplicatedException When the entity has been duplicated.
-     * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
-     */
-    public OptionalEntity<Timecard> selectByUniqueOf(Long memberId, String timecardYearMonth) {
-        return facadeSelectByUniqueOf(memberId, timecardYearMonth);
-    }
-
-    protected OptionalEntity<Timecard> facadeSelectByUniqueOf(Long memberId, String timecardYearMonth) {
-        return doSelectByUniqueOf(memberId, timecardYearMonth, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends Timecard> OptionalEntity<ENTITY> doSelectByUniqueOf(Long memberId, String timecardYearMonth, Class<? extends ENTITY> tp) {
-        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberId, timecardYearMonth), tp), memberId, timecardYearMonth);
-    }
-
-    protected TimecardCB xprepareCBAsUniqueOf(Long memberId, String timecardYearMonth) {
-        assertObjectNotNull("memberId", memberId);assertObjectNotNull("timecardYearMonth", timecardYearMonth);
-        return newConditionBean().acceptUniqueOf(memberId, timecardYearMonth);
+    protected TimecardDayCB xprepareCBAsPK(Long timecardDayId) {
+        assertObjectNotNull("timecardDayId", timecardDayId);
+        return newConditionBean().acceptPK(timecardDayId);
     }
 
     // ===================================================================================
@@ -218,19 +192,19 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
     /**
      * Select the list as result bean.
      * <pre>
-     * ListResultBean&lt;Timecard&gt; <span style="color: #553000">timecardList</span> = <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">selectList</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * ListResultBean&lt;TimecardDay&gt; <span style="color: #553000">timecardDayList</span> = <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">selectList</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...;
      *     <span style="color: #553000">cb</span>.query().addOrderBy...;
      * });
-     * <span style="color: #70226C">for</span> (Timecard <span style="color: #553000">timecard</span> : <span style="color: #553000">timecardList</span>) {
-     *     ... = <span style="color: #553000">timecard</span>.get...;
+     * <span style="color: #70226C">for</span> (TimecardDay <span style="color: #553000">timecardDay</span> : <span style="color: #553000">timecardDayList</span>) {
+     *     ... = <span style="color: #553000">timecardDay</span>.get...;
      * }
      * </pre>
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
      * @throws DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public ListResultBean<Timecard> selectList(CBCall<TimecardCB> cbLambda) {
+    public ListResultBean<TimecardDay> selectList(CBCall<TimecardDayCB> cbLambda) {
         return facadeSelectList(createCB(cbLambda));
     }
 
@@ -244,7 +218,7 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * Select the page as result bean. <br>
      * (both count-select and paging-select are executed)
      * <pre>
-     * PagingResultBean&lt;Timecard&gt; <span style="color: #553000">page</span> = <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">selectPage</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * PagingResultBean&lt;TimecardDay&gt; <span style="color: #553000">page</span> = <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">selectPage</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
      *     <span style="color: #553000">cb</span>.query().addOrderBy...
      *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
@@ -254,15 +228,15 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * <span style="color: #70226C">boolean</span> isExistPrePage = <span style="color: #553000">page</span>.isExistPrePage();
      * <span style="color: #70226C">boolean</span> isExistNextPage = <span style="color: #553000">page</span>.isExistNextPage();
      * ...
-     * <span style="color: #70226C">for</span> (Timecard timecard : <span style="color: #553000">page</span>) {
-     *     ... = timecard.get...;
+     * <span style="color: #70226C">for</span> (TimecardDay timecardDay : <span style="color: #553000">page</span>) {
+     *     ... = timecardDay.get...;
      * }
      * </pre>
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
      * @throws DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public PagingResultBean<Timecard> selectPage(CBCall<TimecardCB> cbLambda) {
+    public PagingResultBean<TimecardDay> selectPage(CBCall<TimecardDayCB> cbLambda) {
         return facadeSelectPage(createCB(cbLambda));
     }
 
@@ -272,16 +246,16 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
     /**
      * Select the cursor by the condition-bean.
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">selectCursor</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">selectCursor</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
      * }, <span style="color: #553000">member</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     ... = <span style="color: #553000">member</span>.getMemberName();
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
-     * @param entityLambda The handler of entity row of Timecard. (NotNull)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
+     * @param entityLambda The handler of entity row of TimecardDay. (NotNull)
      */
-    public void selectCursor(CBCall<TimecardCB> cbLambda, EntityRowHandler<Timecard> entityLambda) {
+    public void selectCursor(CBCall<TimecardDayCB> cbLambda, EntityRowHandler<TimecardDay> entityLambda) {
         facadeSelectCursor(createCB(cbLambda), entityLambda);
     }
 
@@ -292,7 +266,7 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * Select the scalar value derived by a function from uniquely-selected records. <br>
      * You should call a function method after this method called like as follows:
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">selectScalar</span>(Date.class).max(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">selectScalar</span>(Date.class).max(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">column...</span>; <span style="color: #3F7E5E">// required for the function</span>
      *     <span style="color: #553000">cb</span>.query().set...
      * });
@@ -301,7 +275,7 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> HpSLSFunction<TimecardCB, RESULT> selectScalar(Class<RESULT> resultType) {
+    public <RESULT> HpSLSFunction<TimecardDayCB, RESULT> selectScalar(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
 
@@ -346,12 +320,12 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has order by FK before callback.
-     * @param timecardList The entity list of timecard. (NotNull)
+     * @param timecardDayList The entity list of timecardDay. (NotNull)
      * @param loaderLambda The callback to handle the referrer loader for actually loading referrer. (NotNull)
      */
-    public void load(List<Timecard> timecardList, ReferrerLoaderHandler<LoaderOfTimecard> loaderLambda) {
-        xassLRArg(timecardList, loaderLambda);
-        loaderLambda.handle(new LoaderOfTimecard().ready(timecardList, _behaviorSelector));
+    public void load(List<TimecardDay> timecardDayList, ReferrerLoaderHandler<LoaderOfTimecardDay> loaderLambda) {
+        xassLRArg(timecardDayList, loaderLambda);
+        loaderLambda.handle(new LoaderOfTimecardDay().ready(timecardDayList, _behaviorSelector));
     }
 
     /**
@@ -379,99 +353,99 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has order by FK before callback.
-     * @param timecard The entity of timecard. (NotNull)
+     * @param timecardDay The entity of timecardDay. (NotNull)
      * @param loaderLambda The callback to handle the referrer loader for actually loading referrer. (NotNull)
      */
-    public void load(Timecard timecard, ReferrerLoaderHandler<LoaderOfTimecard> loaderLambda) {
-        xassLRArg(timecard, loaderLambda);
-        loaderLambda.handle(new LoaderOfTimecard().ready(xnewLRAryLs(timecard), _behaviorSelector));
+    public void load(TimecardDay timecardDay, ReferrerLoaderHandler<LoaderOfTimecardDay> loaderLambda) {
+        xassLRArg(timecardDay, loaderLambda);
+        loaderLambda.handle(new LoaderOfTimecardDay().ready(xnewLRAryLs(timecardDay), _behaviorSelector));
     }
 
     /**
-     * Load referrer of timecardDayList by the set-upper of referrer. <br>
-     * TIMECARD_DAY by TIMECARD_ID, named 'timecardDayList'.
+     * Load referrer of dailyStartEndList by the set-upper of referrer. <br>
+     * DAILY_START_END by TIMECARD_DAY_ID, named 'dailyStartEndList'.
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">loadTimecardDay</span>(<span style="color: #553000">timecardList</span>, <span style="color: #553000">dayCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">dayCB</span>.setupSelect...
-     *     <span style="color: #553000">dayCB</span>.query().set...
-     *     <span style="color: #553000">dayCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">loadDailyStartEnd</span>(<span style="color: #553000">timecardDayList</span>, <span style="color: #553000">endCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">endCB</span>.setupSelect...
+     *     <span style="color: #553000">endCB</span>.query().set...
+     *     <span style="color: #553000">endCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
-     * <span style="color: #70226C">for</span> (Timecard timecard : <span style="color: #553000">timecardList</span>) {
-     *     ... = timecard.<span style="color: #CC4747">getTimecardDayList()</span>;
+     * <span style="color: #70226C">for</span> (TimecardDay timecardDay : <span style="color: #553000">timecardDayList</span>) {
+     *     ... = timecardDay.<span style="color: #CC4747">getDailyStartEndList()</span>;
      * }
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
-     * cb.query().setTimecardId_InScope(pkList);
-     * cb.query().addOrderBy_TimecardId_Asc();
+     * cb.query().setTimecardDayId_InScope(pkList);
+     * cb.query().addOrderBy_TimecardDayId_Asc();
      * </pre>
-     * @param timecardList The entity list of timecard. (NotNull)
+     * @param timecardDayList The entity list of timecardDay. (NotNull)
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<TimecardDay> loadTimecardDay(List<Timecard> timecardList, ReferrerConditionSetupper<TimecardDayCB> refCBLambda) {
-        xassLRArg(timecardList, refCBLambda);
-        return doLoadTimecardDay(timecardList, new LoadReferrerOption<TimecardDayCB, TimecardDay>().xinit(refCBLambda));
+    public NestedReferrerListGateway<DailyStartEnd> loadDailyStartEnd(List<TimecardDay> timecardDayList, ReferrerConditionSetupper<DailyStartEndCB> refCBLambda) {
+        xassLRArg(timecardDayList, refCBLambda);
+        return doLoadDailyStartEnd(timecardDayList, new LoadReferrerOption<DailyStartEndCB, DailyStartEnd>().xinit(refCBLambda));
     }
 
     /**
-     * Load referrer of timecardDayList by the set-upper of referrer. <br>
-     * TIMECARD_DAY by TIMECARD_ID, named 'timecardDayList'.
+     * Load referrer of dailyStartEndList by the set-upper of referrer. <br>
+     * DAILY_START_END by TIMECARD_DAY_ID, named 'dailyStartEndList'.
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">loadTimecardDay</span>(<span style="color: #553000">timecard</span>, <span style="color: #553000">dayCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">dayCB</span>.setupSelect...
-     *     <span style="color: #553000">dayCB</span>.query().set...
-     *     <span style="color: #553000">dayCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">loadDailyStartEnd</span>(<span style="color: #553000">timecardDay</span>, <span style="color: #553000">endCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">endCB</span>.setupSelect...
+     *     <span style="color: #553000">endCB</span>.query().set...
+     *     <span style="color: #553000">endCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
-     * ... = <span style="color: #553000">timecard</span>.<span style="color: #CC4747">getTimecardDayList()</span>;
+     * ... = <span style="color: #553000">timecardDay</span>.<span style="color: #CC4747">getDailyStartEndList()</span>;
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has settings before callback as follows:
      * <pre>
-     * cb.query().setTimecardId_InScope(pkList);
-     * cb.query().addOrderBy_TimecardId_Asc();
+     * cb.query().setTimecardDayId_InScope(pkList);
+     * cb.query().addOrderBy_TimecardDayId_Asc();
      * </pre>
-     * @param timecard The entity of timecard. (NotNull)
+     * @param timecardDay The entity of timecardDay. (NotNull)
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<TimecardDay> loadTimecardDay(Timecard timecard, ReferrerConditionSetupper<TimecardDayCB> refCBLambda) {
-        xassLRArg(timecard, refCBLambda);
-        return doLoadTimecardDay(xnewLRLs(timecard), new LoadReferrerOption<TimecardDayCB, TimecardDay>().xinit(refCBLambda));
+    public NestedReferrerListGateway<DailyStartEnd> loadDailyStartEnd(TimecardDay timecardDay, ReferrerConditionSetupper<DailyStartEndCB> refCBLambda) {
+        xassLRArg(timecardDay, refCBLambda);
+        return doLoadDailyStartEnd(xnewLRLs(timecardDay), new LoadReferrerOption<DailyStartEndCB, DailyStartEnd>().xinit(refCBLambda));
     }
 
-    protected NestedReferrerListGateway<TimecardDay> doLoadTimecardDay(List<Timecard> timecardList, LoadReferrerOption<TimecardDayCB, TimecardDay> option) {
-        return helpLoadReferrerInternally(timecardList, option, "timecardDayList");
+    protected NestedReferrerListGateway<DailyStartEnd> doLoadDailyStartEnd(List<TimecardDay> timecardDayList, LoadReferrerOption<DailyStartEndCB, DailyStartEnd> option) {
+        return helpLoadReferrerInternally(timecardDayList, option, "dailyStartEndList");
     }
 
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
     /**
-     * Pull out the list of foreign table 'Member'.
-     * @param timecardList The list of timecard. (NotNull, EmptyAllowed)
+     * Pull out the list of foreign table 'Timecard'.
+     * @param timecardDayList The list of timecardDay. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Member> pulloutMember(List<Timecard> timecardList)
-    { return helpPulloutInternally(timecardList, "member"); }
+    public List<Timecard> pulloutTimecard(List<TimecardDay> timecardDayList)
+    { return helpPulloutInternally(timecardDayList, "timecard"); }
 
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
     /**
-     * Extract the value list of (single) primary key timecardId.
-     * @param timecardList The list of timecard. (NotNull, EmptyAllowed)
+     * Extract the value list of (single) primary key timecardDayId.
+     * @param timecardDayList The list of timecardDay. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractTimecardIdList(List<Timecard> timecardList)
-    { return helpExtractListInternally(timecardList, "timecardId"); }
+    public List<Long> extractTimecardDayIdList(List<TimecardDay> timecardDayList)
+    { return helpExtractListInternally(timecardDayList, "timecardDayId"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -479,136 +453,136 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
     /**
      * Insert the entity modified-only. (DefaultConstraintsEnabled)
      * <pre>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * timecard.setFoo...(value);
-     * timecard.setBar...(value);
+     * timecardDay.setFoo...(value);
+     * timecardDay.setBar...(value);
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//timecard.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//timecard.set...;</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">insert</span>(timecard);
-     * ... = timecard.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * <span style="color: #3F7E5E">//timecardDay.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//timecardDay.set...;</span>
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">insert</span>(timecardDay);
+     * ... = timecardDay.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param timecard The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param timecardDay The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insert(Timecard timecard) {
-        doInsert(timecard, null);
+    public void insert(TimecardDay timecardDay) {
+        doInsert(timecardDay, null);
     }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     * timecard.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * timecard.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     * timecardDay.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * timecardDay.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//timecard.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//timecard.set...;</span>
+     * <span style="color: #3F7E5E">//timecardDay.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//timecardDay.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * timecard.<span style="color: #CC4747">setVersionNo</span>(value);
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">update</span>(timecard);
+     * timecardDay.<span style="color: #CC4747">setVersionNo</span>(value);
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">update</span>(timecardDay);
      * </pre>
-     * @param timecard The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param timecardDay The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(Timecard timecard) {
-        doUpdate(timecard, null);
+    public void update(TimecardDay timecardDay) {
+        doUpdate(timecardDay, null);
     }
 
     /**
      * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     * timecard.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * timecard.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     * timecardDay.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * timecardDay.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//timecard.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//timecard.set...;</span>
+     * <span style="color: #3F7E5E">//timecardDay.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//timecardDay.set...;</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//timecard.setVersionNo(value);</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(timecard);
+     * <span style="color: #3F7E5E">//timecardDay.setVersionNo(value);</span>
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(timecardDay);
      * </pre>
-     * @param timecard The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param timecardDay The entity of update. (NotNull, PrimaryKeyNotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void updateNonstrict(Timecard timecard) {
-        doUpdateNonstrict(timecard, null);
+    public void updateNonstrict(TimecardDay timecardDay) {
+        doUpdateNonstrict(timecardDay, null);
     }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
-     * @param timecard The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @param timecardDay The entity of insert or update. (NotNull, ...depends on insert or update)
      * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insertOrUpdate(Timecard timecard) {
-        doInsertOrUpdate(timecard, null, null);
+    public void insertOrUpdate(TimecardDay timecardDay) {
+        doInsertOrUpdate(timecardDay, null, null);
     }
 
     /**
      * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
-     * @param timecard The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @param timecardDay The entity of insert or update. (NotNull, ...depends on insert or update)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insertOrUpdateNonstrict(Timecard timecard) {
-        doInsertOrUpdateNonstrict(timecard, null, null);
+    public void insertOrUpdateNonstrict(TimecardDay timecardDay) {
+        doInsertOrUpdateNonstrict(timecardDay, null, null);
     }
 
     /**
      * Delete the entity. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     * timecard.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     * timecardDay.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * timecard.<span style="color: #CC4747">setVersionNo</span>(value);
+     * timecardDay.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #70226C">try</span> {
-     *     <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">delete</span>(timecard);
+     *     <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">delete</span>(timecardDay);
      * } <span style="color: #70226C">catch</span> (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param timecard The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param timecardDay The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void delete(Timecard timecard) {
-        doDelete(timecard, null);
+    public void delete(TimecardDay timecardDay) {
+        doDelete(timecardDay, null);
     }
 
     /**
      * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl} <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     * timecard.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     * timecardDay.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//timecard.setVersionNo(value);</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(timecard);
+     * <span style="color: #3F7E5E">//timecardDay.setVersionNo(value);</span>
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(timecardDay);
      * </pre>
-     * @param timecard The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @param timecardDay The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void deleteNonstrict(Timecard timecard) {
-        doDeleteNonstrict(timecard, null);
+    public void deleteNonstrict(TimecardDay timecardDay) {
+        doDeleteNonstrict(timecardDay, null);
     }
 
     // ===================================================================================
@@ -620,26 +594,26 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * <p><span style="color: #CC4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * <span style="color: #70226C">for</span> (... : ...) {
-     *     Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     *     timecard.setFooName("foo");
+     *     TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     *     timecardDay.setFooName("foo");
      *     <span style="color: #70226C">if</span> (...) {
-     *         timecard.setFooPrice(123);
+     *         timecardDay.setFooPrice(123);
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are registered</span>
      *     <span style="color: #3F7E5E">// FOO_PRICE not-called in any entities are registered as null without default value</span>
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
-     *     timecardList.add(timecard);
+     *     timecardDayList.add(timecardDay);
      * }
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">batchInsert</span>(timecardList);
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">batchInsert</span>(timecardDayList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
      * (When you use the (normal) insert(), you can get the incremented value from your entity)</p>
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
-    public int[] batchInsert(List<Timecard> timecardList) {
-        return doBatchInsert(timecardList, null);
+    public int[] batchInsert(List<TimecardDay> timecardDayList) {
+        return doBatchInsert(timecardDayList, null);
     }
 
     /**
@@ -648,26 +622,26 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
-     *     Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     *     timecard.setFooName("foo");
+     *     TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     *     timecardDay.setFooName("foo");
      *     <span style="color: #70226C">if</span> (...) {
-     *         timecard.setFooPrice(123);
+     *         timecardDay.setFooPrice(123);
      *     } <span style="color: #70226C">else</span> {
-     *         timecard.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
-     *         <span style="color: #3F7E5E">//timecard.setFooDate(...); // *not allowed, fragmented</span>
+     *         timecardDay.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//timecardDay.setFooDate(...); // *not allowed, fragmented</span>
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
-     *     timecardList.add(timecard);
+     *     timecardDayList.add(timecardDay);
      * }
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">batchUpdate</span>(timecardList);
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">batchUpdate</span>(timecardDayList);
      * </pre>
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
-    public int[] batchUpdate(List<Timecard> timecardList) {
-        return doBatchUpdate(timecardList, null);
+    public int[] batchUpdate(List<TimecardDay> timecardDayList) {
+        return doBatchUpdate(timecardDayList, null);
     }
 
     /**
@@ -676,48 +650,48 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * <span style="color: #CC4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * <span style="color: #70226C">for</span> (... : ...) {
-     *     Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     *     timecard.setFooName("foo");
+     *     TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     *     timecardDay.setFooName("foo");
      *     <span style="color: #70226C">if</span> (...) {
-     *         timecard.setFooPrice(123);
+     *         timecardDay.setFooPrice(123);
      *     } <span style="color: #70226C">else</span> {
-     *         timecard.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
-     *         <span style="color: #3F7E5E">//timecard.setFooDate(...); // *not allowed, fragmented</span>
+     *         timecardDay.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//timecardDay.setFooDate(...); // *not allowed, fragmented</span>
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
-     *     timecardList.add(timecard);
+     *     timecardDayList.add(timecardDay);
      * }
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">batchUpdate</span>(timecardList);
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">batchUpdate</span>(timecardDayList);
      * </pre>
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchUpdateNonstrict(List<Timecard> timecardList) {
-        return doBatchUpdateNonstrict(timecardList, null);
+    public int[] batchUpdateNonstrict(List<TimecardDay> timecardDayList) {
+        return doBatchUpdateNonstrict(timecardDayList, null);
     }
 
     /**
      * Batch-delete the entity list. (ExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
-    public int[] batchDelete(List<Timecard> timecardList) {
-        return doBatchDelete(timecardList, null);
+    public int[] batchDelete(List<TimecardDay> timecardDayList) {
+        return doBatchDelete(timecardDayList, null);
     }
 
     /**
      * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDeleteNonstrict(List<Timecard> timecardList) {
-        return doBatchDeleteNonstrict(timecardList, null);
+    public int[] batchDeleteNonstrict(List<TimecardDay> timecardDayList) {
+        return doBatchDeleteNonstrict(timecardDayList, null);
     }
 
     // ===================================================================================
@@ -726,8 +700,8 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">queryInsert</span>(new QueryInsertSetupper&lt;Timecard, TimecardCB&gt;() {
-     *     public ConditionBean setup(Timecard entity, TimecardCB intoCB) {
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">queryInsert</span>(new QueryInsertSetupper&lt;TimecardDay, TimecardDayCB&gt;() {
+     *     public ConditionBean setup(TimecardDay entity, TimecardDayCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -749,48 +723,48 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * @param manyArgLambda The callback to set up query-insert. (NotNull)
      * @return The inserted count.
      */
-    public int queryInsert(QueryInsertSetupper<Timecard, TimecardCB> manyArgLambda) {
+    public int queryInsert(QueryInsertSetupper<TimecardDay, TimecardDayCB> manyArgLambda) {
         return doQueryInsert(manyArgLambda, null);
     }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
      * <pre>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//timecard.setPK...(value);</span>
-     * timecard.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//timecardDay.setPK...(value);</span>
+     * timecardDay.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//timecard.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//timecard.set...;</span>
+     * <span style="color: #3F7E5E">//timecardDay.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//timecardDay.set...;</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//timecard.setVersionNo(value);</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">queryUpdate</span>(timecard, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #3F7E5E">//timecardDay.setVersionNo(value);</span>
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">queryUpdate</span>(timecardDay, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * });
      * </pre>
-     * @param timecard The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param timecardDay The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @return The updated count.
      * @throws NonQueryUpdateNotAllowedException When the query has no condition.
      */
-    public int queryUpdate(Timecard timecard, CBCall<TimecardCB> cbLambda) {
-        return doQueryUpdate(timecard, createCB(cbLambda), null);
+    public int queryUpdate(TimecardDay timecardDay, CBCall<TimecardDayCB> cbLambda) {
+        return doQueryUpdate(timecardDay, createCB(cbLambda), null);
     }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">queryDelete</span>(timecard, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">queryDelete</span>(timecardDay, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @return The deleted count.
      * @throws NonQueryDeleteNotAllowedException When the query has no condition.
      */
-    public int queryDelete(CBCall<TimecardCB> cbLambda) {
+    public int queryDelete(CBCall<TimecardDayCB> cbLambda) {
         return doQueryDelete(createCB(cbLambda), null);
     }
 
@@ -805,22 +779,22 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br>
      * Other specifications are same as insert(entity).
      * <pre>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * timecard.setFoo...(value);
-     * timecard.setBar...(value);
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">varyingInsert</span>(timecard, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * timecardDay.setFoo...(value);
+     * timecardDay.setBar...(value);
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">varyingInsert</span>(timecardDay, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      *     <span style="color: #553000">op</span>.disableCommonColumnAutoSetup();
      * });
-     * ... = timecard.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * ... = timecardDay.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param timecard The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param timecardDay The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param opLambda The callback for option of insert for varying requests. (NotNull)
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsert(Timecard timecard, WritableOptionCall<TimecardCB, InsertOption<TimecardCB>> opLambda) {
-        doInsert(timecard, createInsertOption(opLambda));
+    public void varyingInsert(TimecardDay timecardDay, WritableOptionCall<TimecardDayCB, InsertOption<TimecardDayCB>> opLambda) {
+        doInsert(timecardDay, createInsertOption(opLambda));
     }
 
     /**
@@ -828,26 +802,26 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     * timecard.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * timecard.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     * timecardDay.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * timecardDay.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * timecard.<span style="color: #CC4747">setVersionNo</span>(value);
+     * timecardDay.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #3F7E5E">// you can update by self calculation values</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">varyingUpdate</span>(timecard, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">varyingUpdate</span>(timecardDay, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param timecard The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param timecardDay The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
      * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingUpdate(Timecard timecard, WritableOptionCall<TimecardCB, UpdateOption<TimecardCB>> opLambda) {
-        doUpdate(timecard, createUpdateOption(opLambda));
+    public void varyingUpdate(TimecardDay timecardDay, WritableOptionCall<TimecardDayCB, UpdateOption<TimecardDayCB>> opLambda) {
+        doUpdate(timecardDay, createUpdateOption(opLambda));
     }
 
     /**
@@ -856,80 +830,80 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * Other specifications are same as updateNonstrict(entity).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
-     * timecard.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * timecard.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
+     * timecardDay.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * timecardDay.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//timecard.setVersionNo(value);</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(timecard, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #3F7E5E">//timecardDay.setVersionNo(value);</span>
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(timecardDay, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param timecard The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param timecardDay The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingUpdateNonstrict(Timecard timecard, WritableOptionCall<TimecardCB, UpdateOption<TimecardCB>> opLambda) {
-        doUpdateNonstrict(timecard, createUpdateOption(opLambda));
+    public void varyingUpdateNonstrict(TimecardDay timecardDay, WritableOptionCall<TimecardDayCB, UpdateOption<TimecardDayCB>> opLambda) {
+        doUpdateNonstrict(timecardDay, createUpdateOption(opLambda));
     }
 
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
-     * @param timecard The entity of insert or update. (NotNull)
+     * @param timecardDay The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
      * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsertOrUpdate(Timecard timecard, WritableOptionCall<TimecardCB, InsertOption<TimecardCB>> insertOpLambda, WritableOptionCall<TimecardCB, UpdateOption<TimecardCB>> updateOpLambda) {
-        doInsertOrUpdate(timecard, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    public void varyingInsertOrUpdate(TimecardDay timecardDay, WritableOptionCall<TimecardDayCB, InsertOption<TimecardDayCB>> insertOpLambda, WritableOptionCall<TimecardDayCB, UpdateOption<TimecardDayCB>> updateOpLambda) {
+        doInsertOrUpdate(timecardDay, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
     }
 
     /**
      * Insert or update the entity with varying requests non-strictly. (NonExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdateNonstrict(entity).
-     * @param timecard The entity of insert or update. (NotNull)
+     * @param timecardDay The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsertOrUpdateNonstrict(Timecard timecard, WritableOptionCall<TimecardCB, InsertOption<TimecardCB>> insertOpLambda, WritableOptionCall<TimecardCB, UpdateOption<TimecardCB>> updateOpLambda) {
-        doInsertOrUpdateNonstrict(timecard, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    public void varyingInsertOrUpdateNonstrict(TimecardDay timecardDay, WritableOptionCall<TimecardDayCB, InsertOption<TimecardDayCB>> insertOpLambda, WritableOptionCall<TimecardDayCB, UpdateOption<TimecardDayCB>> updateOpLambda) {
+        doInsertOrUpdateNonstrict(timecardDay, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, ExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
-     * @param timecard The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param timecardDay The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(Timecard timecard, WritableOptionCall<TimecardCB, DeleteOption<TimecardCB>> opLambda) {
-        doDelete(timecard, createDeleteOption(opLambda));
+    public void varyingDelete(TimecardDay timecardDay, WritableOptionCall<TimecardDayCB, DeleteOption<TimecardDayCB>> opLambda) {
+        doDelete(timecardDay, createDeleteOption(opLambda));
     }
 
     /**
      * Delete the entity with varying requests non-strictly. (ZeroUpdateException, NonExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as deleteNonstrict(entity).
-     * @param timecard The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param timecardDay The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDeleteNonstrict(Timecard timecard, WritableOptionCall<TimecardCB, DeleteOption<TimecardCB>> opLambda) {
-        doDeleteNonstrict(timecard, createDeleteOption(opLambda));
+    public void varyingDeleteNonstrict(TimecardDay timecardDay, WritableOptionCall<TimecardDayCB, DeleteOption<TimecardDayCB>> opLambda) {
+        doDeleteNonstrict(timecardDay, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -940,12 +914,12 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * For example, disableCommonColumnAutoSetup()
      * , disablePrimaryKeyIdentity(), limitBatchInsertLogging(). <br>
      * Other specifications are same as batchInsert(entityList).
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param opLambda The callback for option of insert for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchInsert(List<Timecard> timecardList, WritableOptionCall<TimecardCB, InsertOption<TimecardCB>> opLambda) {
-        return doBatchInsert(timecardList, createInsertOption(opLambda));
+    public int[] varyingBatchInsert(List<TimecardDay> timecardDayList, WritableOptionCall<TimecardDayCB, InsertOption<TimecardDayCB>> opLambda) {
+        return doBatchInsert(timecardDayList, createInsertOption(opLambda));
     }
 
     /**
@@ -953,12 +927,12 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
      * Other specifications are same as batchUpdate(entityList).
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchUpdate(List<Timecard> timecardList, WritableOptionCall<TimecardCB, UpdateOption<TimecardCB>> opLambda) {
-        return doBatchUpdate(timecardList, createUpdateOption(opLambda));
+    public int[] varyingBatchUpdate(List<TimecardDay> timecardDayList, WritableOptionCall<TimecardDayCB, UpdateOption<TimecardDayCB>> opLambda) {
+        return doBatchUpdate(timecardDayList, createUpdateOption(opLambda));
     }
 
     /**
@@ -966,36 +940,36 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
      * Other specifications are same as batchUpdateNonstrict(entityList).
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchUpdateNonstrict(List<Timecard> timecardList, WritableOptionCall<TimecardCB, UpdateOption<TimecardCB>> opLambda) {
-        return doBatchUpdateNonstrict(timecardList, createUpdateOption(opLambda));
+    public int[] varyingBatchUpdateNonstrict(List<TimecardDay> timecardDayList, WritableOptionCall<TimecardDayCB, UpdateOption<TimecardDayCB>> opLambda) {
+        return doBatchUpdateNonstrict(timecardDayList, createUpdateOption(opLambda));
     }
 
     /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchDelete(List<Timecard> timecardList, WritableOptionCall<TimecardCB, DeleteOption<TimecardCB>> opLambda) {
-        return doBatchDelete(timecardList, createDeleteOption(opLambda));
+    public int[] varyingBatchDelete(List<TimecardDay> timecardDayList, WritableOptionCall<TimecardDayCB, DeleteOption<TimecardDayCB>> opLambda) {
+        return doBatchDelete(timecardDayList, createDeleteOption(opLambda));
     }
 
     /**
      * Batch-delete the list with varying requests non-strictly. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDeleteNonstrict(entityList).
-     * @param timecardList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param timecardDayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchDeleteNonstrict(List<Timecard> timecardList, WritableOptionCall<TimecardCB, DeleteOption<TimecardCB>> opLambda) {
-        return doBatchDeleteNonstrict(timecardList, createDeleteOption(opLambda));
+    public int[] varyingBatchDeleteNonstrict(List<TimecardDay> timecardDayList, WritableOptionCall<TimecardDayCB, DeleteOption<TimecardDayCB>> opLambda) {
+        return doBatchDeleteNonstrict(timecardDayList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -1009,7 +983,7 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * @param opLambda The callback for option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
-    public int varyingQueryInsert(QueryInsertSetupper<Timecard, TimecardCB> manyArgLambda, WritableOptionCall<TimecardCB, InsertOption<TimecardCB>> opLambda) {
+    public int varyingQueryInsert(QueryInsertSetupper<TimecardDay, TimecardDayCB> manyArgLambda, WritableOptionCall<TimecardDayCB, InsertOption<TimecardDayCB>> opLambda) {
         return doQueryInsert(manyArgLambda, createInsertOption(opLambda));
     }
 
@@ -1020,14 +994,14 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
-     * Timecard timecard = <span style="color: #70226C">new</span> Timecard();
+     * TimecardDay timecardDay = <span style="color: #70226C">new</span> TimecardDay();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//timecard.setPK...(value);</span>
-     * timecard.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//timecardDay.setPK...(value);</span>
+     * timecardDay.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//timecard.setVersionNo(value);</span>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">varyingQueryUpdate</span>(timecard, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #3F7E5E">//timecardDay.setVersionNo(value);</span>
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">varyingQueryUpdate</span>(timecardDay, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * }, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">op</span>.self(<span style="color: #553000">colCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
@@ -1035,14 +1009,14 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      *     }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
      * });
      * </pre>
-     * @param timecard The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param timecardDay The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
      * @return The updated count.
      * @throws NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryUpdate(Timecard timecard, CBCall<TimecardCB> cbLambda, WritableOptionCall<TimecardCB, UpdateOption<TimecardCB>> opLambda) {
-        return doQueryUpdate(timecard, createCB(cbLambda), createUpdateOption(opLambda));
+    public int varyingQueryUpdate(TimecardDay timecardDay, CBCall<TimecardDayCB> cbLambda, WritableOptionCall<TimecardDayCB, UpdateOption<TimecardDayCB>> opLambda) {
+        return doQueryUpdate(timecardDay, createCB(cbLambda), createUpdateOption(opLambda));
     }
 
     /**
@@ -1050,18 +1024,18 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * For example, allowNonQueryDelete(). <br>
      * Other specifications are same as queryDelete(cb).
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #CC4747">queryDelete</span>(timecard, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">timecardDayBhv</span>.<span style="color: #CC4747">queryDelete</span>(timecardDay, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * }, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">op</span>...
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Timecard. (NotNull)
+     * @param cbLambda The callback for condition-bean of TimecardDay. (NotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @return The deleted count.
      * @throws NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryDelete(CBCall<TimecardCB> cbLambda, WritableOptionCall<TimecardCB, DeleteOption<TimecardCB>> opLambda) {
+    public int varyingQueryDelete(CBCall<TimecardDayCB> cbLambda, WritableOptionCall<TimecardDayCB, DeleteOption<TimecardDayCB>> opLambda) {
         return doQueryDelete(createCB(cbLambda), createDeleteOption(opLambda));
     }
 
@@ -1072,31 +1046,31 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
      * Prepare the all facade executor of outside-SQL to execute it.
      * <pre>
      * <span style="color: #3F7E5E">// main style</span> 
-     * timecardBhv.outideSql().selectEntity(pmb); <span style="color: #3F7E5E">// optional</span> 
-     * timecardBhv.outideSql().selectList(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
-     * timecardBhv.outideSql().selectPage(pmb); <span style="color: #3F7E5E">// PagingResultBean</span>
-     * timecardBhv.outideSql().selectPagedListOnly(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
-     * timecardBhv.outideSql().selectCursor(pmb, handler); <span style="color: #3F7E5E">// (by handler)</span>
-     * timecardBhv.outideSql().execute(pmb); <span style="color: #3F7E5E">// int (updated count)</span>
-     * timecardBhv.outideSql().call(pmb); <span style="color: #3F7E5E">// void (pmb has OUT parameters)</span>
+     * timecardDayBhv.outideSql().selectEntity(pmb); <span style="color: #3F7E5E">// optional</span> 
+     * timecardDayBhv.outideSql().selectList(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
+     * timecardDayBhv.outideSql().selectPage(pmb); <span style="color: #3F7E5E">// PagingResultBean</span>
+     * timecardDayBhv.outideSql().selectPagedListOnly(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
+     * timecardDayBhv.outideSql().selectCursor(pmb, handler); <span style="color: #3F7E5E">// (by handler)</span>
+     * timecardDayBhv.outideSql().execute(pmb); <span style="color: #3F7E5E">// int (updated count)</span>
+     * timecardDayBhv.outideSql().call(pmb); <span style="color: #3F7E5E">// void (pmb has OUT parameters)</span>
      *
      * <span style="color: #3F7E5E">// traditional style</span> 
-     * timecardBhv.outideSql().traditionalStyle().selectEntity(path, pmb, entityType);
-     * timecardBhv.outideSql().traditionalStyle().selectList(path, pmb, entityType);
-     * timecardBhv.outideSql().traditionalStyle().selectPage(path, pmb, entityType);
-     * timecardBhv.outideSql().traditionalStyle().selectPagedListOnly(path, pmb, entityType);
-     * timecardBhv.outideSql().traditionalStyle().selectCursor(path, pmb, handler);
-     * timecardBhv.outideSql().traditionalStyle().execute(path, pmb);
+     * timecardDayBhv.outideSql().traditionalStyle().selectEntity(path, pmb, entityType);
+     * timecardDayBhv.outideSql().traditionalStyle().selectList(path, pmb, entityType);
+     * timecardDayBhv.outideSql().traditionalStyle().selectPage(path, pmb, entityType);
+     * timecardDayBhv.outideSql().traditionalStyle().selectPagedListOnly(path, pmb, entityType);
+     * timecardDayBhv.outideSql().traditionalStyle().selectCursor(path, pmb, handler);
+     * timecardDayBhv.outideSql().traditionalStyle().execute(path, pmb);
      *
      * <span style="color: #3F7E5E">// options</span> 
-     * timecardBhv.outideSql().removeBlockComment().selectList()
-     * timecardBhv.outideSql().removeLineComment().selectList()
-     * timecardBhv.outideSql().formatSql().selectList()
+     * timecardDayBhv.outideSql().removeBlockComment().selectList()
+     * timecardDayBhv.outideSql().removeLineComment().selectList()
+     * timecardDayBhv.outideSql().formatSql().selectList()
      * </pre>
      * <p>The invoker of behavior command should be not null when you call this method.</p>
      * @return The new-created all facade executor of outside-SQL. (NotNull)
      */
-    public OutsideSqlAllFacadeExecutor<TimecardBhv> outsideSql() {
+    public OutsideSqlAllFacadeExecutor<TimecardDayBhv> outsideSql() {
         return doOutsideSql();
     }
 
@@ -1109,9 +1083,9 @@ public abstract class BsTimecardBhv extends AbstractBehaviorWritable<Timecard, T
     // ===================================================================================
     //                                                                         Type Helper
     //                                                                         ===========
-    protected Class<? extends Timecard> typeOfSelectedEntity() { return Timecard.class; }
-    protected Class<Timecard> typeOfHandlingEntity() { return Timecard.class; }
-    protected Class<TimecardCB> typeOfHandlingConditionBean() { return TimecardCB.class; }
+    protected Class<? extends TimecardDay> typeOfSelectedEntity() { return TimecardDay.class; }
+    protected Class<TimecardDay> typeOfHandlingEntity() { return TimecardDay.class; }
+    protected Class<TimecardDayCB> typeOfHandlingConditionBean() { return TimecardDayCB.class; }
 
     // ===================================================================================
     //                                                                            Accessor

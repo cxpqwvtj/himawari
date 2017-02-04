@@ -12,7 +12,7 @@ import app.himawari.exentity.*;
 
 /**
  * The entity of MEMBER as TABLE. <br>
- * ????
+ * メンバー
  * <pre>
  * [primary-key]
  *     MEMBER_ID
@@ -230,7 +230,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     //                                                                            ========
     /**
      * [get] MEMBER_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * ????ID
+     * メンバーID
      * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getMemberId() {
@@ -240,7 +240,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] MEMBER_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * ????ID
+     * メンバーID
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Long memberId) {
@@ -250,7 +250,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] MEMBER_NAME: {NotNull, VARCHAR(100)} <br>
-     * ??????
+     * メンバー名称
      * @return The value of the column 'MEMBER_NAME'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberName() {
@@ -260,7 +260,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] MEMBER_NAME: {NotNull, VARCHAR(100)} <br>
-     * ??????
+     * メンバー名称
      * @param memberName The value of the column 'MEMBER_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMemberName(String memberName) {
@@ -270,7 +270,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)} <br>
-     * ?????????
+     * メンバーアカウント
      * @return The value of the column 'MEMBER_ACCOUNT_ID'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberAccountId() {
@@ -280,7 +280,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)} <br>
-     * ?????????
+     * メンバーアカウント
      * @param memberAccountId The value of the column 'MEMBER_ACCOUNT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberAccountId(String memberAccountId) {
@@ -290,7 +290,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * ????
+     * 登録日時
      * @return The value of the column 'REGISTER_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -300,7 +300,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
-     * ????
+     * 登録日時
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -310,7 +310,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * ?????
+     * 登録ユーザ
      * @return The value of the column 'REGISTER_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getRegisterUser() {
@@ -320,7 +320,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
-     * ?????
+     * 登録ユーザ
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
@@ -330,7 +330,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * ????
+     * 更新日時
      * @return The value of the column 'UPDATE_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -340,7 +340,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
-     * ????
+     * 更新日時
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {
@@ -350,7 +350,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * ?????
+     * 更新ユーザ
      * @return The value of the column 'UPDATE_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getUpdateUser() {
@@ -360,7 +360,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
-     * ?????
+     * 更新ユーザ
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
@@ -370,7 +370,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * ???????
+     * バージョン番号
      * @return The value of the column 'VERSION_NO'. (basically NotNull if selected: for the constraint)
      */
     public Long getVersionNo() {
@@ -380,7 +380,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] VERSION_NO: {NotNull, BIGINT(19)} <br>
-     * ???????
+     * バージョン番号
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {

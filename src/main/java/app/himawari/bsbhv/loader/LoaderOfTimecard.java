@@ -30,13 +30,13 @@ import app.himawari.cbean.*;
  *     MEMBER
  *
  * [referrer table]
- *     DAILY_START_END
+ *     TIMECARD_DAY
  *
  * [foreign property]
  *     member
  *
  * [referrer property]
- *     dailyStartEndList
+ *     timecardDayList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -61,24 +61,24 @@ public class LoaderOfTimecard {
     // ===================================================================================
     //                                                                       Load Referrer
     //                                                                       =============
-    protected List<DailyStartEnd> _referrerDailyStartEnd;
+    protected List<TimecardDay> _referrerTimecardDay;
 
     /**
-     * Load referrer of dailyStartEndList by the set-upper of referrer. <br>
-     * DAILY_START_END by TIMECARD_ID, named 'dailyStartEndList'.
+     * Load referrer of timecardDayList by the set-upper of referrer. <br>
+     * TIMECARD_DAY by TIMECARD_ID, named 'timecardDayList'.
      * <pre>
      * <span style="color: #0000C0">timecardBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">timecardList</span>, <span style="color: #553000">timecardLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">timecardLoader</span>.<span style="color: #CC4747">loadDailyStartEnd</span>(<span style="color: #553000">endCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *         <span style="color: #553000">endCB</span>.setupSelect...
-     *         <span style="color: #553000">endCB</span>.query().set...
-     *         <span style="color: #553000">endCB</span>.query().addOrderBy...
+     *     <span style="color: #553000">timecardLoader</span>.<span style="color: #CC4747">loadTimecardDay</span>(<span style="color: #553000">dayCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">dayCB</span>.setupSelect...
+     *         <span style="color: #553000">dayCB</span>.query().set...
+     *         <span style="color: #553000">dayCB</span>.query().addOrderBy...
      *     }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
-     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">endLoader</span> -&gt; {</span>
-     *     <span style="color: #3F7E5E">//    endLoader.load...</span>
+     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">dayLoader</span> -&gt; {</span>
+     *     <span style="color: #3F7E5E">//    dayLoader.load...</span>
      *     <span style="color: #3F7E5E">//});</span>
      * });
      * for (Timecard timecard : <span style="color: #553000">timecardList</span>) {
-     *     ... = timecard.<span style="color: #CC4747">getDailyStartEndList()</span>;
+     *     ... = timecard.<span style="color: #CC4747">getTimecardDayList()</span>;
      * }
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
@@ -90,9 +90,9 @@ public class LoaderOfTimecard {
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoaderGateway<LoaderOfDailyStartEnd> loadDailyStartEnd(ReferrerConditionSetupper<DailyStartEndCB> refCBLambda) {
-        myBhv().loadDailyStartEnd(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerDailyStartEnd = refLs);
-        return hd -> hd.handle(new LoaderOfDailyStartEnd().ready(_referrerDailyStartEnd, _selector));
+    public NestedReferrerLoaderGateway<LoaderOfTimecardDay> loadTimecardDay(ReferrerConditionSetupper<TimecardDayCB> refCBLambda) {
+        myBhv().loadTimecardDay(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerTimecardDay = refLs);
+        return hd -> hd.handle(new LoaderOfTimecardDay().ready(_referrerTimecardDay, _selector));
     }
 
     // ===================================================================================

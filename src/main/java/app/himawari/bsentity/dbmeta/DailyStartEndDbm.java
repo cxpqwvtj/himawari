@@ -44,12 +44,9 @@ public class DailyStartEndDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((DailyStartEnd)et).getDailyStartEndId(), (et, vl) -> ((DailyStartEnd)et).setDailyStartEndId(ctl(vl)), "dailyStartEndId");
-        setupEpg(_epgMap, et -> ((DailyStartEnd)et).getTimecardId(), (et, vl) -> ((DailyStartEnd)et).setTimecardId(ctl(vl)), "timecardId");
-        setupEpg(_epgMap, et -> ((DailyStartEnd)et).getBizDate(), (et, vl) -> ((DailyStartEnd)et).setBizDate(ctld(vl)), "bizDate");
+        setupEpg(_epgMap, et -> ((DailyStartEnd)et).getTimecardDayId(), (et, vl) -> ((DailyStartEnd)et).setTimecardDayId(ctl(vl)), "timecardDayId");
         setupEpg(_epgMap, et -> ((DailyStartEnd)et).getStartDatetime(), (et, vl) -> ((DailyStartEnd)et).setStartDatetime(ctldt(vl)), "startDatetime");
         setupEpg(_epgMap, et -> ((DailyStartEnd)et).getEndDatetime(), (et, vl) -> ((DailyStartEnd)et).setEndDatetime(ctldt(vl)), "endDatetime");
-        setupEpg(_epgMap, et -> ((DailyStartEnd)et).getScaleFittedStartTime(), (et, vl) -> ((DailyStartEnd)et).setScaleFittedStartTime(ctldt(vl)), "scaleFittedStartTime");
-        setupEpg(_epgMap, et -> ((DailyStartEnd)et).getScaleFittedEndTime(), (et, vl) -> ((DailyStartEnd)et).setScaleFittedEndTime(ctldt(vl)), "scaleFittedEndTime");
         setupEpg(_epgMap, et -> ((DailyStartEnd)et).getVacationTypeCode(), (et, vl) -> ((DailyStartEnd)et).setVacationTypeCode((String)vl), "vacationTypeCode");
         setupEpg(_epgMap, et -> ((DailyStartEnd)et).getNote(), (et, vl) -> ((DailyStartEnd)et).setNote((String)vl), "note");
         setupEpg(_epgMap, et -> ((DailyStartEnd)et).getRegisterDatetime(), (et, vl) -> ((DailyStartEnd)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
@@ -68,7 +65,7 @@ public class DailyStartEndDbm extends AbstractDBMeta {
     { xsetupEfpg(); }
     @SuppressWarnings("unchecked")
     protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((DailyStartEnd)et).getTimecard(), (et, vl) -> ((DailyStartEnd)et).setTimecard((OptionalEntity<Timecard>)vl), "timecard");
+        setupEfpg(_efpgMap, et -> ((DailyStartEnd)et).getTimecardDay(), (et, vl) -> ((DailyStartEnd)et).setTimecardDay((OptionalEntity<TimecardDay>)vl), "timecardDay");
         setupEfpg(_efpgMap, et -> ((DailyStartEnd)et).getVacationType(), (et, vl) -> ((DailyStartEnd)et).setVacationType((OptionalEntity<VacationType>)vl), "vacationType");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
@@ -91,12 +88,9 @@ public class DailyStartEndDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnDailyStartEndId = cci("DAILY_START_END_ID", "DAILY_START_END_ID", null, null, Long.class, "dailyStartEndId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnTimecardId = cci("TIMECARD_ID", "TIMECARD_ID", null, null, Long.class, "timecardId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "timecard", null, null, false);
-    protected final ColumnInfo _columnBizDate = cci("BIZ_DATE", "BIZ_DATE", null, null, java.time.LocalDate.class, "bizDate", null, false, false, true, "DATE", 10, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnTimecardDayId = cci("TIMECARD_DAY_ID", "TIMECARD_DAY_ID", null, null, Long.class, "timecardDayId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "timecardDay", null, null, false);
     protected final ColumnInfo _columnStartDatetime = cci("START_DATETIME", "START_DATETIME", null, null, java.time.LocalDateTime.class, "startDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnEndDatetime = cci("END_DATETIME", "END_DATETIME", null, null, java.time.LocalDateTime.class, "endDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnScaleFittedStartTime = cci("SCALE_FITTED_START_TIME", "SCALE_FITTED_START_TIME", null, null, java.time.LocalDateTime.class, "scaleFittedStartTime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnScaleFittedEndTime = cci("SCALE_FITTED_END_TIME", "SCALE_FITTED_END_TIME", null, null, java.time.LocalDateTime.class, "scaleFittedEndTime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, false, false, false, "VARCHAR", 3, 0, null, false, null, null, "vacationType", null, null, false);
     protected final ColumnInfo _columnNote = cci("NOTE", "NOTE", null, null, String.class, "note", null, false, false, false, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -111,15 +105,10 @@ public class DailyStartEndDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDailyStartEndId() { return _columnDailyStartEndId; }
     /**
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
+     * TIMECARD_DAY_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD_DAY}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnTimecardId() { return _columnTimecardId; }
-    /**
-     * BIZ_DATE: {NotNull, DATE(10)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnBizDate() { return _columnBizDate; }
+    public ColumnInfo columnTimecardDayId() { return _columnTimecardDayId; }
     /**
      * START_DATETIME: {DATETIME(19)}
      * @return The information object of specified column. (NotNull)
@@ -130,16 +119,6 @@ public class DailyStartEndDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnEndDatetime() { return _columnEndDatetime; }
-    /**
-     * SCALE_FITTED_START_TIME: {DATETIME(19)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnScaleFittedStartTime() { return _columnScaleFittedStartTime; }
-    /**
-     * SCALE_FITTED_END_TIME: {DATETIME(19)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnScaleFittedEndTime() { return _columnScaleFittedEndTime; }
     /**
      * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
      * @return The information object of specified column. (NotNull)
@@ -179,12 +158,9 @@ public class DailyStartEndDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnDailyStartEndId());
-        ls.add(columnTimecardId());
-        ls.add(columnBizDate());
+        ls.add(columnTimecardDayId());
         ls.add(columnStartDatetime());
         ls.add(columnEndDatetime());
-        ls.add(columnScaleFittedStartTime());
-        ls.add(columnScaleFittedEndTime());
         ls.add(columnVacationTypeCode());
         ls.add(columnNote());
         ls.add(columnRegisterDatetime());
@@ -216,12 +192,12 @@ public class DailyStartEndDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     /**
-     * TIMECARD by my TIMECARD_ID, named 'timecard'.
+     * TIMECARD_DAY by my TIMECARD_DAY_ID, named 'timecardDay'.
      * @return The information object of foreign property. (NotNull)
      */
-    public ForeignInfo foreignTimecard() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTimecardId(), TimecardDbm.getInstance().columnTimecardId());
-        return cfi("FK_DAILY_IN_OUT_TIMECARD", "timecard", this, TimecardDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "dailyStartEndList", false);
+    public ForeignInfo foreignTimecardDay() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTimecardDayId(), TimecardDayDbm.getInstance().columnTimecardDayId());
+        return cfi("FK_DAILY_START_END_TIMECARD_DAY", "timecardDay", this, TimecardDayDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "dailyStartEndList", false);
     }
     /**
      * VACATION_TYPE by my VACATION_TYPE_CODE, named 'vacationType'.

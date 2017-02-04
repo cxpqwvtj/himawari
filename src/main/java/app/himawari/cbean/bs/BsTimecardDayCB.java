@@ -18,22 +18,23 @@ import app.himawari.allcommon.ImplementedInvokerAssistant;
 import app.himawari.allcommon.ImplementedSqlClauseCreator;
 import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
+import app.himawari.cbean.nss.*;
 
 /**
- * The base condition-bean of TIMECARD.
+ * The base condition-bean of TIMECARD_DAY.
  * @author DBFlute(AutoGenerator)
  */
-public class BsTimecardCB extends AbstractConditionBean {
+public class BsTimecardDayCB extends AbstractConditionBean {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected TimecardCQ _conditionQuery;
+    protected TimecardDayCQ _conditionQuery;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsTimecardCB() {
+    public BsTimecardDayCB() {
         if (DBFluteConfig.getInstance().isPagingCountLater()) {
             enablePagingCountLater();
         }
@@ -72,7 +73,7 @@ public class BsTimecardCB extends AbstractConditionBean {
     }
 
     public String asTableDbName() {
-        return "TIMECARD";
+        return "TIMECARD_DAY";
     }
 
     // ===================================================================================
@@ -80,36 +81,23 @@ public class BsTimecardCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param timecardId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @param timecardDayId : PK, NotNull, BIGINT(19). (NotNull)
      * @return this. (NotNull)
      */
-    public TimecardCB acceptPK(Long timecardId) {
-        assertObjectNotNull("timecardId", timecardId);
-        BsTimecardCB cb = this;
-        cb.query().setTimecardId_Equal(timecardId);
-        return (TimecardCB)this;
-    }
-
-    /**
-     * Accept the query condition of unique key as equal.
-     * @param memberId : UQ+, NotNull, BIGINT(19), FK to MEMBER. (NotNull)
-     * @param timecardYearMonth : +UQ, NotNull, VARCHAR(6). (NotNull)
-     * @return this. (NotNull)
-     */
-    public TimecardCB acceptUniqueOf(Long memberId, String timecardYearMonth) {
-        assertObjectNotNull("memberId", memberId);assertObjectNotNull("timecardYearMonth", timecardYearMonth);
-        BsTimecardCB cb = this;
-        cb.query().setMemberId_Equal(memberId);cb.query().setTimecardYearMonth_Equal(timecardYearMonth);
-        return (TimecardCB)this;
+    public TimecardDayCB acceptPK(Long timecardDayId) {
+        assertObjectNotNull("timecardDayId", timecardDayId);
+        BsTimecardDayCB cb = this;
+        cb.query().setTimecardDayId_Equal(timecardDayId);
+        return (TimecardDayCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
-        query().addOrderBy_TimecardId_Asc();
+        query().addOrderBy_TimecardDayId_Asc();
         return this;
     }
 
     public ConditionBean addOrderBy_PK_Desc() {
-        query().addOrderBy_TimecardId_Desc();
+        query().addOrderBy_TimecardDayId_Desc();
         return this;
     }
 
@@ -173,34 +161,34 @@ public class BsTimecardCB extends AbstractConditionBean {
      * </pre>
      * @return The instance of condition-query for base-point table to set up query. (NotNull)
      */
-    public TimecardCQ query() {
+    public TimecardDayCQ query() {
         assertQueryPurpose(); // assert only when user-public query 
         return doGetConditionQuery();
     }
 
-    public TimecardCQ xdfgetConditionQuery() { // public for parameter comment and internal
+    public TimecardDayCQ xdfgetConditionQuery() { // public for parameter comment and internal
         return doGetConditionQuery();
     }
 
-    protected TimecardCQ doGetConditionQuery() {
+    protected TimecardDayCQ doGetConditionQuery() {
         if (_conditionQuery == null) {
             _conditionQuery = createLocalCQ();
         }
         return _conditionQuery;
     }
 
-    protected TimecardCQ createLocalCQ() {
+    protected TimecardDayCQ createLocalCQ() {
         return xcreateCQ(null, getSqlClause(), getSqlClause().getBasePointAliasName(), 0);
     }
 
-    protected TimecardCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        TimecardCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected TimecardDayCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        TimecardDayCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
         cq.xsetBaseCB(this);
         return cq;
     }
 
-    protected TimecardCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        return new TimecardCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected TimecardDayCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        return new TimecardDayCQ(childQuery, sqlClause, aliasName, nestLevel);
     }
 
     /**
@@ -224,10 +212,10 @@ public class BsTimecardCB extends AbstractConditionBean {
      * </pre>
      * @param unionCBLambda The callback for query of 'union'. (NotNull)
      */
-    public void union(UnionQuery<TimecardCB> unionCBLambda) {
-        final TimecardCB cb = new TimecardCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+    public void union(UnionQuery<TimecardDayCB> unionCBLambda) {
+        final TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
         try { lock(); unionCBLambda.query(cb); } finally { unlock(); } xsaveUCB(cb);
-        final TimecardCQ cq = cb.query(); query().xsetUnionQuery(cq);
+        final TimecardDayCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
     /**
@@ -241,33 +229,42 @@ public class BsTimecardCB extends AbstractConditionBean {
      * </pre>
      * @param unionCBLambda The callback for query of 'union all'. (NotNull)
      */
-    public void unionAll(UnionQuery<TimecardCB> unionCBLambda) {
-        final TimecardCB cb = new TimecardCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+    public void unionAll(UnionQuery<TimecardDayCB> unionCBLambda) {
+        final TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
         try { lock(); unionCBLambda.query(cb); } finally { unlock(); } xsaveUCB(cb);
-        final TimecardCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
+        final TimecardDayCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
+    protected TimecardNss _nssTimecard;
+    public TimecardNss xdfgetNssTimecard() {
+        if (_nssTimecard == null) { _nssTimecard = new TimecardNss(null); }
+        return _nssTimecard;
+    }
     /**
      * Set up relation columns to select clause. <br>
-     * MEMBER by my MEMBER_ID, named 'member'.
+     * TIMECARD by my TIMECARD_ID, named 'timecard'.
      * <pre>
-     * <span style="color: #0000C0">timecardBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Member()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * <span style="color: #0000C0">timecardDayBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Timecard()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      *     <span style="color: #553000">cb</span>.query().set...
-     * }).alwaysPresent(<span style="color: #553000">timecard</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">timecard</span>.<span style="color: #CC4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * }).alwaysPresent(<span style="color: #553000">timecardDay</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">timecardDay</span>.<span style="color: #CC4747">getTimecard()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * });
      * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public void setupSelect_Member() {
-        assertSetupSelectPurpose("member");
+    public TimecardNss setupSelect_Timecard() {
+        assertSetupSelectPurpose("timecard");
         if (hasSpecifiedLocalColumn()) {
-            specify().columnMemberId();
+            specify().columnTimecardId();
         }
-        doSetupSelect(() -> query().queryMember());
+        doSetupSelect(() -> query().queryTimecard());
+        if (_nssTimecard == null || !_nssTimecard.hasConditionQuery())
+        { _nssTimecard = new TimecardNss(query().queryTimecard()); }
+        return _nssTimecard;
     }
 
     // [DBFlute-0.7.4]
@@ -310,27 +307,27 @@ public class BsTimecardCB extends AbstractConditionBean {
         return _specification != null && _specification.hasSpecifiedColumn();
     }
 
-    public static class HpSpecification extends HpAbstractSpecification<TimecardCQ> {
-        protected MemberCB.HpSpecification _member;
-        public HpSpecification(ConditionBean baseCB, HpSpQyCall<TimecardCQ> qyCall
+    public static class HpSpecification extends HpAbstractSpecification<TimecardDayCQ> {
+        protected TimecardCB.HpSpecification _timecard;
+        public HpSpecification(ConditionBean baseCB, HpSpQyCall<TimecardDayCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * TIMECARD_ID: {PK, ID, NotNull, BIGINT(19)}
+         * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnTimecardDayId() { return doColumn("TIMECARD_DAY_ID"); }
+        /**
+         * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnTimecardId() { return doColumn("TIMECARD_ID"); }
         /**
-         * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+         * BIZ_DATE: {NotNull, DATE(10)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
-        /**
-         * TIMECARD_YEAR_MONTH: {+UQ, NotNull, VARCHAR(6)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnTimecardYearMonth() { return doColumn("TIMECARD_YEAR_MONTH"); }
+        public SpecifiedColumn columnBizDate() { return doColumn("BIZ_DATE"); }
         /**
          * REGISTER_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
@@ -360,58 +357,58 @@ public class BsTimecardCB extends AbstractConditionBean {
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
-            columnTimecardId(); // PK
-            if (qyCall().qy().hasConditionQueryMember()
-                    || qyCall().qy().xgetReferrerQuery() instanceof MemberCQ) {
-                columnMemberId(); // FK or one-to-one referrer
+            columnTimecardDayId(); // PK
+            if (qyCall().qy().hasConditionQueryTimecard()
+                    || qyCall().qy().xgetReferrerQuery() instanceof TimecardCQ) {
+                columnTimecardId(); // FK or one-to-one referrer
             }
         }
         @Override
-        protected String getTableDbName() { return "TIMECARD"; }
+        protected String getTableDbName() { return "TIMECARD_DAY"; }
         /**
          * Prepare to specify functions about relation table. <br>
-         * MEMBER by my MEMBER_ID, named 'member'.
+         * TIMECARD by my TIMECARD_ID, named 'timecard'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
-        public MemberCB.HpSpecification specifyMember() {
-            assertRelation("member");
-            if (_member == null) {
-                _member = new MemberCB.HpSpecification(_baseCB
-                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryMember()
-                                    , () -> _qyCall.qy().queryMember())
+        public TimecardCB.HpSpecification specifyTimecard() {
+            assertRelation("timecard");
+            if (_timecard == null) {
+                _timecard = new TimecardCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryTimecard()
+                                    , () -> _qyCall.qy().queryTimecard())
                     , _purpose, _dbmetaProvider, xgetSDRFnFc());
                 if (xhasSyncQyCall()) { // inherits it
-                    _member.xsetSyncQyCall(xcreateSpQyCall(
-                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMember()
-                      , () -> xsyncQyCall().qy().queryMember()));
+                    _timecard.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryTimecard()
+                      , () -> xsyncQyCall().qy().queryTimecard()));
                 }
             }
-            return _member;
+            return _timecard;
         }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
-         * {select max(FOO) from TIMECARD_DAY where ...) as FOO_MAX} <br>
-         * TIMECARD_DAY by TIMECARD_ID, named 'timecardDayList'.
+         * {select max(FOO) from DAILY_START_END where ...) as FOO_MAX} <br>
+         * DAILY_START_END by TIMECARD_DAY_ID, named 'dailyStartEndList'.
          * <pre>
-         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-         *     dayCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *     dayCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
-         * }, TimecardDay.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(endCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     endCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     endCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, DailyStartEnd.<span style="color: #CC4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
-        public HpSDRFunction<TimecardDayCB, TimecardCQ> derivedTimecardDay() {
-            assertDerived("timecardDayList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TimecardDayCB> sq, TimecardCQ cq, String al, DerivedReferrerOption op)
-                    -> cq.xsderiveTimecardDayList(fn, sq, al, op), _dbmetaProvider);
+        public HpSDRFunction<DailyStartEndCB, TimecardDayCQ> derivedDailyStartEnd() {
+            assertDerived("dailyStartEndList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<DailyStartEndCB> sq, TimecardDayCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveDailyStartEndList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)
          */
-        public HpSDRFunction<TimecardCB, TimecardCQ> myselfDerived() {
+        public HpSDRFunction<TimecardDayCB, TimecardDayCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TimecardCB> sq, TimecardCQ cq, String al, DerivedReferrerOption op)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TimecardDayCB> sq, TimecardDayCQ cq, String al, DerivedReferrerOption op)
                     -> cq.xsmyselfDerive(fn, sq, al, op), _dbmetaProvider);
         }
     }
@@ -424,9 +421,9 @@ public class BsTimecardCB extends AbstractConditionBean {
      * This is very specialty so you can get the frontier spirit. Bon voyage!
      * @return The condition-bean for dream cruise, which is linked to main condition-bean.
      */
-    public TimecardCB dreamCruiseCB() {
-        TimecardCB cb = new TimecardCB();
-        cb.xsetupForDreamCruise((TimecardCB) this);
+    public TimecardDayCB dreamCruiseCB() {
+        TimecardDayCB cb = new TimecardDayCB();
+        cb.xsetupForDreamCruise((TimecardDayCB) this);
         return cb;
     }
 
@@ -451,15 +448,15 @@ public class BsTimecardCB extends AbstractConditionBean {
      * @param colCBLambda The callback for specify-query of left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<TimecardCB> columnQuery(final SpecifyQuery<TimecardCB> colCBLambda) {
+    public HpColQyOperand<TimecardDayCB> columnQuery(final SpecifyQuery<TimecardDayCB> colCBLambda) {
         return xcreateColQyOperand((rightSp, operand) -> {
             return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), colCBLambda, rightSp, operand);
         });
     }
 
-    protected TimecardCB xcreateColumnQueryCB() {
-        TimecardCB cb = new TimecardCB();
-        cb.xsetupForColumnQuery((TimecardCB)this);
+    protected TimecardDayCB xcreateColumnQueryCB() {
+        TimecardDayCB cb = new TimecardDayCB();
+        cb.xsetupForColumnQuery((TimecardDayCB)this);
         return cb;
     }
 
@@ -479,8 +476,8 @@ public class BsTimecardCB extends AbstractConditionBean {
      * </pre>
      * @param orCBLambda The callback for query of or-condition. (NotNull)
      */
-    public void orScopeQuery(OrQuery<TimecardCB> orCBLambda) {
-        xorSQ((TimecardCB)this, orCBLambda);
+    public void orScopeQuery(OrQuery<TimecardDayCB> orCBLambda) {
+        xorSQ((TimecardDayCB)this, orCBLambda);
     }
 
     /**
@@ -498,8 +495,8 @@ public class BsTimecardCB extends AbstractConditionBean {
      * </pre>
      * @param andCBLambda The callback for query of and-condition. (NotNull)
      */
-    public void orScopeQueryAndPart(AndQuery<TimecardCB> andCBLambda) {
-        xorSQAP((TimecardCB)this, andCBLambda);
+    public void orScopeQueryAndPart(AndQuery<TimecardDayCB> andCBLambda) {
+        xorSQAP((TimecardDayCB)this, andCBLambda);
     }
 
     // ===================================================================================
@@ -529,11 +526,11 @@ public class BsTimecardCB extends AbstractConditionBean {
     //                                                                        ============
     @Override
     protected void xprepareSyncQyCall(ConditionBean mainCB) {
-        final TimecardCB cb;
+        final TimecardDayCB cb;
         if (mainCB != null) {
-            cb = (TimecardCB)mainCB;
+            cb = (TimecardDayCB)mainCB;
         } else {
-            cb = new TimecardCB();
+            cb = new TimecardDayCB();
         }
         specify().xsetSyncQyCall(xcreateSpQyCall(() -> true, () -> cb.query()));
     }
@@ -542,8 +539,8 @@ public class BsTimecardCB extends AbstractConditionBean {
     //                                                                            Internal
     //                                                                            ========
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xgetConditionBeanClassNameInternally() { return TimecardCB.class.getName(); }
-    protected String xgetConditionQueryClassNameInternally() { return TimecardCQ.class.getName(); }
+    protected String xgetConditionBeanClassNameInternally() { return TimecardDayCB.class.getName(); }
+    protected String xgetConditionQueryClassNameInternally() { return TimecardDayCQ.class.getName(); }
     protected String xgetSubQueryClassNameInternally() { return SubQuery.class.getName(); }
     protected String xgetConditionOptionClassNameInternally() { return ConditionOption.class.getName(); }
 }
