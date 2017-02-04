@@ -185,16 +185,6 @@
 					<type>datetime</type>
 				</normal_column>
 				<normal_column>
-					<physical_name>SCALE_FITTED_START_DATETIME</physical_name>
-					<logical_name>補正後の開始日時</logical_name>
-					<type>datetime</type>
-				</normal_column>
-				<normal_column>
-					<physical_name>SCALE_FITTED_END_DATETIME</physical_name>
-					<logical_name>補正後の終了日時</logical_name>
-					<type>datetime</type>
-				</normal_column>
-				<normal_column>
 					<physical_name>VACATION_TYPE_CODE</physical_name>
 					<referred_column>table.VACATION_TYPE.VACATION_TYPE_CODE</referred_column>
 					<relationship>FK_DAILY_IN_OUT_VACATION_TYPE</relationship>
