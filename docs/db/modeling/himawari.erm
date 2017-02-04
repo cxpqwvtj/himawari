@@ -110,11 +110,11 @@
 			<logical_name>日次勤務時間記録</logical_name>
 			<description></description>
 			<height>251</height>
-			<width>258</width>
+			<width>274</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>439</x>
-			<y>349</y>
+			<x>746</x>
+			<y>407</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -122,12 +122,12 @@
 			</color>
 			<connections>
 				<relationship>
-					<name>FK_DAILY_IN_OUT_TIMECARD</name>
-					<source>table.TIMECARD</source>
+					<name>FK_DAILY_IN_OUT_VACATION_TYPE</name>
+					<source>table.VACATION_TYPE</source>
 					<target>table.DAILY_START_END</target>
 					<fk_columns>
 						<fk_column>
-							<fk_column_name>TIMECARD_ID</fk_column_name>
+							<fk_column_name>VACATION_TYPE_CODE</fk_column_name>
 						</fk_column>
 					</fk_columns>
 					<parent_cardinality>1</parent_cardinality>
@@ -137,12 +137,12 @@
 					<on_update_action>RESTRICT</on_update_action>
 				</relationship>
 				<relationship>
-					<name>FK_DAILY_IN_OUT_VACATION_TYPE</name>
-					<source>table.VACATION_TYPE</source>
+					<name>FK_DAILY_START_END_TIMECARD_DAY</name>
+					<source>table.TIMECARD_DAY</source>
 					<target>table.DAILY_START_END</target>
 					<fk_columns>
 						<fk_column>
-							<fk_column_name>VACATION_TYPE_CODE</fk_column_name>
+							<fk_column_name>TIMECARD_DAY_ID</fk_column_name>
 						</fk_column>
 					</fk_columns>
 					<parent_cardinality>1</parent_cardinality>
@@ -162,16 +162,9 @@
 					<auto_increment>true</auto_increment>
 				</normal_column>
 				<normal_column>
-					<physical_name>TIMECARD_ID</physical_name>
-					<logical_name>タイムカードID</logical_name>
-					<referred_column>table.TIMECARD.TIMECARD_ID</referred_column>
-					<relationship>FK_DAILY_IN_OUT_TIMECARD</relationship>
-					<not_null>true</not_null>
-				</normal_column>
-				<normal_column>
-					<physical_name>BIZ_DATE</physical_name>
-					<logical_name>業務日</logical_name>
-					<type>date</type>
+					<physical_name>TIMECARD_DAY_ID</physical_name>
+					<referred_column>table.TIMECARD_DAY.TIMECARD_DAY_ID</referred_column>
+					<relationship>FK_DAILY_START_END_TIMECARD_DAY</relationship>
 					<not_null>true</not_null>
 				</normal_column>
 				<normal_column>
@@ -332,6 +325,69 @@
 			</table_properties>
 		</table>
 		<table>
+			<physical_name>TIMECARD_DAY</physical_name>
+			<logical_name>タイムカード年月日</logical_name>
+			<description></description>
+			<height>75</height>
+			<width>261</width>
+			<font_name>.SF NS Text</font_name>
+			<font_size>9</font_size>
+			<x>412</x>
+			<y>411</y>
+			<color>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
+			</color>
+			<connections>
+				<relationship>
+					<name>FK_TIMECARD_DAY_TIMECARD</name>
+					<source>table.TIMECARD</source>
+					<target>table.TIMECARD_DAY</target>
+					<fk_columns>
+						<fk_column>
+							<fk_column_name>TIMECARD_ID</fk_column_name>
+						</fk_column>
+					</fk_columns>
+					<parent_cardinality>1</parent_cardinality>
+					<child_cardinality>0..n</child_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+				</relationship>
+			</connections>
+			<columns>
+				<normal_column>
+					<physical_name>TIMECARD_DAY_ID</physical_name>
+					<logical_name>タイムカード年月日ID</logical_name>
+					<type>bigint</type>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+				</normal_column>
+				<normal_column>
+					<physical_name>TIMECARD_ID</physical_name>
+					<logical_name>タイムカードID</logical_name>
+					<referred_column>table.TIMECARD.TIMECARD_ID</referred_column>
+					<relationship>FK_TIMECARD_DAY_TIMECARD</relationship>
+					<not_null>true</not_null>
+				</normal_column>
+				<normal_column>
+					<physical_name>BIZ_DATE</physical_name>
+					<logical_name>業務日</logical_name>
+					<type>date</type>
+					<not_null>true</not_null>
+				</normal_column>
+				<column_group>共通カラム</column_group>
+				<column_group>排他制御カラム</column_group>
+			</columns>
+			<indexes>
+			</indexes>
+			<compound_unique_key_list>
+			</compound_unique_key_list>
+			<table_properties>
+			</table_properties>
+		</table>
+		<table>
 			<physical_name>VACATION_TYPE</physical_name>
 			<logical_name>休暇タイプ</logical_name>
 			<description></description>
@@ -339,8 +395,8 @@
 			<width>279</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>456</x>
-			<y>49</y>
+			<x>735</x>
+			<y>77</y>
 			<color>
 				<r>255</r>
 				<g>255</g>
