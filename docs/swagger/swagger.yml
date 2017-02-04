@@ -10,8 +10,9 @@ produces:
 paths:
   /users/{userId}/timecards/{yearMonth}:
     get:
+      operationId: ''
       description: |
-        月の開始、終了時間のリストを返します。
+        月の開始、終了日時の一覧を返します。
       parameters:
         - name: userId
           in: path
@@ -31,6 +32,7 @@ paths:
             type: object
             properties:
               yearMonth:
+                title: 年月
                 type: string
               days:
                 type: array
@@ -38,10 +40,60 @@ paths:
                   type: object
                   properties:
                     bizDate:
+                      title: 業務日
                       type: string
-                    startDate:
+                    startDatetime:
+                      title: 開始日時
                       type: string
-                    finishDate:
+                    endDatetime:
+                      title: 終了日時
                       type: string
                     remarks:
+                      title: 備考
                       type: string
+  /user/days:
+    post:
+      description: 日次データ登録
+      parameters:
+        - name: StartEndDatetimes
+          in: body
+          schema:
+            type: object
+            properties:
+              days:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bizDate:
+                      title: 業務日
+                      type: string
+                    startDatetime:
+                      title: 開始日時
+                      type: string
+                    endDatetime:
+                      title: 終了日時
+                      type: string
+                    remarks:
+                      title: 備考
+                      type: string
+                  required:
+                    - bizDate
+      responses:
+        200:
+          description: 登録結果
+          schema:
+            title: StartEndDatetimesUpdateResult
+            type: object
+            properties:
+              resultType:
+                title: 登録結果コード
+                type: string
+                enum:
+                  - success
+                  - failure
+              message:
+                title: 結果メッセージ
+                type: string
+            required:
+              - resultType
