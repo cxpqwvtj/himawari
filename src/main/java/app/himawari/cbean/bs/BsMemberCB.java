@@ -344,20 +344,20 @@ public class BsMemberCB extends AbstractConditionBean {
         protected String getTableDbName() { return "MEMBER"; }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
-         * {select max(FOO) from TIMECARD where ...) as FOO_MAX} <br>
-         * TIMECARD by MEMBER_ID, named 'timecardList'.
+         * {select max(FOO) from TIMECARD_DAY where ...) as FOO_MAX} <br>
+         * TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
          * <pre>
-         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-         *     timecardCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *     timecardCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
-         * }, Timecard.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     dayCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     dayCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, TimecardDay.<span style="color: #CC4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
-        public HpSDRFunction<TimecardCB, MemberCQ> derivedTimecard() {
-            assertDerived("timecardList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TimecardCB> sq, MemberCQ cq, String al, DerivedReferrerOption op)
-                    -> cq.xsderiveTimecardList(fn, sq, al, op), _dbmetaProvider);
+        public HpSDRFunction<TimecardDayCB, MemberCQ> derivedTimecardDay() {
+            assertDerived("timecardDayList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TimecardDayCB> sq, MemberCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveTimecardDayList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

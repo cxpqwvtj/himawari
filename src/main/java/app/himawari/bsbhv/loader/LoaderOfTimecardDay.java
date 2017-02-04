@@ -15,7 +15,7 @@ import app.himawari.cbean.*;
  *     TIMECARD_DAY_ID
  *
  * [column]
- *     TIMECARD_DAY_ID, TIMECARD_ID, BIZ_DATE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     TIMECARD_DAY_ID, MEMBER_ID, BIZ_DATE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -27,13 +27,13 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     TIMECARD
+ *     MEMBER
  *
  * [referrer table]
  *     DAILY_START_END
  *
  * [foreign property]
- *     timecard
+ *     member
  *
  * [referrer property]
  *     dailyStartEndList
@@ -98,11 +98,11 @@ public class LoaderOfTimecardDay {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
-    protected LoaderOfTimecard _foreignTimecardLoader;
-    public LoaderOfTimecard pulloutTimecard() {
-        if (_foreignTimecardLoader == null)
-        { _foreignTimecardLoader = new LoaderOfTimecard().ready(myBhv().pulloutTimecard(_selectedList), _selector); }
-        return _foreignTimecardLoader;
+    protected LoaderOfMember _foreignMemberLoader;
+    public LoaderOfMember pulloutMember() {
+        if (_foreignMemberLoader == null)
+        { _foreignMemberLoader = new LoaderOfMember().ready(myBhv().pulloutMember(_selectedList), _selector); }
+        return _foreignMemberLoader;
     }
 
     // ===================================================================================

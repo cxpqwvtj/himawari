@@ -159,76 +159,76 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select MEMBER_ID from TIMECARD where ...)} <br>
-     * TIMECARD by MEMBER_ID, named 'timecardAsOne'.
+     * {exists (select MEMBER_ID from TIMECARD_DAY where ...)} <br>
+     * TIMECARD_DAY by MEMBER_ID, named 'timecardDayAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">existsTimecard</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     timecardCB.query().set...
+     * cb.query().<span style="color: #CC4747">existsTimecardDay</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     dayCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of TimecardList for 'exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of TimecardDayList for 'exists'. (NotNull)
      */
-    public void existsTimecard(SubQuery<TimecardCB> subCBLambda) {
+    public void existsTimecardDay(SubQuery<TimecardDayCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        TimecardCB cb = new TimecardCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_ExistsReferrer_TimecardList(cb.query());
-        registerExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "timecardList");
+        TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_ExistsReferrer_TimecardDayList(cb.query());
+        registerExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "timecardDayList");
     }
-    public abstract String keepMemberId_ExistsReferrer_TimecardList(TimecardCQ sq);
+    public abstract String keepMemberId_ExistsReferrer_TimecardDayList(TimecardDayCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select MEMBER_ID from TIMECARD where ...)} <br>
-     * TIMECARD by MEMBER_ID, named 'timecardAsOne'.
+     * {not exists (select MEMBER_ID from TIMECARD_DAY where ...)} <br>
+     * TIMECARD_DAY by MEMBER_ID, named 'timecardDayAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsTimecard</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     timecardCB.query().set...
+     * cb.query().<span style="color: #CC4747">notExistsTimecardDay</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     dayCB.query().set...
      * });
      * </pre>
-     * @param subCBLambda The callback for sub-query of MemberId_NotExistsReferrer_TimecardList for 'not exists'. (NotNull)
+     * @param subCBLambda The callback for sub-query of MemberId_NotExistsReferrer_TimecardDayList for 'not exists'. (NotNull)
      */
-    public void notExistsTimecard(SubQuery<TimecardCB> subCBLambda) {
+    public void notExistsTimecardDay(SubQuery<TimecardDayCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        TimecardCB cb = new TimecardCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_NotExistsReferrer_TimecardList(cb.query());
-        registerNotExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "timecardList");
+        TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_NotExistsReferrer_TimecardDayList(cb.query());
+        registerNotExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "timecardDayList");
     }
-    public abstract String keepMemberId_NotExistsReferrer_TimecardList(TimecardCQ sq);
+    public abstract String keepMemberId_NotExistsReferrer_TimecardDayList(TimecardDayCQ sq);
 
-    public void xsderiveTimecardList(String fn, SubQuery<TimecardCB> sq, String al, DerivedReferrerOption op) {
+    public void xsderiveTimecardDayList(String fn, SubQuery<TimecardDayCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        TimecardCB cb = new TimecardCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepMemberId_SpecifyDerivedReferrer_TimecardList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "timecardList", al, op);
+        TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepMemberId_SpecifyDerivedReferrer_TimecardDayList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "timecardDayList", al, op);
     }
-    public abstract String keepMemberId_SpecifyDerivedReferrer_TimecardList(TimecardCQ sq);
+    public abstract String keepMemberId_SpecifyDerivedReferrer_TimecardDayList(TimecardDayCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from TIMECARD where ...)} <br>
-     * TIMECARD by MEMBER_ID, named 'timecardAsOne'.
+     * {FOO &lt;= (select max(BAR) from TIMECARD_DAY where ...)} <br>
+     * TIMECARD_DAY by MEMBER_ID, named 'timecardDayAsOne'.
      * <pre>
-     * cb.query().<span style="color: #CC4747">derivedTimecard()</span>.<span style="color: #CC4747">max</span>(timecardCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     timecardCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     timecardCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * cb.query().<span style="color: #CC4747">derivedTimecardDay()</span>.<span style="color: #CC4747">max</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     dayCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     dayCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
      * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
-    public HpQDRFunction<TimecardCB> derivedTimecard() {
-        return xcreateQDRFunctionTimecardList();
+    public HpQDRFunction<TimecardDayCB> derivedTimecardDay() {
+        return xcreateQDRFunctionTimecardDayList();
     }
-    protected HpQDRFunction<TimecardCB> xcreateQDRFunctionTimecardList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveTimecardList(fn, sq, rd, vl, op));
+    protected HpQDRFunction<TimecardDayCB> xcreateQDRFunctionTimecardDayList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveTimecardDayList(fn, sq, rd, vl, op));
     }
-    public void xqderiveTimecardList(String fn, SubQuery<TimecardCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    public void xqderiveTimecardDayList(String fn, SubQuery<TimecardDayCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        TimecardCB cb = new TimecardCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepMemberId_QueryDerivedReferrer_TimecardList(cb.query()); String prpp = keepMemberId_QueryDerivedReferrer_TimecardListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", sqpp, "timecardList", rd, vl, prpp, op);
+        TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepMemberId_QueryDerivedReferrer_TimecardDayList(cb.query()); String prpp = keepMemberId_QueryDerivedReferrer_TimecardDayListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", sqpp, "timecardDayList", rd, vl, prpp, op);
     }
-    public abstract String keepMemberId_QueryDerivedReferrer_TimecardList(TimecardCQ sq);
-    public abstract String keepMemberId_QueryDerivedReferrer_TimecardListParameter(Object vl);
+    public abstract String keepMemberId_QueryDerivedReferrer_TimecardDayList(TimecardDayCQ sq);
+    public abstract String keepMemberId_QueryDerivedReferrer_TimecardDayListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>

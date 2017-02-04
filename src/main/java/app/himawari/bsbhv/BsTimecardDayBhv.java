@@ -28,7 +28,7 @@ import app.himawari.cbean.*;
  *     TIMECARD_DAY_ID
  *
  * [column]
- *     TIMECARD_DAY_ID, TIMECARD_ID, BIZ_DATE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     TIMECARD_DAY_ID, MEMBER_ID, BIZ_DATE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -40,13 +40,13 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     TIMECARD
+ *     MEMBER
  *
  * [referrer table]
  *     DAILY_START_END
  *
  * [foreign property]
- *     timecard
+ *     member
  *
  * [referrer property]
  *     dailyStartEndList
@@ -429,12 +429,12 @@ public abstract class BsTimecardDayBhv extends AbstractBehaviorWritable<Timecard
     //                                                                   Pull out Relation
     //                                                                   =================
     /**
-     * Pull out the list of foreign table 'Timecard'.
+     * Pull out the list of foreign table 'Member'.
      * @param timecardDayList The list of timecardDay. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Timecard> pulloutTimecard(List<TimecardDay> timecardDayList)
-    { return helpPulloutInternally(timecardDayList, "timecard"); }
+    public List<Member> pulloutMember(List<TimecardDay> timecardDayList)
+    { return helpPulloutInternally(timecardDayList, "member"); }
 
     // ===================================================================================
     //                                                                      Extract Column

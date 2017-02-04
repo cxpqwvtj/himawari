@@ -72,7 +72,7 @@ public class TimecardDayCIQ extends AbstractBsTimecardDayCQ {
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepTimecardDayId_QueryDerivedReferrer_DailyStartEndListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue xgetCValueTimecardId() { return _myCQ.xdfgetTimecardId(); }
+    protected ConditionValue xgetCValueMemberId() { return _myCQ.xdfgetMemberId(); }
     protected ConditionValue xgetCValueBizDate() { return _myCQ.xdfgetBizDate(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueRegisterUser() { return _myCQ.xdfgetRegisterUser(); }

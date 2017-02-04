@@ -33,7 +33,6 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         final Map<String, String> tmpMap = newHashMap();
         tmpMap.put("DAILY_START_END", "app.himawari.bsentity.dbmeta.DailyStartEndDbm");
         tmpMap.put("MEMBER", "app.himawari.bsentity.dbmeta.MemberDbm");
-        tmpMap.put("TIMECARD", "app.himawari.bsentity.dbmeta.TimecardDbm");
         tmpMap.put("TIMECARD_DAY", "app.himawari.bsentity.dbmeta.TimecardDayDbm");
         tmpMap.put("VACATION_TYPE", "app.himawari.bsentity.dbmeta.VacationTypeDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);

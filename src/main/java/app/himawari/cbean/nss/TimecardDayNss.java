@@ -20,11 +20,9 @@ public class TimecardDayNss {
     //                                                                     ===============
     /**
      * With nested relation columns to select clause. <br>
-     * TIMECARD by my TIMECARD_ID, named 'timecard'.
-     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     * MEMBER by my MEMBER_ID, named 'member'.
      */
-    public TimecardNss withTimecard() {
-        _query.xdoNss(() -> _query.queryTimecard());
-        return new TimecardNss(_query.queryTimecard());
+    public void withMember() {
+        _query.xdoNss(() -> _query.queryMember());
     }
 }

@@ -79,19 +79,19 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
       return _memberId; }
     protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
 
-    public Map<String, TimecardCQ> xdfgetMemberId_ExistsReferrer_TimecardList() { return xgetSQueMap("memberId_ExistsReferrer_TimecardList"); }
-    public String keepMemberId_ExistsReferrer_TimecardList(TimecardCQ sq) { return xkeepSQue("memberId_ExistsReferrer_TimecardList", sq); }
+    public Map<String, TimecardDayCQ> xdfgetMemberId_ExistsReferrer_TimecardDayList() { return xgetSQueMap("memberId_ExistsReferrer_TimecardDayList"); }
+    public String keepMemberId_ExistsReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("memberId_ExistsReferrer_TimecardDayList", sq); }
 
-    public Map<String, TimecardCQ> xdfgetMemberId_NotExistsReferrer_TimecardList() { return xgetSQueMap("memberId_NotExistsReferrer_TimecardList"); }
-    public String keepMemberId_NotExistsReferrer_TimecardList(TimecardCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_TimecardList", sq); }
+    public Map<String, TimecardDayCQ> xdfgetMemberId_NotExistsReferrer_TimecardDayList() { return xgetSQueMap("memberId_NotExistsReferrer_TimecardDayList"); }
+    public String keepMemberId_NotExistsReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_TimecardDayList", sq); }
 
-    public Map<String, TimecardCQ> xdfgetMemberId_SpecifyDerivedReferrer_TimecardList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_TimecardList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_TimecardList(TimecardCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_TimecardList", sq); }
+    public Map<String, TimecardDayCQ> xdfgetMemberId_SpecifyDerivedReferrer_TimecardDayList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_TimecardDayList"); }
+    public String keepMemberId_SpecifyDerivedReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_TimecardDayList", sq); }
 
-    public Map<String, TimecardCQ> xdfgetMemberId_QueryDerivedReferrer_TimecardList() { return xgetSQueMap("memberId_QueryDerivedReferrer_TimecardList"); }
-    public String keepMemberId_QueryDerivedReferrer_TimecardList(TimecardCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_TimecardList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_TimecardListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_TimecardList"); }
-    public String keepMemberId_QueryDerivedReferrer_TimecardListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_TimecardList", pm); }
+    public Map<String, TimecardDayCQ> xdfgetMemberId_QueryDerivedReferrer_TimecardDayList() { return xgetSQueMap("memberId_QueryDerivedReferrer_TimecardDayList"); }
+    public String keepMemberId_QueryDerivedReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_TimecardDayList", sq); }
+    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_TimecardDayListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_TimecardDayList"); }
+    public String keepMemberId_QueryDerivedReferrer_TimecardDayListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_TimecardDayList", pm); }
 
     /** 
      * Add order-by as ascend. <br>

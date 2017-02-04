@@ -107,25 +107,25 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
      */
     public BsTimecardDayCQ addOrderBy_TimecardDayId_Desc() { regOBD("TIMECARD_DAY_ID"); return this; }
 
-    protected ConditionValue _timecardId;
-    public ConditionValue xdfgetTimecardId()
-    { if (_timecardId == null) { _timecardId = nCV(); }
-      return _timecardId; }
-    protected ConditionValue xgetCValueTimecardId() { return xdfgetTimecardId(); }
+    protected ConditionValue _memberId;
+    public ConditionValue xdfgetMemberId()
+    { if (_memberId == null) { _memberId = nCV(); }
+      return _memberId; }
+    protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
 
     /** 
      * Add order-by as ascend. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
      * @return this. (NotNull)
      */
-    public BsTimecardDayCQ addOrderBy_TimecardId_Asc() { regOBA("TIMECARD_ID"); return this; }
+    public BsTimecardDayCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
      * @return this. (NotNull)
      */
-    public BsTimecardDayCQ addOrderBy_TimecardId_Desc() { regOBD("TIMECARD_ID"); return this; }
+    public BsTimecardDayCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
 
     protected ConditionValue _bizDate;
     public ConditionValue xdfgetBizDate()
@@ -288,8 +288,8 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         TimecardDayCQ bq = (TimecardDayCQ)bqs;
         TimecardDayCQ uq = (TimecardDayCQ)uqs;
-        if (bq.hasConditionQueryTimecard()) {
-            uq.queryTimecard().reflectRelationOnUnionQuery(bq.queryTimecard(), uq.queryTimecard());
+        if (bq.hasConditionQueryMember()) {
+            uq.queryMember().reflectRelationOnUnionQuery(bq.queryMember(), uq.queryMember());
         }
     }
 
@@ -298,23 +298,23 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
     //                                                                       =============
     /**
      * Get the condition-query for relation table. <br>
-     * TIMECARD by my TIMECARD_ID, named 'timecard'.
+     * MEMBER by my MEMBER_ID, named 'member'.
      * @return The instance of condition-query. (NotNull)
      */
-    public TimecardCQ queryTimecard() {
-        return xdfgetConditionQueryTimecard();
+    public MemberCQ queryMember() {
+        return xdfgetConditionQueryMember();
     }
-    public TimecardCQ xdfgetConditionQueryTimecard() {
-        String prop = "timecard";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryTimecard()); xsetupOuterJoinTimecard(); }
+    public MemberCQ xdfgetConditionQueryMember() {
+        String prop = "member";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMember()); xsetupOuterJoinMember(); }
         return xgetQueRlMap(prop);
     }
-    protected TimecardCQ xcreateQueryTimecard() {
-        String nrp = xresolveNRP("TIMECARD_DAY", "timecard"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new TimecardCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "timecard", nrp);
+    protected MemberCQ xcreateQueryMember() {
+        String nrp = xresolveNRP("TIMECARD_DAY", "member"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "member", nrp);
     }
-    protected void xsetupOuterJoinTimecard() { xregOutJo("timecard"); }
-    public boolean hasConditionQueryTimecard() { return xhasQueRlMap("timecard"); }
+    protected void xsetupOuterJoinMember() { xregOutJo("member"); }
+    public boolean hasConditionQueryMember() { return xhasQueRlMap("member"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;

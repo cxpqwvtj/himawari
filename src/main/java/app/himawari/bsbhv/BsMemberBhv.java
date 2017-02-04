@@ -43,13 +43,13 @@ import app.himawari.cbean.*;
  *     
  *
  * [referrer table]
- *     TIMECARD
+ *     TIMECARD_DAY
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     timecardList
+ *     timecardDayList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -387,19 +387,19 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
     }
 
     /**
-     * Load referrer of timecardList by the set-upper of referrer. <br>
-     * TIMECARD by MEMBER_ID, named 'timecardList'.
+     * Load referrer of timecardDayList by the set-upper of referrer. <br>
+     * TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
      * <pre>
-     * <span style="color: #0000C0">memberBhv</span>.<span style="color: #CC4747">loadTimecard</span>(<span style="color: #553000">memberList</span>, <span style="color: #553000">timecardCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">timecardCB</span>.setupSelect...
-     *     <span style="color: #553000">timecardCB</span>.query().set...
-     *     <span style="color: #553000">timecardCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">memberBhv</span>.<span style="color: #CC4747">loadTimecardDay</span>(<span style="color: #553000">memberList</span>, <span style="color: #553000">dayCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">dayCB</span>.setupSelect...
+     *     <span style="color: #553000">dayCB</span>.query().set...
+     *     <span style="color: #553000">dayCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
      * <span style="color: #70226C">for</span> (Member member : <span style="color: #553000">memberList</span>) {
-     *     ... = member.<span style="color: #CC4747">getTimecardList()</span>;
+     *     ... = member.<span style="color: #CC4747">getTimecardDayList()</span>;
      * }
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
@@ -412,24 +412,24 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<Timecard> loadTimecard(List<Member> memberList, ReferrerConditionSetupper<TimecardCB> refCBLambda) {
+    public NestedReferrerListGateway<TimecardDay> loadTimecardDay(List<Member> memberList, ReferrerConditionSetupper<TimecardDayCB> refCBLambda) {
         xassLRArg(memberList, refCBLambda);
-        return doLoadTimecard(memberList, new LoadReferrerOption<TimecardCB, Timecard>().xinit(refCBLambda));
+        return doLoadTimecardDay(memberList, new LoadReferrerOption<TimecardDayCB, TimecardDay>().xinit(refCBLambda));
     }
 
     /**
-     * Load referrer of timecardList by the set-upper of referrer. <br>
-     * TIMECARD by MEMBER_ID, named 'timecardList'.
+     * Load referrer of timecardDayList by the set-upper of referrer. <br>
+     * TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
      * <pre>
-     * <span style="color: #0000C0">memberBhv</span>.<span style="color: #CC4747">loadTimecard</span>(<span style="color: #553000">member</span>, <span style="color: #553000">timecardCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">timecardCB</span>.setupSelect...
-     *     <span style="color: #553000">timecardCB</span>.query().set...
-     *     <span style="color: #553000">timecardCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">memberBhv</span>.<span style="color: #CC4747">loadTimecardDay</span>(<span style="color: #553000">member</span>, <span style="color: #553000">dayCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">dayCB</span>.setupSelect...
+     *     <span style="color: #553000">dayCB</span>.query().set...
+     *     <span style="color: #553000">dayCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
-     * ... = <span style="color: #553000">member</span>.<span style="color: #CC4747">getTimecardList()</span>;
+     * ... = <span style="color: #553000">member</span>.<span style="color: #CC4747">getTimecardDayList()</span>;
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has settings before callback as follows:
@@ -441,13 +441,13 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<Timecard> loadTimecard(Member member, ReferrerConditionSetupper<TimecardCB> refCBLambda) {
+    public NestedReferrerListGateway<TimecardDay> loadTimecardDay(Member member, ReferrerConditionSetupper<TimecardDayCB> refCBLambda) {
         xassLRArg(member, refCBLambda);
-        return doLoadTimecard(xnewLRLs(member), new LoadReferrerOption<TimecardCB, Timecard>().xinit(refCBLambda));
+        return doLoadTimecardDay(xnewLRLs(member), new LoadReferrerOption<TimecardDayCB, TimecardDay>().xinit(refCBLambda));
     }
 
-    protected NestedReferrerListGateway<Timecard> doLoadTimecard(List<Member> memberList, LoadReferrerOption<TimecardCB, Timecard> option) {
-        return helpLoadReferrerInternally(memberList, option, "timecardList");
+    protected NestedReferrerListGateway<TimecardDay> doLoadTimecardDay(List<Member> memberList, LoadReferrerOption<TimecardDayCB, TimecardDay> option) {
+        return helpLoadReferrerInternally(memberList, option, "timecardDayList");
     }
 
     // ===================================================================================

@@ -70,7 +70,7 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "timecardList", null, false);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "timecardDayList", null, false);
     protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, true, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnMemberAccountId = cci("MEMBER_ACCOUNT_ID", "MEMBER_ACCOUNT_ID", null, null, String.class, "memberAccountId", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -163,12 +163,12 @@ public class MemberDbm extends AbstractDBMeta {
     //                                     Referrer Property
     //                                     -----------------
     /**
-     * TIMECARD by MEMBER_ID, named 'timecardList'.
+     * TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
      * @return The information object of referrer property. (NotNull)
      */
-    public ReferrerInfo referrerTimecardList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), TimecardDbm.getInstance().columnMemberId());
-        return cri("FK_TIMECARD_MEMBER", "timecardList", this, TimecardDbm.getInstance(), mp, false, "member");
+    public ReferrerInfo referrerTimecardDayList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), TimecardDayDbm.getInstance().columnMemberId());
+        return cri("FK_TIMECARD_DAY_MEMBER", "timecardDayList", this, TimecardDayDbm.getInstance(), mp, false, "member");
     }
 
     // ===================================================================================

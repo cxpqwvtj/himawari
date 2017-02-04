@@ -247,120 +247,120 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param timecardId The value of timecardId as equal. (basically NotNull: error as default, or no condition as option)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setTimecardId_Equal(Long timecardId) {
-        doSetTimecardId_Equal(timecardId);
+    public void setMemberId_Equal(Long memberId) {
+        doSetMemberId_Equal(memberId);
     }
 
-    protected void doSetTimecardId_Equal(Long timecardId) {
-        regTimecardId(CK_EQ, timecardId);
+    protected void doSetMemberId_Equal(Long memberId) {
+        regMemberId(CK_EQ, memberId);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param timecardId The value of timecardId as notEqual. (basically NotNull: error as default, or no condition as option)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setTimecardId_NotEqual(Long timecardId) {
-        doSetTimecardId_NotEqual(timecardId);
+    public void setMemberId_NotEqual(Long memberId) {
+        doSetMemberId_NotEqual(memberId);
     }
 
-    protected void doSetTimecardId_NotEqual(Long timecardId) {
-        regTimecardId(CK_NES, timecardId);
+    protected void doSetMemberId_NotEqual(Long memberId) {
+        regMemberId(CK_NES, memberId);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param timecardId The value of timecardId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setTimecardId_GreaterThan(Long timecardId) {
-        regTimecardId(CK_GT, timecardId);
+    public void setMemberId_GreaterThan(Long memberId) {
+        regMemberId(CK_GT, memberId);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param timecardId The value of timecardId as lessThan. (basically NotNull: error as default, or no condition as option)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setTimecardId_LessThan(Long timecardId) {
-        regTimecardId(CK_LT, timecardId);
+    public void setMemberId_LessThan(Long memberId) {
+        regMemberId(CK_LT, memberId);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param timecardId The value of timecardId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setTimecardId_GreaterEqual(Long timecardId) {
-        regTimecardId(CK_GE, timecardId);
+    public void setMemberId_GreaterEqual(Long memberId) {
+        regMemberId(CK_GE, memberId);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param timecardId The value of timecardId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setTimecardId_LessEqual(Long timecardId) {
-        regTimecardId(CK_LE, timecardId);
+    public void setMemberId_LessEqual(Long memberId) {
+        regMemberId(CK_LE, memberId);
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param minNumber The min number of timecardId. (NullAllowed: if null, no from-condition)
-     * @param maxNumber The max number of timecardId. (NullAllowed: if null, no to-condition)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
      */
-    public void setTimecardId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
-        setTimecardId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    public void setMemberId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setMemberId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param minNumber The min number of timecardId. (NullAllowed: if null, no from-condition)
-     * @param maxNumber The max number of timecardId. (NullAllowed: if null, no to-condition)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
      */
-    protected void setTimecardId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
-        regROO(minNumber, maxNumber, xgetCValueTimecardId(), "TIMECARD_ID", rangeOfOption);
+    protected void setMemberId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueMemberId(), "MEMBER_ID", rangeOfOption);
     }
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param timecardIdList The collection of timecardId as inScope. (NullAllowed: if null (or empty), no condition)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberIdList The collection of memberId as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setTimecardId_InScope(Collection<Long> timecardIdList) {
-        doSetTimecardId_InScope(timecardIdList);
+    public void setMemberId_InScope(Collection<Long> memberIdList) {
+        doSetMemberId_InScope(memberIdList);
     }
 
-    protected void doSetTimecardId_InScope(Collection<Long> timecardIdList) {
-        regINS(CK_INS, cTL(timecardIdList), xgetCValueTimecardId(), "TIMECARD_ID");
+    protected void doSetMemberId_InScope(Collection<Long> memberIdList) {
+        regINS(CK_INS, cTL(memberIdList), xgetCValueMemberId(), "MEMBER_ID");
     }
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
-     * @param timecardIdList The collection of timecardId as notInScope. (NullAllowed: if null (or empty), no condition)
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberIdList The collection of memberId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setTimecardId_NotInScope(Collection<Long> timecardIdList) {
-        doSetTimecardId_NotInScope(timecardIdList);
+    public void setMemberId_NotInScope(Collection<Long> memberIdList) {
+        doSetMemberId_NotInScope(memberIdList);
     }
 
-    protected void doSetTimecardId_NotInScope(Collection<Long> timecardIdList) {
-        regINS(CK_NINS, cTL(timecardIdList), xgetCValueTimecardId(), "TIMECARD_ID");
+    protected void doSetMemberId_NotInScope(Collection<Long> memberIdList) {
+        regINS(CK_NINS, cTL(memberIdList), xgetCValueMemberId(), "MEMBER_ID");
     }
 
-    protected void regTimecardId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueTimecardId(), "TIMECARD_ID"); }
-    protected abstract ConditionValue xgetCValueTimecardId();
+    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberId(), "MEMBER_ID"); }
+    protected abstract ConditionValue xgetCValueMemberId();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>

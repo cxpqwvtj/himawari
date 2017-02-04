@@ -44,7 +44,7 @@ public class TimecardDayDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((TimecardDay)et).getTimecardDayId(), (et, vl) -> ((TimecardDay)et).setTimecardDayId(ctl(vl)), "timecardDayId");
-        setupEpg(_epgMap, et -> ((TimecardDay)et).getTimecardId(), (et, vl) -> ((TimecardDay)et).setTimecardId(ctl(vl)), "timecardId");
+        setupEpg(_epgMap, et -> ((TimecardDay)et).getMemberId(), (et, vl) -> ((TimecardDay)et).setMemberId(ctl(vl)), "memberId");
         setupEpg(_epgMap, et -> ((TimecardDay)et).getBizDate(), (et, vl) -> ((TimecardDay)et).setBizDate(ctld(vl)), "bizDate");
         setupEpg(_epgMap, et -> ((TimecardDay)et).getRegisterDatetime(), (et, vl) -> ((TimecardDay)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((TimecardDay)et).getRegisterUser(), (et, vl) -> ((TimecardDay)et).setRegisterUser((String)vl), "registerUser");
@@ -62,7 +62,7 @@ public class TimecardDayDbm extends AbstractDBMeta {
     { xsetupEfpg(); }
     @SuppressWarnings("unchecked")
     protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((TimecardDay)et).getTimecard(), (et, vl) -> ((TimecardDay)et).setTimecard((OptionalEntity<Timecard>)vl), "timecard");
+        setupEfpg(_efpgMap, et -> ((TimecardDay)et).getMember(), (et, vl) -> ((TimecardDay)et).setMember((OptionalEntity<Member>)vl), "member");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -84,7 +84,7 @@ public class TimecardDayDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnTimecardDayId = cci("TIMECARD_DAY_ID", "TIMECARD_DAY_ID", null, null, Long.class, "timecardDayId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, "dailyStartEndList", null, false);
-    protected final ColumnInfo _columnTimecardId = cci("TIMECARD_ID", "TIMECARD_ID", null, null, Long.class, "timecardId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "timecard", null, null, false);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "member", null, null, false);
     protected final ColumnInfo _columnBizDate = cci("BIZ_DATE", "BIZ_DATE", null, null, java.time.LocalDate.class, "bizDate", null, false, false, true, "DATE", 10, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
@@ -98,10 +98,10 @@ public class TimecardDayDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnTimecardDayId() { return _columnTimecardDayId; }
     /**
-     * TIMECARD_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD}
+     * MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnTimecardId() { return _columnTimecardId; }
+    public ColumnInfo columnMemberId() { return _columnMemberId; }
     /**
      * BIZ_DATE: {NotNull, DATE(10)}
      * @return The information object of specified column. (NotNull)
@@ -136,7 +136,7 @@ public class TimecardDayDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnTimecardDayId());
-        ls.add(columnTimecardId());
+        ls.add(columnMemberId());
         ls.add(columnBizDate());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
@@ -167,12 +167,12 @@ public class TimecardDayDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     /**
-     * TIMECARD by my TIMECARD_ID, named 'timecard'.
+     * MEMBER by my MEMBER_ID, named 'member'.
      * @return The information object of foreign property. (NotNull)
      */
-    public ForeignInfo foreignTimecard() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTimecardId(), TimecardDbm.getInstance().columnTimecardId());
-        return cfi("FK_TIMECARD_DAY_TIMECARD", "timecard", this, TimecardDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "timecardDayList", false);
+    public ForeignInfo foreignMember() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
+        return cfi("FK_TIMECARD_DAY_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "timecardDayList", false);
     }
 
     // -----------------------------------------------------

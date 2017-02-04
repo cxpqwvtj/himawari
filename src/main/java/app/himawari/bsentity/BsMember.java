@@ -33,13 +33,13 @@ import app.himawari.exentity.*;
  *     
  *
  * [referrer table]
- *     TIMECARD
+ *     TIMECARD_DAY
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     timecardList
+ *     timecardDayList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -137,24 +137,24 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** TIMECARD by MEMBER_ID, named 'timecardList'. */
-    protected List<Timecard> _timecardList;
+    /** TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'. */
+    protected List<TimecardDay> _timecardDayList;
 
     /**
-     * [get] TIMECARD by MEMBER_ID, named 'timecardList'.
-     * @return The entity list of referrer property 'timecardList'. (NotNull: even if no loading, returns empty list)
+     * [get] TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
+     * @return The entity list of referrer property 'timecardDayList'. (NotNull: even if no loading, returns empty list)
      */
-    public List<Timecard> getTimecardList() {
-        if (_timecardList == null) { _timecardList = newReferrerList(); }
-        return _timecardList;
+    public List<TimecardDay> getTimecardDayList() {
+        if (_timecardDayList == null) { _timecardDayList = newReferrerList(); }
+        return _timecardDayList;
     }
 
     /**
-     * [set] TIMECARD by MEMBER_ID, named 'timecardList'.
-     * @param timecardList The entity list of referrer property 'timecardList'. (NullAllowed)
+     * [set] TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
+     * @param timecardDayList The entity list of referrer property 'timecardDayList'. (NullAllowed)
      */
-    public void setTimecardList(List<Timecard> timecardList) {
-        _timecardList = timecardList;
+    public void setTimecardDayList(List<TimecardDay> timecardDayList) {
+        _timecardDayList = timecardDayList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
@@ -186,8 +186,8 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_timecardList != null) { for (Timecard et : _timecardList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "timecardList")); } } }
+        if (_timecardDayList != null) { for (TimecardDay et : _timecardDayList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "timecardDayList")); } } }
         return sb.toString();
     }
 
@@ -212,8 +212,8 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_timecardList != null && !_timecardList.isEmpty())
-        { sb.append(dm).append("timecardList"); }
+        if (_timecardDayList != null && !_timecardDayList.isEmpty())
+        { sb.append(dm).append("timecardDayList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
