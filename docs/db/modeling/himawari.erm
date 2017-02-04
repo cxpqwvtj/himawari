@@ -113,8 +113,8 @@
 			<width>274</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>746</x>
-			<y>407</y>
+			<x>472</x>
+			<y>398</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -249,90 +249,14 @@
 			</table_properties>
 		</table>
 		<table>
-			<physical_name>TIMECARD</physical_name>
-			<logical_name>タイムカード</logical_name>
-			<description></description>
-			<height>215</height>
-			<width>258</width>
-			<font_name>.SF NS Text</font_name>
-			<font_size>9</font_size>
-			<x>67</x>
-			<y>352</y>
-			<color>
-				<r>128</r>
-				<g>128</g>
-				<b>192</b>
-			</color>
-			<connections>
-				<relationship>
-					<name>FK_TIMECARD_MEMBER</name>
-					<source>table.MEMBER</source>
-					<target>table.TIMECARD</target>
-					<fk_columns>
-						<fk_column>
-							<fk_column_name>MEMBER_ID</fk_column_name>
-						</fk_column>
-					</fk_columns>
-					<parent_cardinality>1</parent_cardinality>
-					<child_cardinality>0..n</child_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-				</relationship>
-			</connections>
-			<columns>
-				<normal_column>
-					<physical_name>TIMECARD_ID</physical_name>
-					<logical_name>TIMECARD_ID</logical_name>
-					<type>bigint</type>
-					<not_null>true</not_null>
-					<primary_key>true</primary_key>
-					<auto_increment>true</auto_increment>
-				</normal_column>
-				<normal_column>
-					<physical_name>MEMBER_ID</physical_name>
-					<referred_column>table.MEMBER.MEMBER_ID</referred_column>
-					<relationship>FK_TIMECARD_MEMBER</relationship>
-					<not_null>true</not_null>
-				</normal_column>
-				<normal_column>
-					<physical_name>TIMECARD_YEAR_MONTH</physical_name>
-					<logical_name>年月</logical_name>
-					<type>varchar(n)</type>
-					<length>6</length>
-					<description>YYYYMM</description>
-					<not_null>true</not_null>
-				</normal_column>
-				<column_group>共通カラム</column_group>
-				<column_group>排他制御カラム</column_group>
-			</columns>
-			<indexes>
-			</indexes>
-			<compound_unique_key_list>
-				<compound_unique_key>
-					<name>UQ_TIMECARD_MEMBER_MONTH</name>
-					<columns>
-						<column>
-							<column_id>table.TIMECARD.MEMBER_ID</column_id>
-						</column>
-						<column>
-							<column_id>table.TIMECARD.TIMECARD_YEAR_MONTH</column_id>
-						</column>
-					</columns>
-				</compound_unique_key>
-			</compound_unique_key_list>
-			<table_properties>
-			</table_properties>
-		</table>
-		<table>
 			<physical_name>TIMECARD_DAY</physical_name>
 			<logical_name>タイムカード年月日</logical_name>
 			<description></description>
-			<height>75</height>
+			<height>179</height>
 			<width>261</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>412</x>
+			<x>70</x>
 			<y>411</y>
 			<color>
 				<r>128</r>
@@ -341,12 +265,12 @@
 			</color>
 			<connections>
 				<relationship>
-					<name>FK_TIMECARD_DAY_TIMECARD</name>
-					<source>table.TIMECARD</source>
+					<name>FK_TIMECARD_DAY_MEMBER</name>
+					<source>table.MEMBER</source>
 					<target>table.TIMECARD_DAY</target>
 					<fk_columns>
 						<fk_column>
-							<fk_column_name>TIMECARD_ID</fk_column_name>
+							<fk_column_name>MEMBER_ID</fk_column_name>
 						</fk_column>
 					</fk_columns>
 					<parent_cardinality>1</parent_cardinality>
@@ -365,10 +289,9 @@
 					<primary_key>true</primary_key>
 				</normal_column>
 				<normal_column>
-					<physical_name>TIMECARD_ID</physical_name>
-					<logical_name>タイムカードID</logical_name>
-					<referred_column>table.TIMECARD.TIMECARD_ID</referred_column>
-					<relationship>FK_TIMECARD_DAY_TIMECARD</relationship>
+					<physical_name>MEMBER_ID</physical_name>
+					<referred_column>table.MEMBER.MEMBER_ID</referred_column>
+					<relationship>FK_TIMECARD_DAY_MEMBER</relationship>
 					<not_null>true</not_null>
 				</normal_column>
 				<normal_column>
@@ -395,8 +318,8 @@
 			<width>279</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>735</x>
-			<y>77</y>
+			<x>469</x>
+			<y>49</y>
 			<color>
 				<r>255</r>
 				<g>255</g>
