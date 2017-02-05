@@ -18,6 +18,7 @@ import app.himawari.allcommon.ImplementedInvokerAssistant;
 import app.himawari.allcommon.ImplementedSqlClauseCreator;
 import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
+import app.himawari.cbean.nss.*;
 
 /**
  * The base condition-bean of TIMECARD_DAY.
@@ -80,7 +81,7 @@ public class BsTimecardDayCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param timecardDayId : PK, NotNull, BIGINT(19). (NotNull)
+     * @param timecardDayId : PK, NotNull, BIGINT(19), FK to DAILY_START_END. (NotNull)
      * @return this. (NotNull)
      */
     public TimecardDayCB acceptPK(Long timecardDayId) {
@@ -257,6 +258,33 @@ public class BsTimecardDayCB extends AbstractConditionBean {
         doSetupSelect(() -> query().queryMember());
     }
 
+    protected DailyStartEndNss _nssDailyStartEndAsCurrentValue;
+    public DailyStartEndNss xdfgetNssDailyStartEndAsCurrentValue() {
+        if (_nssDailyStartEndAsCurrentValue == null) { _nssDailyStartEndAsCurrentValue = new DailyStartEndNss(null); }
+        return _nssDailyStartEndAsCurrentValue;
+    }
+    /**
+     * Set up relation columns to select clause. <br>
+     * DAILY_START_END by my TIMECARD_DAY_ID, named 'dailyStartEndAsCurrentValue'. <br>
+     * "最新の履歴を取得します"
+     * <pre>
+     * <span style="color: #0000C0">timecardDayBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_DailyStartEndAsCurrentValue()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.query().set...
+     * }).alwaysPresent(<span style="color: #553000">timecardDay</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">timecardDay</span>.<span style="color: #CC4747">getDailyStartEndAsCurrentValue()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * });
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public DailyStartEndNss setupSelect_DailyStartEndAsCurrentValue() {
+        assertSetupSelectPurpose("dailyStartEndAsCurrentValue");
+        doSetupSelect(() -> query().queryDailyStartEndAsCurrentValue());
+        if (_nssDailyStartEndAsCurrentValue == null || !_nssDailyStartEndAsCurrentValue.hasConditionQuery())
+        { _nssDailyStartEndAsCurrentValue = new DailyStartEndNss(query().queryDailyStartEndAsCurrentValue()); }
+        return _nssDailyStartEndAsCurrentValue;
+    }
+
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -299,12 +327,13 @@ public class BsTimecardDayCB extends AbstractConditionBean {
 
     public static class HpSpecification extends HpAbstractSpecification<TimecardDayCQ> {
         protected MemberCB.HpSpecification _member;
+        protected DailyStartEndCB.HpSpecification _dailyStartEndAsCurrentValue;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<TimecardDayCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+         * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnTimecardDayId() { return doColumn("TIMECARD_DAY_ID"); }
@@ -374,6 +403,27 @@ public class BsTimecardDayCB extends AbstractConditionBean {
                 }
             }
             return _member;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br>
+         * DAILY_START_END by my TIMECARD_DAY_ID, named 'dailyStartEndAsCurrentValue'. <br>
+         * "最新の履歴を取得します"
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public DailyStartEndCB.HpSpecification specifyDailyStartEndAsCurrentValue() {
+            assertRelation("dailyStartEndAsCurrentValue");
+            if (_dailyStartEndAsCurrentValue == null) {
+                _dailyStartEndAsCurrentValue = new DailyStartEndCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryDailyStartEndAsCurrentValue()
+                                    , () -> _qyCall.qy().queryDailyStartEndAsCurrentValue())
+                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
+                if (xhasSyncQyCall()) { // inherits it
+                    _dailyStartEndAsCurrentValue.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryDailyStartEndAsCurrentValue()
+                      , () -> xsyncQyCall().qy().queryDailyStartEndAsCurrentValue()));
+                }
+            }
+            return _dailyStartEndAsCurrentValue;
         }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>

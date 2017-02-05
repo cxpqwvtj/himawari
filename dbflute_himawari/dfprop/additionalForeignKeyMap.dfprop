@@ -34,9 +34,17 @@
 # *The line that starts with '#' means comment-out.
 #
 map:{
-    #; FK_MEMBER_MEMBER_STATUS_CODE = map:{
-    #    ; localTableName  = MEMBER             ; foreignTableName  = MEMBER_STATUS
-    #    ; localColumnName = MEMBER_STATUS_CODE ; foreignColumnName = MEMBER_STATUS_CODE
-    #}
+    ; FK_TIMECARD_DAY_DAILY_START_END = map:{
+        ; localTableName  = TIMECARD_DAY    ; foreignTableName  = DAILY_START_END
+        ; localColumnName = TIMECARD_DAY_ID ; foreignColumnName = TIMECARD_DAY_ID
+        ; fixedCondition =
+$$foreignAlias$$.DAILY_START_END_ID = ($$sqbegin$$
+select max(daily.DAILY_START_END_ID)
+  from DAILY_START_END daily
+ where daily.TIMECARD_DAY_ID = $$foreignAlias$$.TIMECARD_DAY_ID
+)$$sqend$$
+        ; fixedSuffix = AsCurrentValue
+        ; comment = "最新の履歴を取得します"
+    }
 }
 # ----------------/

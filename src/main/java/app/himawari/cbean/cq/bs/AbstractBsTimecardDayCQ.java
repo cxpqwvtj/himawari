@@ -45,7 +45,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param timecardDayId The value of timecardDayId as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardDayId_Equal(Long timecardDayId) {
@@ -58,7 +58,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param timecardDayId The value of timecardDayId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardDayId_NotEqual(Long timecardDayId) {
@@ -71,7 +71,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param timecardDayId The value of timecardDayId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardDayId_GreaterThan(Long timecardDayId) {
@@ -80,7 +80,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param timecardDayId The value of timecardDayId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardDayId_LessThan(Long timecardDayId) {
@@ -89,7 +89,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param timecardDayId The value of timecardDayId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardDayId_GreaterEqual(Long timecardDayId) {
@@ -98,7 +98,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param timecardDayId The value of timecardDayId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setTimecardDayId_LessEqual(Long timecardDayId) {
@@ -109,7 +109,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param minNumber The min number of timecardDayId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of timecardDayId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -122,7 +122,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param minNumber The min number of timecardDayId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of timecardDayId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -133,7 +133,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param timecardDayIdList The collection of timecardDayId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardDayId_InScope(Collection<Long> timecardDayIdList) {
@@ -146,7 +146,7 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @param timecardDayIdList The collection of timecardDayId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTimecardDayId_NotInScope(Collection<Long> timecardDayIdList) {
@@ -232,13 +232,13 @@ public abstract class AbstractBsTimecardDayCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      */
     public void setTimecardDayId_IsNull() { regTimecardDayId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      */
     public void setTimecardDayId_IsNotNull() { regTimecardDayId(CK_ISNN, DOBJ); }
 

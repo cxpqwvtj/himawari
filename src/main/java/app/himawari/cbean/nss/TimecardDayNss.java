@@ -25,4 +25,14 @@ public class TimecardDayNss {
     public void withMember() {
         _query.xdoNss(() -> _query.queryMember());
     }
+    /**
+     * With nested relation columns to select clause. <br>
+     * DAILY_START_END by my TIMECARD_DAY_ID, named 'dailyStartEndAsCurrentValue'. <br>
+     * "最新の履歴を取得します"
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public DailyStartEndNss withDailyStartEndAsCurrentValue() {
+        _query.xdoNss(() -> _query.queryDailyStartEndAsCurrentValue());
+        return new DailyStartEndNss(_query.queryDailyStartEndAsCurrentValue());
+    }
 }

@@ -40,13 +40,13 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     MEMBER
+ *     MEMBER, DAILY_START_END(AsCurrentValue)
  *
  * [referrer table]
  *     DAILY_START_END
  *
  * [foreign property]
- *     member
+ *     member, dailyStartEndAsCurrentValue
  *
  * [referrer property]
  *     dailyStartEndList
@@ -159,7 +159,7 @@ public abstract class BsTimecardDayBhv extends AbstractBehaviorWritable<Timecard
 
     /**
      * Select the entity by the primary-key value.
-     * @param timecardDayId : PK, NotNull, BIGINT(19). (NotNull)
+     * @param timecardDayId : PK, NotNull, BIGINT(19), FK to DAILY_START_END. (NotNull)
      * @return The optional entity selected by the PK. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
@@ -435,6 +435,14 @@ public abstract class BsTimecardDayBhv extends AbstractBehaviorWritable<Timecard
      */
     public List<Member> pulloutMember(List<TimecardDay> timecardDayList)
     { return helpPulloutInternally(timecardDayList, "member"); }
+
+    /**
+     * Pull out the list of foreign table 'DailyStartEnd'.
+     * @param timecardDayList The list of timecardDay. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<DailyStartEnd> pulloutDailyStartEndAsCurrentValue(List<TimecardDay> timecardDayList)
+    { return helpPulloutInternally(timecardDayList, "dailyStartEndAsCurrentValue"); }
 
     // ===================================================================================
     //                                                                      Extract Column

@@ -95,14 +95,14 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @return this. (NotNull)
      */
     public BsTimecardDayCQ addOrderBy_TimecardDayId_Asc() { regOBA("TIMECARD_DAY_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @return this. (NotNull)
      */
     public BsTimecardDayCQ addOrderBy_TimecardDayId_Desc() { regOBD("TIMECARD_DAY_ID"); return this; }
@@ -291,6 +291,9 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
         if (bq.hasConditionQueryMember()) {
             uq.queryMember().reflectRelationOnUnionQuery(bq.queryMember(), uq.queryMember());
         }
+        if (bq.hasConditionQueryDailyStartEndAsCurrentValue()) {
+            uq.queryDailyStartEndAsCurrentValue().reflectRelationOnUnionQuery(bq.queryDailyStartEndAsCurrentValue(), uq.queryDailyStartEndAsCurrentValue());
+        }
     }
 
     // ===================================================================================
@@ -315,6 +318,27 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
     }
     protected void xsetupOuterJoinMember() { xregOutJo("member"); }
     public boolean hasConditionQueryMember() { return xhasQueRlMap("member"); }
+
+    /**
+     * Get the condition-query for relation table. <br>
+     * DAILY_START_END by my TIMECARD_DAY_ID, named 'dailyStartEndAsCurrentValue'. <br>
+     * "最新の履歴を取得します"
+     * @return The instance of condition-query. (NotNull)
+     */
+    public DailyStartEndCQ queryDailyStartEndAsCurrentValue() {
+        return xdfgetConditionQueryDailyStartEndAsCurrentValue();
+    }
+    public DailyStartEndCQ xdfgetConditionQueryDailyStartEndAsCurrentValue() {
+        String prop = "dailyStartEndAsCurrentValue";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryDailyStartEndAsCurrentValue()); xsetupOuterJoinDailyStartEndAsCurrentValue(); }
+        return xgetQueRlMap(prop);
+    }
+    protected DailyStartEndCQ xcreateQueryDailyStartEndAsCurrentValue() {
+        String nrp = xresolveNRP("TIMECARD_DAY", "dailyStartEndAsCurrentValue"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new DailyStartEndCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "dailyStartEndAsCurrentValue", nrp);
+    }
+    protected void xsetupOuterJoinDailyStartEndAsCurrentValue() { xregOutJo("dailyStartEndAsCurrentValue"); }
+    public boolean hasConditionQueryDailyStartEndAsCurrentValue() { return xhasQueRlMap("dailyStartEndAsCurrentValue"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;

@@ -63,6 +63,7 @@ public class TimecardDayDbm extends AbstractDBMeta {
     @SuppressWarnings("unchecked")
     protected void xsetupEfpg() {
         setupEfpg(_efpgMap, et -> ((TimecardDay)et).getMember(), (et, vl) -> ((TimecardDay)et).setMember((OptionalEntity<Member>)vl), "member");
+        setupEfpg(_efpgMap, et -> ((TimecardDay)et).getDailyStartEndAsCurrentValue(), (et, vl) -> ((TimecardDay)et).setDailyStartEndAsCurrentValue((OptionalEntity<DailyStartEnd>)vl), "dailyStartEndAsCurrentValue");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -83,7 +84,7 @@ public class TimecardDayDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnTimecardDayId = cci("TIMECARD_DAY_ID", "TIMECARD_DAY_ID", null, null, Long.class, "timecardDayId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, "dailyStartEndList", null, false);
+    protected final ColumnInfo _columnTimecardDayId = cci("TIMECARD_DAY_ID", "TIMECARD_DAY_ID", null, null, Long.class, "timecardDayId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, "dailyStartEndAsCurrentValue", "dailyStartEndList", null, false);
     protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "member", null, null, false);
     protected final ColumnInfo _columnBizDate = cci("BIZ_DATE", "BIZ_DATE", null, null, java.time.LocalDate.class, "bizDate", null, false, false, true, "DATE", 10, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -93,7 +94,7 @@ public class TimecardDayDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)}
+     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnTimecardDayId() { return _columnTimecardDayId; }
@@ -173,6 +174,15 @@ public class TimecardDayDbm extends AbstractDBMeta {
     public ForeignInfo foreignMember() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
         return cfi("FK_TIMECARD_DAY_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "timecardDayList", false);
+    }
+    /**
+     * DAILY_START_END by my TIMECARD_DAY_ID, named 'dailyStartEndAsCurrentValue'. <br>
+     * "最新の履歴を取得します"
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignDailyStartEndAsCurrentValue() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTimecardDayId(), DailyStartEndDbm.getInstance().columnTimecardDayId());
+        return cfi("FK_TIMECARD_DAY_DAILY_START_END", "dailyStartEndAsCurrentValue", this, DailyStartEndDbm.getInstance(), mp, 1, org.dbflute.optional.OptionalEntity.class, true, true, false, true, "$$foreignAlias$$.DAILY_START_END_ID = ($$sqbegin$$\nselect max(daily.DAILY_START_END_ID)\n  from DAILY_START_END daily\n where daily.TIMECARD_DAY_ID = $$foreignAlias$$.TIMECARD_DAY_ID\n)$$sqend$$", null, false, null, false);
     }
 
     // -----------------------------------------------------

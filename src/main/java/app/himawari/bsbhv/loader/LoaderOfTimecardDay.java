@@ -27,13 +27,13 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     MEMBER
+ *     MEMBER, DAILY_START_END(AsCurrentValue)
  *
  * [referrer table]
  *     DAILY_START_END
  *
  * [foreign property]
- *     member
+ *     member, dailyStartEndAsCurrentValue
  *
  * [referrer property]
  *     dailyStartEndList
@@ -103,6 +103,13 @@ public class LoaderOfTimecardDay {
         if (_foreignMemberLoader == null)
         { _foreignMemberLoader = new LoaderOfMember().ready(myBhv().pulloutMember(_selectedList), _selector); }
         return _foreignMemberLoader;
+    }
+
+    protected LoaderOfDailyStartEnd _foreignDailyStartEndAsCurrentValueLoader;
+    public LoaderOfDailyStartEnd pulloutDailyStartEndAsCurrentValue() {
+        if (_foreignDailyStartEndAsCurrentValueLoader == null)
+        { _foreignDailyStartEndAsCurrentValueLoader = new LoaderOfDailyStartEnd().ready(myBhv().pulloutDailyStartEndAsCurrentValue(_selectedList), _selector); }
+        return _foreignDailyStartEndAsCurrentValueLoader;
     }
 
     // ===================================================================================

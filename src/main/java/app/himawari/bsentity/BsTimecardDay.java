@@ -32,13 +32,13 @@ import app.himawari.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     MEMBER
+ *     MEMBER, DAILY_START_END(AsCurrentValue)
  *
  * [referrer table]
  *     DAILY_START_END
  *
  * [foreign property]
- *     member
+ *     member, dailyStartEndAsCurrentValue
  *
  * [referrer property]
  *     dailyStartEndList
@@ -76,7 +76,7 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)} */
+    /** TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END} */
     protected Long _timecardDayId;
 
     /** MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} */
@@ -146,6 +146,29 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
         _member = member;
     }
 
+    /** DAILY_START_END by my TIMECARD_DAY_ID, named 'dailyStartEndAsCurrentValue'. */
+    protected OptionalEntity<DailyStartEnd> _dailyStartEndAsCurrentValue;
+
+    /**
+     * [get] DAILY_START_END by my TIMECARD_DAY_ID, named 'dailyStartEndAsCurrentValue'. <br>
+     * "最新の履歴を取得します" <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'dailyStartEndAsCurrentValue'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<DailyStartEnd> getDailyStartEndAsCurrentValue() {
+        if (_dailyStartEndAsCurrentValue == null) { _dailyStartEndAsCurrentValue = OptionalEntity.relationEmpty(this, "dailyStartEndAsCurrentValue"); }
+        return _dailyStartEndAsCurrentValue;
+    }
+
+    /**
+     * [set] DAILY_START_END by my TIMECARD_DAY_ID, named 'dailyStartEndAsCurrentValue'. <br>
+     * "最新の履歴を取得します"
+     * @param dailyStartEndAsCurrentValue The entity of foreign property 'dailyStartEndAsCurrentValue'. (NullAllowed)
+     */
+    public void setDailyStartEndAsCurrentValue(OptionalEntity<DailyStartEnd> dailyStartEndAsCurrentValue) {
+        _dailyStartEndAsCurrentValue = dailyStartEndAsCurrentValue;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
@@ -200,6 +223,8 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
         StringBuilder sb = new StringBuilder();
         if (_member != null && _member.isPresent())
         { sb.append(li).append(xbRDS(_member, "member")); }
+        if (_dailyStartEndAsCurrentValue != null && _dailyStartEndAsCurrentValue.isPresent())
+        { sb.append(li).append(xbRDS(_dailyStartEndAsCurrentValue, "dailyStartEndAsCurrentValue")); }
         if (_dailyStartEndList != null) { for (DailyStartEnd et : _dailyStartEndList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "dailyStartEndList")); } } }
         return sb.toString();
@@ -231,6 +256,8 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
         StringBuilder sb = new StringBuilder();
         if (_member != null && _member.isPresent())
         { sb.append(dm).append("member"); }
+        if (_dailyStartEndAsCurrentValue != null && _dailyStartEndAsCurrentValue.isPresent())
+        { sb.append(dm).append("dailyStartEndAsCurrentValue"); }
         if (_dailyStartEndList != null && !_dailyStartEndList.isEmpty())
         { sb.append(dm).append("dailyStartEndList"); }
         if (sb.length() > dm.length()) {
@@ -248,7 +275,7 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)} <br>
+     * [get] TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END} <br>
      * タイムカード年月日ID
      * @return The value of the column 'TIMECARD_DAY_ID'. (basically NotNull if selected: for the constraint)
      */
@@ -258,7 +285,7 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
     }
 
     /**
-     * [set] TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19)} <br>
+     * [set] TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END} <br>
      * タイムカード年月日ID
      * @param timecardDayId The value of the column 'TIMECARD_DAY_ID'. (basically NotNull if update: for the constraint)
      */

@@ -315,7 +315,7 @@ dl.procedurelist dd.column pre {
 		<td class="rownumcell">3</td>
 		<td><a href="#timecard_day" title="type=TABLE, primaryKey={TIMECARD_DAY_ID}, nameLength=12, columnCount=8">TIMECARD_DAY</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#member" title="FK_TIMECARD_DAY_MEMBER">MEMBER</a></td>
+		<td class="relcell"><a href="#member" title="FK_TIMECARD_DAY_MEMBER">MEMBER</a>, <a href="#daily_start_end" class="additionalfk" title="FK_TIMECARD_DAY_DAILY_START_END: fixedCondition=&quot;$$foreignAlias$$.DAILY_START_END_ID = ($$sqbegin$$\nselect max(daily.DAILY_START_END_ID)\n  from DAILY_START_END daily\n where daily.TIMECARD_DAY_ID = $$foreignAlias$$.TIMECARD_DAY_ID\n)$$sqend$$&quot;, comment=&quot;最新の履歴を取得します&quot;">DAILY_START_END(AsCurrentValue)</a></td>
 		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_START_END_TIMECARD_DAY">DAILY_START_END</a></td>
 		<td class="commentcell"> タイムカード年月日</td>
 		<td class="subcell">TimecardDay</td>
@@ -739,7 +739,7 @@ TIMECARD_DAY
 		<td id="timecard_day_timecard_day_id">TIMECARD_DAY_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell"><a href="#daily_start_end" class="additionalfk" title="FK_TIMECARD_DAY_DAILY_START_END: fixedCondition=&quot;$$foreignAlias$$.DAILY_START_END_ID = ($$sqbegin$$\nselect max(daily.DAILY_START_END_ID)\n  from DAILY_START_END daily\n where daily.TIMECARD_DAY_ID = $$foreignAlias$$.TIMECARD_DAY_ID\n)$$sqend$$&quot;, comment=&quot;最新の履歴を取得します&quot;">DAILY_START_END(AsCurrentValue)</a>&nbsp;</td>
 		<td class="relcell"><a href="#daily_start_end" title="FK_DAILY_START_END_TIMECARD_DAY">DAILY_START_END</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> タイムカード年月日ID</td>
