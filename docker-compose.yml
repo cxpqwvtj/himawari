@@ -9,7 +9,7 @@ services:
     ports:
       - 80:80
     links:
-      - swagger:swagger
+      - swagger:swagger-server
       - himawari-server:himawari-server
   himawari-server:
     build:
