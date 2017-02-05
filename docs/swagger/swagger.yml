@@ -35,6 +35,7 @@ paths:
                 title: 年月
                 type: string
               days:
+                title: 日次データ
                 type: array
                 items:
                   type: object
@@ -86,7 +87,7 @@ paths:
         200:
           description: 登録結果
           schema:
-            title: StartEndDatetimesUpdateResult
+            title: StartEndDatetimeUpdate
             type: object
             properties:
               resultType:

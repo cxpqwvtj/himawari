@@ -1,0 +1,11 @@
+{
+  "yearMonth": "文字列",
+  "days": [
+    {
+      "bizDate": "文字列",
+      "startDatetime": "文字列",
+      "endDatetime": "文字列",
+      "remarks": "文字列"
+    }
+  ]
+}
