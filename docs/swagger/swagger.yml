@@ -45,11 +45,11 @@ paths:
                       description: yyyy-MM-dd
                     startDatetime:
                       title: 開始日時
-                      description: yyyy-MM-ddTHH:mm:dd:ssZ
+                      description: yyyy-MM-ddTHH:mm:dd:ss.SSSZ
                       type: string
                     endDatetime:
                       title: 終了日時
-                      description: yyyy-MM-ddTHH:mm:dd:ssZ
+                      description: yyyy-MM-ddTHH:mm:dd:ss.SSSZ
                       type: string
                     remarks:
                       title: 備考
