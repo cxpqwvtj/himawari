@@ -1,6 +1,6 @@
 package app.himawari.controller.api
 
-import app.himawari.dto.json.gen.TimeCardResponse
+import app.himawari.dto.json.Timecard
 import app.himawari.service.api.ApiService
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
@@ -25,7 +25,7 @@ open class ApiController(
     }
 
     @GetMapping(path = arrayOf("/users/{user_id}/timecards/{year_month}"))
-    open fun timecard(@PathVariable("user_id") userId: String, @PathVariable("year_month") yearMonth: String): TimeCardResponse {
+    open fun timecard(@PathVariable("user_id") userId: String, @PathVariable("year_month") yearMonth: String): Timecard {
         val pattern = DateTimeFormatter.ofPattern("yyyyMMdd")
         val localDate = LocalDate.parse("${yearMonth}01", pattern)
         return service.selectMonthlyInOutData(userId, localDate)
