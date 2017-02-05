@@ -10,6 +10,9 @@ spring:
     password: himawari
     driverClassName: com.mysql.cj.jdbc.Driver
 app:
+  datetime:
+    timezone: Asia/Tokyo
+    bizDate: ""
   log:
     filter:
       type: SIMPLE # NOTHING, SIMPLE, DEBUG

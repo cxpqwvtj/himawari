@@ -2,10 +2,9 @@ package app.himawari.service.api
 
 import app.himawari.dto.json.gen.TimeCardResponse
 import app.himawari.exbhv.TimecardDayBhv
+import app.himawari.model.BizDate
 import org.springframework.stereotype.Service
 import java.time.LocalDate
-import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 /**
@@ -14,6 +13,7 @@ import java.time.format.DateTimeFormatter
  */
 @Service
 class ApiService(
+        private val appDate: BizDate,
         private val timecardDayBhv: TimecardDayBhv
 ) {
     fun selectMonthlyInOutData(userId: String, yearMonth: LocalDate): TimeCardResponse {
@@ -30,18 +30,10 @@ class ApiService(
                     TimeCardResponse.Result.Days().apply {
                         bizDate = day.bizDate.format(DateTimeFormatter.ISO_DATE)
                         day.dailyStartEndAsCurrentValue.ifPresent {
-                            startDate = if (it.startDatetime == null) {
-                                null
-                            } else {
-                                ZonedDateTime.of(it.startDatetime, ZoneId.of("JST", ZoneId.SHORT_IDS)).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                            }
+                            startDate = appDate.toZonedDateTime(it.startDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                         }
                         day.dailyStartEndAsCurrentValue.ifPresent {
-                            endDate = if (it.endDatetime == null) {
-                                null
-                            } else {
-                                ZonedDateTime.of(it.endDatetime, ZoneId.of("JST", ZoneId.SHORT_IDS)).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                            }
+                            endDate = appDate.toZonedDateTime(it.endDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                         }
                         day.dailyStartEndAsCurrentValue.ifPresent { remarks = it.note }
                     }
