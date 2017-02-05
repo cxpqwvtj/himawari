@@ -26,6 +26,8 @@ open class ApiController(
 
     @GetMapping(path = arrayOf("/users/{user_id}/timecards/{year_month}"))
     open fun timecard(@PathVariable("user_id") userId: String, @PathVariable("year_month") yearMonth: String): TimeCardResponse {
-        return service.selectMonthlyInOutData(userId, LocalDate.parse(yearMonth, DateTimeFormatter.ofPattern("yyyyMM")))
+        val pattern = DateTimeFormatter.ofPattern("yyyyMMdd")
+        val localDate = LocalDate.parse("${yearMonth}01", pattern)
+        return service.selectMonthlyInOutData(userId, localDate)
     }
 }
