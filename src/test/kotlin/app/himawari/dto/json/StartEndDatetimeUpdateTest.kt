@@ -11,6 +11,8 @@ internal class StartEndDatetimeUpdateTest {
     @Test
     fun fullProperty() {
         val startEndDatetimeUpdate = StartEndDatetimeUpdate().apply {
+            resultType = ""
+            message = ""
         }
         println(ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(startEndDatetimeUpdate))
     }

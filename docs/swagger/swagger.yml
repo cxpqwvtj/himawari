@@ -62,9 +62,11 @@ paths:
         - name: StartEndDatetimes
           in: body
           schema:
+            title: StartEndDatetimes
             type: object
             properties:
               days:
+                title: 日次データ
                 type: array
                 items:
                   type: object

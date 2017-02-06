@@ -39,4 +39,8 @@ class ApiService(
             }
         }
     }
+
+    fun createDailyStartEndHistory() {
+
+    }
 }

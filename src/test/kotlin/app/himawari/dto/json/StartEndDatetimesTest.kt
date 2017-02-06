@@ -5,20 +5,19 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
 
 /**
- * Timecardのテストクラスです
+ * StartEndDatetimesのテストクラスです
  */
-internal class TimecardTest {
+internal class StartEndDatetimesTest {
     @Test
     fun fullProperty() {
-        val timecard = Timecard().apply {
-            yearMonth = ""
-            days = listOf(Timecard.Days().apply {
+        val startEndDatetimes = StartEndDatetimes().apply {
+            days = listOf(StartEndDatetimes.Days().apply {
                 bizDate = ""
                 startDatetime = ""
                 endDatetime = ""
                 remarks = ""
             })
         }
-        println(ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(timecard))
+        println(ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(startEndDatetimes))
     }
 }
