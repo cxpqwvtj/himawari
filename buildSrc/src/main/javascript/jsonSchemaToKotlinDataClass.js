@@ -68,7 +68,7 @@ const generateVariable = (propertyName, jsonDef, depth) => {
   const indent = Immutable.Range(0, depth).map(() => '    ').join('')
   const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties']) || Immutable.fromJS({})
   return properties.map((v, k) => {
-    const requiredField = (jsonDef.get('required') || jsonDef.getIn(['items', 'properties']) || Immutable.fromJS([])).contains(k)
+    const requiredField = (jsonDef.get('required') || jsonDef.getIn(['items', 'required']) || Immutable.fromJS([])).contains(k)
     const requiredMark = requiredField ? '' : '?'
     const type = v.getIn(['type', 0]) || v.get('type')
     const convertTypeJsonToKotlin = (jsonType) => {
