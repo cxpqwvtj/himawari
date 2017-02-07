@@ -15,12 +15,12 @@ data class StartEndDatetimes(
      * @property bizDate 業務日
      * @property startDatetime 開始日時
      * @property endDatetime 終了日時
-     * @property remarks 備考
+     * @property note 備考
      */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     data class Days(
-            var bizDate: String? = null,
+            var bizDate: String = "",
             var startDatetime: String? = null,
             var endDatetime: String? = null,
-            var remarks: String? = null)
+            var note: String? = null)
 }

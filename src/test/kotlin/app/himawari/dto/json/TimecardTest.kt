@@ -16,7 +16,7 @@ internal class TimecardTest {
                 bizDate = ""
                 startDatetime = ""
                 endDatetime = ""
-                remarks = ""
+                note = ""
             })
         }
         println(ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(timecard))

@@ -5,7 +5,7 @@
       "bizDate": "文字列",
       "startDatetime": "文字列",
       "endDatetime": "文字列",
-      "remarks": "文字列"
+      "note": "文字列"
     }
   ]
 }

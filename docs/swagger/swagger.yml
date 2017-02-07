@@ -52,7 +52,7 @@ paths:
                       title: 終了日時
                       description: yyyy-MM-ddTHH:mm:dd:ss.SSSZ
                       type: string
-                    remarks:
+                    note:
                       title: 備考
                       type: string
   /user/days:
@@ -80,7 +80,7 @@ paths:
                     endDatetime:
                       title: 終了日時
                       type: string
-                    remarks:
+                    note:
                       title: 備考
                       type: string
                   required:
