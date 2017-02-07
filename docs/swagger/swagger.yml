@@ -10,9 +10,11 @@ produces:
 paths:
   /users/{userId}/timecards/{yearMonth}:
     get:
-      operationId: ''
+      operationId: Api0001
       description: |
         月の開始、終了日時の一覧を返します。
+      tags:
+        - timecard
       parameters:
         - name: userId
           in: path
@@ -57,7 +59,10 @@ paths:
                       type: string
   /user/days:
     post:
+      operationId: Api0002
       description: 日次データ登録
+      tags:
+        - timecard
       parameters:
         - name: StartEndDatetimes
           in: body
