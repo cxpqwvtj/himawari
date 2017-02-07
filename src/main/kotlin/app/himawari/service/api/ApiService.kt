@@ -1,10 +1,15 @@
 package app.himawari.service.api
 
+import app.himawari.dto.json.StartEndDatetimeUpdate
+import app.himawari.dto.json.StartEndDatetimes
 import app.himawari.dto.json.Timecard
+import app.himawari.exbhv.DailyStartEndBhv
 import app.himawari.exbhv.TimecardDayBhv
+import app.himawari.exentity.DailyStartEnd
 import app.himawari.model.BizDate
 import org.springframework.stereotype.Service
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 /**
@@ -14,7 +19,8 @@ import java.time.format.DateTimeFormatter
 @Service
 class ApiService(
         private val appDate: BizDate,
-        private val timecardDayBhv: TimecardDayBhv
+        private val timecardDayBhv: TimecardDayBhv,
+        private val dailyStartEndBhv: DailyStartEndBhv
 ) {
     fun selectMonthlyInOutData(userId: String, yearMonth: LocalDate): Timecard {
         val list = timecardDayBhv.selectList { cb ->
@@ -34,13 +40,28 @@ class ApiService(
                     day.dailyStartEndAsCurrentValue.ifPresent {
                         endDatetime = appDate.toZonedDateTime(it.endDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                     }
-                    day.dailyStartEndAsCurrentValue.ifPresent { remarks = it.note }
+                    day.dailyStartEndAsCurrentValue.ifPresent { note = it.note }
                 }
             }
         }
     }
 
-    fun createDailyStartEndHistory() {
-
+    fun createDailyStartEndHistory(startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
+        val entities = startEndDatetimes.days?.map { day ->
+            val timecardDay = timecardDayBhv.selectEntity { cb ->
+                // TODO: ログイン情報からAccountIdを取得する
+                cb.query().queryMember().setMemberAccountId_Equal("")
+                cb.query().setBizDate_Equal(LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE))
+            }
+            DailyStartEnd().apply {
+                timecardDay.alwaysPresent { timecardDayId = it.timecardDayId }
+                startDatetime = LocalDateTime.parse(day.startDatetime, appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
+                endDatetime = LocalDateTime.parse(day.endDatetime, appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
+                note = day.note
+            }
+        }
+        dailyStartEndBhv.batchInsert(entities)
+        // TODO: 結果を設定する
+        return StartEndDatetimeUpdate()
     }
 }
