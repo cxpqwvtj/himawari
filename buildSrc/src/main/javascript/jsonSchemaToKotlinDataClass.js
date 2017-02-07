@@ -236,7 +236,7 @@ const promises = schemaDefFiles.filter((v) => v.endsWith('.yml')).map((fileName)
 
         // テストクラスファイル掃除
         const testClassFiles = fs.readdirSync(testClassFileDir)
-        mainClassFiles.map(testClassFile => {
+        testClassFiles.map(testClassFile => {
           if (generateFiles.contains(testClassFile)) {
             // 生成ファイルなので削除しない
           } else {
