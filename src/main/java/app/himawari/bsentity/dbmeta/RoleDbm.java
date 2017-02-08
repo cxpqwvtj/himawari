@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.dbflute.Entity;
-import org.dbflute.optional.OptionalEntity;
 import org.dbflute.dbmeta.AbstractDBMeta;
 import org.dbflute.dbmeta.info.*;
 import org.dbflute.dbmeta.name.*;
@@ -14,17 +13,17 @@ import app.himawari.allcommon.*;
 import app.himawari.exentity.*;
 
 /**
- * The DB meta of MEMBER. (Singleton)
+ * The DB meta of ROLE. (Singleton)
  * @author DBFlute(AutoGenerator)
  */
-public class MemberDbm extends AbstractDBMeta {
+public class RoleDbm extends AbstractDBMeta {
 
     // ===================================================================================
     //                                                                           Singleton
     //                                                                           =========
-    private static final MemberDbm _instance = new MemberDbm();
-    private MemberDbm() {}
-    public static MemberDbm getInstance() { return _instance; }
+    private static final RoleDbm _instance = new RoleDbm();
+    private RoleDbm() {}
+    public static RoleDbm getInstance() { return _instance; }
 
     // ===================================================================================
     //                                                                       Current DBDef
@@ -43,39 +42,24 @@ public class MemberDbm extends AbstractDBMeta {
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     { xsetupEpg(); }
     protected void xsetupEpg() {
-        setupEpg(_epgMap, et -> ((Member)et).getMemberId(), (et, vl) -> ((Member)et).setMemberId(ctl(vl)), "memberId");
-        setupEpg(_epgMap, et -> ((Member)et).getMemberName(), (et, vl) -> ((Member)et).setMemberName((String)vl), "memberName");
-        setupEpg(_epgMap, et -> ((Member)et).getMemberAccountId(), (et, vl) -> ((Member)et).setMemberAccountId((String)vl), "memberAccountId");
-        setupEpg(_epgMap, et -> ((Member)et).getPassword(), (et, vl) -> ((Member)et).setPassword((String)vl), "password");
-        setupEpg(_epgMap, et -> ((Member)et).getRoleTypeCode(), (et, vl) -> ((Member)et).setRoleTypeCode((String)vl), "roleTypeCode");
-        setupEpg(_epgMap, et -> ((Member)et).getRegisterDatetime(), (et, vl) -> ((Member)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
-        setupEpg(_epgMap, et -> ((Member)et).getRegisterUser(), (et, vl) -> ((Member)et).setRegisterUser((String)vl), "registerUser");
-        setupEpg(_epgMap, et -> ((Member)et).getUpdateDatetime(), (et, vl) -> ((Member)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
-        setupEpg(_epgMap, et -> ((Member)et).getUpdateUser(), (et, vl) -> ((Member)et).setUpdateUser((String)vl), "updateUser");
-        setupEpg(_epgMap, et -> ((Member)et).getVersionNo(), (et, vl) -> ((Member)et).setVersionNo(ctl(vl)), "versionNo");
+        setupEpg(_epgMap, et -> ((Role)et).getRoleTypeCode(), (et, vl) -> ((Role)et).setRoleTypeCode((String)vl), "roleTypeCode");
+        setupEpg(_epgMap, et -> ((Role)et).getRoleName(), (et, vl) -> ((Role)et).setRoleName((String)vl), "roleName");
+        setupEpg(_epgMap, et -> ((Role)et).getRegisterDatetime(), (et, vl) -> ((Role)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
+        setupEpg(_epgMap, et -> ((Role)et).getRegisterUser(), (et, vl) -> ((Role)et).setRegisterUser((String)vl), "registerUser");
+        setupEpg(_epgMap, et -> ((Role)et).getUpdateDatetime(), (et, vl) -> ((Role)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
+        setupEpg(_epgMap, et -> ((Role)et).getUpdateUser(), (et, vl) -> ((Role)et).setUpdateUser((String)vl), "updateUser");
+        setupEpg(_epgMap, et -> ((Role)et).getVersionNo(), (et, vl) -> ((Role)et).setVersionNo(ctl(vl)), "versionNo");
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
 
-    // -----------------------------------------------------
-    //                                      Foreign Property
-    //                                      ----------------
-    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
-    { xsetupEfpg(); }
-    @SuppressWarnings("unchecked")
-    protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((Member)et).getRole(), (et, vl) -> ((Member)et).setRole((OptionalEntity<Role>)vl), "role");
-    }
-    public PropertyGateway findForeignPropertyGateway(String prop)
-    { return doFindEfpg(_efpgMap, prop); }
-
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
-    protected final String _tableDbName = "MEMBER";
-    protected final String _tableDispName = "MEMBER";
-    protected final String _tablePropertyName = "member";
-    protected final TableSqlName _tableSqlName = new TableSqlName("MEMBER", _tableDbName);
+    protected final String _tableDbName = "ROLE";
+    protected final String _tableDispName = "ROLE";
+    protected final String _tablePropertyName = "role";
+    protected final TableSqlName _tableSqlName = new TableSqlName("ROLE", _tableDbName);
     { _tableSqlName.xacceptFilter(DBFluteConfig.getInstance().getTableSqlNameFilter()); }
     public String getTableDbName() { return _tableDbName; }
     public String getTableDispName() { return _tableDispName; }
@@ -85,11 +69,8 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "timecardDayList", null, false);
-    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, true, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnMemberAccountId = cci("MEMBER_ACCOUNT_ID", "MEMBER_ACCOUNT_ID", null, null, String.class, "memberAccountId", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnPassword = cci("PASSWORD", "PASSWORD", null, null, String.class, "password", null, false, false, true, "VARCHAR", 256, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRoleTypeCode = cci("ROLE_TYPE_CODE", "ROLE_TYPE_CODE", null, null, String.class, "roleTypeCode", null, false, false, true, "VARCHAR", 20, 0, null, false, null, null, "role", null, null, false);
+    protected final ColumnInfo _columnRoleTypeCode = cci("ROLE_TYPE_CODE", "ROLE_TYPE_CODE", null, null, String.class, "roleTypeCode", null, true, false, true, "VARCHAR", 20, 0, null, false, null, null, null, "memberList", null, false);
+    protected final ColumnInfo _columnRoleName = cci("ROLE_NAME", "ROLE_NAME", null, null, String.class, "roleName", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -97,30 +78,15 @@ public class MemberDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
-     * MEMBER_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnMemberId() { return _columnMemberId; }
-    /**
-     * MEMBER_NAME: {NotNull, VARCHAR(100)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnMemberName() { return _columnMemberName; }
-    /**
-     * MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnMemberAccountId() { return _columnMemberAccountId; }
-    /**
-     * PASSWORD: {NotNull, VARCHAR(256)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnPassword() { return _columnPassword; }
-    /**
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
+     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnRoleTypeCode() { return _columnRoleTypeCode; }
+    /**
+     * ROLE_NAME: {NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnRoleName() { return _columnRoleName; }
     /**
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return The information object of specified column. (NotNull)
@@ -149,11 +115,8 @@ public class MemberDbm extends AbstractDBMeta {
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
-        ls.add(columnMemberId());
-        ls.add(columnMemberName());
-        ls.add(columnMemberAccountId());
-        ls.add(columnPassword());
         ls.add(columnRoleTypeCode());
+        ls.add(columnRoleName());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
         ls.add(columnUpdateDatetime());
@@ -170,14 +133,9 @@ public class MemberDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                       Primary Element
     //                                       ---------------
-    protected UniqueInfo cpui() { return hpcpui(columnMemberId()); }
+    protected UniqueInfo cpui() { return hpcpui(columnRoleTypeCode()); }
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
-
-    // -----------------------------------------------------
-    //                                        Unique Element
-    //                                        --------------
-    public UniqueInfo uniqueOf() { return hpcui(columnMemberAccountId()); }
 
     // ===================================================================================
     //                                                                       Relation Info
@@ -187,31 +145,22 @@ public class MemberDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
-    /**
-     * ROLE by my ROLE_TYPE_CODE, named 'role'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignRole() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnRoleTypeCode(), RoleDbm.getInstance().columnRoleTypeCode());
-        return cfi("FK_MEMBER_ROLE", "role", this, RoleDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "memberList", false);
-    }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
     /**
-     * TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
+     * MEMBER by ROLE_TYPE_CODE, named 'memberList'.
      * @return The information object of referrer property. (NotNull)
      */
-    public ReferrerInfo referrerTimecardDayList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), TimecardDayDbm.getInstance().columnMemberId());
-        return cri("FK_TIMECARD_DAY_MEMBER", "timecardDayList", this, TimecardDayDbm.getInstance(), mp, false, "member");
+    public ReferrerInfo referrerMemberList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnRoleTypeCode(), MemberDbm.getInstance().columnRoleTypeCode());
+        return cri("FK_MEMBER_ROLE", "memberList", this, MemberDbm.getInstance(), mp, false, "role");
     }
 
     // ===================================================================================
     //                                                                        Various Info
     //                                                                        ============
-    public boolean hasIdentity() { return true; }
     public boolean hasVersionNo() { return true; }
     public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
@@ -225,27 +174,27 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                           Type Name
     //                                                                           =========
-    public String getEntityTypeName() { return "app.himawari.exentity.Member"; }
-    public String getConditionBeanTypeName() { return "app.himawari.cbean.MemberCB"; }
-    public String getBehaviorTypeName() { return "app.himawari.exbhv.MemberBhv"; }
+    public String getEntityTypeName() { return "app.himawari.exentity.Role"; }
+    public String getConditionBeanTypeName() { return "app.himawari.cbean.RoleCB"; }
+    public String getBehaviorTypeName() { return "app.himawari.exbhv.RoleBhv"; }
 
     // ===================================================================================
     //                                                                         Object Type
     //                                                                         ===========
-    public Class<Member> getEntityType() { return Member.class; }
+    public Class<Role> getEntityType() { return Role.class; }
 
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Member newEntity() { return new Member(); }
+    public Role newEntity() { return new Role(); }
 
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
     public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
-    { doAcceptPrimaryKeyMap((Member)et, mp); }
+    { doAcceptPrimaryKeyMap((Role)et, mp); }
     public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
-    { doAcceptAllColumnMap((Member)et, mp); }
+    { doAcceptAllColumnMap((Role)et, mp); }
     public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
     public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

@@ -213,6 +213,21 @@
 				<b>192</b>
 			</color>
 			<connections>
+				<relationship>
+					<name>FK_MEMBER_ROLE</name>
+					<source>table.ROLE</source>
+					<target>table.MEMBER</target>
+					<fk_columns>
+						<fk_column>
+							<fk_column_name>ROLE_TYPE_CODE</fk_column_name>
+						</fk_column>
+					</fk_columns>
+					<parent_cardinality>1</parent_cardinality>
+					<child_cardinality>0..n</child_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+				</relationship>
 			</connections>
 			<columns>
 				<normal_column>
@@ -237,6 +252,62 @@
 					<length>50</length>
 					<not_null>true</not_null>
 					<unique_key>true</unique_key>
+				</normal_column>
+				<normal_column>
+					<physical_name>PASSWORD</physical_name>
+					<logical_name>パスワード</logical_name>
+					<type>varchar(n)</type>
+					<length>256</length>
+					<not_null>true</not_null>
+				</normal_column>
+				<normal_column>
+					<physical_name>ROLE_TYPE_CODE</physical_name>
+					<referred_column>table.ROLE.ROLE_TYPE_CODE</referred_column>
+					<relationship>FK_MEMBER_ROLE</relationship>
+					<not_null>true</not_null>
+				</normal_column>
+				<column_group>共通カラム</column_group>
+				<column_group>排他制御カラム</column_group>
+			</columns>
+			<indexes>
+			</indexes>
+			<compound_unique_key_list>
+			</compound_unique_key_list>
+			<table_properties>
+			</table_properties>
+		</table>
+		<table>
+			<physical_name>ROLE</physical_name>
+			<logical_name>権限</logical_name>
+			<description></description>
+			<height>161</height>
+			<width>233</width>
+			<font_name>.SF NS Text</font_name>
+			<font_size>9</font_size>
+			<x>-317</x>
+			<y>65</y>
+			<color>
+				<r>255</r>
+				<g>255</g>
+				<b>0</b>
+			</color>
+			<connections>
+			</connections>
+			<columns>
+				<normal_column>
+					<physical_name>ROLE_TYPE_CODE</physical_name>
+					<logical_name>権限コード</logical_name>
+					<type>varchar(n)</type>
+					<length>20</length>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+				</normal_column>
+				<normal_column>
+					<physical_name>ROLE_NAME</physical_name>
+					<logical_name>権限名称</logical_name>
+					<type>varchar(n)</type>
+					<length>50</length>
+					<not_null>true</not_null>
 				</normal_column>
 				<column_group>共通カラム</column_group>
 				<column_group>排他制御カラム</column_group>

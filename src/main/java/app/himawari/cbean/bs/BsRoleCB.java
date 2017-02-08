@@ -20,20 +20,20 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-bean of MEMBER.
+ * The base condition-bean of ROLE.
  * @author DBFlute(AutoGenerator)
  */
-public class BsMemberCB extends AbstractConditionBean {
+public class BsRoleCB extends AbstractConditionBean {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected MemberCQ _conditionQuery;
+    protected RoleCQ _conditionQuery;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsMemberCB() {
+    public BsRoleCB() {
         if (DBFluteConfig.getInstance().isPagingCountLater()) {
             enablePagingCountLater();
         }
@@ -72,7 +72,7 @@ public class BsMemberCB extends AbstractConditionBean {
     }
 
     public String asTableDbName() {
-        return "MEMBER";
+        return "ROLE";
     }
 
     // ===================================================================================
@@ -80,35 +80,23 @@ public class BsMemberCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param memberId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @param roleTypeCode : PK, NotNull, VARCHAR(20). (NotNull)
      * @return this. (NotNull)
      */
-    public MemberCB acceptPK(Long memberId) {
-        assertObjectNotNull("memberId", memberId);
-        BsMemberCB cb = this;
-        cb.query().setMemberId_Equal(memberId);
-        return (MemberCB)this;
-    }
-
-    /**
-     * Accept the query condition of unique key as equal.
-     * @param memberAccountId : UQ, NotNull, VARCHAR(50). (NotNull)
-     * @return this. (NotNull)
-     */
-    public MemberCB acceptUniqueOf(String memberAccountId) {
-        assertObjectNotNull("memberAccountId", memberAccountId);
-        BsMemberCB cb = this;
-        cb.query().setMemberAccountId_Equal(memberAccountId);
-        return (MemberCB)this;
+    public RoleCB acceptPK(String roleTypeCode) {
+        assertObjectNotNull("roleTypeCode", roleTypeCode);
+        BsRoleCB cb = this;
+        cb.query().setRoleTypeCode_Equal(roleTypeCode);
+        return (RoleCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {
-        query().addOrderBy_MemberId_Asc();
+        query().addOrderBy_RoleTypeCode_Asc();
         return this;
     }
 
     public ConditionBean addOrderBy_PK_Desc() {
-        query().addOrderBy_MemberId_Desc();
+        query().addOrderBy_RoleTypeCode_Desc();
         return this;
     }
 
@@ -172,34 +160,34 @@ public class BsMemberCB extends AbstractConditionBean {
      * </pre>
      * @return The instance of condition-query for base-point table to set up query. (NotNull)
      */
-    public MemberCQ query() {
+    public RoleCQ query() {
         assertQueryPurpose(); // assert only when user-public query 
         return doGetConditionQuery();
     }
 
-    public MemberCQ xdfgetConditionQuery() { // public for parameter comment and internal
+    public RoleCQ xdfgetConditionQuery() { // public for parameter comment and internal
         return doGetConditionQuery();
     }
 
-    protected MemberCQ doGetConditionQuery() {
+    protected RoleCQ doGetConditionQuery() {
         if (_conditionQuery == null) {
             _conditionQuery = createLocalCQ();
         }
         return _conditionQuery;
     }
 
-    protected MemberCQ createLocalCQ() {
+    protected RoleCQ createLocalCQ() {
         return xcreateCQ(null, getSqlClause(), getSqlClause().getBasePointAliasName(), 0);
     }
 
-    protected MemberCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        MemberCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected RoleCQ xcreateCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        RoleCQ cq = xnewCQ(childQuery, sqlClause, aliasName, nestLevel);
         cq.xsetBaseCB(this);
         return cq;
     }
 
-    protected MemberCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        return new MemberCQ(childQuery, sqlClause, aliasName, nestLevel);
+    protected RoleCQ xnewCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        return new RoleCQ(childQuery, sqlClause, aliasName, nestLevel);
     }
 
     /**
@@ -223,10 +211,10 @@ public class BsMemberCB extends AbstractConditionBean {
      * </pre>
      * @param unionCBLambda The callback for query of 'union'. (NotNull)
      */
-    public void union(UnionQuery<MemberCB> unionCBLambda) {
-        final MemberCB cb = new MemberCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+    public void union(UnionQuery<RoleCB> unionCBLambda) {
+        final RoleCB cb = new RoleCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
         try { lock(); unionCBLambda.query(cb); } finally { unlock(); } xsaveUCB(cb);
-        final MemberCQ cq = cb.query(); query().xsetUnionQuery(cq);
+        final RoleCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
     /**
@@ -240,35 +228,15 @@ public class BsMemberCB extends AbstractConditionBean {
      * </pre>
      * @param unionCBLambda The callback for query of 'union all'. (NotNull)
      */
-    public void unionAll(UnionQuery<MemberCB> unionCBLambda) {
-        final MemberCB cb = new MemberCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+    public void unionAll(UnionQuery<RoleCB> unionCBLambda) {
+        final RoleCB cb = new RoleCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
         try { lock(); unionCBLambda.query(cb); } finally { unlock(); } xsaveUCB(cb);
-        final MemberCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
+        final RoleCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    /**
-     * Set up relation columns to select clause. <br>
-     * ROLE by my ROLE_TYPE_CODE, named 'role'.
-     * <pre>
-     * <span style="color: #0000C0">memberBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Role()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     *     <span style="color: #553000">cb</span>.query().set...
-     * }).alwaysPresent(<span style="color: #553000">member</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">member</span>.<span style="color: #CC4747">getRole()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * });
-     * </pre>
-     */
-    public void setupSelect_Role() {
-        assertSetupSelectPurpose("role");
-        if (hasSpecifiedLocalColumn()) {
-            specify().columnRoleTypeCode();
-        }
-        doSetupSelect(() -> query().queryRole());
-    }
-
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -309,37 +277,21 @@ public class BsMemberCB extends AbstractConditionBean {
         return _specification != null && _specification.hasSpecifiedColumn();
     }
 
-    public static class HpSpecification extends HpAbstractSpecification<MemberCQ> {
-        protected RoleCB.HpSpecification _role;
-        public HpSpecification(ConditionBean baseCB, HpSpQyCall<MemberCQ> qyCall
+    public static class HpSpecification extends HpAbstractSpecification<RoleCQ> {
+        public HpSpecification(ConditionBean baseCB, HpSpQyCall<RoleCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * MEMBER_ID: {PK, ID, NotNull, BIGINT(19)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
-        /**
-         * MEMBER_NAME: {NotNull, VARCHAR(100)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnMemberName() { return doColumn("MEMBER_NAME"); }
-        /**
-         * MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnMemberAccountId() { return doColumn("MEMBER_ACCOUNT_ID"); }
-        /**
-         * PASSWORD: {NotNull, VARCHAR(256)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnPassword() { return doColumn("PASSWORD"); }
-        /**
-         * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
+         * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnRoleTypeCode() { return doColumn("ROLE_TYPE_CODE"); }
+        /**
+         * ROLE_NAME: {NotNull, VARCHAR(50)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnRoleName() { return doColumn("ROLE_NAME"); }
         /**
          * REGISTER_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
@@ -369,58 +321,34 @@ public class BsMemberCB extends AbstractConditionBean {
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
-            columnMemberId(); // PK
-            if (qyCall().qy().hasConditionQueryRole()
-                    || qyCall().qy().xgetReferrerQuery() instanceof RoleCQ) {
-                columnRoleTypeCode(); // FK or one-to-one referrer
-            }
+            columnRoleTypeCode(); // PK
         }
         @Override
-        protected String getTableDbName() { return "MEMBER"; }
-        /**
-         * Prepare to specify functions about relation table. <br>
-         * ROLE by my ROLE_TYPE_CODE, named 'role'.
-         * @return The instance for specification for relation table to specify. (NotNull)
-         */
-        public RoleCB.HpSpecification specifyRole() {
-            assertRelation("role");
-            if (_role == null) {
-                _role = new RoleCB.HpSpecification(_baseCB
-                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryRole()
-                                    , () -> _qyCall.qy().queryRole())
-                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
-                if (xhasSyncQyCall()) { // inherits it
-                    _role.xsetSyncQyCall(xcreateSpQyCall(
-                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryRole()
-                      , () -> xsyncQyCall().qy().queryRole()));
-                }
-            }
-            return _role;
-        }
+        protected String getTableDbName() { return "ROLE"; }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
-         * {select max(FOO) from TIMECARD_DAY where ...) as FOO_MAX} <br>
-         * TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
+         * {select max(FOO) from MEMBER where ...) as FOO_MAX} <br>
+         * MEMBER by ROLE_TYPE_CODE, named 'memberList'.
          * <pre>
-         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(dayCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-         *     dayCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
-         *     dayCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
-         * }, TimecardDay.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(memberCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     memberCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     memberCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, Member.<span style="color: #CC4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
-        public HpSDRFunction<TimecardDayCB, MemberCQ> derivedTimecardDay() {
-            assertDerived("timecardDayList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TimecardDayCB> sq, MemberCQ cq, String al, DerivedReferrerOption op)
-                    -> cq.xsderiveTimecardDayList(fn, sq, al, op), _dbmetaProvider);
+        public HpSDRFunction<MemberCB, RoleCQ> derivedMember() {
+            assertDerived("memberList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<MemberCB> sq, RoleCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveMemberList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)
          */
-        public HpSDRFunction<MemberCB, MemberCQ> myselfDerived() {
+        public HpSDRFunction<RoleCB, RoleCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<MemberCB> sq, MemberCQ cq, String al, DerivedReferrerOption op)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<RoleCB> sq, RoleCQ cq, String al, DerivedReferrerOption op)
                     -> cq.xsmyselfDerive(fn, sq, al, op), _dbmetaProvider);
         }
     }
@@ -433,9 +361,9 @@ public class BsMemberCB extends AbstractConditionBean {
      * This is very specialty so you can get the frontier spirit. Bon voyage!
      * @return The condition-bean for dream cruise, which is linked to main condition-bean.
      */
-    public MemberCB dreamCruiseCB() {
-        MemberCB cb = new MemberCB();
-        cb.xsetupForDreamCruise((MemberCB) this);
+    public RoleCB dreamCruiseCB() {
+        RoleCB cb = new RoleCB();
+        cb.xsetupForDreamCruise((RoleCB) this);
         return cb;
     }
 
@@ -460,15 +388,15 @@ public class BsMemberCB extends AbstractConditionBean {
      * @param colCBLambda The callback for specify-query of left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<MemberCB> columnQuery(final SpecifyQuery<MemberCB> colCBLambda) {
+    public HpColQyOperand<RoleCB> columnQuery(final SpecifyQuery<RoleCB> colCBLambda) {
         return xcreateColQyOperand((rightSp, operand) -> {
             return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), colCBLambda, rightSp, operand);
         });
     }
 
-    protected MemberCB xcreateColumnQueryCB() {
-        MemberCB cb = new MemberCB();
-        cb.xsetupForColumnQuery((MemberCB)this);
+    protected RoleCB xcreateColumnQueryCB() {
+        RoleCB cb = new RoleCB();
+        cb.xsetupForColumnQuery((RoleCB)this);
         return cb;
     }
 
@@ -488,8 +416,8 @@ public class BsMemberCB extends AbstractConditionBean {
      * </pre>
      * @param orCBLambda The callback for query of or-condition. (NotNull)
      */
-    public void orScopeQuery(OrQuery<MemberCB> orCBLambda) {
-        xorSQ((MemberCB)this, orCBLambda);
+    public void orScopeQuery(OrQuery<RoleCB> orCBLambda) {
+        xorSQ((RoleCB)this, orCBLambda);
     }
 
     /**
@@ -507,8 +435,8 @@ public class BsMemberCB extends AbstractConditionBean {
      * </pre>
      * @param andCBLambda The callback for query of and-condition. (NotNull)
      */
-    public void orScopeQueryAndPart(AndQuery<MemberCB> andCBLambda) {
-        xorSQAP((MemberCB)this, andCBLambda);
+    public void orScopeQueryAndPart(AndQuery<RoleCB> andCBLambda) {
+        xorSQAP((RoleCB)this, andCBLambda);
     }
 
     // ===================================================================================
@@ -538,11 +466,11 @@ public class BsMemberCB extends AbstractConditionBean {
     //                                                                        ============
     @Override
     protected void xprepareSyncQyCall(ConditionBean mainCB) {
-        final MemberCB cb;
+        final RoleCB cb;
         if (mainCB != null) {
-            cb = (MemberCB)mainCB;
+            cb = (RoleCB)mainCB;
         } else {
-            cb = new MemberCB();
+            cb = new RoleCB();
         }
         specify().xsetSyncQyCall(xcreateSpQyCall(() -> true, () -> cb.query()));
     }
@@ -551,8 +479,8 @@ public class BsMemberCB extends AbstractConditionBean {
     //                                                                            Internal
     //                                                                            ========
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xgetConditionBeanClassNameInternally() { return MemberCB.class.getName(); }
-    protected String xgetConditionQueryClassNameInternally() { return MemberCQ.class.getName(); }
+    protected String xgetConditionBeanClassNameInternally() { return RoleCB.class.getName(); }
+    protected String xgetConditionQueryClassNameInternally() { return RoleCQ.class.getName(); }
     protected String xgetSubQueryClassNameInternally() { return SubQuery.class.getName(); }
     protected String xgetConditionOptionClassNameInternally() { return ConditionOption.class.getName(); }
 }

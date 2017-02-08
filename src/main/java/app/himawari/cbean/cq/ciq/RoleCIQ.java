@@ -12,21 +12,21 @@ import app.himawari.cbean.cq.bs.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The condition-query for in-line of MEMBER.
+ * The condition-query for in-line of ROLE.
  * @author DBFlute(AutoGenerator)
  */
-public class MemberCIQ extends AbstractBsMemberCQ {
+public class RoleCIQ extends AbstractBsRoleCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected BsMemberCQ _myCQ;
+    protected BsRoleCQ _myCQ;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public MemberCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
-                        , String aliasName, int nestLevel, BsMemberCQ myCQ) {
+    public RoleCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
+                        , String aliasName, int nestLevel, BsRoleCQ myCQ) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
@@ -61,36 +61,33 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
-    protected ConditionValue xgetCValueMemberId() { return _myCQ.xdfgetMemberId(); }
-    public String keepMemberId_ExistsReferrer_TimecardDayList(TimecardDayCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberId_NotExistsReferrer_TimecardDayList(TimecardDayCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberId_SpecifyDerivedReferrer_TimecardDayList(TimecardDayCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_TimecardDayList(TimecardDayCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_TimecardDayListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue xgetCValueMemberName() { return _myCQ.xdfgetMemberName(); }
-    protected ConditionValue xgetCValueMemberAccountId() { return _myCQ.xdfgetMemberAccountId(); }
-    protected ConditionValue xgetCValuePassword() { return _myCQ.xdfgetPassword(); }
     protected ConditionValue xgetCValueRoleTypeCode() { return _myCQ.xdfgetRoleTypeCode(); }
+    public String keepRoleTypeCode_ExistsReferrer_MemberList(MemberCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepRoleTypeCode_NotExistsReferrer_MemberList(MemberCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepRoleTypeCode_SpecifyDerivedReferrer_MemberList(MemberCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepRoleTypeCode_QueryDerivedReferrer_MemberList(MemberCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepRoleTypeCode_QueryDerivedReferrer_MemberListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    protected ConditionValue xgetCValueRoleName() { return _myCQ.xdfgetRoleName(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueRegisterUser() { return _myCQ.xdfgetRegisterUser(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected ConditionValue xgetCValueUpdateUser() { return _myCQ.xdfgetUpdateUser(); }
     protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
-    public String keepScalarCondition(MemberCQ sq)
+    public String keepScalarCondition(RoleCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(MemberCQ sq)
+    public String keepSpecifyMyselfDerived(RoleCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(MemberCQ sq)
+    public String keepQueryMyselfDerived(RoleCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
     public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(MemberCQ sq)
+    public String keepMyselfExists(RoleCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
 
     protected void throwIICBOE(String name)
@@ -100,6 +97,6 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xinCB() { return MemberCB.class.getName(); }
-    protected String xinCQ() { return MemberCQ.class.getName(); }
+    protected String xinCB() { return RoleCB.class.getName(); }
+    protected String xinCQ() { return RoleCQ.class.getName(); }
 }

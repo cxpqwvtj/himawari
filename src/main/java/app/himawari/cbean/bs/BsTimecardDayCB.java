@@ -238,6 +238,11 @@ public class BsTimecardDayCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
+    protected MemberNss _nssMember;
+    public MemberNss xdfgetNssMember() {
+        if (_nssMember == null) { _nssMember = new MemberNss(null); }
+        return _nssMember;
+    }
     /**
      * Set up relation columns to select clause. <br>
      * MEMBER by my MEMBER_ID, named 'member'.
@@ -249,13 +254,17 @@ public class BsTimecardDayCB extends AbstractConditionBean {
      *     ... = <span style="color: #553000">timecardDay</span>.<span style="color: #CC4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * });
      * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public void setupSelect_Member() {
+    public MemberNss setupSelect_Member() {
         assertSetupSelectPurpose("member");
         if (hasSpecifiedLocalColumn()) {
             specify().columnMemberId();
         }
         doSetupSelect(() -> query().queryMember());
+        if (_nssMember == null || !_nssMember.hasConditionQuery())
+        { _nssMember = new MemberNss(query().queryMember()); }
+        return _nssMember;
     }
 
     protected DailyStartEndNss _nssDailyStartEndAsCurrentValue;

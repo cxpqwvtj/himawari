@@ -13,20 +13,20 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The base condition-query of MEMBER.
+ * The base condition-query of ROLE.
  * @author DBFlute(AutoGenerator)
  */
-public class BsMemberCQ extends AbstractBsMemberCQ {
+public class BsRoleCQ extends AbstractBsRoleCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected MemberCIQ _inlineQuery;
+    protected RoleCIQ _inlineQuery;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public BsMemberCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+    public BsRoleCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
@@ -35,157 +35,97 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     //                                                                 ===================
     /**
      * Prepare InlineView query. <br>
-     * {select ... from ... left outer join (select * from MEMBER) where FOO = [value] ...}
+     * {select ... from ... left outer join (select * from ROLE) where FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">inline()</span>.setFoo...;
      * </pre>
      * @return The condition-query for InlineView query. (NotNull)
      */
-    public MemberCIQ inline() {
+    public RoleCIQ inline() {
         if (_inlineQuery == null) { _inlineQuery = xcreateCIQ(); }
         _inlineQuery.xsetOnClause(false); return _inlineQuery;
     }
 
-    protected MemberCIQ xcreateCIQ() {
-        MemberCIQ ciq = xnewCIQ();
+    protected RoleCIQ xcreateCIQ() {
+        RoleCIQ ciq = xnewCIQ();
         ciq.xsetBaseCB(_baseCB);
         return ciq;
     }
 
-    protected MemberCIQ xnewCIQ() {
-        return new MemberCIQ(xgetReferrerQuery(), xgetSqlClause(), xgetAliasName(), xgetNestLevel(), this);
+    protected RoleCIQ xnewCIQ() {
+        return new RoleCIQ(xgetReferrerQuery(), xgetSqlClause(), xgetAliasName(), xgetNestLevel(), this);
     }
 
     /**
      * Prepare OnClause query. <br>
-     * {select ... from ... left outer join MEMBER on ... and FOO = [value] ...}
+     * {select ... from ... left outer join ROLE on ... and FOO = [value] ...}
      * <pre>
      * cb.query().queryMemberStatus().<span style="color: #CC4747">on()</span>.setFoo...;
      * </pre>
      * @return The condition-query for OnClause query. (NotNull)
      * @throws IllegalConditionBeanOperationException When this condition-query is base query.
      */
-    public MemberCIQ on() {
+    public RoleCIQ on() {
         if (isBaseQuery()) { throw new IllegalConditionBeanOperationException("OnClause for local table is unavailable!"); }
-        MemberCIQ inlineQuery = inline(); inlineQuery.xsetOnClause(true); return inlineQuery;
+        RoleCIQ inlineQuery = inline(); inlineQuery.xsetOnClause(true); return inlineQuery;
     }
 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    protected ConditionValue _memberId;
-    public ConditionValue xdfgetMemberId()
-    { if (_memberId == null) { _memberId = nCV(); }
-      return _memberId; }
-    protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
-
-    public Map<String, TimecardDayCQ> xdfgetMemberId_ExistsReferrer_TimecardDayList() { return xgetSQueMap("memberId_ExistsReferrer_TimecardDayList"); }
-    public String keepMemberId_ExistsReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("memberId_ExistsReferrer_TimecardDayList", sq); }
-
-    public Map<String, TimecardDayCQ> xdfgetMemberId_NotExistsReferrer_TimecardDayList() { return xgetSQueMap("memberId_NotExistsReferrer_TimecardDayList"); }
-    public String keepMemberId_NotExistsReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_TimecardDayList", sq); }
-
-    public Map<String, TimecardDayCQ> xdfgetMemberId_SpecifyDerivedReferrer_TimecardDayList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_TimecardDayList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_TimecardDayList", sq); }
-
-    public Map<String, TimecardDayCQ> xdfgetMemberId_QueryDerivedReferrer_TimecardDayList() { return xgetSQueMap("memberId_QueryDerivedReferrer_TimecardDayList"); }
-    public String keepMemberId_QueryDerivedReferrer_TimecardDayList(TimecardDayCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_TimecardDayList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_TimecardDayListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_TimecardDayList"); }
-    public String keepMemberId_QueryDerivedReferrer_TimecardDayListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_TimecardDayList", pm); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * MEMBER_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * MEMBER_ID: {PK, ID, NotNull, BIGINT(19)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
-
-    protected ConditionValue _memberName;
-    public ConditionValue xdfgetMemberName()
-    { if (_memberName == null) { _memberName = nCV(); }
-      return _memberName; }
-    protected ConditionValue xgetCValueMemberName() { return xdfgetMemberName(); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * MEMBER_NAME: {NotNull, VARCHAR(100)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_MemberName_Asc() { regOBA("MEMBER_NAME"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * MEMBER_NAME: {NotNull, VARCHAR(100)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_MemberName_Desc() { regOBD("MEMBER_NAME"); return this; }
-
-    protected ConditionValue _memberAccountId;
-    public ConditionValue xdfgetMemberAccountId()
-    { if (_memberAccountId == null) { _memberAccountId = nCV(); }
-      return _memberAccountId; }
-    protected ConditionValue xgetCValueMemberAccountId() { return xdfgetMemberAccountId(); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_MemberAccountId_Asc() { regOBA("MEMBER_ACCOUNT_ID"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_MemberAccountId_Desc() { regOBD("MEMBER_ACCOUNT_ID"); return this; }
-
-    protected ConditionValue _password;
-    public ConditionValue xdfgetPassword()
-    { if (_password == null) { _password = nCV(); }
-      return _password; }
-    protected ConditionValue xgetCValuePassword() { return xdfgetPassword(); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * PASSWORD: {NotNull, VARCHAR(256)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_Password_Asc() { regOBA("PASSWORD"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * PASSWORD: {NotNull, VARCHAR(256)}
-     * @return this. (NotNull)
-     */
-    public BsMemberCQ addOrderBy_Password_Desc() { regOBD("PASSWORD"); return this; }
-
     protected ConditionValue _roleTypeCode;
     public ConditionValue xdfgetRoleTypeCode()
     { if (_roleTypeCode == null) { _roleTypeCode = nCV(); }
       return _roleTypeCode; }
     protected ConditionValue xgetCValueRoleTypeCode() { return xdfgetRoleTypeCode(); }
 
+    public Map<String, MemberCQ> xdfgetRoleTypeCode_ExistsReferrer_MemberList() { return xgetSQueMap("roleTypeCode_ExistsReferrer_MemberList"); }
+    public String keepRoleTypeCode_ExistsReferrer_MemberList(MemberCQ sq) { return xkeepSQue("roleTypeCode_ExistsReferrer_MemberList", sq); }
+
+    public Map<String, MemberCQ> xdfgetRoleTypeCode_NotExistsReferrer_MemberList() { return xgetSQueMap("roleTypeCode_NotExistsReferrer_MemberList"); }
+    public String keepRoleTypeCode_NotExistsReferrer_MemberList(MemberCQ sq) { return xkeepSQue("roleTypeCode_NotExistsReferrer_MemberList", sq); }
+
+    public Map<String, MemberCQ> xdfgetRoleTypeCode_SpecifyDerivedReferrer_MemberList() { return xgetSQueMap("roleTypeCode_SpecifyDerivedReferrer_MemberList"); }
+    public String keepRoleTypeCode_SpecifyDerivedReferrer_MemberList(MemberCQ sq) { return xkeepSQue("roleTypeCode_SpecifyDerivedReferrer_MemberList", sq); }
+
+    public Map<String, MemberCQ> xdfgetRoleTypeCode_QueryDerivedReferrer_MemberList() { return xgetSQueMap("roleTypeCode_QueryDerivedReferrer_MemberList"); }
+    public String keepRoleTypeCode_QueryDerivedReferrer_MemberList(MemberCQ sq) { return xkeepSQue("roleTypeCode_QueryDerivedReferrer_MemberList", sq); }
+    public Map<String, Object> xdfgetRoleTypeCode_QueryDerivedReferrer_MemberListParameter() { return xgetSQuePmMap("roleTypeCode_QueryDerivedReferrer_MemberList"); }
+    public String keepRoleTypeCode_QueryDerivedReferrer_MemberListParameter(Object pm) { return xkeepSQuePm("roleTypeCode_QueryDerivedReferrer_MemberList", pm); }
+
     /** 
      * Add order-by as ascend. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
+     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_RoleTypeCode_Asc() { regOBA("ROLE_TYPE_CODE"); return this; }
+    public BsRoleCQ addOrderBy_RoleTypeCode_Asc() { regOBA("ROLE_TYPE_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
+     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_RoleTypeCode_Desc() { regOBD("ROLE_TYPE_CODE"); return this; }
+    public BsRoleCQ addOrderBy_RoleTypeCode_Desc() { regOBD("ROLE_TYPE_CODE"); return this; }
+
+    protected ConditionValue _roleName;
+    public ConditionValue xdfgetRoleName()
+    { if (_roleName == null) { _roleName = nCV(); }
+      return _roleName; }
+    protected ConditionValue xgetCValueRoleName() { return xdfgetRoleName(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * ROLE_NAME: {NotNull, VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsRoleCQ addOrderBy_RoleName_Asc() { regOBA("ROLE_NAME"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * ROLE_NAME: {NotNull, VARCHAR(50)}
+     * @return this. (NotNull)
+     */
+    public BsRoleCQ addOrderBy_RoleName_Desc() { regOBD("ROLE_NAME"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()
@@ -198,14 +138,14 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_RegisterDatetime_Asc() { regOBA("REGISTER_DATETIME"); return this; }
+    public BsRoleCQ addOrderBy_RegisterDatetime_Asc() { regOBA("REGISTER_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
+    public BsRoleCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
 
     protected ConditionValue _registerUser;
     public ConditionValue xdfgetRegisterUser()
@@ -218,14 +158,14 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_RegisterUser_Asc() { regOBA("REGISTER_USER"); return this; }
+    public BsRoleCQ addOrderBy_RegisterUser_Asc() { regOBA("REGISTER_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
+    public BsRoleCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
 
     protected ConditionValue _updateDatetime;
     public ConditionValue xdfgetUpdateDatetime()
@@ -238,14 +178,14 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_UpdateDatetime_Asc() { regOBA("UPDATE_DATETIME"); return this; }
+    public BsRoleCQ addOrderBy_UpdateDatetime_Asc() { regOBA("UPDATE_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
+    public BsRoleCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
 
     protected ConditionValue _updateUser;
     public ConditionValue xdfgetUpdateUser()
@@ -258,14 +198,14 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_UpdateUser_Asc() { regOBA("UPDATE_USER"); return this; }
+    public BsRoleCQ addOrderBy_UpdateUser_Asc() { regOBA("UPDATE_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
+    public BsRoleCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
 
     protected ConditionValue _versionNo;
     public ConditionValue xdfgetVersionNo()
@@ -278,14 +218,14 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_VersionNo_Asc() { regOBA("VERSION_NO"); return this; }
+    public BsRoleCQ addOrderBy_VersionNo_Asc() { regOBA("VERSION_NO"); return this; }
 
     /**
      * Add order-by as descend. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
-    public BsMemberCQ addOrderBy_VersionNo_Desc() { regOBD("VERSION_NO"); return this; }
+    public BsRoleCQ addOrderBy_VersionNo_Desc() { regOBD("VERSION_NO"); return this; }
 
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy
@@ -304,7 +244,7 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsMemberCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsRoleCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -320,42 +260,17 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsMemberCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsRoleCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
     //                                                                         ===========
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
-        MemberCQ bq = (MemberCQ)bqs;
-        MemberCQ uq = (MemberCQ)uqs;
-        if (bq.hasConditionQueryRole()) {
-            uq.queryRole().reflectRelationOnUnionQuery(bq.queryRole(), uq.queryRole());
-        }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
-    /**
-     * Get the condition-query for relation table. <br>
-     * ROLE by my ROLE_TYPE_CODE, named 'role'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public RoleCQ queryRole() {
-        return xdfgetConditionQueryRole();
-    }
-    public RoleCQ xdfgetConditionQueryRole() {
-        String prop = "role";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryRole()); xsetupOuterJoinRole(); }
-        return xgetQueRlMap(prop);
-    }
-    protected RoleCQ xcreateQueryRole() {
-        String nrp = xresolveNRP("MEMBER", "role"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new RoleCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "role", nrp);
-    }
-    protected void xsetupOuterJoinRole() { xregOutJo("role"); }
-    public boolean hasConditionQueryRole() { return xhasQueRlMap("role"); }
-
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
     }
@@ -363,39 +278,39 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    public Map<String, MemberCQ> xdfgetScalarCondition() { return xgetSQueMap("scalarCondition"); }
-    public String keepScalarCondition(MemberCQ sq) { return xkeepSQue("scalarCondition", sq); }
+    public Map<String, RoleCQ> xdfgetScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(RoleCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public Map<String, MemberCQ> xdfgetSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
-    public String keepSpecifyMyselfDerived(MemberCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
+    public Map<String, RoleCQ> xdfgetSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(RoleCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    public Map<String, MemberCQ> xdfgetQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
-    public String keepQueryMyselfDerived(MemberCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, RoleCQ> xdfgetQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(RoleCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
     public Map<String, Object> xdfgetQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
     public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
-    protected Map<String, MemberCQ> _myselfExistsMap;
-    public Map<String, MemberCQ> xdfgetMyselfExists() { return xgetSQueMap("myselfExists"); }
-    public String keepMyselfExists(MemberCQ sq) { return xkeepSQue("myselfExists", sq); }
+    protected Map<String, RoleCQ> _myselfExistsMap;
+    public Map<String, RoleCQ> xdfgetMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(RoleCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    public Map<String, MemberCQ> xdfgetMyselfInScope() { return xgetSQueMap("myselfInScope"); }
-    public String keepMyselfInScope(MemberCQ sq) { return xkeepSQue("myselfInScope", sq); }
+    public Map<String, RoleCQ> xdfgetMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(RoleCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xCB() { return MemberCB.class.getName(); }
-    protected String xCQ() { return MemberCQ.class.getName(); }
+    protected String xCB() { return RoleCB.class.getName(); }
+    protected String xCQ() { return RoleCQ.class.getName(); }
     protected String xCHp() { return HpQDRFunction.class.getName(); }
     protected String xCOp() { return ConditionOption.class.getName(); }
     protected String xMap() { return Map.class.getName(); }

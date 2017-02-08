@@ -15,7 +15,7 @@ import app.himawari.cbean.*;
  *     MEMBER_ID
  *
  * [column]
- *     MEMBER_ID, MEMBER_NAME, MEMBER_ACCOUNT_ID, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     MEMBER_ID, MEMBER_NAME, MEMBER_ACCOUNT_ID, PASSWORD, ROLE_TYPE_CODE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -27,13 +27,13 @@ import app.himawari.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     
+ *     ROLE
  *
  * [referrer table]
  *     TIMECARD_DAY
  *
  * [foreign property]
- *     
+ *     role
  *
  * [referrer property]
  *     timecardDayList
@@ -98,6 +98,13 @@ public class LoaderOfMember {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
+    protected LoaderOfRole _foreignRoleLoader;
+    public LoaderOfRole pulloutRole() {
+        if (_foreignRoleLoader == null)
+        { _foreignRoleLoader = new LoaderOfRole().ready(myBhv().pulloutRole(_selectedList), _selector); }
+        return _foreignRoleLoader;
+    }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

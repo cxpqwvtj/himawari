@@ -3,63 +3,55 @@ package app.himawari.bsentity;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.dbflute.Entity;
 import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
-import org.dbflute.optional.OptionalEntity;
 import app.himawari.allcommon.EntityDefinedCommonColumn;
 import app.himawari.allcommon.DBMetaInstanceHandler;
 import app.himawari.exentity.*;
 
 /**
- * The entity of MEMBER as TABLE. <br>
- * メンバー
+ * The entity of ROLE as TABLE. <br>
+ * 権限
  * <pre>
  * [primary-key]
- *     MEMBER_ID
+ *     ROLE_TYPE_CODE
  *
  * [column]
- *     MEMBER_ID, MEMBER_NAME, MEMBER_ACCOUNT_ID, PASSWORD, ROLE_TYPE_CODE, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     ROLE_TYPE_CODE, ROLE_NAME, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
  *
  * [identity]
- *     MEMBER_ID
+ *     
  *
  * [version-no]
  *     VERSION_NO
  *
  * [foreign table]
- *     ROLE
+ *     
  *
  * [referrer table]
- *     TIMECARD_DAY
+ *     MEMBER
  *
  * [foreign property]
- *     role
+ *     
  *
  * [referrer property]
- *     timecardDayList
+ *     memberList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
- * Long memberId = entity.getMemberId();
- * String memberName = entity.getMemberName();
- * String memberAccountId = entity.getMemberAccountId();
- * String password = entity.getPassword();
  * String roleTypeCode = entity.getRoleTypeCode();
+ * String roleName = entity.getRoleName();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * String registerUser = entity.getRegisterUser();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * String updateUser = entity.getUpdateUser();
  * Long versionNo = entity.getVersionNo();
- * entity.setMemberId(memberId);
- * entity.setMemberName(memberName);
- * entity.setMemberAccountId(memberAccountId);
- * entity.setPassword(password);
  * entity.setRoleTypeCode(roleTypeCode);
+ * entity.setRoleName(roleName);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setRegisterUser(registerUser);
  * entity.setUpdateDatetime(updateDatetime);
@@ -69,7 +61,7 @@ import app.himawari.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsMember extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
+public abstract class BsRole extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition
@@ -80,20 +72,11 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** MEMBER_ID: {PK, ID, NotNull, BIGINT(19)} */
-    protected Long _memberId;
-
-    /** MEMBER_NAME: {NotNull, VARCHAR(100)} */
-    protected String _memberName;
-
-    /** MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)} */
-    protected String _memberAccountId;
-
-    /** PASSWORD: {NotNull, VARCHAR(256)} */
-    protected String _password;
-
-    /** ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE} */
+    /** ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)} */
     protected String _roleTypeCode;
+
+    /** ROLE_NAME: {NotNull, VARCHAR(50)} */
+    protected String _roleName;
 
     /** REGISTER_DATETIME: {NotNull, DATETIME(19)} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -120,7 +103,7 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
 
     /** {@inheritDoc} */
     public String asTableDbName() {
-        return "MEMBER";
+        return "ROLE";
     }
 
     // ===================================================================================
@@ -128,66 +111,34 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     //                                                                        ============
     /** {@inheritDoc} */
     public boolean hasPrimaryKeyValue() {
-        if (_memberId == null) { return false; }
+        if (_roleTypeCode == null) { return false; }
         return true;
-    }
-
-    /**
-     * To be unique by the unique column. <br>
-     * You can update the entity by the key when entity update (NOT batch update).
-     * @param memberAccountId : UQ, NotNull, VARCHAR(50). (NotNull)
-     */
-    public void uniqueBy(String memberAccountId) {
-        __uniqueDrivenProperties.clear();
-        __uniqueDrivenProperties.addPropertyName("memberAccountId");
-        setMemberAccountId(memberAccountId);
     }
 
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** ROLE by my ROLE_TYPE_CODE, named 'role'. */
-    protected OptionalEntity<Role> _role;
-
-    /**
-     * [get] ROLE by my ROLE_TYPE_CODE, named 'role'. <br>
-     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
-     * @return The entity of foreign property 'role'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
-     */
-    public OptionalEntity<Role> getRole() {
-        if (_role == null) { _role = OptionalEntity.relationEmpty(this, "role"); }
-        return _role;
-    }
-
-    /**
-     * [set] ROLE by my ROLE_TYPE_CODE, named 'role'.
-     * @param role The entity of foreign property 'role'. (NullAllowed)
-     */
-    public void setRole(OptionalEntity<Role> role) {
-        _role = role;
-    }
-
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'. */
-    protected List<TimecardDay> _timecardDayList;
+    /** MEMBER by ROLE_TYPE_CODE, named 'memberList'. */
+    protected List<Member> _memberList;
 
     /**
-     * [get] TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
-     * @return The entity list of referrer property 'timecardDayList'. (NotNull: even if no loading, returns empty list)
+     * [get] MEMBER by ROLE_TYPE_CODE, named 'memberList'.
+     * @return The entity list of referrer property 'memberList'. (NotNull: even if no loading, returns empty list)
      */
-    public List<TimecardDay> getTimecardDayList() {
-        if (_timecardDayList == null) { _timecardDayList = newReferrerList(); }
-        return _timecardDayList;
+    public List<Member> getMemberList() {
+        if (_memberList == null) { _memberList = newReferrerList(); }
+        return _memberList;
     }
 
     /**
-     * [set] TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
-     * @param timecardDayList The entity list of referrer property 'timecardDayList'. (NullAllowed)
+     * [set] MEMBER by ROLE_TYPE_CODE, named 'memberList'.
+     * @param memberList The entity list of referrer property 'memberList'. (NullAllowed)
      */
-    public void setTimecardDayList(List<TimecardDay> timecardDayList) {
-        _timecardDayList = timecardDayList;
+    public void setMemberList(List<Member> memberList) {
+        _memberList = memberList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
@@ -199,9 +150,9 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     //                                                                      ==============
     @Override
     protected boolean doEquals(Object obj) {
-        if (obj instanceof BsMember) {
-            BsMember other = (BsMember)obj;
-            if (!xSV(_memberId, other._memberId)) { return false; }
+        if (obj instanceof BsRole) {
+            BsRole other = (BsRole)obj;
+            if (!xSV(_roleTypeCode, other._roleTypeCode)) { return false; }
             return true;
         } else {
             return false;
@@ -212,31 +163,23 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     protected int doHashCode(int initial) {
         int hs = initial;
         hs = xCH(hs, asTableDbName());
-        hs = xCH(hs, _memberId);
+        hs = xCH(hs, _roleTypeCode);
         return hs;
     }
 
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_role != null && _role.isPresent())
-        { sb.append(li).append(xbRDS(_role, "role")); }
-        if (_timecardDayList != null) { for (TimecardDay et : _timecardDayList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "timecardDayList")); } } }
+        if (_memberList != null) { for (Member et : _memberList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "memberList")); } } }
         return sb.toString();
-    }
-    protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
-        return et.get().buildDisplayString(name, true, true);
     }
 
     @Override
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(dm).append(xfND(_memberId));
-        sb.append(dm).append(xfND(_memberName));
-        sb.append(dm).append(xfND(_memberAccountId));
-        sb.append(dm).append(xfND(_password));
         sb.append(dm).append(xfND(_roleTypeCode));
+        sb.append(dm).append(xfND(_roleName));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_registerUser));
         sb.append(dm).append(xfND(_updateDatetime));
@@ -252,10 +195,8 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_role != null && _role.isPresent())
-        { sb.append(dm).append("role"); }
-        if (_timecardDayList != null && !_timecardDayList.isEmpty())
-        { sb.append(dm).append("timecardDayList"); }
+        if (_memberList != null && !_memberList.isEmpty())
+        { sb.append(dm).append("memberList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -263,95 +204,15 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     }
 
     @Override
-    public Member clone() {
-        return (Member)super.clone();
+    public Role clone() {
+        return (Role)super.clone();
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] MEMBER_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * メンバーID
-     * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
-     */
-    public Long getMemberId() {
-        checkSpecifiedProperty("memberId");
-        return _memberId;
-    }
-
-    /**
-     * [set] MEMBER_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * メンバーID
-     * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
-     */
-    public void setMemberId(Long memberId) {
-        registerModifiedProperty("memberId");
-        _memberId = memberId;
-    }
-
-    /**
-     * [get] MEMBER_NAME: {NotNull, VARCHAR(100)} <br>
-     * メンバー名称
-     * @return The value of the column 'MEMBER_NAME'. (basically NotNull if selected: for the constraint)
-     */
-    public String getMemberName() {
-        checkSpecifiedProperty("memberName");
-        return _memberName;
-    }
-
-    /**
-     * [set] MEMBER_NAME: {NotNull, VARCHAR(100)} <br>
-     * メンバー名称
-     * @param memberName The value of the column 'MEMBER_NAME'. (basically NotNull if update: for the constraint)
-     */
-    public void setMemberName(String memberName) {
-        registerModifiedProperty("memberName");
-        _memberName = memberName;
-    }
-
-    /**
-     * [get] MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)} <br>
-     * メンバーアカウント
-     * @return The value of the column 'MEMBER_ACCOUNT_ID'. (basically NotNull if selected: for the constraint)
-     */
-    public String getMemberAccountId() {
-        checkSpecifiedProperty("memberAccountId");
-        return _memberAccountId;
-    }
-
-    /**
-     * [set] MEMBER_ACCOUNT_ID: {UQ, NotNull, VARCHAR(50)} <br>
-     * メンバーアカウント
-     * @param memberAccountId The value of the column 'MEMBER_ACCOUNT_ID'. (basically NotNull if update: for the constraint)
-     */
-    public void setMemberAccountId(String memberAccountId) {
-        registerModifiedProperty("memberAccountId");
-        _memberAccountId = memberAccountId;
-    }
-
-    /**
-     * [get] PASSWORD: {NotNull, VARCHAR(256)} <br>
-     * パスワード
-     * @return The value of the column 'PASSWORD'. (basically NotNull if selected: for the constraint)
-     */
-    public String getPassword() {
-        checkSpecifiedProperty("password");
-        return _password;
-    }
-
-    /**
-     * [set] PASSWORD: {NotNull, VARCHAR(256)} <br>
-     * パスワード
-     * @param password The value of the column 'PASSWORD'. (basically NotNull if update: for the constraint)
-     */
-    public void setPassword(String password) {
-        registerModifiedProperty("password");
-        _password = password;
-    }
-
-    /**
-     * [get] ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE} <br>
+     * [get] ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)} <br>
      * 権限コード
      * @return The value of the column 'ROLE_TYPE_CODE'. (basically NotNull if selected: for the constraint)
      */
@@ -361,13 +222,33 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
     }
 
     /**
-     * [set] ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE} <br>
+     * [set] ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)} <br>
      * 権限コード
      * @param roleTypeCode The value of the column 'ROLE_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setRoleTypeCode(String roleTypeCode) {
         registerModifiedProperty("roleTypeCode");
         _roleTypeCode = roleTypeCode;
+    }
+
+    /**
+     * [get] ROLE_NAME: {NotNull, VARCHAR(50)} <br>
+     * 権限名称
+     * @return The value of the column 'ROLE_NAME'. (basically NotNull if selected: for the constraint)
+     */
+    public String getRoleName() {
+        checkSpecifiedProperty("roleName");
+        return _roleName;
+    }
+
+    /**
+     * [set] ROLE_NAME: {NotNull, VARCHAR(50)} <br>
+     * 権限名称
+     * @param roleName The value of the column 'ROLE_NAME'. (basically NotNull if update: for the constraint)
+     */
+    public void setRoleName(String roleName) {
+        registerModifiedProperty("roleName");
+        _roleName = roleName;
     }
 
     /**
