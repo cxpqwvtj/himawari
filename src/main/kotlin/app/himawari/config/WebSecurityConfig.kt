@@ -2,6 +2,7 @@ package app.himawari.config
 
 import app.himawari.service.auth.UserDetailsServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.security.SecurityProperties
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.annotation.Order
@@ -20,7 +21,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository
 @Configuration
 @EnableWebSecurity
 open class WebSecurityConfig(
-        val userDetailsService: UserDetailsServiceImpl
+        private val userDetailsService: UserDetailsServiceImpl
 ) {
 
     @Autowired
@@ -31,11 +32,16 @@ open class WebSecurityConfig(
 
     @Configuration
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 1)
-    open class ApiWebSecurityConfigurationAdapter : WebSecurityConfigurerAdapter() {
+    open class ApiWebSecurityConfigurationAdapter(
+            @Value("\${spring.profiles.active}") private val activeProfile: String
+    ) : WebSecurityConfigurerAdapter() {
         @Throws(Exception::class)
         override fun configure(http: HttpSecurity) {
             http.antMatcher("/api/**").authorizeRequests().anyRequest().hasRole("USER")
                     .and().httpBasic()
+            if (activeProfile == "dev") {
+                http.csrf().disable()
+            }
         }
     }
 

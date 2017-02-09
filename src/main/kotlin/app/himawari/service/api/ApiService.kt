@@ -8,6 +8,7 @@ import app.himawari.exbhv.TimecardDayBhv
 import app.himawari.exentity.DailyStartEnd
 import app.himawari.model.BizDate
 import org.springframework.stereotype.Service
+import java.security.Principal
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -46,11 +47,10 @@ class ApiService(
         }
     }
 
-    fun createDailyStartEndHistory(startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
+    fun createDailyStartEndHistory(principal: Principal, startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
         val entities = startEndDatetimes.days?.map { day ->
             val timecardDay = timecardDayBhv.selectEntity { cb ->
-                // TODO: ログイン情報からAccountIdを取得する
-                cb.query().queryMember().setMemberAccountId_Equal("")
+                cb.query().queryMember().setMemberAccountId_Equal(principal.name)
                 cb.query().setBizDate_Equal(LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE))
             }
             DailyStartEnd().apply {

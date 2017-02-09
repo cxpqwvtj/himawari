@@ -1,9 +1,13 @@
 package app.himawari.controller.api
 
+import app.himawari.dto.json.StartEndDatetimeUpdate
+import app.himawari.dto.json.StartEndDatetimes
 import app.himawari.dto.json.Timecard
 import app.himawari.service.api.ApiService
 import org.slf4j.LoggerFactory
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
+import java.security.Principal
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.servlet.http.HttpServletRequest
@@ -29,5 +33,10 @@ open class ApiController(
         val pattern = DateTimeFormatter.ofPattern("yyyyMMdd")
         val localDate = LocalDate.parse("${yearMonth}01", pattern)
         return service.selectMonthlyInOutData(userId, localDate)
+    }
+
+    @PostMapping(path = arrayOf("/user/days"), consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    open fun createStartEnd(principal: Principal, @RequestBody startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
+        return service.createDailyStartEndHistory(principal, startEndDatetimes)
     }
 }
