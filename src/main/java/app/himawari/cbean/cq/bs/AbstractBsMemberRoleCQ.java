@@ -16,15 +16,15 @@ import app.himawari.cbean.*;
 import app.himawari.cbean.cq.*;
 
 /**
- * The abstract condition-query of ROLE.
+ * The abstract condition-query of MEMBER_ROLE.
  * @author DBFlute(AutoGenerator)
  */
-public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
+public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsRoleCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+    public AbstractBsMemberRoleCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
@@ -37,15 +37,261 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     }
 
     public String asTableDbName() {
-        return "ROLE";
+        return "MEMBER_ROLE";
     }
 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
     /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param memberRoleId The value of memberRoleId as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberRoleId_Equal(Long memberRoleId) {
+        doSetMemberRoleId_Equal(memberRoleId);
+    }
+
+    protected void doSetMemberRoleId_Equal(Long memberRoleId) {
+        regMemberRoleId(CK_EQ, memberRoleId);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param memberRoleId The value of memberRoleId as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberRoleId_NotEqual(Long memberRoleId) {
+        doSetMemberRoleId_NotEqual(memberRoleId);
+    }
+
+    protected void doSetMemberRoleId_NotEqual(Long memberRoleId) {
+        regMemberRoleId(CK_NES, memberRoleId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param memberRoleId The value of memberRoleId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberRoleId_GreaterThan(Long memberRoleId) {
+        regMemberRoleId(CK_GT, memberRoleId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param memberRoleId The value of memberRoleId as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberRoleId_LessThan(Long memberRoleId) {
+        regMemberRoleId(CK_LT, memberRoleId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param memberRoleId The value of memberRoleId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberRoleId_GreaterEqual(Long memberRoleId) {
+        regMemberRoleId(CK_GE, memberRoleId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param memberRoleId The value of memberRoleId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberRoleId_LessEqual(Long memberRoleId) {
+        regMemberRoleId(CK_LE, memberRoleId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param minNumber The min number of memberRoleId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of memberRoleId. (NullAllowed: if null, no to-condition)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setMemberRoleId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setMemberRoleId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param minNumber The min number of memberRoleId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of memberRoleId. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setMemberRoleId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueMemberRoleId(), "MEMBER_ROLE_ID", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param memberRoleIdList The collection of memberRoleId as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setMemberRoleId_InScope(Collection<Long> memberRoleIdList) {
+        doSetMemberRoleId_InScope(memberRoleIdList);
+    }
+
+    protected void doSetMemberRoleId_InScope(Collection<Long> memberRoleIdList) {
+        regINS(CK_INS, cTL(memberRoleIdList), xgetCValueMemberRoleId(), "MEMBER_ROLE_ID");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * @param memberRoleIdList The collection of memberRoleId as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setMemberRoleId_NotInScope(Collection<Long> memberRoleIdList) {
+        doSetMemberRoleId_NotInScope(memberRoleIdList);
+    }
+
+    protected void doSetMemberRoleId_NotInScope(Collection<Long> memberRoleIdList) {
+        regINS(CK_NINS, cTL(memberRoleIdList), xgetCValueMemberRoleId(), "MEMBER_ROLE_ID");
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     */
+    public void setMemberRoleId_IsNull() { regMemberRoleId(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     */
+    public void setMemberRoleId_IsNotNull() { regMemberRoleId(CK_ISNN, DOBJ); }
+
+    protected void regMemberRoleId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberRoleId(), "MEMBER_ROLE_ID"); }
+    protected abstract ConditionValue xgetCValueMemberRoleId();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberId_Equal(Long memberId) {
+        doSetMemberId_Equal(memberId);
+    }
+
+    protected void doSetMemberId_Equal(Long memberId) {
+        regMemberId(CK_EQ, memberId);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberId_NotEqual(Long memberId) {
+        doSetMemberId_NotEqual(memberId);
+    }
+
+    protected void doSetMemberId_NotEqual(Long memberId) {
+        regMemberId(CK_NES, memberId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberId_GreaterThan(Long memberId) {
+        regMemberId(CK_GT, memberId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberId_LessThan(Long memberId) {
+        regMemberId(CK_LT, memberId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberId_GreaterEqual(Long memberId) {
+        regMemberId(CK_GE, memberId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberId The value of memberId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setMemberId_LessEqual(Long memberId) {
+        regMemberId(CK_LE, memberId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setMemberId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setMemberId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setMemberId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueMemberId(), "MEMBER_ID", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberIdList The collection of memberId as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setMemberId_InScope(Collection<Long> memberIdList) {
+        doSetMemberId_InScope(memberIdList);
+    }
+
+    protected void doSetMemberId_InScope(Collection<Long> memberIdList) {
+        regINS(CK_INS, cTL(memberIdList), xgetCValueMemberId(), "MEMBER_ID");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
+     * @param memberIdList The collection of memberId as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setMemberId_NotInScope(Collection<Long> memberIdList) {
+        doSetMemberId_NotInScope(memberIdList);
+    }
+
+    protected void doSetMemberId_NotInScope(Collection<Long> memberIdList) {
+        regINS(CK_NINS, cTL(memberIdList), xgetCValueMemberId(), "MEMBER_ID");
+    }
+
+    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberId(), "MEMBER_ID"); }
+    protected abstract ConditionValue xgetCValueMemberId();
+
+    /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCode The value of roleTypeCode as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setRoleTypeCode_Equal(String roleTypeCode) {
@@ -58,7 +304,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCode The value of roleTypeCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setRoleTypeCode_NotEqual(String roleTypeCode) {
@@ -71,7 +317,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCode The value of roleTypeCode as greaterThan. (NullAllowed: if null (or empty), no condition)
      */
     public void setRoleTypeCode_GreaterThan(String roleTypeCode) {
@@ -80,7 +326,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCode The value of roleTypeCode as lessThan. (NullAllowed: if null (or empty), no condition)
      */
     public void setRoleTypeCode_LessThan(String roleTypeCode) {
@@ -89,7 +335,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCode The value of roleTypeCode as greaterEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setRoleTypeCode_GreaterEqual(String roleTypeCode) {
@@ -98,7 +344,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCode The value of roleTypeCode as lessEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setRoleTypeCode_LessEqual(String roleTypeCode) {
@@ -107,7 +353,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCodeList The collection of roleTypeCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setRoleTypeCode_InScope(Collection<String> roleTypeCodeList) {
@@ -120,7 +366,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCodeList The collection of roleTypeCode as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setRoleTypeCode_NotInScope(Collection<String> roleTypeCodeList) {
@@ -133,7 +379,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)} <br>
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE} <br>
      * <pre>e.g. setRoleTypeCode_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
      * @param roleTypeCode The value of roleTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
@@ -144,7 +390,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)} <br>
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE} <br>
      * <pre>e.g. setRoleTypeCode_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
      * @param roleTypeCode The value of roleTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -156,7 +402,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCode The value of roleTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
@@ -167,7 +413,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
+     * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @param roleTypeCode The value of roleTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -175,228 +421,8 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
         regLSQ(CK_NLS, fRES(roleTypeCode), xgetCValueRoleTypeCode(), "ROLE_TYPE_CODE", likeSearchOption);
     }
 
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select ROLE_TYPE_CODE from MEMBER_ROLE where ...)} <br>
-     * MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsMemberRole</span>(roleCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     roleCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of MemberRoleList for 'exists'. (NotNull)
-     */
-    public void existsMemberRole(SubQuery<MemberRoleCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepRoleTypeCode_ExistsReferrer_MemberRoleList(cb.query());
-        registerExistsReferrer(cb.query(), "ROLE_TYPE_CODE", "ROLE_TYPE_CODE", pp, "memberRoleList");
-    }
-    public abstract String keepRoleTypeCode_ExistsReferrer_MemberRoleList(MemberRoleCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select ROLE_TYPE_CODE from MEMBER_ROLE where ...)} <br>
-     * MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsMemberRole</span>(roleCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     roleCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of RoleTypeCode_NotExistsReferrer_MemberRoleList for 'not exists'. (NotNull)
-     */
-    public void notExistsMemberRole(SubQuery<MemberRoleCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepRoleTypeCode_NotExistsReferrer_MemberRoleList(cb.query());
-        registerNotExistsReferrer(cb.query(), "ROLE_TYPE_CODE", "ROLE_TYPE_CODE", pp, "memberRoleList");
-    }
-    public abstract String keepRoleTypeCode_NotExistsReferrer_MemberRoleList(MemberRoleCQ sq);
-
-    public void xsderiveMemberRoleList(String fn, SubQuery<MemberRoleCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepRoleTypeCode_SpecifyDerivedReferrer_MemberRoleList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "ROLE_TYPE_CODE", "ROLE_TYPE_CODE", pp, "memberRoleList", al, op);
-    }
-    public abstract String keepRoleTypeCode_SpecifyDerivedReferrer_MemberRoleList(MemberRoleCQ sq);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from MEMBER_ROLE where ...)} <br>
-     * MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedMemberRole()</span>.<span style="color: #CC4747">max</span>(roleCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     roleCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     roleCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<MemberRoleCB> derivedMemberRole() {
-        return xcreateQDRFunctionMemberRoleList();
-    }
-    protected HpQDRFunction<MemberRoleCB> xcreateQDRFunctionMemberRoleList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveMemberRoleList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveMemberRoleList(String fn, SubQuery<MemberRoleCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepRoleTypeCode_QueryDerivedReferrer_MemberRoleList(cb.query()); String prpp = keepRoleTypeCode_QueryDerivedReferrer_MemberRoleListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "ROLE_TYPE_CODE", "ROLE_TYPE_CODE", sqpp, "memberRoleList", rd, vl, prpp, op);
-    }
-    public abstract String keepRoleTypeCode_QueryDerivedReferrer_MemberRoleList(MemberRoleCQ sq);
-    public abstract String keepRoleTypeCode_QueryDerivedReferrer_MemberRoleListParameter(Object vl);
-
-    /**
-     * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     */
-    public void setRoleTypeCode_IsNull() { regRoleTypeCode(CK_ISN, DOBJ); }
-
-    /**
-     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     */
-    public void setRoleTypeCode_IsNotNull() { regRoleTypeCode(CK_ISNN, DOBJ); }
-
     protected void regRoleTypeCode(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueRoleTypeCode(), "ROLE_TYPE_CODE"); }
     protected abstract ConditionValue xgetCValueRoleTypeCode();
-
-    /**
-     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as equal. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleName_Equal(String roleName) {
-        doSetRoleName_Equal(fRES(roleName));
-    }
-
-    protected void doSetRoleName_Equal(String roleName) {
-        regRoleName(CK_EQ, roleName);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as notEqual. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleName_NotEqual(String roleName) {
-        doSetRoleName_NotEqual(fRES(roleName));
-    }
-
-    protected void doSetRoleName_NotEqual(String roleName) {
-        regRoleName(CK_NES, roleName);
-    }
-
-    /**
-     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as greaterThan. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleName_GreaterThan(String roleName) {
-        regRoleName(CK_GT, fRES(roleName));
-    }
-
-    /**
-     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as lessThan. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleName_LessThan(String roleName) {
-        regRoleName(CK_LT, fRES(roleName));
-    }
-
-    /**
-     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as greaterEqual. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleName_GreaterEqual(String roleName) {
-        regRoleName(CK_GE, fRES(roleName));
-    }
-
-    /**
-     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as lessEqual. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleName_LessEqual(String roleName) {
-        regRoleName(CK_LE, fRES(roleName));
-    }
-
-    /**
-     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleNameList The collection of roleName as inScope. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleName_InScope(Collection<String> roleNameList) {
-        doSetRoleName_InScope(roleNameList);
-    }
-
-    protected void doSetRoleName_InScope(Collection<String> roleNameList) {
-        regINS(CK_INS, cTL(roleNameList), xgetCValueRoleName(), "ROLE_NAME");
-    }
-
-    /**
-     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleNameList The collection of roleName as notInScope. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleName_NotInScope(Collection<String> roleNameList) {
-        doSetRoleName_NotInScope(roleNameList);
-    }
-
-    protected void doSetRoleName_NotInScope(Collection<String> roleNameList) {
-        regINS(CK_NINS, cTL(roleNameList), xgetCValueRoleName(), "ROLE_NAME");
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)} <br>
-     * <pre>e.g. setRoleName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param roleName The value of roleName as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setRoleName_LikeSearch(String roleName, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setRoleName_LikeSearch(roleName, xcLSOP(opLambda));
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)} <br>
-     * <pre>e.g. setRoleName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param roleName The value of roleName as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of like-search. (NotNull)
-     */
-    protected void setRoleName_LikeSearch(String roleName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(roleName), xgetCValueRoleName(), "ROLE_NAME", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setRoleName_NotLikeSearch(String roleName, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setRoleName_NotLikeSearch(roleName, xcLSOP(opLambda));
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    protected void setRoleName_NotLikeSearch(String roleName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(roleName), xgetCValueRoleName(), "ROLE_NAME", likeSearchOption);
-    }
-
-    protected void regRoleName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueRoleName(), "ROLE_NAME"); }
-    protected abstract ConditionValue xgetCValueRoleName();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
@@ -949,8 +975,8 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<RoleCB> scalar_Equal() {
-        return xcreateSLCFunction(CK_EQ, RoleCB.class);
+    public HpSLCFunction<MemberRoleCB> scalar_Equal() {
+        return xcreateSLCFunction(CK_EQ, MemberRoleCB.class);
     }
 
     /**
@@ -964,8 +990,8 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<RoleCB> scalar_NotEqual() {
-        return xcreateSLCFunction(CK_NES, RoleCB.class);
+    public HpSLCFunction<MemberRoleCB> scalar_NotEqual() {
+        return xcreateSLCFunction(CK_NES, MemberRoleCB.class);
     }
 
     /**
@@ -979,8 +1005,8 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<RoleCB> scalar_GreaterThan() {
-        return xcreateSLCFunction(CK_GT, RoleCB.class);
+    public HpSLCFunction<MemberRoleCB> scalar_GreaterThan() {
+        return xcreateSLCFunction(CK_GT, MemberRoleCB.class);
     }
 
     /**
@@ -994,8 +1020,8 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<RoleCB> scalar_LessThan() {
-        return xcreateSLCFunction(CK_LT, RoleCB.class);
+    public HpSLCFunction<MemberRoleCB> scalar_LessThan() {
+        return xcreateSLCFunction(CK_LT, MemberRoleCB.class);
     }
 
     /**
@@ -1009,16 +1035,16 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * </pre> 
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<RoleCB> scalar_GreaterEqual() {
-        return xcreateSLCFunction(CK_GE, RoleCB.class);
+    public HpSLCFunction<MemberRoleCB> scalar_GreaterEqual() {
+        return xcreateSLCFunction(CK_GE, MemberRoleCB.class);
     }
 
     /**
      * Prepare ScalarCondition as lessEqual. <br>
      * {where FOO &lt;= (select max(BAR) from ...)}
      * <pre>
-     * cb.query().<span style="color: #CC4747">scalar_LessEqual()</span>.max(new SubQuery&lt;RoleCB&gt;() {
-     *     public void query(RoleCB subCB) {
+     * cb.query().<span style="color: #CC4747">scalar_LessEqual()</span>.max(new SubQuery&lt;MemberRoleCB&gt;() {
+     *     public void query(MemberRoleCB subCB) {
      *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
      *         subCB.query().setBar...
      *     }
@@ -1026,56 +1052,56 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * </pre>
      * @return The object to set up a function. (NotNull)
      */
-    public HpSLCFunction<RoleCB> scalar_LessEqual() {
-        return xcreateSLCFunction(CK_LE, RoleCB.class);
+    public HpSLCFunction<MemberRoleCB> scalar_LessEqual() {
+        return xcreateSLCFunction(CK_LE, MemberRoleCB.class);
     }
 
     @SuppressWarnings("unchecked")
     protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSLCCustomized<CB> cs, ScalarConditionOption op) {
         assertObjectNotNull("subQuery", sq);
-        RoleCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
+        MemberRoleCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
         String pp = keepScalarCondition(cb.query()); // for saving query-value
         cs.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
         registerScalarCondition(fn, cb.query(), pp, rd, cs, op);
     }
-    public abstract String keepScalarCondition(RoleCQ sq);
+    public abstract String keepScalarCondition(MemberRoleCQ sq);
 
-    protected RoleCB xcreateScalarConditionCB() {
-        RoleCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
+    protected MemberRoleCB xcreateScalarConditionCB() {
+        MemberRoleCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
     }
 
-    protected RoleCB xcreateScalarConditionPartitionByCB() {
-        RoleCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
+    protected MemberRoleCB xcreateScalarConditionPartitionByCB() {
+        MemberRoleCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
     }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    public void xsmyselfDerive(String fn, SubQuery<RoleCB> sq, String al, DerivedReferrerOption op) {
+    public void xsmyselfDerive(String fn, SubQuery<MemberRoleCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        RoleCB cb = new RoleCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepSpecifyMyselfDerived(cb.query()); String pk = "ROLE_TYPE_CODE";
+        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepSpecifyMyselfDerived(cb.query()); String pk = "MEMBER_ROLE_ID";
         registerSpecifyMyselfDerived(fn, cb.query(), pk, pk, pp, "myselfDerived", al, op);
     }
-    public abstract String keepSpecifyMyselfDerived(RoleCQ sq);
+    public abstract String keepSpecifyMyselfDerived(MemberRoleCQ sq);
 
     /**
      * Prepare for (Query)MyselfDerived (correlated sub-query).
      * @return The object to set up a function for myself table. (NotNull)
      */
-    public HpQDRFunction<RoleCB> myselfDerived() {
-        return xcreateQDRFunctionMyselfDerived(RoleCB.class);
+    public HpQDRFunction<MemberRoleCB> myselfDerived() {
+        return xcreateQDRFunctionMyselfDerived(MemberRoleCB.class);
     }
     @SuppressWarnings("unchecked")
     protected <CB extends ConditionBean> void xqderiveMyselfDerived(String fn, SubQuery<CB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
-        RoleCB cb = new RoleCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
-        String pk = "ROLE_TYPE_CODE";
+        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForDerivedReferrer(this); sq.query((CB)cb);
+        String pk = "MEMBER_ROLE_ID";
         String sqpp = keepQueryMyselfDerived(cb.query()); // for saving query-value.
         String prpp = keepQueryMyselfDerivedParameter(vl);
         registerQueryMyselfDerived(fn, cb.query(), pk, pk, sqpp, "myselfDerived", rd, vl, prpp, op);
     }
-    public abstract String keepQueryMyselfDerived(RoleCQ sq);
+    public abstract String keepQueryMyselfDerived(MemberRoleCQ sq);
     public abstract String keepQueryMyselfDerivedParameter(Object vl);
 
     // ===================================================================================
@@ -1085,13 +1111,13 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * Prepare for MyselfExists (correlated sub-query).
      * @param subCBLambda The implementation of sub-query. (NotNull)
      */
-    public void myselfExists(SubQuery<RoleCB> subCBLambda) {
+    public void myselfExists(SubQuery<MemberRoleCB> subCBLambda) {
         assertObjectNotNull("subCBLambda", subCBLambda);
-        RoleCB cb = new RoleCB(); cb.xsetupForMyselfExists(this);
+        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForMyselfExists(this);
         lockCall(() -> subCBLambda.query(cb)); String pp = keepMyselfExists(cb.query());
         registerMyselfExists(cb.query(), pp);
     }
-    public abstract String keepMyselfExists(RoleCQ sq);
+    public abstract String keepMyselfExists(MemberRoleCQ sq);
 
     // ===================================================================================
     //                                                                        Manual Order
@@ -1136,12 +1162,12 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
-    protected RoleCB newMyCB() {
-        return new RoleCB();
+    protected MemberRoleCB newMyCB() {
+        return new MemberRoleCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
     protected String xabUDT() { return Date.class.getName(); }
-    protected String xabCQ() { return RoleCQ.class.getName(); }
+    protected String xabCQ() { return MemberRoleCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSLCS() { return HpSLCSetupper.class.getName(); }
     protected String xabSCP() { return SubQuery.class.getName(); }

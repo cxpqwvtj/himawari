@@ -33,13 +33,13 @@ import app.himawari.exentity.*;
  *     
  *
  * [referrer table]
- *     MEMBER
+ *     MEMBER_ROLE
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     memberList
+ *     memberRoleList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -121,24 +121,24 @@ public abstract class BsRole extends AbstractEntity implements DomainEntity, Ent
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** MEMBER by ROLE_TYPE_CODE, named 'memberList'. */
-    protected List<Member> _memberList;
+    /** MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleList'. */
+    protected List<MemberRole> _memberRoleList;
 
     /**
-     * [get] MEMBER by ROLE_TYPE_CODE, named 'memberList'.
-     * @return The entity list of referrer property 'memberList'. (NotNull: even if no loading, returns empty list)
+     * [get] MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleList'.
+     * @return The entity list of referrer property 'memberRoleList'. (NotNull: even if no loading, returns empty list)
      */
-    public List<Member> getMemberList() {
-        if (_memberList == null) { _memberList = newReferrerList(); }
-        return _memberList;
+    public List<MemberRole> getMemberRoleList() {
+        if (_memberRoleList == null) { _memberRoleList = newReferrerList(); }
+        return _memberRoleList;
     }
 
     /**
-     * [set] MEMBER by ROLE_TYPE_CODE, named 'memberList'.
-     * @param memberList The entity list of referrer property 'memberList'. (NullAllowed)
+     * [set] MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleList'.
+     * @param memberRoleList The entity list of referrer property 'memberRoleList'. (NullAllowed)
      */
-    public void setMemberList(List<Member> memberList) {
-        _memberList = memberList;
+    public void setMemberRoleList(List<MemberRole> memberRoleList) {
+        _memberRoleList = memberRoleList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
@@ -170,8 +170,8 @@ public abstract class BsRole extends AbstractEntity implements DomainEntity, Ent
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_memberList != null) { for (Member et : _memberList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "memberList")); } } }
+        if (_memberRoleList != null) { for (MemberRole et : _memberRoleList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "memberRoleList")); } } }
         return sb.toString();
     }
 
@@ -195,8 +195,8 @@ public abstract class BsRole extends AbstractEntity implements DomainEntity, Ent
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_memberList != null && !_memberList.isEmpty())
-        { sb.append(dm).append("memberList"); }
+        if (_memberRoleList != null && !_memberRoleList.isEmpty())
+        { sb.append(dm).append("memberRoleList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }

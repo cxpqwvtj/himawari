@@ -249,26 +249,6 @@ public class BsMemberCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    /**
-     * Set up relation columns to select clause. <br>
-     * ROLE by my ROLE_TYPE_CODE, named 'role'.
-     * <pre>
-     * <span style="color: #0000C0">memberBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Role()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     *     <span style="color: #553000">cb</span>.query().set...
-     * }).alwaysPresent(<span style="color: #553000">member</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">member</span>.<span style="color: #CC4747">getRole()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * });
-     * </pre>
-     */
-    public void setupSelect_Role() {
-        assertSetupSelectPurpose("role");
-        if (hasSpecifiedLocalColumn()) {
-            specify().columnRoleTypeCode();
-        }
-        doSetupSelect(() -> query().queryRole());
-    }
-
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -310,7 +290,6 @@ public class BsMemberCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<MemberCQ> {
-        protected RoleCB.HpSpecification _role;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<MemberCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
@@ -335,11 +314,6 @@ public class BsMemberCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnPassword() { return doColumn("PASSWORD"); }
-        /**
-         * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnRoleTypeCode() { return doColumn("ROLE_TYPE_CODE"); }
         /**
          * REGISTER_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
@@ -370,32 +344,25 @@ public class BsMemberCB extends AbstractConditionBean {
         @Override
         protected void doSpecifyRequiredColumn() {
             columnMemberId(); // PK
-            if (qyCall().qy().hasConditionQueryRole()
-                    || qyCall().qy().xgetReferrerQuery() instanceof RoleCQ) {
-                columnRoleTypeCode(); // FK or one-to-one referrer
-            }
         }
         @Override
         protected String getTableDbName() { return "MEMBER"; }
         /**
-         * Prepare to specify functions about relation table. <br>
-         * ROLE by my ROLE_TYPE_CODE, named 'role'.
-         * @return The instance for specification for relation table to specify. (NotNull)
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
+         * {select max(FOO) from MEMBER_ROLE where ...) as FOO_MAX} <br>
+         * MEMBER_ROLE by MEMBER_ID, named 'memberRoleList'.
+         * <pre>
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(roleCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     roleCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     roleCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, MemberRole.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
          */
-        public RoleCB.HpSpecification specifyRole() {
-            assertRelation("role");
-            if (_role == null) {
-                _role = new RoleCB.HpSpecification(_baseCB
-                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryRole()
-                                    , () -> _qyCall.qy().queryRole())
-                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
-                if (xhasSyncQyCall()) { // inherits it
-                    _role.xsetSyncQyCall(xcreateSpQyCall(
-                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryRole()
-                      , () -> xsyncQyCall().qy().queryRole()));
-                }
-            }
-            return _role;
+        public HpSDRFunction<MemberRoleCB, MemberCQ> derivedMemberRole() {
+            assertDerived("memberRoleList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<MemberRoleCB> sq, MemberCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveMemberRoleList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>

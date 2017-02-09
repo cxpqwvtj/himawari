@@ -213,21 +213,6 @@
 				<b>192</b>
 			</color>
 			<connections>
-				<relationship>
-					<name>FK_MEMBER_ROLE</name>
-					<source>table.ROLE</source>
-					<target>table.MEMBER</target>
-					<fk_columns>
-						<fk_column>
-							<fk_column_name>ROLE_TYPE_CODE</fk_column_name>
-						</fk_column>
-					</fk_columns>
-					<parent_cardinality>1</parent_cardinality>
-					<child_cardinality>0..n</child_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-				</relationship>
 			</connections>
 			<columns>
 				<normal_column>
@@ -260,10 +245,81 @@
 					<length>256</length>
 					<not_null>true</not_null>
 				</normal_column>
+				<column_group>共通カラム</column_group>
+				<column_group>排他制御カラム</column_group>
+			</columns>
+			<indexes>
+			</indexes>
+			<compound_unique_key_list>
+			</compound_unique_key_list>
+			<table_properties>
+			</table_properties>
+		</table>
+		<table>
+			<physical_name>MEMBER_ROLE</physical_name>
+			<logical_name>メンバー権限</logical_name>
+			<description></description>
+			<height>179</height>
+			<width>233</width>
+			<font_name>.SF NS Text</font_name>
+			<font_size>9</font_size>
+			<x>-293</x>
+			<y>52</y>
+			<color>
+				<r>138</r>
+				<g>136</g>
+				<b>194</b>
+			</color>
+			<connections>
+				<relationship>
+					<name>FK_MEMBER_ROLE_ROLE</name>
+					<source>table.ROLE</source>
+					<target>table.MEMBER_ROLE</target>
+					<fk_columns>
+						<fk_column>
+							<fk_column_name>ROLE_TYPE_CODE</fk_column_name>
+						</fk_column>
+					</fk_columns>
+					<parent_cardinality>1</parent_cardinality>
+					<child_cardinality>0..n</child_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+				</relationship>
+				<relationship>
+					<name>FK_MEMBER_ROLE_MEMBER</name>
+					<source>table.MEMBER</source>
+					<target>table.MEMBER_ROLE</target>
+					<fk_columns>
+						<fk_column>
+							<fk_column_name>MEMBER_ID</fk_column_name>
+						</fk_column>
+					</fk_columns>
+					<parent_cardinality>1</parent_cardinality>
+					<child_cardinality>0..n</child_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+				</relationship>
+			</connections>
+			<columns>
+				<normal_column>
+					<physical_name>MEMBER_ROLE_ID</physical_name>
+					<logical_name>メンバー権限ID</logical_name>
+					<type>bigint</type>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+				</normal_column>
+				<normal_column>
+					<physical_name>MEMBER_ID</physical_name>
+					<referred_column>table.MEMBER.MEMBER_ID</referred_column>
+					<relationship>FK_MEMBER_ROLE_MEMBER</relationship>
+					<not_null>true</not_null>
+				</normal_column>
 				<normal_column>
 					<physical_name>ROLE_TYPE_CODE</physical_name>
 					<referred_column>table.ROLE.ROLE_TYPE_CODE</referred_column>
-					<relationship>FK_MEMBER_ROLE</relationship>
+					<relationship>FK_MEMBER_ROLE_ROLE</relationship>
 					<not_null>true</not_null>
 				</normal_column>
 				<column_group>共通カラム</column_group>
@@ -272,6 +328,17 @@
 			<indexes>
 			</indexes>
 			<compound_unique_key_list>
+				<compound_unique_key>
+					<name>UQ_MEMBER_ROLE_MEMBER_ID_ROLE_TYPE_CODE</name>
+					<columns>
+						<column>
+							<column_id>table.MEMBER_ROLE.MEMBER_ID</column_id>
+						</column>
+						<column>
+							<column_id>table.MEMBER_ROLE.ROLE_TYPE_CODE</column_id>
+						</column>
+					</columns>
+				</compound_unique_key>
 			</compound_unique_key_list>
 			<table_properties>
 			</table_properties>
@@ -284,8 +351,8 @@
 			<width>233</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>-317</x>
-			<y>65</y>
+			<x>-287</x>
+			<y>327</y>
 			<color>
 				<r>255</r>
 				<g>255</g>

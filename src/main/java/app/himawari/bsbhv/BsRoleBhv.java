@@ -43,13 +43,13 @@ import app.himawari.cbean.*;
  *     
  *
  * [referrer table]
- *     MEMBER
+ *     MEMBER_ROLE
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     memberList
+ *     memberRoleList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -362,19 +362,19 @@ public abstract class BsRoleBhv extends AbstractBehaviorWritable<Role, RoleCB> {
     }
 
     /**
-     * Load referrer of memberList by the set-upper of referrer. <br>
-     * MEMBER by ROLE_TYPE_CODE, named 'memberList'.
+     * Load referrer of memberRoleList by the set-upper of referrer. <br>
+     * MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleList'.
      * <pre>
-     * <span style="color: #0000C0">roleBhv</span>.<span style="color: #CC4747">loadMember</span>(<span style="color: #553000">roleList</span>, <span style="color: #553000">memberCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">memberCB</span>.setupSelect...
-     *     <span style="color: #553000">memberCB</span>.query().set...
-     *     <span style="color: #553000">memberCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">roleBhv</span>.<span style="color: #CC4747">loadMemberRole</span>(<span style="color: #553000">roleList</span>, <span style="color: #553000">roleCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">roleCB</span>.setupSelect...
+     *     <span style="color: #553000">roleCB</span>.query().set...
+     *     <span style="color: #553000">roleCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
      * <span style="color: #70226C">for</span> (Role role : <span style="color: #553000">roleList</span>) {
-     *     ... = role.<span style="color: #CC4747">getMemberList()</span>;
+     *     ... = role.<span style="color: #CC4747">getMemberRoleList()</span>;
      * }
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
@@ -387,24 +387,24 @@ public abstract class BsRoleBhv extends AbstractBehaviorWritable<Role, RoleCB> {
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<Member> loadMember(List<Role> roleList, ReferrerConditionSetupper<MemberCB> refCBLambda) {
+    public NestedReferrerListGateway<MemberRole> loadMemberRole(List<Role> roleList, ReferrerConditionSetupper<MemberRoleCB> refCBLambda) {
         xassLRArg(roleList, refCBLambda);
-        return doLoadMember(roleList, new LoadReferrerOption<MemberCB, Member>().xinit(refCBLambda));
+        return doLoadMemberRole(roleList, new LoadReferrerOption<MemberRoleCB, MemberRole>().xinit(refCBLambda));
     }
 
     /**
-     * Load referrer of memberList by the set-upper of referrer. <br>
-     * MEMBER by ROLE_TYPE_CODE, named 'memberList'.
+     * Load referrer of memberRoleList by the set-upper of referrer. <br>
+     * MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleList'.
      * <pre>
-     * <span style="color: #0000C0">roleBhv</span>.<span style="color: #CC4747">loadMember</span>(<span style="color: #553000">role</span>, <span style="color: #553000">memberCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">memberCB</span>.setupSelect...
-     *     <span style="color: #553000">memberCB</span>.query().set...
-     *     <span style="color: #553000">memberCB</span>.query().addOrderBy...
+     * <span style="color: #0000C0">roleBhv</span>.<span style="color: #CC4747">loadMemberRole</span>(<span style="color: #553000">role</span>, <span style="color: #553000">roleCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">roleCB</span>.setupSelect...
+     *     <span style="color: #553000">roleCB</span>.query().set...
+     *     <span style="color: #553000">roleCB</span>.query().addOrderBy...
      * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
      * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
      * <span style="color: #3F7E5E">//    ...</span>
      * <span style="color: #3F7E5E">//});</span>
-     * ... = <span style="color: #553000">role</span>.<span style="color: #CC4747">getMemberList()</span>;
+     * ... = <span style="color: #553000">role</span>.<span style="color: #CC4747">getMemberRoleList()</span>;
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has settings before callback as follows:
@@ -416,13 +416,13 @@ public abstract class BsRoleBhv extends AbstractBehaviorWritable<Role, RoleCB> {
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerListGateway<Member> loadMember(Role role, ReferrerConditionSetupper<MemberCB> refCBLambda) {
+    public NestedReferrerListGateway<MemberRole> loadMemberRole(Role role, ReferrerConditionSetupper<MemberRoleCB> refCBLambda) {
         xassLRArg(role, refCBLambda);
-        return doLoadMember(xnewLRLs(role), new LoadReferrerOption<MemberCB, Member>().xinit(refCBLambda));
+        return doLoadMemberRole(xnewLRLs(role), new LoadReferrerOption<MemberRoleCB, MemberRole>().xinit(refCBLambda));
     }
 
-    protected NestedReferrerListGateway<Member> doLoadMember(List<Role> roleList, LoadReferrerOption<MemberCB, Member> option) {
-        return helpLoadReferrerInternally(roleList, option, "memberList");
+    protected NestedReferrerListGateway<MemberRole> doLoadMemberRole(List<Role> roleList, LoadReferrerOption<MemberRoleCB, MemberRole> option) {
+        return helpLoadReferrerInternally(roleList, option, "memberRoleList");
     }
 
     // ===================================================================================

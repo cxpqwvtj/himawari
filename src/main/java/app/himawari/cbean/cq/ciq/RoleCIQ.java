@@ -62,15 +62,15 @@ public class RoleCIQ extends AbstractBsRoleCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueRoleTypeCode() { return _myCQ.xdfgetRoleTypeCode(); }
-    public String keepRoleTypeCode_ExistsReferrer_MemberList(MemberCQ sq)
+    public String keepRoleTypeCode_ExistsReferrer_MemberRoleList(MemberRoleCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepRoleTypeCode_NotExistsReferrer_MemberList(MemberCQ sq)
+    public String keepRoleTypeCode_NotExistsReferrer_MemberRoleList(MemberRoleCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepRoleTypeCode_SpecifyDerivedReferrer_MemberList(MemberCQ sq)
+    public String keepRoleTypeCode_SpecifyDerivedReferrer_MemberRoleList(MemberRoleCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepRoleTypeCode_QueryDerivedReferrer_MemberList(MemberCQ sq)
+    public String keepRoleTypeCode_QueryDerivedReferrer_MemberRoleList(MemberRoleCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepRoleTypeCode_QueryDerivedReferrer_MemberListParameter(Object vl)
+    public String keepRoleTypeCode_QueryDerivedReferrer_MemberRoleListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueRoleName() { return _myCQ.xdfgetRoleName(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }

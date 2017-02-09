@@ -159,6 +159,25 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br>
+     * {exists (select MEMBER_ID from MEMBER_ROLE where ...)} <br>
+     * MEMBER_ROLE by MEMBER_ID, named 'memberRoleAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">existsMemberRole</span>(roleCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     roleCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of MemberRoleList for 'exists'. (NotNull)
+     */
+    public void existsMemberRole(SubQuery<MemberRoleCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_ExistsReferrer_MemberRoleList(cb.query());
+        registerExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberRoleList");
+    }
+    public abstract String keepMemberId_ExistsReferrer_MemberRoleList(MemberRoleCQ sq);
+
+    /**
+     * Set up ExistsReferrer (correlated sub-query). <br>
      * {exists (select MEMBER_ID from TIMECARD_DAY where ...)} <br>
      * TIMECARD_DAY by MEMBER_ID, named 'timecardDayAsOne'.
      * <pre>
@@ -175,6 +194,25 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
         registerExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "timecardDayList");
     }
     public abstract String keepMemberId_ExistsReferrer_TimecardDayList(TimecardDayCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br>
+     * {not exists (select MEMBER_ID from MEMBER_ROLE where ...)} <br>
+     * MEMBER_ROLE by MEMBER_ID, named 'memberRoleAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">notExistsMemberRole</span>(roleCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     roleCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of MemberId_NotExistsReferrer_MemberRoleList for 'not exists'. (NotNull)
+     */
+    public void notExistsMemberRole(SubQuery<MemberRoleCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepMemberId_NotExistsReferrer_MemberRoleList(cb.query());
+        registerNotExistsReferrer(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberRoleList");
+    }
+    public abstract String keepMemberId_NotExistsReferrer_MemberRoleList(MemberRoleCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
@@ -195,6 +233,14 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     }
     public abstract String keepMemberId_NotExistsReferrer_TimecardDayList(TimecardDayCQ sq);
 
+    public void xsderiveMemberRoleList(String fn, SubQuery<MemberRoleCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepMemberId_SpecifyDerivedReferrer_MemberRoleList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "memberRoleList", al, op);
+    }
+    public abstract String keepMemberId_SpecifyDerivedReferrer_MemberRoleList(MemberRoleCQ sq);
+
     public void xsderiveTimecardDayList(String fn, SubQuery<TimecardDayCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         TimecardDayCB cb = new TimecardDayCB(); cb.xsetupForDerivedReferrer(this);
@@ -202,6 +248,33 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
         registerSpecifyDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "timecardDayList", al, op);
     }
     public abstract String keepMemberId_SpecifyDerivedReferrer_TimecardDayList(TimecardDayCQ sq);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
+     * {FOO &lt;= (select max(BAR) from MEMBER_ROLE where ...)} <br>
+     * MEMBER_ROLE by MEMBER_ID, named 'memberRoleAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">derivedMemberRole()</span>.<span style="color: #CC4747">max</span>(roleCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     roleCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     roleCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<MemberRoleCB> derivedMemberRole() {
+        return xcreateQDRFunctionMemberRoleList();
+    }
+    protected HpQDRFunction<MemberRoleCB> xcreateQDRFunctionMemberRoleList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveMemberRoleList(fn, sq, rd, vl, op));
+    }
+    public void xqderiveMemberRoleList(String fn, SubQuery<MemberRoleCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        MemberRoleCB cb = new MemberRoleCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepMemberId_QueryDerivedReferrer_MemberRoleList(cb.query()); String prpp = keepMemberId_QueryDerivedReferrer_MemberRoleListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "MEMBER_ID", "MEMBER_ID", sqpp, "memberRoleList", rd, vl, prpp, op);
+    }
+    public abstract String keepMemberId_QueryDerivedReferrer_MemberRoleList(MemberRoleCQ sq);
+    public abstract String keepMemberId_QueryDerivedReferrer_MemberRoleListParameter(Object vl);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
@@ -649,141 +722,6 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     protected void regPassword(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValuePassword(), "PASSWORD"); }
     protected abstract ConditionValue xgetCValuePassword();
-
-    /**
-     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCode The value of roleTypeCode as equal. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleTypeCode_Equal(String roleTypeCode) {
-        doSetRoleTypeCode_Equal(fRES(roleTypeCode));
-    }
-
-    protected void doSetRoleTypeCode_Equal(String roleTypeCode) {
-        regRoleTypeCode(CK_EQ, roleTypeCode);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCode The value of roleTypeCode as notEqual. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleTypeCode_NotEqual(String roleTypeCode) {
-        doSetRoleTypeCode_NotEqual(fRES(roleTypeCode));
-    }
-
-    protected void doSetRoleTypeCode_NotEqual(String roleTypeCode) {
-        regRoleTypeCode(CK_NES, roleTypeCode);
-    }
-
-    /**
-     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCode The value of roleTypeCode as greaterThan. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleTypeCode_GreaterThan(String roleTypeCode) {
-        regRoleTypeCode(CK_GT, fRES(roleTypeCode));
-    }
-
-    /**
-     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCode The value of roleTypeCode as lessThan. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleTypeCode_LessThan(String roleTypeCode) {
-        regRoleTypeCode(CK_LT, fRES(roleTypeCode));
-    }
-
-    /**
-     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCode The value of roleTypeCode as greaterEqual. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleTypeCode_GreaterEqual(String roleTypeCode) {
-        regRoleTypeCode(CK_GE, fRES(roleTypeCode));
-    }
-
-    /**
-     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCode The value of roleTypeCode as lessEqual. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleTypeCode_LessEqual(String roleTypeCode) {
-        regRoleTypeCode(CK_LE, fRES(roleTypeCode));
-    }
-
-    /**
-     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCodeList The collection of roleTypeCode as inScope. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleTypeCode_InScope(Collection<String> roleTypeCodeList) {
-        doSetRoleTypeCode_InScope(roleTypeCodeList);
-    }
-
-    protected void doSetRoleTypeCode_InScope(Collection<String> roleTypeCodeList) {
-        regINS(CK_INS, cTL(roleTypeCodeList), xgetCValueRoleTypeCode(), "ROLE_TYPE_CODE");
-    }
-
-    /**
-     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCodeList The collection of roleTypeCode as notInScope. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setRoleTypeCode_NotInScope(Collection<String> roleTypeCodeList) {
-        doSetRoleTypeCode_NotInScope(roleTypeCodeList);
-    }
-
-    protected void doSetRoleTypeCode_NotInScope(Collection<String> roleTypeCodeList) {
-        regINS(CK_NINS, cTL(roleTypeCodeList), xgetCValueRoleTypeCode(), "ROLE_TYPE_CODE");
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE} <br>
-     * <pre>e.g. setRoleTypeCode_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param roleTypeCode The value of roleTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setRoleTypeCode_LikeSearch(String roleTypeCode, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setRoleTypeCode_LikeSearch(roleTypeCode, xcLSOP(opLambda));
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE} <br>
-     * <pre>e.g. setRoleTypeCode_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param roleTypeCode The value of roleTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of like-search. (NotNull)
-     */
-    protected void setRoleTypeCode_LikeSearch(String roleTypeCode, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(roleTypeCode), xgetCValueRoleTypeCode(), "ROLE_TYPE_CODE", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCode The value of roleTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setRoleTypeCode_NotLikeSearch(String roleTypeCode, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setRoleTypeCode_NotLikeSearch(roleTypeCode, xcLSOP(opLambda));
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @param roleTypeCode The value of roleTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    protected void setRoleTypeCode_NotLikeSearch(String roleTypeCode, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(roleTypeCode), xgetCValueRoleTypeCode(), "ROLE_TYPE_CODE", likeSearchOption);
-    }
-
-    protected void regRoleTypeCode(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueRoleTypeCode(), "ROLE_TYPE_CODE"); }
-    protected abstract ConditionValue xgetCValueRoleTypeCode();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>

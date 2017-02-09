@@ -30,13 +30,13 @@ import app.himawari.cbean.*;
  *     
  *
  * [referrer table]
- *     MEMBER
+ *     MEMBER_ROLE
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     memberList
+ *     memberRoleList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -61,24 +61,24 @@ public class LoaderOfRole {
     // ===================================================================================
     //                                                                       Load Referrer
     //                                                                       =============
-    protected List<Member> _referrerMember;
+    protected List<MemberRole> _referrerMemberRole;
 
     /**
-     * Load referrer of memberList by the set-upper of referrer. <br>
-     * MEMBER by ROLE_TYPE_CODE, named 'memberList'.
+     * Load referrer of memberRoleList by the set-upper of referrer. <br>
+     * MEMBER_ROLE by ROLE_TYPE_CODE, named 'memberRoleList'.
      * <pre>
      * <span style="color: #0000C0">roleBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">roleList</span>, <span style="color: #553000">roleLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">roleLoader</span>.<span style="color: #CC4747">loadMember</span>(<span style="color: #553000">memberCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *         <span style="color: #553000">memberCB</span>.setupSelect...
-     *         <span style="color: #553000">memberCB</span>.query().set...
-     *         <span style="color: #553000">memberCB</span>.query().addOrderBy...
+     *     <span style="color: #553000">roleLoader</span>.<span style="color: #CC4747">loadMemberRole</span>(<span style="color: #553000">roleCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">roleCB</span>.setupSelect...
+     *         <span style="color: #553000">roleCB</span>.query().set...
+     *         <span style="color: #553000">roleCB</span>.query().addOrderBy...
      *     }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
-     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">memberLoader</span> -&gt; {</span>
-     *     <span style="color: #3F7E5E">//    memberLoader.load...</span>
+     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">roleLoader</span> -&gt; {</span>
+     *     <span style="color: #3F7E5E">//    roleLoader.load...</span>
      *     <span style="color: #3F7E5E">//});</span>
      * });
      * for (Role role : <span style="color: #553000">roleList</span>) {
-     *     ... = role.<span style="color: #CC4747">getMemberList()</span>;
+     *     ... = role.<span style="color: #CC4747">getMemberRoleList()</span>;
      * }
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
@@ -90,9 +90,9 @@ public class LoaderOfRole {
      * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoaderGateway<LoaderOfMember> loadMember(ReferrerConditionSetupper<MemberCB> refCBLambda) {
-        myBhv().loadMember(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerMember = refLs);
-        return hd -> hd.handle(new LoaderOfMember().ready(_referrerMember, _selector));
+    public NestedReferrerLoaderGateway<LoaderOfMemberRole> loadMemberRole(ReferrerConditionSetupper<MemberRoleCB> refCBLambda) {
+        myBhv().loadMemberRole(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerMemberRole = refLs);
+        return hd -> hd.handle(new LoaderOfMemberRole().ready(_referrerMemberRole, _selector));
     }
 
     // ===================================================================================

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.dbflute.Entity;
-import org.dbflute.optional.OptionalEntity;
 import org.dbflute.dbmeta.AbstractDBMeta;
 import org.dbflute.dbmeta.info.*;
 import org.dbflute.dbmeta.name.*;
@@ -47,7 +46,6 @@ public class MemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((Member)et).getMemberName(), (et, vl) -> ((Member)et).setMemberName((String)vl), "memberName");
         setupEpg(_epgMap, et -> ((Member)et).getMemberAccountId(), (et, vl) -> ((Member)et).setMemberAccountId((String)vl), "memberAccountId");
         setupEpg(_epgMap, et -> ((Member)et).getPassword(), (et, vl) -> ((Member)et).setPassword((String)vl), "password");
-        setupEpg(_epgMap, et -> ((Member)et).getRoleTypeCode(), (et, vl) -> ((Member)et).setRoleTypeCode((String)vl), "roleTypeCode");
         setupEpg(_epgMap, et -> ((Member)et).getRegisterDatetime(), (et, vl) -> ((Member)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((Member)et).getRegisterUser(), (et, vl) -> ((Member)et).setRegisterUser((String)vl), "registerUser");
         setupEpg(_epgMap, et -> ((Member)et).getUpdateDatetime(), (et, vl) -> ((Member)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
@@ -56,18 +54,6 @@ public class MemberDbm extends AbstractDBMeta {
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
-
-    // -----------------------------------------------------
-    //                                      Foreign Property
-    //                                      ----------------
-    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
-    { xsetupEfpg(); }
-    @SuppressWarnings("unchecked")
-    protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((Member)et).getRole(), (et, vl) -> ((Member)et).setRole((OptionalEntity<Role>)vl), "role");
-    }
-    public PropertyGateway findForeignPropertyGateway(String prop)
-    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -85,11 +71,10 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "timecardDayList", null, false);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Long.class, "memberId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "memberRoleList,timecardDayList", null, false);
     protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, true, "VARCHAR", 100, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnMemberAccountId = cci("MEMBER_ACCOUNT_ID", "MEMBER_ACCOUNT_ID", null, null, String.class, "memberAccountId", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnPassword = cci("PASSWORD", "PASSWORD", null, null, String.class, "password", null, false, false, true, "VARCHAR", 256, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnRoleTypeCode = cci("ROLE_TYPE_CODE", "ROLE_TYPE_CODE", null, null, String.class, "roleTypeCode", null, false, false, true, "VARCHAR", 20, 0, null, false, null, null, "role", null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -116,11 +101,6 @@ public class MemberDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnPassword() { return _columnPassword; }
-    /**
-     * ROLE_TYPE_CODE: {IX, NotNull, VARCHAR(20), FK to ROLE}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnRoleTypeCode() { return _columnRoleTypeCode; }
     /**
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return The information object of specified column. (NotNull)
@@ -153,7 +133,6 @@ public class MemberDbm extends AbstractDBMeta {
         ls.add(columnMemberName());
         ls.add(columnMemberAccountId());
         ls.add(columnPassword());
-        ls.add(columnRoleTypeCode());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
         ls.add(columnUpdateDatetime());
@@ -187,18 +166,18 @@ public class MemberDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
-    /**
-     * ROLE by my ROLE_TYPE_CODE, named 'role'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignRole() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnRoleTypeCode(), RoleDbm.getInstance().columnRoleTypeCode());
-        return cfi("FK_MEMBER_ROLE", "role", this, RoleDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "memberList", false);
-    }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * MEMBER_ROLE by MEMBER_ID, named 'memberRoleList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerMemberRoleList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberRoleDbm.getInstance().columnMemberId());
+        return cri("FK_MEMBER_ROLE_MEMBER", "memberRoleList", this, MemberRoleDbm.getInstance(), mp, false, "member");
+    }
     /**
      * TIMECARD_DAY by MEMBER_ID, named 'timecardDayList'.
      * @return The information object of referrer property. (NotNull)

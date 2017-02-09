@@ -79,19 +79,19 @@ public class BsRoleCQ extends AbstractBsRoleCQ {
       return _roleTypeCode; }
     protected ConditionValue xgetCValueRoleTypeCode() { return xdfgetRoleTypeCode(); }
 
-    public Map<String, MemberCQ> xdfgetRoleTypeCode_ExistsReferrer_MemberList() { return xgetSQueMap("roleTypeCode_ExistsReferrer_MemberList"); }
-    public String keepRoleTypeCode_ExistsReferrer_MemberList(MemberCQ sq) { return xkeepSQue("roleTypeCode_ExistsReferrer_MemberList", sq); }
+    public Map<String, MemberRoleCQ> xdfgetRoleTypeCode_ExistsReferrer_MemberRoleList() { return xgetSQueMap("roleTypeCode_ExistsReferrer_MemberRoleList"); }
+    public String keepRoleTypeCode_ExistsReferrer_MemberRoleList(MemberRoleCQ sq) { return xkeepSQue("roleTypeCode_ExistsReferrer_MemberRoleList", sq); }
 
-    public Map<String, MemberCQ> xdfgetRoleTypeCode_NotExistsReferrer_MemberList() { return xgetSQueMap("roleTypeCode_NotExistsReferrer_MemberList"); }
-    public String keepRoleTypeCode_NotExistsReferrer_MemberList(MemberCQ sq) { return xkeepSQue("roleTypeCode_NotExistsReferrer_MemberList", sq); }
+    public Map<String, MemberRoleCQ> xdfgetRoleTypeCode_NotExistsReferrer_MemberRoleList() { return xgetSQueMap("roleTypeCode_NotExistsReferrer_MemberRoleList"); }
+    public String keepRoleTypeCode_NotExistsReferrer_MemberRoleList(MemberRoleCQ sq) { return xkeepSQue("roleTypeCode_NotExistsReferrer_MemberRoleList", sq); }
 
-    public Map<String, MemberCQ> xdfgetRoleTypeCode_SpecifyDerivedReferrer_MemberList() { return xgetSQueMap("roleTypeCode_SpecifyDerivedReferrer_MemberList"); }
-    public String keepRoleTypeCode_SpecifyDerivedReferrer_MemberList(MemberCQ sq) { return xkeepSQue("roleTypeCode_SpecifyDerivedReferrer_MemberList", sq); }
+    public Map<String, MemberRoleCQ> xdfgetRoleTypeCode_SpecifyDerivedReferrer_MemberRoleList() { return xgetSQueMap("roleTypeCode_SpecifyDerivedReferrer_MemberRoleList"); }
+    public String keepRoleTypeCode_SpecifyDerivedReferrer_MemberRoleList(MemberRoleCQ sq) { return xkeepSQue("roleTypeCode_SpecifyDerivedReferrer_MemberRoleList", sq); }
 
-    public Map<String, MemberCQ> xdfgetRoleTypeCode_QueryDerivedReferrer_MemberList() { return xgetSQueMap("roleTypeCode_QueryDerivedReferrer_MemberList"); }
-    public String keepRoleTypeCode_QueryDerivedReferrer_MemberList(MemberCQ sq) { return xkeepSQue("roleTypeCode_QueryDerivedReferrer_MemberList", sq); }
-    public Map<String, Object> xdfgetRoleTypeCode_QueryDerivedReferrer_MemberListParameter() { return xgetSQuePmMap("roleTypeCode_QueryDerivedReferrer_MemberList"); }
-    public String keepRoleTypeCode_QueryDerivedReferrer_MemberListParameter(Object pm) { return xkeepSQuePm("roleTypeCode_QueryDerivedReferrer_MemberList", pm); }
+    public Map<String, MemberRoleCQ> xdfgetRoleTypeCode_QueryDerivedReferrer_MemberRoleList() { return xgetSQueMap("roleTypeCode_QueryDerivedReferrer_MemberRoleList"); }
+    public String keepRoleTypeCode_QueryDerivedReferrer_MemberRoleList(MemberRoleCQ sq) { return xkeepSQue("roleTypeCode_QueryDerivedReferrer_MemberRoleList", sq); }
+    public Map<String, Object> xdfgetRoleTypeCode_QueryDerivedReferrer_MemberRoleListParameter() { return xgetSQuePmMap("roleTypeCode_QueryDerivedReferrer_MemberRoleList"); }
+    public String keepRoleTypeCode_QueryDerivedReferrer_MemberRoleListParameter(Object pm) { return xkeepSQuePm("roleTypeCode_QueryDerivedReferrer_MemberRoleList", pm); }
 
     /** 
      * Add order-by as ascend. <br>
