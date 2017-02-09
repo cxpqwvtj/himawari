@@ -1,10 +1,11 @@
 package app.himawari.service.auth
 
-import app.himawari.exbhv.MemberBhv
-import org.springframework.security.core.authority.AuthorityUtils
+import app.himawari.exbhv.MemberRoleBhv
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Component
 
 /**
@@ -13,13 +14,17 @@ import org.springframework.stereotype.Component
  */
 @Component
 class UserDetailsServiceImpl(
-        val memberBhv: MemberBhv
+        val memberRoleBhv: MemberRoleBhv
 ) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
-        val entity = memberBhv.selectEntityWithDeletedCheck { cb ->
-            cb.query().setMemberAccountId_Equal(username)
+        val entities = memberRoleBhv.selectList { cb ->
+            cb.setupSelect_Member()
+            cb.query().queryMember().setMemberAccountId_Equal(username)
+        }
+        if (entities.size == 0) {
+            throw UsernameNotFoundException("User not found.")
         }
 
-        return User(entity.memberAccountId, entity.password, AuthorityUtils.createAuthorityList(entity.roleTypeCode))
+        return User(entities[0].member.get().memberAccountId, entities[0].member.get().password, entities.map { SimpleGrantedAuthority(it.roleTypeCode) })
     }
 }
