@@ -100,6 +100,7 @@ jspm_packages
 *.xlsx
 /.vscode/launch.json
 /docker/data/*
+/docker/nginx/config/conf.d/custom.conf
 /docs/schema/schema.json
 /buildSrc/src/main/resources/config/custom.config
 /buildSrc/src/main/javascript/custom_config.yml
