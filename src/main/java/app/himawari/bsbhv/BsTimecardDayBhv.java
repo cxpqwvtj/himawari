@@ -34,7 +34,7 @@ import app.himawari.cbean.*;
  *     
  *
  * [identity]
- *     
+ *     TIMECARD_DAY_ID
  *
  * [version-no]
  *     VERSION_NO
@@ -159,7 +159,7 @@ public abstract class BsTimecardDayBhv extends AbstractBehaviorWritable<Timecard
 
     /**
      * Select the entity by the primary-key value.
-     * @param timecardDayId : PK, NotNull, BIGINT(19), FK to DAILY_START_END. (NotNull)
+     * @param timecardDayId : PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END. (NotNull)
      * @return The optional entity selected by the PK. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.

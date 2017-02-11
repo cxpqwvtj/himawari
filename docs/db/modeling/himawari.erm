@@ -309,6 +309,7 @@
 					<type>bigint</type>
 					<not_null>true</not_null>
 					<primary_key>true</primary_key>
+					<auto_increment>true</auto_increment>
 				</normal_column>
 				<normal_column>
 					<physical_name>MEMBER_ID</physical_name>
@@ -425,6 +426,7 @@
 					<type>bigint</type>
 					<not_null>true</not_null>
 					<primary_key>true</primary_key>
+					<auto_increment>true</auto_increment>
 				</normal_column>
 				<normal_column>
 					<physical_name>MEMBER_ID</physical_name>

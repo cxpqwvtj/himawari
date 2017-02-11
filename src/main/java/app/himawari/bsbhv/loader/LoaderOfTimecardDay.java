@@ -21,7 +21,7 @@ import app.himawari.cbean.*;
  *     
  *
  * [identity]
- *     
+ *     TIMECARD_DAY_ID
  *
  * [version-no]
  *     VERSION_NO

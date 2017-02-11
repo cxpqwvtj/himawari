@@ -26,7 +26,7 @@ import app.himawari.exentity.*;
  *     
  *
  * [identity]
- *     
+ *     MEMBER_ROLE_ID
  *
  * [version-no]
  *     VERSION_NO
@@ -76,7 +76,7 @@ public abstract class BsMemberRole extends AbstractEntity implements DomainEntit
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)} */
+    /** MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _memberRoleId;
 
     /** MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER} */
@@ -262,7 +262,7 @@ public abstract class BsMemberRole extends AbstractEntity implements DomainEntit
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)} <br>
+     * [get] MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)} <br>
      * メンバー権限ID
      * @return The value of the column 'MEMBER_ROLE_ID'. (basically NotNull if selected: for the constraint)
      */
@@ -272,7 +272,7 @@ public abstract class BsMemberRole extends AbstractEntity implements DomainEntit
     }
 
     /**
-     * [set] MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)} <br>
+     * [set] MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)} <br>
      * メンバー権限ID
      * @param memberRoleId The value of the column 'MEMBER_ROLE_ID'. (basically NotNull if update: for the constraint)
      */

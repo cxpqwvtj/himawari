@@ -95,14 +95,14 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
+     * TIMECARD_DAY_ID: {PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @return this. (NotNull)
      */
     public BsTimecardDayCQ addOrderBy_TimecardDayId_Asc() { regOBA("TIMECARD_DAY_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
+     * TIMECARD_DAY_ID: {PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @return this. (NotNull)
      */
     public BsTimecardDayCQ addOrderBy_TimecardDayId_Desc() { regOBD("TIMECARD_DAY_ID"); return this; }

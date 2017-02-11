@@ -19,7 +19,7 @@ import app.himawari.exentity.*;
  *     
  *
  * [identity]
- *     
+ *     MEMBER_ROLE_ID
  *
  * [version-no]
  *     VERSION_NO

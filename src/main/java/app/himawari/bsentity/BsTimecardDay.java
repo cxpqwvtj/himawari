@@ -26,7 +26,7 @@ import app.himawari.exentity.*;
  *     
  *
  * [identity]
- *     
+ *     TIMECARD_DAY_ID
  *
  * [version-no]
  *     VERSION_NO
@@ -76,7 +76,7 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END} */
+    /** TIMECARD_DAY_ID: {PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END} */
     protected Long _timecardDayId;
 
     /** MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} */
@@ -275,7 +275,7 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END} <br>
+     * [get] TIMECARD_DAY_ID: {PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END} <br>
      * タイムカード年月日ID
      * @return The value of the column 'TIMECARD_DAY_ID'. (basically NotNull if selected: for the constraint)
      */
@@ -285,7 +285,7 @@ public abstract class BsTimecardDay extends AbstractEntity implements DomainEnti
     }
 
     /**
-     * [set] TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END} <br>
+     * [set] TIMECARD_DAY_ID: {PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END} <br>
      * タイムカード年月日ID
      * @param timecardDayId The value of the column 'TIMECARD_DAY_ID'. (basically NotNull if update: for the constraint)
      */

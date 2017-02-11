@@ -80,7 +80,7 @@ public class BsMemberRoleCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param memberRoleId : PK, NotNull, BIGINT(19). (NotNull)
+     * @param memberRoleId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return this. (NotNull)
      */
     public MemberRoleCB acceptPK(Long memberRoleId) {
@@ -338,7 +338,7 @@ public class BsMemberRoleCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+         * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnMemberRoleId() { return doColumn("MEMBER_ROLE_ID"); }

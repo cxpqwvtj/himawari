@@ -45,7 +45,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param memberRoleId The value of memberRoleId as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberRoleId_Equal(Long memberRoleId) {
@@ -58,7 +58,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param memberRoleId The value of memberRoleId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberRoleId_NotEqual(Long memberRoleId) {
@@ -71,7 +71,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param memberRoleId The value of memberRoleId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberRoleId_GreaterThan(Long memberRoleId) {
@@ -80,7 +80,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param memberRoleId The value of memberRoleId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberRoleId_LessThan(Long memberRoleId) {
@@ -89,7 +89,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param memberRoleId The value of memberRoleId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberRoleId_GreaterEqual(Long memberRoleId) {
@@ -98,7 +98,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param memberRoleId The value of memberRoleId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberRoleId_LessEqual(Long memberRoleId) {
@@ -109,7 +109,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param minNumber The min number of memberRoleId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberRoleId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -122,7 +122,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param minNumber The min number of memberRoleId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberRoleId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -133,7 +133,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param memberRoleIdList The collection of memberRoleId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberRoleId_InScope(Collection<Long> memberRoleIdList) {
@@ -146,7 +146,7 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @param memberRoleIdList The collection of memberRoleId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberRoleId_NotInScope(Collection<Long> memberRoleIdList) {
@@ -159,13 +159,13 @@ public abstract class AbstractBsMemberRoleCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      */
     public void setMemberRoleId_IsNull() { regMemberRoleId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      */
     public void setMemberRoleId_IsNotNull() { regMemberRoleId(CK_ISNN, DOBJ); }
 

@@ -81,7 +81,7 @@ public class BsTimecardDayCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param timecardDayId : PK, NotNull, BIGINT(19), FK to DAILY_START_END. (NotNull)
+     * @param timecardDayId : PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END. (NotNull)
      * @return this. (NotNull)
      */
     public TimecardDayCB acceptPK(Long timecardDayId) {
@@ -333,7 +333,7 @@ public class BsTimecardDayCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * TIMECARD_DAY_ID: {PK, NotNull, BIGINT(19), FK to DAILY_START_END}
+         * TIMECARD_DAY_ID: {PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnTimecardDayId() { return doColumn("TIMECARD_DAY_ID"); }

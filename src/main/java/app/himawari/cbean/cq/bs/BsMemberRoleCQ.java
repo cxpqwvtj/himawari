@@ -81,14 +81,14 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
     public BsMemberRoleCQ addOrderBy_MemberRoleId_Asc() { regOBA("MEMBER_ROLE_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * MEMBER_ROLE_ID: {PK, NotNull, BIGINT(19)}
+     * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
     public BsMemberRoleCQ addOrderBy_MemberRoleId_Desc() { regOBD("MEMBER_ROLE_ID"); return this; }

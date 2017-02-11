@@ -34,7 +34,7 @@ import app.himawari.cbean.*;
  *     
  *
  * [identity]
- *     
+ *     MEMBER_ROLE_ID
  *
  * [version-no]
  *     VERSION_NO
@@ -159,7 +159,7 @@ public abstract class BsMemberRoleBhv extends AbstractBehaviorWritable<MemberRol
 
     /**
      * Select the entity by the primary-key value.
-     * @param memberRoleId : PK, NotNull, BIGINT(19). (NotNull)
+     * @param memberRoleId : PK, ID, NotNull, BIGINT(19). (NotNull)
      * @return The optional entity selected by the PK. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
