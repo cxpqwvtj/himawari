@@ -1,6 +1,7 @@
 package app.himawari.service.auth
 
 import app.himawari.exbhv.MemberRoleBhv
+import app.himawari.model.HimawariUser
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
@@ -25,6 +26,6 @@ class UserDetailsServiceImpl(
             throw UsernameNotFoundException("User not found.")
         }
 
-        return User(entities[0].member.get().memberAccountId, entities[0].member.get().password, entities.map { SimpleGrantedAuthority(it.roleTypeCode) })
+        return HimawariUser(entities[0].memberId, entities[0].member.get().memberAccountId, entities[0].member.get().password, entities.map { SimpleGrantedAuthority(it.roleTypeCode) })
     }
 }

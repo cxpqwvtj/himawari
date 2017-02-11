@@ -3,11 +3,13 @@ package app.himawari.controller.api
 import app.himawari.dto.json.StartEndDatetimeUpdate
 import app.himawari.dto.json.StartEndDatetimes
 import app.himawari.dto.json.Timecard
+import app.himawari.model.HimawariUser
 import app.himawari.service.api.ApiService
 import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
+import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.web.bind.annotation.*
-import java.security.Principal
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.servlet.http.HttpServletRequest
@@ -36,7 +38,7 @@ open class ApiController(
     }
 
     @PostMapping(path = arrayOf("/user/days"), consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    open fun createStartEnd(principal: Principal, @RequestBody startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
-        return service.createDailyStartEndHistory(principal, startEndDatetimes)
+    open fun createStartEnd(@AuthenticationPrincipal user: HimawariUser, @RequestBody startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
+        return service.createDailyStartEndHistory(user, startEndDatetimes)
     }
 }

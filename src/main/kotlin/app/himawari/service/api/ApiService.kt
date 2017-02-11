@@ -6,9 +6,10 @@ import app.himawari.dto.json.Timecard
 import app.himawari.exbhv.DailyStartEndBhv
 import app.himawari.exbhv.TimecardDayBhv
 import app.himawari.exentity.DailyStartEnd
+import app.himawari.exentity.TimecardDay
 import app.himawari.model.BizDate
+import app.himawari.model.HimawariUser
 import org.springframework.stereotype.Service
-import java.security.Principal
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -47,14 +48,21 @@ class ApiService(
         }
     }
 
-    fun createDailyStartEndHistory(principal: Principal, startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
+    fun createDailyStartEndHistory(user: HimawariUser, startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
         val entities = startEndDatetimes.days?.map { day ->
             val timecardDay = timecardDayBhv.selectEntity { cb ->
-                cb.query().queryMember().setMemberAccountId_Equal(principal.name)
+                cb.query().queryMember().setMemberAccountId_Equal(user.username)
                 cb.query().setBizDate_Equal(LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE))
+            }.orElseGet {
+                val entity = TimecardDay().apply {
+                    memberId = user.memberId
+                    bizDate = LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE)
+                }
+                timecardDayBhv.insert(entity)
+                entity
             }
             DailyStartEnd().apply {
-                timecardDay.alwaysPresent { timecardDayId = it.timecardDayId }
+                timecardDayId = timecardDay.timecardDayId
                 startDatetime = LocalDateTime.parse(day.startDatetime, appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                 endDatetime = LocalDateTime.parse(day.endDatetime, appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                 note = day.note
