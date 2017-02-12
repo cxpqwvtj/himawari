@@ -16,7 +16,7 @@
 #
 map:{
     ; driver   = com.mysql.jdbc.Driver
-    ; url      = jdbc:mysql://localhost:3306/himawari
+    ; url      = jdbc:mysql://localhost:3306/himawari?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     ; schema   = 
     ; user     = himawari
     ; password = himawari

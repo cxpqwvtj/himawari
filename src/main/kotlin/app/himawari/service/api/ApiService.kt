@@ -7,7 +7,7 @@ import app.himawari.exbhv.DailyStartEndBhv
 import app.himawari.exbhv.TimecardDayBhv
 import app.himawari.exentity.DailyStartEnd
 import app.himawari.exentity.TimecardDay
-import app.himawari.model.BizDate
+import app.himawari.model.AppDate
 import app.himawari.model.HimawariUser
 import org.springframework.stereotype.Service
 import java.time.LocalDate
@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter
  */
 @Service
 class ApiService(
-        private val appDate: BizDate,
+        private val appDate: AppDate,
         private val timecardDayBhv: TimecardDayBhv,
         private val dailyStartEndBhv: DailyStartEndBhv
 ) {
@@ -32,10 +32,10 @@ class ApiService(
             cb.query().addOrderBy_BizDate_Asc()
         }
         return Timecard().apply {
-            this.yearMonth = yearMonth.format(DateTimeFormatter.ofPattern("yyyyMM"))
+            this.yearMonth = yearMonth.format(DateTimeFormatter.ofPattern("yyyyMM").withZone(appDate.zoneId()))
             days = list.map { day ->
                 Timecard.Days().apply {
-                    bizDate = day.bizDate.format(DateTimeFormatter.ISO_DATE)
+                    bizDate = day.bizDate.format(DateTimeFormatter.ISO_DATE.withZone(appDate.zoneId()))
                     day.dailyStartEndAsCurrentValue.ifPresent {
                         startDatetime = appDate.toZonedDateTime(it.startDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                     }
@@ -52,19 +52,19 @@ class ApiService(
         val entities = startEndDatetimes.days?.map { day ->
             val timecardDay = timecardDayBhv.selectEntity { cb ->
                 cb.query().queryMember().setMemberAccountId_Equal(user.username)
-                cb.query().setBizDate_Equal(LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE))
+                cb.query().setBizDate_Equal(LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE.withZone(appDate.zoneId())))
             }.orElseGet {
                 val entity = TimecardDay().apply {
                     memberId = user.memberId
-                    bizDate = LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE)
+                    bizDate = LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE.withZone(appDate.zoneId()))
                 }
                 timecardDayBhv.insert(entity)
                 entity
             }
             DailyStartEnd().apply {
                 timecardDayId = timecardDay.timecardDayId
-                startDatetime = LocalDateTime.parse(day.startDatetime, appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
-                endDatetime = LocalDateTime.parse(day.endDatetime, appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
+                startDatetime = appDate.toLocalDateTime(day.startDatetime ?: "")
+                endDatetime = appDate.toLocalDateTime(day.endDatetime ?: "")
                 note = day.note
             }
         }

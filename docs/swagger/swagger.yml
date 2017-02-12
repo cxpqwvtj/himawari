@@ -78,12 +78,15 @@ paths:
                   properties:
                     bizDate:
                       title: 業務日
+                      description: yyyy-MM-dd
                       type: string
                     startDatetime:
                       title: 開始日時
+                      description: yyyy-MM-ddTHH:mm:dd:ssZ
                       type: string
                     endDatetime:
                       title: 終了日時
+                      description: yyyy-MM-ddTHH:mm:dd:ssZ
                       type: string
                     note:
                       title: 備考

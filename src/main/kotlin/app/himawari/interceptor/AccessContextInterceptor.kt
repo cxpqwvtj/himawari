@@ -1,6 +1,6 @@
 package app.himawari.interceptor
 
-import app.himawari.model.BizDate
+import app.himawari.model.AppDate
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component
 @Component
 @Aspect
 class AccessContextInterceptor(
-        private val bizDate: BizDate
+        private val appDate: AppDate
 ) {
 
     @Around("execution(* app.himawari.controller..*.*(..))")
@@ -44,7 +44,7 @@ class AccessContextInterceptor(
         }
 
         val context = AccessContext()
-        context.accessLocalDateTime = bizDate.systemDate().toLocalDateTime()
+        context.accessLocalDateTime = appDate.systemDate().toLocalDateTime()
         context.accessUser = accessUser
         AccessContext.setAccessContextOnThread(context)
 
