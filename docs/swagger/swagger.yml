@@ -11,8 +11,9 @@ paths:
   /users/{userId}/timecards/{yearMonth}:
     get:
       operationId: Api0001
+      summary: API0001:開始/終了時間取得
       description: |
-        月の開始、終了日時の一覧を返します。
+        対象月の日毎の開始/終了日時の一覧を返します。
       tags:
         - timecard
       parameters:
@@ -59,21 +60,22 @@ paths:
                       type: string
   /user/days:
     post:
-      operationId: Api0002
-      description: 日次データ登録
+      summary: API0002:日次データ登録
+      description: 日単位の開始、終了時間を登録します。
       tags:
         - timecard
       parameters:
         - name: StartEndDatetimes
           in: body
           schema:
-            title: StartEndDatetimes
+            title: Request
             type: object
             properties:
               days:
                 title: 日次データ
                 type: array
                 items:
+                  title: Day
                   type: object
                   properties:
                     bizDate:
@@ -97,7 +99,7 @@ paths:
         200:
           description: 登録結果
           schema:
-            title: StartEndDatetimeUpdate
+            title: Result
             type: object
             properties:
               resultType:
