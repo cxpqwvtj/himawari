@@ -189,10 +189,10 @@ const promises = schemaDefFiles.filter((v) => v.endsWith('.yml')).map((fileName)
         })
         const mainClassFileDir = `${config.mainPackageRoot}/${config.packageName.replace(/\./g, '/')}`
         const testClassFileDir = `${config.testPackageRoot}/${config.packageName.replace(/\./g, '/')}`
-        const generate = (path, method, responsesObject, status) => {
-          const schema = responsesObject.get('schema')
+        const generate = (param) => {
+          const schema = param.object.get('schema')
           const schemaName = schema.get('title')
-          console.log(`generate ${schemaName}. [path]${path} [${method}]${status}...`) // eslint-disable-line no-console
+          console.log(`generate ${schemaName}. [param.path]${param.path} [${param.method}]${param.type}...`) // eslint-disable-line no-console
           // サンプルJSON作成
           const json = exampleJson(schemaName, schema, 1).toJS()
           const jsonFileName = `${schemaName}.json`
@@ -208,8 +208,10 @@ const promises = schemaDefFiles.filter((v) => v.endsWith('.yml')).map((fileName)
         }
         const generateFiles = properties.get('paths').flatMap((pathsObject, path) => {
           return pathsObject.map((pathsItem, method) => {
-            const requestFiles = pathsItem.get('parameters').filter(v => v.get('in') === 'body').map(v => generate(path, method, v, 'request'))
-            const responseFiles = pathsItem.get('responses').map((v, k) => generate(path, method, v, k)).toList()
+            const apiName = pathsItem.get('summary').split(':')[0]
+            const upperCamelApiName = `${apiName[0].toUpperCase()}${apiName.substring(1)}]`
+            const requestFiles = pathsItem.get('parameters').filter(v => v.get('in') === 'body').map(v => generate({path, method, object: v, type: 'request', apiName: upperCamelApiName}))
+            const responseFiles = pathsItem.get('responses').map((v, k) => generate({path, method, object: v, type: k, apiName: upperCamelApiName})).toList()
             return requestFiles.push(...responseFiles).flatten(1)
           })
         }).toList().flatten(1)
