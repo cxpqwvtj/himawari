@@ -91,7 +91,7 @@ public class DailyStartEndDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnTimecardDayId = cci("TIMECARD_DAY_ID", "TIMECARD_DAY_ID", null, null, Long.class, "timecardDayId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "timecardDay", null, null, false);
     protected final ColumnInfo _columnStartDatetime = cci("START_DATETIME", "START_DATETIME", null, null, java.time.LocalDateTime.class, "startDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnEndDatetime = cci("END_DATETIME", "END_DATETIME", null, null, java.time.LocalDateTime.class, "endDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, false, false, false, "VARCHAR", 3, 0, null, false, null, null, "vacationType", null, null, false);
+    protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, false, false, false, "VARCHAR", 20, 0, null, false, null, null, "vacationType", null, null, false);
     protected final ColumnInfo _columnNote = cci("NOTE", "NOTE", null, null, String.class, "note", null, false, false, false, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
@@ -120,7 +120,7 @@ public class DailyStartEndDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnEndDatetime() { return _columnEndDatetime; }
     /**
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(20), FK to VACATION_TYPE}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnVacationTypeCode() { return _columnVacationTypeCode; }

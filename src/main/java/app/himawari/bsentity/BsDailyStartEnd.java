@@ -94,7 +94,7 @@ public abstract class BsDailyStartEnd extends AbstractEntity implements DomainEn
     /** END_DATETIME: {DATETIME(19)} */
     protected java.time.LocalDateTime _endDatetime;
 
-    /** VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE} */
+    /** VACATION_TYPE_CODE: {IX, VARCHAR(20), FK to VACATION_TYPE} */
     protected String _vacationTypeCode;
 
     /** NOTE: {TEXT(65535)} */
@@ -347,7 +347,7 @@ public abstract class BsDailyStartEnd extends AbstractEntity implements DomainEn
     }
 
     /**
-     * [get] VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE} <br>
+     * [get] VACATION_TYPE_CODE: {IX, VARCHAR(20), FK to VACATION_TYPE} <br>
      * 休暇タイプコード
      * @return The value of the column 'VACATION_TYPE_CODE'. (NullAllowed even if selected: for no constraint)
      */
@@ -357,7 +357,7 @@ public abstract class BsDailyStartEnd extends AbstractEntity implements DomainEn
     }
 
     /**
-     * [set] VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE} <br>
+     * [set] VACATION_TYPE_CODE: {IX, VARCHAR(20), FK to VACATION_TYPE} <br>
      * 休暇タイプコード
      * @param vacationTypeCode The value of the column 'VACATION_TYPE_CODE'. (NullAllowed: null update allowed for no constraint)
      */

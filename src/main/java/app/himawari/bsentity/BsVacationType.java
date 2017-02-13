@@ -72,7 +72,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)} */
+    /** VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(20)} */
     protected String _vacationTypeCode;
 
     /** VACATION_TYPE_NAME: {NotNull, VARCHAR(200)} */
@@ -212,7 +212,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)} <br>
+     * [get] VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(20)} <br>
      * 休暇タイプコード
      * @return The value of the column 'VACATION_TYPE_CODE'. (basically NotNull if selected: for the constraint)
      */
@@ -222,7 +222,7 @@ public abstract class BsVacationType extends AbstractEntity implements DomainEnt
     }
 
     /**
-     * [set] VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)} <br>
+     * [set] VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(20)} <br>
      * 休暇タイプコード
      * @param vacationTypeCode The value of the column 'VACATION_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */

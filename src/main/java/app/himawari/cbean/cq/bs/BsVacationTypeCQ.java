@@ -95,14 +95,14 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)}
+     * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
      * @return this. (NotNull)
      */
     public BsVacationTypeCQ addOrderBy_VacationTypeCode_Asc() { regOBA("VACATION_TYPE_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)}
+     * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
      * @return this. (NotNull)
      */
     public BsVacationTypeCQ addOrderBy_VacationTypeCode_Desc() { regOBD("VACATION_TYPE_CODE"); return this; }

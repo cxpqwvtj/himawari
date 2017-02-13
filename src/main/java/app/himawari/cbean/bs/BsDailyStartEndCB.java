@@ -355,7 +355,7 @@ public class BsDailyStartEndCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnEndDatetime() { return doColumn("END_DATETIME"); }
         /**
-         * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
+         * VACATION_TYPE_CODE: {IX, VARCHAR(20), FK to VACATION_TYPE}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnVacationTypeCode() { return doColumn("VACATION_TYPE_CODE"); }

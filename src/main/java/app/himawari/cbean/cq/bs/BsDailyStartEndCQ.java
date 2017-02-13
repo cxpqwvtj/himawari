@@ -161,14 +161,14 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(20), FK to VACATION_TYPE}
      * @return this. (NotNull)
      */
     public BsDailyStartEndCQ addOrderBy_VacationTypeCode_Asc() { regOBA("VACATION_TYPE_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * VACATION_TYPE_CODE: {IX, VARCHAR(3), FK to VACATION_TYPE}
+     * VACATION_TYPE_CODE: {IX, VARCHAR(20), FK to VACATION_TYPE}
      * @return this. (NotNull)
      */
     public BsDailyStartEndCQ addOrderBy_VacationTypeCode_Desc() { regOBD("VACATION_TYPE_CODE"); return this; }

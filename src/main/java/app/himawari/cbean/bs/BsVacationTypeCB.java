@@ -80,7 +80,7 @@ public class BsVacationTypeCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param vacationTypeCode : PK, NotNull, VARCHAR(3). (NotNull)
+     * @param vacationTypeCode : PK, NotNull, VARCHAR(20). (NotNull)
      * @return this. (NotNull)
      */
     public VacationTypeCB acceptPK(String vacationTypeCode) {
@@ -283,7 +283,7 @@ public class BsVacationTypeCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)}
+         * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnVacationTypeCode() { return doColumn("VACATION_TYPE_CODE"); }

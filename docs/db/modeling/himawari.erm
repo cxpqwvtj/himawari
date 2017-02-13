@@ -472,7 +472,7 @@
 					<physical_name>VACATION_TYPE_CODE</physical_name>
 					<logical_name>休暇タイプコード</logical_name>
 					<type>varchar(n)</type>
-					<length>3</length>
+					<length>20</length>
 					<not_null>true</not_null>
 					<primary_key>true</primary_key>
 				</normal_column>

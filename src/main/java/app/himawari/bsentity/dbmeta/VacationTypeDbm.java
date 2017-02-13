@@ -69,7 +69,7 @@ public class VacationTypeDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, true, false, true, "VARCHAR", 3, 0, null, false, null, null, null, "dailyStartEndList", null, false);
+    protected final ColumnInfo _columnVacationTypeCode = cci("VACATION_TYPE_CODE", "VACATION_TYPE_CODE", null, null, String.class, "vacationTypeCode", null, true, false, true, "VARCHAR", 20, 0, null, false, null, null, null, "dailyStartEndList", null, false);
     protected final ColumnInfo _columnVacationTypeName = cci("VACATION_TYPE_NAME", "VACATION_TYPE_NAME", null, null, String.class, "vacationTypeName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
@@ -78,7 +78,7 @@ public class VacationTypeDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Long.class, "versionNo", null, false, false, true, "BIGINT", 19, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
 
     /**
-     * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(3)}
+     * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnVacationTypeCode() { return _columnVacationTypeCode; }
