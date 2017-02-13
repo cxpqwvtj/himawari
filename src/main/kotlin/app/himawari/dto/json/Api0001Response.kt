@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @property days 日次データ
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class Timecard(
+data class Api0001Response(
         var yearMonth: String? = null,
         var days: List<Days>? = null) {
     /**

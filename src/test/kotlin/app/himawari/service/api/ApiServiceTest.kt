@@ -1,6 +1,6 @@
 package app.himawari.service.api
 
-import app.himawari.dto.json.StartEndDatetimes
+import app.himawari.dto.json.Api0002Request
 import app.himawari.model.HimawariUser
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,7 +26,7 @@ internal class ApiServiceTest {
 
     @Test
     fun createDailyStartEndHistory() {
-        apiService.createDailyStartEndHistory(HimawariUser(1, "kougami", "", listOf()), StartEndDatetimes().apply { days = listOf() })
+        apiService.createDailyStartEndHistory(HimawariUser(1, "kougami", "", listOf()), Api0002Request().apply { days = listOf() })
     }
 
 }

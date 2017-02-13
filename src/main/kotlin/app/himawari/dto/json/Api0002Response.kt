@@ -4,11 +4,11 @@ package app.himawari.dto.json
 import com.fasterxml.jackson.annotation.JsonInclude
 
 /**
- * StartEndDatetimeUpdate
+ * Result
  * @property resultType 登録結果コード
  * @property message 結果メッセージ
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class StartEndDatetimeUpdate(
+data class Api0002Response(
         var resultType: String = "",
         var message: String? = null)

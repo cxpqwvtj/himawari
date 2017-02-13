@@ -4,11 +4,11 @@ package app.himawari.dto.json
 import com.fasterxml.jackson.annotation.JsonInclude
 
 /**
- * StartEndDatetimes
+ * Request
  * @property days 日次データ
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class StartEndDatetimes(
+data class Api0002Request(
         var days: List<Days>? = null) {
     /**
      * 日次データ

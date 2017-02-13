@@ -1,8 +1,8 @@
 package app.himawari.service.api
 
-import app.himawari.dto.json.StartEndDatetimeUpdate
-import app.himawari.dto.json.StartEndDatetimes
-import app.himawari.dto.json.Timecard
+import app.himawari.dto.json.Api0001Response
+import app.himawari.dto.json.Api0002Request
+import app.himawari.dto.json.Api0002Response
 import app.himawari.exbhv.DailyStartEndBhv
 import app.himawari.exbhv.TimecardDayBhv
 import app.himawari.exentity.DailyStartEnd
@@ -11,7 +11,6 @@ import app.himawari.model.AppDate
 import app.himawari.model.HimawariUser
 import org.springframework.stereotype.Service
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 /**
@@ -24,17 +23,17 @@ class ApiService(
         private val timecardDayBhv: TimecardDayBhv,
         private val dailyStartEndBhv: DailyStartEndBhv
 ) {
-    fun selectMonthlyInOutData(userId: String, yearMonth: LocalDate): Timecard {
+    fun selectMonthlyInOutData(userId: String, yearMonth: LocalDate): Api0001Response {
         val list = timecardDayBhv.selectList { cb ->
             cb.setupSelect_DailyStartEndAsCurrentValue()
             cb.query().setBizDate_FromTo(yearMonth, yearMonth, { option -> option.compareAsMonth() })
             cb.query().queryMember().setMemberAccountId_Equal(userId)
             cb.query().addOrderBy_BizDate_Asc()
         }
-        return Timecard().apply {
+        return Api0001Response().apply {
             this.yearMonth = yearMonth.format(DateTimeFormatter.ofPattern("yyyyMM").withZone(appDate.zoneId()))
             days = list.map { day ->
-                Timecard.Days().apply {
+                Api0001Response.Days().apply {
                     bizDate = day.bizDate.format(DateTimeFormatter.ISO_DATE.withZone(appDate.zoneId()))
                     day.dailyStartEndAsCurrentValue.ifPresent {
                         startDatetime = appDate.toZonedDateTime(it.startDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
@@ -48,7 +47,7 @@ class ApiService(
         }
     }
 
-    fun createDailyStartEndHistory(user: HimawariUser, startEndDatetimes: StartEndDatetimes): StartEndDatetimeUpdate {
+    fun createDailyStartEndHistory(user: HimawariUser, startEndDatetimes: Api0002Request): Api0002Response {
         val entities = startEndDatetimes.days?.map { day ->
             val timecardDay = timecardDayBhv.selectEntity { cb ->
                 cb.query().queryMember().setMemberAccountId_Equal(user.username)
@@ -70,6 +69,6 @@ class ApiService(
         }
         dailyStartEndBhv.batchInsert(entities)
         // TODO: 結果を設定する
-        return StartEndDatetimeUpdate()
+        return Api0002Response()
     }
 }
