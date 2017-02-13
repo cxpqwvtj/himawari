@@ -17,6 +17,7 @@ data class Api0001Response(
      * @property bizDate 業務日
      * @property startDatetime 開始日時
      * @property endDatetime 終了日時
+     * @property vacationTypeCode 休暇タイプ
      * @property note 備考
      */
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -24,5 +25,6 @@ data class Api0001Response(
             var bizDate: String? = null,
             var startDatetime: String? = null,
             var endDatetime: String? = null,
+            var vacationTypeCode: String? = null,
             var note: String? = null)
 }

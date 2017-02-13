@@ -15,6 +15,7 @@ internal class Api0002RequestTest {
                 bizDate = ""
                 startDatetime = ""
                 endDatetime = ""
+                vacationType = ""
                 note = ""
             })
         }
