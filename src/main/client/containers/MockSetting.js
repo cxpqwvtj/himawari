@@ -11,7 +11,7 @@ import jsyaml from 'js-yaml'
 import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
-import SettingsYaml from 'raw!../../../../docs/mock/settings.yml'
+// import SettingsYaml from 'raw!../../../../docs/mock/settings.yml'
 
 export class MockSetting extends AppBaseComponent {
   static propTypes = {
@@ -19,7 +19,7 @@ export class MockSetting extends AppBaseComponent {
   }
 
   componentDidMount() {
-    this.props.actions.mockSettingDefinition(jsyaml.safeLoad(SettingsYaml))
+    // this.props.actions.mockSettingDefinition(jsyaml.safeLoad(SettingsYaml))
   }
 
   render() {

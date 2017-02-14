@@ -18,7 +18,7 @@ module.exports = {
     publicPath: `${CONTEXT_PATH}/`
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   devtool: DEBUG ? 'cheap-source-map' : false,
   plugins: [
@@ -27,9 +27,7 @@ module.exports = {
       'process.env.NODE_ENV': `"${process.env.NODE_ENV || (DEBUG ? 'development' : 'production')}"` 
     }),
     ...(HOT_DEPLOY ? [new webpack.HotModuleReplacementPlugin()] : []),
-    ...(DEBUG ? [] : [new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.AggressiveMergingPlugin(),
+    ...(DEBUG ? [] : [new webpack.optimize.AggressiveMergingPlugin(),
       new webpack.optimize.UglifyJsPlugin({ compress: { screw_ie8: true, warnings: VERBOSE } })
     ]),
     new HtmlWebpackPlugin({
@@ -41,28 +39,15 @@ module.exports = {
     ])
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: ['babel']
-      },
-      {
-        test: /\.css?$/,
-        loaders: [ 'style', 'raw' ],
-        include: __dirname
+        use: ['babel-loader']
       },
       {
         test: /\.html$/,
         loader: 'file?name=[name].[ext]'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json'
-      },
-      {
-        test: /\.yaml$/,
-        loader: 'yaml',
       }
     ]
   }
