@@ -4,7 +4,7 @@ package app.himawari.dto.json
 import com.fasterxml.jackson.annotation.JsonInclude
 
 /**
- * Request
+ * 日次情報登録パラメータ
  * @property days 日次情報リスト
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

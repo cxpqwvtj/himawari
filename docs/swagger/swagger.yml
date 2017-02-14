@@ -13,7 +13,7 @@ paths:
       operationId: Api0001
       summary: API0001:開始/終了時間取得
       description: |
-        対象月の日毎の開始/終了日時の一覧を返します。
+        対象月の日次の開始/終了日時の一覧を返します。
       tags:
         - timecard
       parameters:
@@ -31,7 +31,7 @@ paths:
         200:
           description: Successful response
           schema:
-            title: Timecard
+            title: 対象月の日次の開始/終了日時
             type: object
             properties:
               yearMonth:
@@ -62,7 +62,7 @@ paths:
                       type: string
   /user/days:
     post:
-      summary: API0002:日次データ登録
+      summary: API0002:日次情報登録
       description: 日単位の開始、終了時間を登録します。
       tags:
         - timecard
@@ -70,7 +70,7 @@ paths:
         - name: StartEndDatetimes
           in: body
           schema:
-            title: Request
+            title: 日次情報登録パラメータ
             type: object
             properties:
               days:

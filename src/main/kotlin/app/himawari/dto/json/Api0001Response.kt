@@ -4,7 +4,7 @@ package app.himawari.dto.json
 import com.fasterxml.jackson.annotation.JsonInclude
 
 /**
- * Timecard
+ * 対象月の日次の開始/終了日時
  * @property yearMonth 年月
  * @property days 日次データ
  */

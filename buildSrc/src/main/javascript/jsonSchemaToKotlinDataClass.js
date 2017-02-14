@@ -64,7 +64,7 @@ const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
     const itemsTitle = jsonDef.getIn(['items', 'title']) || ''
     const className = itemsTitle.includes(':') ? itemsTitle.split(':')[0] : propertyName
     return [
-      `${generateClassComment(propertyName, jsonDef, depth + 1)}`,
+      `${generateClassComment(className, jsonDef, depth + 1)}`,
       `${indent}@JsonInclude(JsonInclude.Include.NON_NULL)\n`,
       `${indent}data class ${className[0].toUpperCase()}${className.substring(1)}(${generateVariable(propertyName, jsonDef, depth + 2)})`,
       `${inner}`
@@ -206,7 +206,7 @@ const promises = schemaDefFiles.filter((v) => v.endsWith('.yml')).map((fileName)
         const generate = (param) => {
           const schema = param.object.get('schema')
           const schemaName = `${param.apiName}${param.type === 'Request' ? 'Request' : 'Response'}`
-          console.log(`generate ${schemaName}. [param.path]${param.path} [${param.method}]${param.type}...`) // eslint-disable-line no-console
+          console.log(`generate ${schemaName}. ${param.path} [${param.method.toUpperCase()}]${param.type}...`) // eslint-disable-line no-console
           // サンプルJSON作成
           const json = exampleJson(schemaName, schema, 1).toJS()
           const jsonFileName = `${schemaName}.json`
