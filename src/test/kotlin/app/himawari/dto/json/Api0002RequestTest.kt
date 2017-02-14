@@ -11,7 +11,7 @@ internal class Api0002RequestTest {
     @Test
     fun fullProperty() {
         val api0002Request = Api0002Request().apply {
-            days = listOf(Api0002Request.Days().apply {
+            days = listOf(Api0002Request.Day().apply {
                 bizDate = ""
                 startDatetime = ""
                 endDatetime = ""

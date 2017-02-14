@@ -60,7 +60,15 @@ const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
       return generateKotlinDataClass(k, v, depth + 1)
     }).filter(v => v).map(v => `\n${v}`).join('')
     const inner = children === '' ? '' : ` {${children}\n${indent}}`
-    return `${generateClassComment(propertyName, jsonDef, depth + 1)}${indent}@JsonInclude(JsonInclude.Include.NON_NULL)\n${indent}data class ${propertyName[0].toUpperCase()}${propertyName.substring(1)}(${generateVariable(propertyName, jsonDef, depth + 2)})${inner}`
+    // arrayの場合は、titleに":"があれば、その手前をクラス名とする
+    const itemsTitle = jsonDef.getIn(['items', 'title']) || ''
+    const className = itemsTitle.includes(':') ? itemsTitle.split(':')[0] : propertyName
+    return [
+      `${generateClassComment(propertyName, jsonDef, depth + 1)}`,
+      `${indent}@JsonInclude(JsonInclude.Include.NON_NULL)\n`,
+      `${indent}data class ${className[0].toUpperCase()}${className.substring(1)}(${generateVariable(propertyName, jsonDef, depth + 2)})`,
+      `${inner}`
+    ].join('')
   }
 }
 
@@ -81,7 +89,10 @@ const generateVariable = (propertyName, jsonDef, depth) => {
       } else if (jsonType === 'boolean') {
         return 'Boolean'
       } else if (jsonType === 'object') {
-        return `${k[0].toUpperCase()}${k.substring(1)}`
+        // arrayの場合は、titleに":"があれば、その手前をクラス名とする
+        const itemsTitle = v.getIn(['items', 'title']) || ''
+        const className = itemsTitle.includes(':') ? itemsTitle.split(':')[0] : k
+        return `${className[0].toUpperCase()}${className.substring(1)}`
       } else if (jsonType === 'array') {
         return 'List'
       }
@@ -140,7 +151,10 @@ const generateKotlinTestVariable = (propertyName, jsonDef, depth) => {
   const indent = Immutable.Range(0, depth).map(() => '    ').join('')
   const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties']) || Immutable.fromJS({})
   return properties.map((v, k) => {
-    const className = `${propertyName}.${k[0].toUpperCase()}${k.substring(1)}`
+    // arrayの場合は、titleに":"があれば、その手前をクラス名とする
+    const itemsTitle = v.getIn(['items', 'title']) || ''
+    const simpleClassName = itemsTitle.includes(':') ? itemsTitle.split(':')[0] : k
+    const className = `${propertyName}.${simpleClassName[0].toUpperCase()}${simpleClassName.substring(1)}`
     const type = v.getIn(['type', 0]) || v.get('type')
     const itemType = v.getIn(['items', 'type', 0]) || v.getIn(['items', 'type'])
     if (type === 'object') {

@@ -74,10 +74,10 @@ paths:
             type: object
             properties:
               days:
-                title: 日次データ
+                title: 日次情報リスト
                 type: array
                 items:
-                  title: Day
+                  title: Day:日次情報
                   type: object
                   properties:
                     bizDate:
