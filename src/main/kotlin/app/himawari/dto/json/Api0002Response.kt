@@ -10,5 +10,11 @@ import com.fasterxml.jackson.annotation.JsonInclude
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class Api0002Response(
-        var resultType: String = "",
-        var message: String? = null)
+        var resultType: ResultType = ResultType.success,
+        var message: String? = null) {
+
+    enum class ResultType(val description: String) {
+        success(""),
+        failure("")
+    }
+}

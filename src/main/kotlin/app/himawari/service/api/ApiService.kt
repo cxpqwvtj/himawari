@@ -70,7 +70,7 @@ class ApiService(
         dailyStartEndBhv.batchInsert(entities)
         // TODO: 結果を設定する
         return Api0002Response().apply {
-            resultType = "SUCCESS"
+            resultType = Api0002Response.ResultType.success
         }
     }
 }

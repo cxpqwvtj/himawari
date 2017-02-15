@@ -23,6 +23,15 @@ data class Api0002Request(
             var bizDate: String = "",
             var startDatetime: String? = null,
             var endDatetime: String? = null,
-            var vacationType: String? = null,
-            var note: String? = null)
+            var vacationType: VacationType? = null,
+            var note: String? = null) {
+    
+        enum class VacationType(val description: String) {
+            PAID_DAY_OFF("有給休暇"),
+            SP_DAY_OFF("特別休暇"),
+            AM_OFF("AM休"),
+            PM_OFF("PM休"),
+            TRANSFER_DAY_OFF("振替休暇")
+        }
+    }
 }
