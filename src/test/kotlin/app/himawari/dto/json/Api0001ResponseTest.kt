@@ -12,11 +12,11 @@ internal class Api0001ResponseTest {
     fun fullProperty() {
         val api0001Response = Api0001Response().apply {
             yearMonth = ""
-            days = listOf(Api0001Response.Days().apply {
+            days = listOf(Api0001Response.Day().apply {
                 bizDate = ""
                 startDatetime = ""
                 endDatetime = ""
-                vacationTypeCode = Api0001Response.Days.VacationTypeCode.PAID_DAY_OFF
+                vacationTypeCode = Api0001Response.Day.VacationTypeCode.PAID_DAY_OFF
                 note = ""
             })
         }

@@ -33,13 +33,16 @@ class ApiService(
         return Api0001Response().apply {
             this.yearMonth = yearMonth.format(DateTimeFormatter.ofPattern("yyyyMM").withZone(appDate.zoneId()))
             days = list.map { day ->
-                Api0001Response.Days().apply {
+                Api0001Response.Day().apply {
                     bizDate = day.bizDate.format(DateTimeFormatter.ISO_DATE.withZone(appDate.zoneId()))
                     day.dailyStartEndAsCurrentValue.ifPresent {
                         startDatetime = appDate.toZonedDateTime(it.startDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                     }
                     day.dailyStartEndAsCurrentValue.ifPresent {
                         endDatetime = appDate.toZonedDateTime(it.endDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
+                    }
+                    day.dailyStartEndAsCurrentValue.ifPresent {
+                        vacationTypeCode = if (it.vacationTypeCode == null) null else Api0001Response.Day.VacationTypeCode.valueOf(it.vacationTypeCode)
                     }
                     day.dailyStartEndAsCurrentValue.ifPresent { note = it.note }
                 }
@@ -64,6 +67,7 @@ class ApiService(
                 timecardDayId = timecardDay.timecardDayId
                 startDatetime = appDate.toLocalDateTime(day.startDatetime ?: "")
                 endDatetime = appDate.toLocalDateTime(day.endDatetime ?: "")
+                vacationTypeCode = day.vacationTypeCode?.name
                 note = day.note
             }
         }

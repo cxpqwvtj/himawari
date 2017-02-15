@@ -38,9 +38,10 @@ paths:
                 title: 年月
                 type: string
               days:
-                title: 日次データ
+                title: 日次情報
                 type: array
                 items:
+                  title: Day:日次情報
                   type: object
                   properties:
                     bizDate:
@@ -92,7 +93,7 @@ paths:
                       title: 終了日時
                       description: yyyy-MM-ddTHH:mm:dd:ssZ
                       type: string
-                    vacationType:
+                    vacationTypeCode:
                       $ref: '#/definitions/VacationType'
                     note:
                       title: 備考

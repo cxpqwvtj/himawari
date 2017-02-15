@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 対象月の日次の開始/終了日時
  * @property yearMonth 年月
- * @property days 日次データ
+ * @property days 日次情報
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class Api0001Response(
         var yearMonth: String? = null,
-        var days: List<Days>? = null) {
+        var days: List<Day>? = null) {
     /**
-     * 日次データ
+     * 日次情報
      * @property bizDate 業務日
      * @property startDatetime 開始日時
      * @property endDatetime 終了日時
@@ -21,7 +21,7 @@ data class Api0001Response(
      * @property note 備考
      */
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    data class Days(
+    data class Day(
             var bizDate: String? = null,
             var startDatetime: String? = null,
             var endDatetime: String? = null,
