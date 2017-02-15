@@ -46,8 +46,8 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.html$/,
-        loader: 'file?name=[name].[ext]'
+        test: /\.ejs$/,
+        loader: 'ejs-loader'
       }
     ]
   }
