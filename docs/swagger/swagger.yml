@@ -131,8 +131,8 @@ definitions:
       - PM_OFF
       - TRANSFER_DAY_OFF
     description: |
-      01,有給休暇
-      02,特別休暇
-      03,AM休
-      04,PM休
-      05,振替休暇
+      有給休暇
+      特別休暇
+      AM休
+      PM休
+      振替休暇
