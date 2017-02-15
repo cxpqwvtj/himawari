@@ -59,7 +59,28 @@ const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
     const children = properties.map((v, k) => {
       return generateKotlinDataClass(k, v, depth + 1)
     }).filter(v => v).map(v => `\n${v}`).join('')
-    const inner = children === '' ? '' : ` {${children}\n${indent}}`
+    const enumMap = properties.map(v => {
+      const enumList = v.get('enum')
+      if (enumList) {
+        const descriptions = Immutable.fromJS(v.get('description', '').split('\n').filter(v => v))
+        return enumList.toOrderedMap().flip().map((v) => {
+          return descriptions.get(v, '')
+        })
+      }
+    }).filter(v => v)
+    const enums = enumMap.map((v, k) => {
+      const values = v.map((v, k) => {
+        return `${k}("${v}")`
+      })
+      const enumClassName = `${k[0].toUpperCase()}${k.substring(1)}`
+      return ['',
+        `${indent}    enum class ${enumClassName}(val description: String) {`,
+        `${indent}        ${values.join(`,\n${indent}        `)}`,
+        `${indent}    }\n`
+      ].join('\n')
+    }).join('')
+    const inner = children === '' && enums === '' ? '' : ` {${children}\n${indent}${enums}${indent}}`
+
     // arrayの場合は、titleに":"があれば、その手前をクラス名とする
     const itemsTitle = jsonDef.getIn(['items', 'title']) || ''
     const className = itemsTitle.includes(':') ? itemsTitle.split(':')[0] : propertyName
@@ -67,7 +88,7 @@ const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
       `${generateClassComment(className, jsonDef, depth + 1)}`,
       `${indent}@JsonInclude(JsonInclude.Include.NON_NULL)\n`,
       `${indent}data class ${className[0].toUpperCase()}${className.substring(1)}(${generateVariable(propertyName, jsonDef, depth + 2)})`,
-      `${inner}`
+      inner
     ].join('')
   }
 }
@@ -80,7 +101,7 @@ const generateVariable = (propertyName, jsonDef, depth) => {
     const requiredMark = requiredField ? '' : '?'
     const type = v.getIn(['type', 0]) || v.get('type')
     const convertTypeJsonToKotlin = (jsonType) => {
-      if (jsonType === 'string') {
+      if (jsonType === 'string' && v.get('enum') === undefined) {
         return 'String'
       } else if (jsonType === 'integer') {
         return 'Int'
@@ -88,7 +109,7 @@ const generateVariable = (propertyName, jsonDef, depth) => {
         return 'Float'
       } else if (jsonType === 'boolean') {
         return 'Boolean'
-      } else if (jsonType === 'object') {
+      } else if (jsonType === 'object' || (jsonType === 'string' && v.get('enum'))) {
         // arrayの場合は、titleに":"があれば、その手前をクラス名とする
         const itemsTitle = v.getIn(['items', 'title']) || ''
         const className = itemsTitle.includes(':') ? itemsTitle.split(':')[0] : k
@@ -98,7 +119,9 @@ const generateVariable = (propertyName, jsonDef, depth) => {
       }
     }
     const className = convertTypeJsonToKotlin(type)
-    if (type === 'object') {
+    if (type === 'string' && v.get('enum')) {
+      return `${indent}var ${k}: ${className}${requiredMark} = ${requiredField ? `${className}.${v.getIn(['enum', 0])}` : 'null'}`
+    } else if (type === 'object') {
       return `${indent}var ${k}: ${className}${requiredMark} = ${requiredField ? `${className}()` : 'null'}`
     } else if (type === 'array') {
       const itemType = v.getIn(['items', 'type', 0]) || v.getIn(['items', 'type'])
@@ -174,6 +197,9 @@ const generateKotlinTestVariable = (propertyName, jsonDef, depth) => {
         console.log(`[テストクラス生成(array)]不明な型定義です。${itemType}`) // eslint-disable-line no-console
       }
     } else if (type === 'string') {
+      if (v.get('enum')) {
+        return `${indent}${k} = ${className}.${v.getIn(['enum', 0])}`
+      }
       return `${indent}${k} = ""`
     } else if (type === 'integer') {
       return `${indent}${k} = 0`
