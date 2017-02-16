@@ -14,7 +14,7 @@ paths:
       description: |
         ログインユーザーに対応する対象月の日次の開始/終了日時の一覧を返します。
       tags:
-        - timecard
+        - user
       parameters:
         - name: yearMonth
           in: path
@@ -40,7 +40,7 @@ paths:
         管理者権限のみアクセス可能です。
         対象月の日次の開始/終了日時の一覧を返します。
       tags:
-        - timecard
+        - admin
       parameters:
         - name: userId
           in: path
@@ -69,7 +69,7 @@ paths:
       summary: API0002:日次情報登録
       description: 日単位の開始、終了時間を登録します。
       tags:
-        - timecard
+        - user
       parameters:
         - name: StartEndDatetimes
           in: body
