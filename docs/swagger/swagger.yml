@@ -8,11 +8,36 @@ produces:
   - application/json
 
 paths:
-  /users/{userId}/timecards/{yearMonth}:
+  /timecards/{yearMonth}:
     get:
-      operationId: Api0001
       summary: API0001:開始/終了時間取得
       description: |
+        ログインユーザーに対応する対象月の日次の開始/終了日時の一覧を返します。
+      tags:
+        - timecard
+      parameters:
+        - name: yearMonth
+          in: path
+          description: 年月(yyyyMM)
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: 対象月の日次の開始/終了日時
+            type: object
+            properties:
+              yearMonth:
+                title: 年月
+                type: string
+              days:
+                $ref: '#/definitions/Days'
+  /users/{userId}/timecards/{yearMonth}:
+    get:
+      summary: API1001:開始/終了時間取得
+      description: |
+        管理者権限のみアクセス可能です。
         対象月の日次の開始/終了日時の一覧を返します。
       tags:
         - timecard

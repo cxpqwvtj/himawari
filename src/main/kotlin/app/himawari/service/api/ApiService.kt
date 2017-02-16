@@ -1,8 +1,8 @@
 package app.himawari.service.api
 
-import app.himawari.dto.json.Api0001Response
 import app.himawari.dto.json.Api0002Request
 import app.himawari.dto.json.Api0002Response
+import app.himawari.dto.json.Api1001Response
 import app.himawari.exbhv.DailyStartEndBhv
 import app.himawari.exbhv.TimecardDayBhv
 import app.himawari.exentity.DailyStartEnd
@@ -23,17 +23,17 @@ class ApiService(
         private val timecardDayBhv: TimecardDayBhv,
         private val dailyStartEndBhv: DailyStartEndBhv
 ) {
-    fun selectMonthlyInOutData(userId: String, yearMonth: LocalDate): Api0001Response {
+    fun selectMonthlyInOutData(userId: String, yearMonth: LocalDate): Api1001Response {
         val list = timecardDayBhv.selectList { cb ->
             cb.setupSelect_DailyStartEndAsCurrentValue()
             cb.query().setBizDate_FromTo(yearMonth, yearMonth, { option -> option.compareAsMonth() })
             cb.query().queryMember().setMemberAccountId_Equal(userId)
             cb.query().addOrderBy_BizDate_Asc()
         }
-        return Api0001Response().apply {
+        return Api1001Response().apply {
             this.yearMonth = yearMonth.format(DateTimeFormatter.ofPattern("yyyyMM").withZone(appDate.zoneId()))
             days = list.map { day ->
-                Api0001Response.Day().apply {
+                Api1001Response.Day().apply {
                     bizDate = day.bizDate.format(DateTimeFormatter.ISO_DATE.withZone(appDate.zoneId()))
                     day.dailyStartEndAsCurrentValue.ifPresent {
                         startDatetime = appDate.toZonedDateTime(it.startDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
@@ -42,7 +42,7 @@ class ApiService(
                         endDatetime = appDate.toZonedDateTime(it.endDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                     }
                     day.dailyStartEndAsCurrentValue.ifPresent {
-                        vacationTypeCode = if (it.vacationTypeCode == null) null else Api0001Response.Day.VacationTypeCode.valueOf(it.vacationTypeCode)
+                        vacationTypeCode = if (it.vacationTypeCode == null) null else Api1001Response.Day.VacationTypeCode.valueOf(it.vacationTypeCode)
                     }
                     day.dailyStartEndAsCurrentValue.ifPresent { note = it.note }
                 }
