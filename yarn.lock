@@ -2290,14 +2290,7 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-fsevents@^1.0.0:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.0.15.tgz#fa63f590f3c2ad91275e4972a6cea545fb0aae44"
-  dependencies:
-    nan "^2.3.0"
-    node-pre-gyp "^0.6.29"
-
-fsevents@^1.0.17:
+fsevents@^1.0.0, fsevents@^1.0.17:
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.0.17.tgz#8537f3f12272678765b4fd6528c0f1f66f8f4558"
   dependencies:
@@ -5232,9 +5225,9 @@ webpack-dev-middleware@^1.10.0:
     path-is-absolute "^1.0.0"
     range-parser "^1.0.3"
 
-webpack-hot-middleware@^2.16.1:
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.16.1.tgz#ae209bcab2b9b672f1b0fdcf6c5c2a680ff118e1"
+webpack-hot-middleware@^2.17.0:
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.17.0.tgz#5af55fd2bc2f9a4392edd553f2a0fbebd4d75e78"
   dependencies:
     ansi-html "0.0.6"
     html-entities "^1.2.0"
