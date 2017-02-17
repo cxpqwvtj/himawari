@@ -16,7 +16,7 @@ var port = 3000
 var compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
 app.use(webpackHotMiddleware(compiler))
-if (!!process.env.SERVER_MOCK) {
+if (process.env.SERVER_MOCK === 'true') {
   app.post('/api/trail/create', function(req, res) {
     console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`) // eslint-disable-line no-console
     //res.status(500)
