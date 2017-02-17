@@ -13,6 +13,8 @@ services:
       - ../../dbflute_himawari/schema:/app/dbflute_himawari/schema
       - ../../dbflute_himawari/build.properties:/app/dbflute_himawari/build.properties
       - ../../src:/app/src
+    environment:
+      - TZ=Asia/Tokyo
     external_links:
       - himawari_mysql_1:mysqlhost
     networks:
