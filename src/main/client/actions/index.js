@@ -1,3 +1,5 @@
+import { ROUTES, HTTP_METHOD } from '../constants'
+
 const REQUEST = 'REQUEST'
 const SUCCESS = 'SUCCESS'
 const FAILURE = 'FAILURE'
@@ -11,6 +13,21 @@ function createRequestTypes(base) {
 
 function action(type, payload = {}) {
   return {type, payload}
+}
+
+export const TIMECARD_LOAD_TYPES = createRequestTypes('TIMECARD_LOAD')
+export const timecardLoadTypes = {
+  request: (param) => action(TIMECARD_LOAD_TYPES.REQUEST, {param}),
+  success: (param, response) => action(TIMECARD_LOAD_TYPES.SUCCESS, {param, response}),
+  failure: (param, error) => action(TIMECARD_LOAD_TYPES.FAILURE, {param, error}),
+}
+export const TIMECARD_LOAD_ACTION = 'TIMECARD_LOAD_ACTION'
+export const timecardLoadAction = (yearMonth) => {
+  const param = {
+    endpoint: ROUTES.USER_TIMECARD(yearMonth),
+    method: HTTP_METHOD.GET
+  }
+  return action(TIMECARD_LOAD_ACTION, param)
 }
 
 export const LOGOUT_REQUEST = createRequestTypes('LOGOUT_REQUEST')

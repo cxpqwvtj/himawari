@@ -12,6 +12,13 @@ function mockSettingDefinition(state = {}, action) {
   return state
 }
 
+function api(state = {}, action) {
+  if (action.type === Actions.TIMECARD_LOAD_ACTION) {
+    return Object.assign({}, state, action.payload)
+  }
+  return state
+}
+
 const rootReducer = combineReducers({
   routing,
   form: formReducer.plugin({
@@ -42,7 +49,8 @@ const rootReducer = combineReducers({
       return state
     }
   }),
-  mockSettingDefinition
+  mockSettingDefinition,
+  api
 })
 
 export default rootReducer
