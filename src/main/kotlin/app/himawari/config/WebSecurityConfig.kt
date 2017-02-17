@@ -54,12 +54,17 @@ open class WebSecurityConfig(
 
     @Configuration
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-    open class FormLoginWebSecurityConfigurerAdapter : WebSecurityConfigurerAdapter() {
+    open class FormLoginWebSecurityConfigurerAdapter(
+            @Value("\${spring.profiles.active}") private val activeProfile: String
+    ) : WebSecurityConfigurerAdapter() {
         override fun configure(httpSecurity: HttpSecurity) {
             http.authorizeRequests().anyRequest().authenticated()
                     .and().formLogin()//.loginPage("/login").permitAll()
                     .and().logout().permitAll()
             http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            if (activeProfile == "dev") {
+                http.csrf().disable()
+            }
         }
     }
 }
