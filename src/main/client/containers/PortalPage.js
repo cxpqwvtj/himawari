@@ -28,57 +28,17 @@ class PortalPage extends AppBaseComponent {
           <RaisedButton label='mock setting' onClick={() => {super.handleUrlChange(ROUTES.MOCK_SETTING)}} />
         </div>
         <div style={{margin: '10px'}}>
-          <RaisedButton label='logout' onClick={() => {this.props.actions.logoutAction()}} />
+          <RaisedButton href='/swagger-ui' label='swagger-ui' />
         </div>
         <div style={{margin: '10px'}}>
-          <a href='/swagger-ui'>swagger-ui</a>
+          <RaisedButton href='/swagger-editor/#/?import=/swagger/swagger.yml' label='swagger-editor' />
         </div>
         <div style={{margin: '10px'}}>
-          <a href='/swagger-editor/#/?import=/swagger/swagger.yml'>swagger-editor</a>
+          <RaisedButton href='/login' label='ログイン' />
         </div>
-        <div>
-          <Table>
-            <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-              <TableRow>
-                <TableHeaderColumn>年月日</TableHeaderColumn>
-                <TableHeaderColumn>開始時間</TableHeaderColumn>
-                <TableHeaderColumn>終了時間</TableHeaderColumn>
-                <TableHeaderColumn>休暇タイプ</TableHeaderColumn>
-                <TableHeaderColumn>備考</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false}>
-              <TableRow>
-                <TableRowColumn>1</TableRowColumn>
-                <TableRowColumn>John Smith</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>2</TableRowColumn>
-                <TableRowColumn>Randal White</TableRowColumn>
-                <TableRowColumn>Unemployed</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>3</TableRowColumn>
-                <TableRowColumn>Stephanie Sanders</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>4</TableRowColumn>
-                <TableRowColumn>Steve Brown</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
+        <form action='/logout' method='POST' style={{margin: '10px'}}>
+          <RaisedButton type='submit' label='ログアウト' />
+        </form>
       </div>
     )
   }
