@@ -1,4 +1,4 @@
-import { ROUTES, HTTP_METHOD } from '../constants'
+import { API_URL, HTTP_METHOD } from '../constants'
 
 const REQUEST = 'REQUEST'
 const SUCCESS = 'SUCCESS'
@@ -24,7 +24,7 @@ export const timecardLoadTypes = {
 export const TIMECARD_LOAD_ACTION = 'TIMECARD_LOAD_ACTION'
 export const timecardLoadAction = (yearMonth) => {
   const param = {
-    endpoint: ROUTES.USER_TIMECARD(yearMonth),
+    endpoint: API_URL.USER_TIMECARD(yearMonth),
     method: HTTP_METHOD.GET
   }
   return action(TIMECARD_LOAD_ACTION, param)

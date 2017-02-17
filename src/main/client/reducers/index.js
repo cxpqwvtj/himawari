@@ -13,8 +13,8 @@ function mockSettingDefinition(state = {}, action) {
 }
 
 function api(state = {}, action) {
-  if (action.type === Actions.TIMECARD_LOAD_ACTION) {
-    return Object.assign({}, state, action.payload)
+  if (action.payload && action.payload.response) {
+    return Object.assign({}, state, {[action.type]: action.payload.response})
   }
   return state
 }

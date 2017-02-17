@@ -24,8 +24,7 @@ function callApi(requestParam) {
       }
 
       return Object.assign({},
-        json,
-        { someone: 'someone' }
+        json
       )
     })
     .then(
