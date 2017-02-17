@@ -32,7 +32,10 @@ if (process.env.SERVER_MOCK === 'true') {
     res.json({})
   })
 } else {
-  app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: false}))
+  const appSrv = proxy({target: 'http://localhost:8080', changeOrigin: false})
+  app.use('/api', appSrv)
+  app.use('/login', appSrv)
+  app.use('/logout', appSrv)
 }
 
 app.get('/**', function(req, res) {
