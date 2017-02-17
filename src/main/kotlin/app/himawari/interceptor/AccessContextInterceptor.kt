@@ -21,7 +21,7 @@ class AccessContextInterceptor(
 ) {
 
     @Around("execution(* app.himawari.controller..*.*(..))")
-    fun around(point: ProceedingJoinPoint): Any {
+    fun around(point: ProceedingJoinPoint): Any? {
         if (AccessContext.isExistAccessContextOnThread()) {
             // 既に設定されていたら何もしないで次へ
             // (二度呼び出しされたときのために念のため)
