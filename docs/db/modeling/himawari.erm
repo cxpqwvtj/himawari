@@ -446,6 +446,17 @@
 			<indexes>
 			</indexes>
 			<compound_unique_key_list>
+				<compound_unique_key>
+					<name>UQ_TIMECARD_DAY_MULTI_KEY</name>
+					<columns>
+						<column>
+							<column_id>table.TIMECARD_DAY.MEMBER_ID</column_id>
+						</column>
+						<column>
+							<column_id>table.TIMECARD_DAY.BIZ_DATE</column_id>
+						</column>
+					</columns>
+				</compound_unique_key>
 			</compound_unique_key_list>
 			<table_properties>
 			</table_properties>
