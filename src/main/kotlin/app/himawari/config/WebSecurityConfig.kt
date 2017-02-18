@@ -45,7 +45,7 @@ open class WebSecurityConfig(
         @Throws(Exception::class)
         override fun configure(http: HttpSecurity) {
             http.antMatcher("/api/**").authorizeRequests().anyRequest().hasRole("USER")
-                    .and().httpBasic()
+//                    .and().httpBasic()
             if (activeProfile == "dev") {
                 http.csrf().disable()
             }
