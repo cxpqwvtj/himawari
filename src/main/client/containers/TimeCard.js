@@ -39,12 +39,13 @@ class TimeCard extends AppBaseComponent {
       return res.get(v.format('YYYY-MM-DD')) || Immutable.fromJS({bizDate: v.format('YYYY-MM-DD')})
     })
     const rows = days.map((v, i) => {
-      const bizDate = moment(v.get('bizDate')).format('MM/DD(ddd)')
+      const bizDate = moment(v.get('bizDate'))
       const start = v.get('startDatetime') ? moment(v.get('startDatetime')).format('HH:mm') : ''
       const end = v.get('endDatetime') ? moment(v.get('endDatetime')).format('HH:mm') : ''
+      const backgroundColor = bizDate.weekday() === 0 ? '#e7bdbd': bizDate.weekday() === 6 ? '#a7d0eb' : undefined
       return (
-        <TableRow key={i}>
-          <TableRowColumn>{bizDate}</TableRowColumn>
+        <TableRow key={i} style={{backgroundColor}}>
+          <TableRowColumn>{bizDate.format('MM/DD(ddd)')}</TableRowColumn>
           <TableRowColumn>{start}</TableRowColumn>
           <TableRowColumn>{end}</TableRowColumn>
           <TableRowColumn>{v.get('vacationTypeCode')}</TableRowColumn>
