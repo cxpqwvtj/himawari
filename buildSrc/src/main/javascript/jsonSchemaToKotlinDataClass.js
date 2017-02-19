@@ -7,6 +7,8 @@ const Immutable = require('immutable')
 const config = require('./config')
 
 const schemaDir = path.join(__dirname, '/../../../../docs/swagger')
+const mainClassFileDir = `${config.mainPackageRoot}/${config.packageName.replace(/\./g, '/')}`
+const testClassFileDir = `${config.testPackageRoot}/${config.packageName.replace(/\./g, '/')}`
 
 const exampleJson = (propertyName, jsonDef) => {
   const type = jsonDef.getIn(['type', 0]) || jsonDef.get('type')
@@ -59,27 +61,7 @@ const generateKotlinDataClass = (propertyName, jsonDef, depth) => {
     const children = properties.map((v, k) => {
       return generateKotlinDataClass(k, v, depth + 1)
     }).filter(v => v).map(v => `\n${v}`).join('')
-    const enumMap = properties.map(v => {
-      const enumList = v.get('enum')
-      if (enumList) {
-        const descriptions = Immutable.fromJS(v.get('description', '').split('\n').filter(v => v))
-        return enumList.toOrderedMap().flip().map((v) => {
-          return descriptions.get(v, '')
-        })
-      }
-    }).filter(v => v)
-    const enums = enumMap.map((v, k) => {
-      const values = v.map((v, k) => {
-        return `${k}("${v}")`
-      })
-      const enumClassName = `${k[0].toUpperCase()}${k.substring(1)}`
-      return ['',
-        `${indent}    enum class ${enumClassName}(val description: String) {`,
-        `${indent}        ${values.join(`,\n${indent}        `)}`,
-        `${indent}    }\n`
-      ].join('\n')
-    }).join('')
-    const inner = children === '' && enums === '' ? '' : ` {${children}\n${indent}${enums}${indent}}`
+    const inner = children === '' ? '' : ` {${children}\n${indent}}`
 
     // arrayの場合は、titleに":"があれば、その手前をクラス名とする
     const itemsTitle = jsonDef.getIn(['items', 'title']) || ''
@@ -213,8 +195,22 @@ const generateKotlinTestVariable = (propertyName, jsonDef, depth) => {
   }).map(v => `\n${v}`).join('')
 }
 
+const enumDefinitions = (propertyName, jsonDef) => {
+  const type = jsonDef.getIn(['type', 0]) || jsonDef.get('type')
+  const itemType = jsonDef.getIn(['items', 'type', 0]) || jsonDef.getIn(['items', 'type'])
+  if (type === 'object' || (type === 'array' && itemType === 'object')) {
+    const properties = jsonDef.get('properties') || jsonDef.getIn(['items', 'properties'])
+    return properties.flatMap((v, k) => {
+      return enumDefinitions(k, v)
+    })
+  } else if (type === 'string' && jsonDef.get('enum')) {
+    return Immutable.OrderedMap({[propertyName]: jsonDef})
+  }
+}
+
 const schemaDefFiles = fs.readdirSync(schemaDir)
-const promises = schemaDefFiles.filter((v) => v.endsWith('.yml')).map((fileName) => {
+const enumDefs = Immutable.List.of().asMutable()
+const promises = schemaDefFiles.filter((v) => v.endsWith('swagger.yml')).map((fileName) => {
   return () => {
     return new Promise((resolve, reject) => {
       $RefParser.dereference(`${schemaDir}/${fileName}`, (err, schema) => {
@@ -227,12 +223,11 @@ const promises = schemaDefFiles.filter((v) => v.endsWith('.yml')).map((fileName)
           const isIndexed = Immutable.Iterable.isIndexed(value)
           return isIndexed ? value.toList() : value.toOrderedMap()
         })
-        const mainClassFileDir = `${config.mainPackageRoot}/${config.packageName.replace(/\./g, '/')}`
-        const testClassFileDir = `${config.testPackageRoot}/${config.packageName.replace(/\./g, '/')}`
         const generate = (param) => {
           const schema = param.object.get('schema')
           const schemaName = `${param.apiName}${param.type === 'Request' ? 'Request' : 'Response'}`
           console.log(`generate ${schemaName}. ${param.path} [${param.method.toUpperCase()}]${param.type}...`) // eslint-disable-line no-console
+          enumDefs.push(enumDefinitions(schemaName, schema))
           // サンプルJSON作成
           const json = exampleJson(schemaName, schema, 1).toJS()
           const jsonFileName = `${schemaName}.json`
@@ -269,7 +264,7 @@ const promises = schemaDefFiles.filter((v) => v.endsWith('.yml')).map((fileName)
         // メインクラスファイル掃除
         const mainClassFiles = fs.readdirSync(mainClassFileDir)
         mainClassFiles.map(mainClassFile => {
-          if (generateFiles.contains(mainClassFile)) {
+          if (generateFiles.contains(mainClassFile) || mainClassFile === config.enumDefFileName) {
             // 生成ファイルなので削除しない
           } else {
             fs.unlinkSync(`${mainClassFileDir}/${mainClassFile}`)
@@ -290,6 +285,39 @@ const promises = schemaDefFiles.filter((v) => v.endsWith('.yml')).map((fileName)
       })
     })
   }
+})
+
+promises.push(() => {
+  return new Promise((resolve) => {
+    console.log('generate enums.') // eslint-disable-line no-console
+    const enums = enumDefs.reduce((r, v) => {
+      return r.merge(v)
+    }, Immutable.OrderedMap()).map(v => {
+      const enumList = v.get('enum')
+      if (enumList) {
+        const descriptions = Immutable.fromJS(v.get('description', '').split('\n').filter(v => v))
+        return enumList.toOrderedMap().flip().map((v) => {
+          return descriptions.get(v, '')
+        })
+      }
+    }).filter(v => v).map((v, k) => {
+      const values = v.map((v, k) => {
+        return `${k}("${v}")`
+      })
+      const enumClassName = `${k[0].toUpperCase()}${k.substring(1)}`
+      return ['',
+        `enum class ${enumClassName}(val description: String) {`,
+        `    ${values.join(',\n    ')}`,
+        '}'
+      ].join('\n')
+    }).join('\n')
+    fs.writeFileSync(`${mainClassFileDir}/${config.enumDefFileName}`, [
+      '// Code generated by Node.js script',
+      `package ${config.packageName}`,
+      enums
+    ].join('\n'))
+    resolve()
+  })
 })
 
 promises.reduce((r, v) => r.then(v), Promise.resolve([]))

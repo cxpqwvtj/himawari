@@ -19,5 +19,6 @@ module.exports = Immutable.fromJS({
   outputHtmlDir: './docs/html',
   csvConvertPaths: [
     `${__dirname}/../../../../dbflute_himawari/playsql/data/common/csv/UTF-8`
-  ]
+  ],
+  enumDefFileName: 'ApiEnums.kt'
 }).mergeDeep(customConfig).toJS()
