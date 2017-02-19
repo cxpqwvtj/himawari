@@ -180,7 +180,7 @@ const generateKotlinTestVariable = (propertyName, jsonDef, depth) => {
       }
     } else if (type === 'string') {
       if (v.get('enum')) {
-        return `${indent}${k} = ${className}.${v.getIn(['enum', 0])}`
+        return `${indent}${k} = ${simpleClassName[0].toUpperCase()}${simpleClassName.substring(1)}.${v.getIn(['enum', 0])}`
       }
       return `${indent}${k} = ""`
     } else if (type === 'integer') {

@@ -1,8 +1,6 @@
 package app.himawari.service.api
 
-import app.himawari.dto.json.Api0002Request
-import app.himawari.dto.json.Api0002Response
-import app.himawari.dto.json.Api1001Response
+import app.himawari.dto.json.*
 import app.himawari.exbhv.DailyStartEndBhv
 import app.himawari.exbhv.TimecardDayBhv
 import app.himawari.exentity.DailyStartEnd
@@ -42,7 +40,7 @@ class ApiService(
                         endDatetime = appDate.toZonedDateTime(it.endDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                     }
                     day.dailyStartEndAsCurrentValue.ifPresent {
-                        vacationTypeCode = if (it.vacationTypeCode == null) null else Api1001Response.Day.VacationTypeCode.valueOf(it.vacationTypeCode)
+                        vacationTypeCode = if (it.vacationTypeCode == null) null else VacationTypeCode.valueOf(it.vacationTypeCode)
                     }
                     day.dailyStartEndAsCurrentValue.ifPresent { note = it.note }
                 }
@@ -74,7 +72,7 @@ class ApiService(
         dailyStartEndBhv.batchInsert(entities)
         // TODO: 結果を設定する
         return Api0002Response().apply {
-            resultType = Api0002Response.ResultType.success
+            resultType = ResultType.success
         }
     }
 }

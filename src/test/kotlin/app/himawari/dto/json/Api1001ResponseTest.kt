@@ -16,7 +16,7 @@ internal class Api1001ResponseTest {
                 bizDate = ""
                 startDatetime = ""
                 endDatetime = ""
-                vacationTypeCode = Api1001Response.Day.VacationTypeCode.PAID_DAY_OFF
+                vacationTypeCode = VacationTypeCode.PAID_DAY_OFF
                 note = ""
             })
         }

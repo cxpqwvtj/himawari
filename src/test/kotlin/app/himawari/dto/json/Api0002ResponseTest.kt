@@ -11,7 +11,7 @@ internal class Api0002ResponseTest {
     @Test
     fun fullProperty() {
         val api0002Response = Api0002Response().apply {
-            resultType = Api0002Response.ResultType.success
+            resultType = ResultType.success
             message = ""
         }
         println(ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(api0002Response))
