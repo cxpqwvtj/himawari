@@ -47,6 +47,20 @@ const rootReducer = combineReducers({
         }
       }
       return state
+    },
+    timecardEntry: (state={}, action) => {
+      if (action.type === Actions.INITIALIZE_TIMECARD_ENTRY) {
+        return {
+          ...state,
+          values: {
+            ...action.payload
+          },
+          fields: {
+            ...state.fields
+          }
+        }
+      }
+      return state
     }
   }),
   mockSettingDefinition,

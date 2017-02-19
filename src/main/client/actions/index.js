@@ -50,3 +50,6 @@ export const mockSettingDefinition = (def) => action(MOCK_SETTING_DEFINITION, {d
 
 export const CHANGE_SETTING_VALUE = 'CHANGE_SETTING_VALUE'
 export const changeSettingValue = (name, value) => action(CHANGE_SETTING_VALUE, {name, value})
+
+export const INITIALIZE_TIMECARD_ENTRY = 'INITIALIZE_TIMECARD_ENTRY'
+export const initializeTimecardEntry = (payload) => action(INITIALIZE_TIMECARD_ENTRY, payload)

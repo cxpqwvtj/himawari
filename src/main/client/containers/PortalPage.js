@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import moment from 'moment'
 
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import RaisedButton from 'material-ui/RaisedButton'
 
 import AppBaseComponent from '../components/AppBaseComponent'
@@ -19,7 +19,10 @@ class PortalPage extends AppBaseComponent {
     return (
       <div>
         <div style={{margin: '10px'}}>
-          <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD('201701'))}} />
+          <RaisedButton label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY)}} />
+        </div>
+        <div style={{margin: '10px'}}>
+          <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}} />
         </div>
         <div style={{margin: '10px'}}>
           <RaisedButton label='API' onClick={() => {super.handleUrlChange(ROUTES.API_SPEC)}} />

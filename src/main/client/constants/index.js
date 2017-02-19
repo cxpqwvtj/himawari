@@ -1,4 +1,5 @@
 export const ROUTES = {
+  TIMECARD_ENTRY: '/timecards/entry',
   USER_TIMECARD: (yearMonth) => `/timecards/${yearMonth}`,
   API_SPEC: '/dev/docs/api',
   MOCK_SETTING: '/dev/mock/setting'
