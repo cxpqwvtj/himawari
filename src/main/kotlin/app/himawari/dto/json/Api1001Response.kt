@@ -26,14 +26,5 @@ data class Api1001Response(
             var startDatetime: String? = null,
             var endDatetime: String? = null,
             var vacationTypeCode: VacationTypeCode? = null,
-            var note: String? = null) {
-    
-        enum class VacationTypeCode(val description: String) {
-            PAID_DAY_OFF("有給休暇"),
-            SP_DAY_OFF("特別休暇"),
-            AM_OFF("AM休"),
-            PM_OFF("PM休"),
-            TRANSFER_DAY_OFF("振替休暇")
-        }
-    }
+            var note: String? = null)
 }
