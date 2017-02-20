@@ -23,12 +23,12 @@ class TimeCardEntry extends AppBaseComponent {
     state: PropTypes.object.isRequired
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const bizDate = moment().startOf('day')
     this.props.actions.initializeTimecardEntry({
       entryDate: bizDate.clone().toDate(),
-      startDatetime: bizDate.clone().hour(9).toDate(),
-      endDatetime: bizDate.clone().hour(18).toDate()
+      startDatetime: bizDate.clone().hour(9).format('HH:MM'),
+      endDatetime: bizDate.clone().hour(18).format('HH:MM')
     })
   }
 
@@ -36,9 +36,15 @@ class TimeCardEntry extends AppBaseComponent {
     return (
       <div style={{margin: '10px'}}>
         <form>
-          <Field name="entryDate" component={DatePicker} format={null} container='inline' hintText="業務日"/>
-          <Field name="startDatetime" component={TimePicker} format={null} hintText="開始時間"/>
-          <Field name="endDatetime" component={TimePicker} format={null} hintText="終了時間"/>
+          <div>
+            <Field name="entryDate" component={DatePicker} format={null} container='inline' hintText="業務日"/>
+          </div>
+          <div>
+            <Field name="startDatetime" component={TextField} hintText="開始時間"/>
+          </div>
+          <div>
+            <Field name="endDatetime" component={TextField} hintText="終了時間"/>
+          </div>
         </form>
       </div>
     )

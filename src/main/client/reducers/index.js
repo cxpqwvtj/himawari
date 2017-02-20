@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 import Immutable from 'immutable'
+import moment from 'moment'
 
 import * as Actions from '../actions'
 
@@ -54,6 +55,17 @@ const rootReducer = combineReducers({
           ...state,
           values: {
             ...action.payload
+          },
+          fields: {
+            ...state.fields
+          }
+        }
+      } else if (action.meta && action.meta.form === 'timecardEntry' && action.type === '@@redux-form/BLUR') {
+        return {
+          ...state,
+          values: {
+            ...state.values,
+            [action.meta.field]: action.payload.length === 4 ? moment(action.payload, 'HHmm').format('HH:mm') : action.payload
           },
           fields: {
             ...state.fields
