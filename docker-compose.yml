@@ -23,7 +23,8 @@ services:
     links:
       - mysql:mysqlhost
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlhost:3306/himawari?useSSL=false
+      - TZ=Asia/Tokyo
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlhost:3306/himawari?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     command: ./gradlew bootRun
   himawari-client:
     build:
