@@ -21,8 +21,14 @@ class TimeCard extends AppBaseComponent {
     timecard: PropTypes.object
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.actions.timecardLoadAction(this.props.params.yearMonth)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.yearMonth !== this.props.params.yearMonth) {
+      this.props.actions.timecardLoadAction(nextProps.params.yearMonth)
+    }
   }
 
   render() {
@@ -59,14 +65,8 @@ class TimeCard extends AppBaseComponent {
     return (
       <div>
         <div>
-          <RaisedButton label='前月' style={buttonMargin} onClick={() => {
-            super.handleUrlChange(ROUTES.USER_TIMECARD(prevMonth))
-            this.props.actions.timecardLoadAction(prevMonth)
-          }} />
-          <RaisedButton label='次月' style={buttonMargin} onClick={() => {
-            super.handleUrlChange(ROUTES.USER_TIMECARD(nextMonth))
-            this.props.actions.timecardLoadAction(nextMonth)
-          }} />
+          <RaisedButton label='前月' style={buttonMargin} onClick={() => { super.handleUrlChange(ROUTES.USER_TIMECARD(prevMonth)) }} />
+          <RaisedButton label='次月' style={buttonMargin} onClick={() => { super.handleUrlChange(ROUTES.USER_TIMECARD(nextMonth)) }} />
         </div>
         <Toolbar>
           <ToolbarGroup>
