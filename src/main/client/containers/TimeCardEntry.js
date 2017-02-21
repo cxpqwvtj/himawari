@@ -37,13 +37,16 @@ class TimeCardEntry extends AppBaseComponent {
       <div style={{margin: '10px'}}>
         <form>
           <div>
-            <Field name="entryDate" component={DatePicker} format={null} container='inline' hintText="業務日"/>
+            <Field name="entryDate" component={DatePicker} format={null} container='inline' hintText="業務日" />
           </div>
           <div>
-            <Field name="startDatetime" component={TextField} hintText="開始時間"/>
+            <Field name="startDatetime" component={TextField} hintText="開始時間" />
           </div>
           <div>
-            <Field name="endDatetime" component={TextField} hintText="終了時間"/>
+            <Field name="endDatetime" component={TextField} hintText="終了時間" />
+          </div>
+          <div>
+            <RaisedButton label="登録" />
           </div>
         </form>
       </div>
