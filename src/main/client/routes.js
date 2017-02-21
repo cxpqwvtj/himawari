@@ -13,7 +13,7 @@ export default (
   <Route path={`${process.env.CONTEXT_PATH}/`} component={App}>
     <IndexRoute component={PortalPage} />
     <Route path='login' component={Login} />
-    <Route path='timecards/entry' component={TimeCardEntry} />
+    <Route path='timecards/entry(/:date)' component={TimeCardEntry} />
     <Route path='timecards(/:yearMonth)' component={TimeCard} />
     <Route path='dev/docs/api' component={ApiSpec} />
     <Route path='dev/mock/setting' component={MockSetting} />

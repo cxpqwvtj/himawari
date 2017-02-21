@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import Immutable from 'immutable'
 import moment from 'moment'
 
@@ -51,7 +52,7 @@ class TimeCard extends AppBaseComponent {
       const backgroundColor = bizDate.weekday() === 0 ? '#e7bdbd': bizDate.weekday() === 6 ? '#a7d0eb' : undefined
       return (
         <TableRow key={i} style={{backgroundColor}}>
-          <TableRowColumn>{bizDate.format('MM/DD(ddd)')}</TableRowColumn>
+          <TableRowColumn><Link to={ROUTES.TIMECARD_ENTRY(`/${bizDate.format('YYYYMMDD')}`)}>{bizDate.format('MM/DD(ddd)')}</Link></TableRowColumn>
           <TableRowColumn>{start}</TableRowColumn>
           <TableRowColumn>{end}</TableRowColumn>
           <TableRowColumn>{v.get('vacationTypeCode')}</TableRowColumn>
