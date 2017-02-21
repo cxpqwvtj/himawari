@@ -64,18 +64,19 @@ class TimeCardEntry extends AppBaseComponent {
 
   render() {
     const date = moment(this.props.params.get('date', moment().format('YYYYMMDD')), 'YYYYMMDD')
+    const dateColor = date.weekday() === 0 ? 'red': date.weekday() === 6 ? 'blue' : undefined
     return (
       <div style={{margin: '10px'}}>
         <RaisedButton label='一覧へ戻る' onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
         <form>
           <div>
-            <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' hintText="業務日" />
+            <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' floatingLabelText="業務日" inputStyle={{color: dateColor}} />
           </div>
           <div>
-            <Field name='startDatetime' component={TextField} hintText='開始時間' withRef ref={(input) => this.inputStartDatetime = input} />
+            <Field name='startDatetime' component={TextField} floatingLabelText='開始時間' hintText='09:00' withRef ref={(input) => this.inputStartDatetime = input} />
           </div>
           <div>
-            <Field name='endDatetime' component={TextField} hintText='終了時間' />
+            <Field name='endDatetime' component={TextField} floatingLabelText='終了時間' hintText='18:00' />
           </div>
           <div>
             <RaisedButton label='登録' onClick={() => {
