@@ -23,8 +23,8 @@ function* getTimecard(requestParam) {
   const day = state.getIn(['api', 'TIMECARD_LOAD_SUCCESS', 'days'], Immutable.List()).filter(v => v.get('bizDate', '') === moment(entryDate).format('YYYY-MM-DD')).first() || Immutable.Map()
   yield put(actions.initializeTimecardEntry({
     entryDate,
-    startDatetime: moment(day.get('startDatetime')).format('HH:mm'),
-    endDatetime: moment(day.get('endDatetime')).format('HH:mm')
+    startDatetime: day.get('startDatetime') ? moment(day.get('startDatetime')).format('HH:mm') : '',
+    endDatetime: day.get('endDatetime') ? moment(day.get('endDatetime')).format('HH:mm') : ''
   }))
 }
 function* watchGetTimecard() {
