@@ -28,15 +28,38 @@ class TimeCardEntry extends AppBaseComponent {
 
   componentWillMount() {
     const bizDate = moment(this.props.params.get('date', moment().format('YYYYMMDD')), 'YYYYMMDD').startOf('day')
-    this.props.actions.initializeTimecardEntry({
-      entryDate: bizDate.clone().toDate(),
-      startDatetime: bizDate.clone().hour(9).format('HH:mm'),
-      endDatetime: bizDate.clone().hour(18).format('HH:mm')
-    })
+    if (!this.props.state.getIn(['api', 'TIMECARD_LOAD_SUCCESS'])) {
+      this.props.actions.timecardLoadAction(bizDate.format('YYYYMM'))
+      this.props.actions.initializeTimecardEntry({entryDate: bizDate.clone().toDate()})
+    } else {
+      const day = this.props.state.getIn(['api', 'TIMECARD_LOAD_SUCCESS', 'days'], Immutable.List()).filter(v => v.get('bizDate') === bizDate.format('YYYY-MM-DD')).first() || Immutable.Map()
+      this.props.actions.initializeTimecardEntry({
+        entryDate: bizDate.clone().toDate(),
+        startDatetime: day.get('startDatetime') ? moment(day.get('startDatetime')).format('HH:mm') : '',
+        endDatetime: day.get('endDatetime') ? moment(day.get('endDatetime')).format('HH:mm') : ''
+      })
+    }
   }
 
   componentDidMount() {
+    this.selectStartDatetime()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.get('date') !== this.props.params.get('date')) {
+      const bizDate = moment(Immutable.fromJS(nextProps.params).get('date', moment().format('YYYYMMDD')), 'YYYYMMDD').startOf('day')
+      const day = this.props.state.getIn(['api', 'TIMECARD_LOAD_SUCCESS', 'days'], Immutable.List()).filter(v => v.get('bizDate') === bizDate.format('YYYY-MM-DD')).first() || Immutable.Map()
+      this.props.actions.initializeTimecardEntry({
+        entryDate: bizDate.clone().toDate(),
+        startDatetime: day.get('startDatetime') ? moment(day.get('startDatetime')).format('HH:mm') : '',
+        endDatetime: day.get('endDatetime') ? moment(day.get('endDatetime')).format('HH:mm') : ''
+      })
+    }
+  }
+
+  selectStartDatetime() {
     this.inputStartDatetime.getRenderedComponent().getRenderedComponent().focus()
+    this.inputStartDatetime.getRenderedComponent().getRenderedComponent().input.setSelectionRange(0, this.inputStartDatetime.getRenderedComponent().getRenderedComponent().input.value.length)
   }
 
   render() {
@@ -44,10 +67,9 @@ class TimeCardEntry extends AppBaseComponent {
     return (
       <div style={{margin: '10px'}}>
         <RaisedButton label='一覧へ戻る' onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
-        <RaisedButton label='focus' onClick={() => this.inputStartDatetime.getRenderedComponent().getRenderedComponent().focus()} />
         <form>
           <div>
-            <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => moment(date).format('YYYY/MM/DD(ddd)')} container='inline' hintText="業務日" />
+            <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' hintText="業務日" />
           </div>
           <div>
             <Field name='startDatetime' component={TextField} hintText='開始時間' withRef ref={(input) => this.inputStartDatetime = input} />
@@ -56,7 +78,10 @@ class TimeCardEntry extends AppBaseComponent {
             <Field name='endDatetime' component={TextField} hintText='終了時間' />
           </div>
           <div>
-            <RaisedButton label='登録' />
+            <RaisedButton label='登録' onClick={() => {
+              super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))
+              this.selectStartDatetime()
+            }} />
           </div>
         </form>
       </div>

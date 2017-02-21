@@ -1,4 +1,7 @@
 import { take, put, call, fork, select } from 'redux-saga/effects'
+import Immutable from 'immutable'
+import moment from 'moment'
+
 import { api } from '../services'
 import * as actions from '../actions'
 
@@ -15,6 +18,14 @@ function* fetchEntity(entity, apiFunction, param, url) {
 export const fetchTimecard = fetchEntity.bind(null, actions.timecardLoadTypes, api.fetchData)
 function* getTimecard(requestParam) {
   yield call(fetchTimecard, requestParam)
+  const state = yield select((state) => Immutable.fromJS(state))
+  const entryDate = state.getIn(['form', 'timecardEntry', 'values', 'entryDate'], moment().toDate())
+  const day = state.getIn(['api', 'TIMECARD_LOAD_SUCCESS', 'days'], Immutable.List()).filter(v => v.get('bizDate', '') === moment(entryDate).format('YYYY-MM-DD')).first() || Immutable.Map()
+  yield put(actions.initializeTimecardEntry({
+    entryDate,
+    startDatetime: moment(day.get('startDatetime')).format('HH:mm'),
+    endDatetime: moment(day.get('endDatetime')).format('HH:mm')
+  }))
 }
 function* watchGetTimecard() {
   while(true) {

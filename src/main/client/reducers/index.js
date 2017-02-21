@@ -22,6 +22,7 @@ function api(state = {}, action) {
 
 const rootReducer = combineReducers({
   routing,
+  api,
   form: formReducer.plugin({
     mockSettingForm: (state={}, action) => {
       if (action.type === Actions.CHANGE_SETTING_VALUE) {
@@ -61,11 +62,25 @@ const rootReducer = combineReducers({
           }
         }
       } else if (action.meta && action.meta.form === 'timecardEntry' && action.type === '@@redux-form/BLUR') {
+        const entryDate = moment(state.values.entryDate).startOf('day')
+        const value = (() => {
+          if (isNaN(parseInt(action.payload, 10))) {
+            return action.payload
+          }
+          if (action.payload.length === 1 || action.payload.length === 2) {
+            return entryDate.clone().hour(action.payload).format('HH:mm')
+          } else if (action.payload.length === 3) {
+            return entryDate.clone().hour(action.payload[0]).minute(action.payload.substring(1)).format('HH:mm')
+          } else if (action.payload.length === 4) {
+            return entryDate.clone().hour(action.payload.substring(0, 2)).minute(action.payload.substring(2)).format('HH:mm')
+          }
+          return action.payload
+        })()
         return {
           ...state,
           values: {
             ...state.values,
-            [action.meta.field]: action.payload.length === 4 ? moment(action.payload, 'HHmm').format('HH:mm') : action.payload
+            [action.meta.field]: value
           },
           fields: {
             ...state.fields
@@ -75,8 +90,7 @@ const rootReducer = combineReducers({
       return state
     }
   }),
-  mockSettingDefinition,
-  api
+  mockSettingDefinition
 })
 
 export default rootReducer
