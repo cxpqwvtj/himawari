@@ -66,7 +66,9 @@ class TimeCardEntry extends AppBaseComponent {
     const dateColor = date.weekday() === 0 ? 'red': date.weekday() === 6 ? 'blue' : undefined
     return (
       <div style={{margin: '10px'}}>
-        <RaisedButton label='一覧' onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
+        <RaisedButton label='一覧' style={{marginLeft: '10px'}} onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
+        <RaisedButton label='前日' style={{marginLeft: '10px'}} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(-1, 'days').format('YYYYMMDD')}`))} />
+        <RaisedButton label='翌日' style={{marginLeft: '10px'}} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))} />
         <form>
           <div>
             <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' floatingLabelText="業務日" inputStyle={{color: dateColor}} />
