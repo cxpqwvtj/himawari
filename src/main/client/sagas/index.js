@@ -4,6 +4,7 @@ import moment from 'moment'
 
 import { api } from '../services'
 import * as actions from '../actions'
+import { ENUMS } from '../constants'
 
 function* fetchEntity(entity, apiFunction, param, url) {
   yield put(entity.request(param))
@@ -34,19 +35,21 @@ function* watchGetTimecard() {
   }
 }
 
-const fetchTimecardEntry = fetchEntity.bind(null, actions.timecardEntryTypes, api.fetchData)
-function* postTimecardEntry(requestParam) {
+const entryTimecard = fetchEntity.bind(null, actions.timecardEntryTypes, api.fetchData)
+function* postTimecard(requestParam) {
   const state = yield select((state) => Immutable.fromJS(state))
   const entry = state.getIn(['form', 'timecardEntry', 'values'])
   const bizDate = moment(entry.get('entryDate')).format('YYYY-MM-DD') 
   const startDatetime = entry.get('startDatetime') ? moment(`${bizDate} ${entry.get('startDatetime')}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ssZ') : ''
   const endDatetime = entry.get('endDatetime') ? moment(`${bizDate} ${entry.get('endDatetime')}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ssZ') : ''
-  yield call(fetchTimecardEntry, Object.assign(requestParam, {body: {days: [{bizDate, startDatetime, endDatetime}]}}))
+  const vacationType = entry.get('vacationType') === ENUMS.VACATION_TYPE.NOTHING.name ? undefined : entry.get('vacationType')
+  const note = entry.get('note')
+  yield call(entryTimecard, Object.assign(requestParam, {body: {days: [{bizDate, startDatetime, endDatetime, vacationType, note}]}}))
 }
-function* watchPostTimecardEntry() {
+function* watchEntryTimecard() {
   while(true) {
     const requestParam = yield take(actions.TIMECARD_ENTRY_ACTION)
-    yield fork(postTimecardEntry, requestParam.payload)
+    yield fork(postTimecard, requestParam.payload)
   }
 }
 
@@ -64,7 +67,7 @@ function* watchLogout() {
 export default function* root() {
   yield [
     fork(watchGetTimecard),
-    fork(watchPostTimecardEntry),
+    fork(watchEntryTimecard),
     fork(watchLogout)
   ]
 }

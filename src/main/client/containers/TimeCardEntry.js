@@ -18,7 +18,7 @@ import TextFieldOrg from 'material-ui/TextField'
 import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
-import { ROUTES, WORDING } from '../constants'
+import { ROUTES, ENUMS } from '../constants'
 
 class TimeCardEntry extends AppBaseComponent {
   static propTypes = {
@@ -92,12 +92,12 @@ class TimeCardEntry extends AppBaseComponent {
           </div>
           <div>
             <Field name='vacationType' component={RadioButtonGroup}>
-              <RadioButton value='NOTHING' label={WORDING.VACATION_TYPE.NOTHING} />
-              <RadioButton value='PAID_DAY_OFF' label={WORDING.VACATION_TYPE.PAID_DAY_OFF} />
-              <RadioButton value='SP_DAY_OFF' label={WORDING.VACATION_TYPE.SP_DAY_OFF} />
-              <RadioButton value='AM_OFF' label={WORDING.VACATION_TYPE.AM_OFF} />
-              <RadioButton value='PM_OFF' label={WORDING.VACATION_TYPE.PM_OFF} />
-              <RadioButton value='TRANSFER_DAY_OFF' label={WORDING.VACATION_TYPE.TRANSFER_DAY_OFF} />
+              <RadioButton value='NOTHING' label={ENUMS.VACATION_TYPE.NOTHING.description} />
+              <RadioButton value='PAID_DAY_OFF' label={ENUMS.VACATION_TYPE.PAID_DAY_OFF.description} />
+              <RadioButton value='SP_DAY_OFF' label={ENUMS.VACATION_TYPE.SP_DAY_OFF.description} />
+              <RadioButton value='AM_OFF' label={ENUMS.VACATION_TYPE.AM_OFF.description} />
+              <RadioButton value='PM_OFF' label={ENUMS.VACATION_TYPE.PM_OFF.description} />
+              <RadioButton value='TRANSFER_DAY_OFF' label={ENUMS.VACATION_TYPE.TRANSFER_DAY_OFF.description} />
             </Field>
           </div>
         </form>

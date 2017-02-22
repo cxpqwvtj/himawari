@@ -13,7 +13,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
-import { ROUTES, WORDING } from '../constants'
+import { ROUTES, ENUMS } from '../constants'
 
 class TimeCard extends AppBaseComponent {
   static propTypes = {
@@ -50,12 +50,13 @@ class TimeCard extends AppBaseComponent {
       const start = v.get('startDatetime') ? moment(v.get('startDatetime')).format('HH:mm') : ''
       const end = v.get('endDatetime') ? moment(v.get('endDatetime')).format('HH:mm') : ''
       const backgroundColor = bizDate.weekday() === 0 ? '#e7bdbd': bizDate.weekday() === 6 ? '#a7d0eb' : undefined
+      const vacationTypeName = (ENUMS.VACATION_TYPE[v.get('vacationTypeCode')] || {}).description
       return (
         <TableRow key={i} style={{backgroundColor}}>
           <TableRowColumn><Link to={ROUTES.TIMECARD_ENTRY(`/${bizDate.format('YYYYMMDD')}`)}>{bizDate.format('MM/DD(ddd)')}</Link></TableRowColumn>
           <TableRowColumn>{start}</TableRowColumn>
           <TableRowColumn>{end}</TableRowColumn>
-          <TableRowColumn>{WORDING.VACATION_TYPE[v.get('vacationTypeCode')]}</TableRowColumn>
+          <TableRowColumn>{vacationTypeName}</TableRowColumn>
           <TableRowColumn>{v.get('note')}</TableRowColumn>
         </TableRow>
       )

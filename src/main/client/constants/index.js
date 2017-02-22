@@ -16,13 +16,31 @@ export const HTTP_METHOD = {
   POST: 'POST'
 }
 
-export const WORDING = {
+export const ENUMS = {
   VACATION_TYPE: {
-    NOTHING: '設定なし',
-    PAID_DAY_OFF: '有給休暇',
-    SP_DAY_OFF: '特別休暇',
-    AM_OFF: '午前休',
-    PM_OFF: '午後休',
-    TRANSFER_DAY_OFF: '振替休暇'
+    NOTHING: {
+      name: 'NOTHING',
+      description: '設定なし'
+    },
+    PAID_DAY_OFF: {
+      name: 'PAID_DAY_OFF',
+      description: '有給休暇'
+    },
+    SP_DAY_OFF: {
+      name: 'SP_DAY_OFF',
+      description: '特別休暇'
+    },
+    AM_OFF: {
+      name: 'AM_OFF',
+      description: '午前休'
+    },
+    PM_OFF: {
+      name: 'PM_OFF',
+      description: '午後休'
+    },
+    TRANSFER_DAY_OFF: {
+      name: 'TRANSFER_DAY_OFF',
+      description: '振替休暇'
+    }
   }
 }
