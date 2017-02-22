@@ -13,7 +13,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
-import { ROUTES } from '../constants'
+import { ROUTES, WORDING } from '../constants'
 
 class TimeCard extends AppBaseComponent {
   static propTypes = {
@@ -55,7 +55,7 @@ class TimeCard extends AppBaseComponent {
           <TableRowColumn><Link to={ROUTES.TIMECARD_ENTRY(`/${bizDate.format('YYYYMMDD')}`)}>{bizDate.format('MM/DD(ddd)')}</Link></TableRowColumn>
           <TableRowColumn>{start}</TableRowColumn>
           <TableRowColumn>{end}</TableRowColumn>
-          <TableRowColumn>{v.get('vacationTypeCode')}</TableRowColumn>
+          <TableRowColumn>{WORDING.VACATION_TYPE[v.get('vacationTypeCode')]}</TableRowColumn>
           <TableRowColumn>{v.get('note')}</TableRowColumn>
         </TableRow>
       )

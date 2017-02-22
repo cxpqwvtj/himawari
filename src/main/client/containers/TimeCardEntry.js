@@ -18,7 +18,7 @@ import TextFieldOrg from 'material-ui/TextField'
 import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
-import { ROUTES } from '../constants'
+import { ROUTES, WORDING } from '../constants'
 
 class TimeCardEntry extends AppBaseComponent {
   static propTypes = {
@@ -92,12 +92,12 @@ class TimeCardEntry extends AppBaseComponent {
           </div>
           <div>
             <Field name='vacationType' component={RadioButtonGroup}>
-              <RadioButton value='NOTHING' label='設定なし' />
-              <RadioButton value='PAID_DAY_OFF' label='有給休暇' />
-              <RadioButton value='SP_DAY_OFF' label='特別休暇' />
-              <RadioButton value='AM_OFF' label='午前休' />
-              <RadioButton value='PM_OFF' label='午後休' />
-              <RadioButton value='TRANSFER_DAY_OFF' label='振替休暇' />
+              <RadioButton value='NOTHING' label={WORDING.VACATION_TYPE.NOTHING} />
+              <RadioButton value='PAID_DAY_OFF' label={WORDING.VACATION_TYPE.PAID_DAY_OFF} />
+              <RadioButton value='SP_DAY_OFF' label={WORDING.VACATION_TYPE.SP_DAY_OFF} />
+              <RadioButton value='AM_OFF' label={WORDING.VACATION_TYPE.AM_OFF} />
+              <RadioButton value='PM_OFF' label={WORDING.VACATION_TYPE.PM_OFF} />
+              <RadioButton value='TRANSFER_DAY_OFF' label={WORDING.VACATION_TYPE.TRANSFER_DAY_OFF} />
             </Field>
           </div>
         </form>
