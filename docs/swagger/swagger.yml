@@ -79,6 +79,7 @@ paths:
             properties:
               days:
                 $ref: '#/definitions/Days'
+            required: [days]
       responses:
         200:
           description: 登録結果

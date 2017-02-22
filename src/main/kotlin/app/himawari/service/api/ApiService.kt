@@ -49,7 +49,7 @@ class ApiService(
     }
 
     fun createDailyStartEndHistory(user: HimawariUser, requestParam: Api0002Request): Api0002Response {
-        val entities = requestParam.days?.map { day ->
+        val entities = requestParam.days.map { day ->
             val timecardDay = timecardDayBhv.selectEntity { cb ->
                 cb.query().queryMember().setMemberAccountId_Equal(user.username)
                 cb.query().setBizDate_Equal(LocalDate.parse(day.bizDate, DateTimeFormatter.ISO_DATE.withZone(appDate.zoneId())))

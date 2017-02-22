@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class Api0002Request(
-        var days: List<Day>? = null) {
+        var days: List<Day> = listOf()) {
     /**
      * 日次情報リスト
      * @property bizDate 業務日
