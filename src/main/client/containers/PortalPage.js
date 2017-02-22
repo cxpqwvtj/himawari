@@ -19,7 +19,7 @@ class PortalPage extends AppBaseComponent {
     return (
       <div>
         <div style={{margin: '10px'}}>
-          <RaisedButton label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY)}} />
+          <RaisedButton label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY())}} />
         </div>
         <div style={{margin: '10px'}}>
           <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}} />
