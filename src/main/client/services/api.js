@@ -22,14 +22,13 @@ function callApi(requestParam) {
       if (!response.ok || !!json.error) {
         return Promise.reject(json)
       }
-
       return Object.assign({},
         json
       )
     })
     .then(
       response => ({response}),
-      error => ({error: error.message || 'Something bad happened'})
+      error => ({error})
     )
 }
 

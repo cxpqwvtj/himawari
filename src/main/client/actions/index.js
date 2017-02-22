@@ -60,6 +60,9 @@ export const logoutAction = () => {
   return action(LOGOUT_ACTION, param)
 }
 
+export const DELETE_ERROR_ACTION = 'DELETE_ERROR_ACTION'
+export const deleteErrorAction = () => action(DELETE_ERROR_ACTION, {})
+
 export const MOCK_SETTING_DEFINITION = 'MOCK_SETTING_DEFINITION'
 export const mockSettingDefinition = (def) => action(MOCK_SETTING_DEFINITION, {def})
 

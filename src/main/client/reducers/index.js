@@ -16,6 +16,10 @@ function mockSettingDefinition(state = {}, action) {
 function api(state = {}, action) {
   if (action.payload && action.payload.response) {
     return Object.assign({}, state, {[action.type]: action.payload.response})
+  } else if (action.type.endsWith('_FAILURE') && Immutable.fromJS(action).getIn(['payload', 'error'])) {
+    return Object.assign({}, state, {error: action.payload.error})
+  } else if (action.type === Actions.DELETE_ERROR_ACTION) {
+    return Immutable.fromJS(state).delete('error').toJS()
   }
   return state
 }

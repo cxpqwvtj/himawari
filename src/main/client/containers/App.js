@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Immutable from 'immutable'
 
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
+import Snackbar from 'material-ui/Snackbar'
 import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
 import FirstPageIcon from 'material-ui/svg-icons/navigation/first-page'
@@ -10,11 +13,15 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
+import * as actions from '../actions'
+
 injectTapEventPlugin()
 
 class App extends AppBaseComponent {
   static propTypes = {
     children: PropTypes.node,
+    actions: PropTypes.object.isRequired,
+    error: PropTypes.object.isRequired
   }
 
   render() {
@@ -43,6 +50,7 @@ class App extends AppBaseComponent {
               />
             }
           />
+          <Snackbar open={!!this.props.error.get('message')} autoHideDuration={4000} message={`${this.props.error.get('status', '')}:${this.props.error.get('message', '')}`} onRequestClose={() => this.props.actions.deleteErrorAction()} />
           {children}
         </div>
       </MuiThemeProvider>
@@ -51,9 +59,14 @@ class App extends AppBaseComponent {
 }
 
 function mapStateToProps(state, ownProps) {
+  const api = Immutable.fromJS(state.api)
   return {
+    error: api.get('error', Immutable.Map())
   }
 }
 
-export default connect(mapStateToProps, {
-})(App)
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
