@@ -30,6 +30,21 @@ export const timecardLoadAction = (yearMonth) => {
   return action(TIMECARD_LOAD_ACTION, param)
 }
 
+export const TIMECARD_ENTRY_TYPES = createRequestTypes('TIMECARD_ENTRY')
+export const timecardEntryTypes = {
+  request: (param) => action(TIMECARD_ENTRY_TYPES.REQUEST, {param}),
+  success: (param, response) => action(TIMECARD_ENTRY_TYPES.SUCCESS, {param, response}),
+  failure: (param, error) => action(TIMECARD_ENTRY_TYPES.FAILURE, {param, error}),
+}
+export const TIMECARD_ENTRY_ACTION = 'TIMECARD_ENTRY_ACTION'
+export const timecardEntryAction = () => {
+  const param = {
+    endpoint: API_URL.TIMECARD_ENTRY,
+    method: HTTP_METHOD.POST
+  }
+  return action(TIMECARD_ENTRY_ACTION, param)
+}
+
 export const LOGOUT_REQUEST = createRequestTypes('LOGOUT_REQUEST')
 export const logoutRequestTypes = {
   request: (param) => action(LOGOUT_REQUEST.REQUEST, {param}),

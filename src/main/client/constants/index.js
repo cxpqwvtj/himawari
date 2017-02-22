@@ -8,6 +8,7 @@ export const ROUTES = {
 export const API_URL = {
   JSON_SCHEMA: '/api/dev/docs/jsonschema',
   USER_TIMECARD: (yearMonth) => `/api/v1/timecards/${yearMonth}`,
+  TIMECARD_ENTRY: '/api/v1/user/days'
 }
 
 export const HTTP_METHOD = {

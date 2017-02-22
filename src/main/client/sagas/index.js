@@ -34,6 +34,22 @@ function* watchGetTimecard() {
   }
 }
 
+const fetchTimecardEntry = fetchEntity.bind(null, actions.timecardEntryTypes, api.fetchData)
+function* postTimecardEntry(requestParam) {
+  const state = yield select((state) => Immutable.fromJS(state))
+  const entry = state.getIn(['form', 'timecardEntry', 'values'])
+  const bizDate = moment(entry.get('entryDate')).format('YYYY-MM-DD') 
+  const startDatetime = entry.get('startDatetime') ? moment(`${bizDate} ${entry.get('startDatetime')}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ssZ') : ''
+  const endDatetime = entry.get('endDatetime') ? moment(`${bizDate} ${entry.get('endDatetime')}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ssZ') : ''
+  yield call(fetchTimecardEntry, Object.assign(requestParam, {body: {days: [{bizDate, startDatetime, endDatetime}]}}))
+}
+function* watchPostTimecardEntry() {
+  while(true) {
+    const requestParam = yield take(actions.TIMECARD_ENTRY_ACTION)
+    yield fork(postTimecardEntry, requestParam.payload)
+  }
+}
+
 export const fetchLogout = fetchEntity.bind(null, actions.logoutRequestTypes, api.fetchData)
 function* postLogout(requestParam) {
   yield call(fetchLogout, requestParam)
@@ -48,6 +64,7 @@ function* watchLogout() {
 export default function* root() {
   yield [
     fork(watchGetTimecard),
+    fork(watchPostTimecardEntry),
     fork(watchLogout)
   ]
 }

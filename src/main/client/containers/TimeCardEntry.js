@@ -81,6 +81,7 @@ class TimeCardEntry extends AppBaseComponent {
           </div>
           <div>
             <RaisedButton label='登録' onClick={() => {
+              this.props.actions.timecardEntryAction()
               super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))
               this.selectStartDatetime()
             }} />
