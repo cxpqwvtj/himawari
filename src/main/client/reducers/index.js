@@ -54,11 +54,12 @@ const rootReducer = combineReducers({
       }
       return state
     },
-    timecardEntry: (state={}, action) => {
+    timecardEntry: (state={values: {vacationType: 'NOTHING'}}, action) => {
       if (action.type === Actions.INITIALIZE_TIMECARD_ENTRY) {
         return {
           ...state,
           values: {
+            ...state.values,
             ...action.payload
           },
           fields: {

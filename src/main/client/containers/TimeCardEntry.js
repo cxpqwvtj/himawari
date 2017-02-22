@@ -9,6 +9,7 @@ import LinearProgress from 'material-ui/LinearProgress'
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table'
 import RaisedButton from 'material-ui/RaisedButton'
+import { RadioButton } from 'material-ui/RadioButton'
 
 import { reduxForm, Field } from 'redux-form'
 import { Checkbox, RadioButtonGroup, SelectField, TextField, Toggle, DatePicker, TimePicker } from 'redux-form-material-ui'
@@ -85,6 +86,19 @@ class TimeCardEntry extends AppBaseComponent {
               super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))
               this.selectStartDatetime()
             }} />
+          </div>
+          <div>
+            <Field name='note' component={TextField} floatingLabelText='備考' hintText='客先作業 -> 帰社' />
+          </div>
+          <div>
+            <Field name='vacationType' component={RadioButtonGroup}>
+              <RadioButton value='NOTHING' label='設定なし' />
+              <RadioButton value='PAID_DAY_OFF' label='有給休暇' />
+              <RadioButton value='SP_DAY_OFF' label='特別休暇' />
+              <RadioButton value='AM_OFF' label='午前休' />
+              <RadioButton value='PM_OFF' label='午後休' />
+              <RadioButton value='TRANSFER_DAY_OFF' label='振替休暇' />
+            </Field>
           </div>
         </form>
       </div>
