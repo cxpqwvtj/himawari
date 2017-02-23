@@ -5333,9 +5333,9 @@ write@^0.2.1:
   dependencies:
     mkdirp "^0.5.1"
 
-xlsx@^0.8.3:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/xlsx/-/xlsx-0.8.3.tgz#454bac7a7233ab2214ae829c30f12f22aa52d285"
+xlsx@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/xlsx/-/xlsx-0.8.5.tgz#adc70c4bde2d1304b9ecc988369a9f8c55499c90"
   dependencies:
     adler-32 ""
     cfb ">=0.10.0"
