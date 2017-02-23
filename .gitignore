@@ -104,5 +104,6 @@ jspm_packages
 /docs/schema/schema.json
 /buildSrc/src/main/resources/config/custom.config
 /buildSrc/src/main/javascript/custom_config.yml
+/config/*
 /dbflute_himawari/dfprop/system-password.txt
 /src/main/resources/static/*
