@@ -37,7 +37,9 @@ class TimeCardEntry extends AppBaseComponent {
       this.props.actions.initializeTimecardEntry({
         entryDate: bizDate.clone().toDate(),
         startDatetime: day.get('startDatetime') ? moment(day.get('startDatetime')).format('HH:mm') : '',
-        endDatetime: day.get('endDatetime') ? moment(day.get('endDatetime')).format('HH:mm') : ''
+        endDatetime: day.get('endDatetime') ? moment(day.get('endDatetime')).format('HH:mm') : '',
+        vacationType: day.get('vacationType') || ENUMS.VACATION_TYPE.NOTHING.name,
+        note: day.get('note')
       })
     }
   }
@@ -52,7 +54,9 @@ class TimeCardEntry extends AppBaseComponent {
       this.props.actions.initializeTimecardEntry({
         entryDate: nextProps.bizDate.clone().toDate(),
         startDatetime: day.get('startDatetime') ? moment(day.get('startDatetime')).format('HH:mm') : '',
-        endDatetime: day.get('endDatetime') ? moment(day.get('endDatetime')).format('HH:mm') : ''
+        endDatetime: day.get('endDatetime') ? moment(day.get('endDatetime')).format('HH:mm') : '',
+        vacationType: day.get('vacationType') || ENUMS.VACATION_TYPE.NOTHING.name,
+        note: day.get('note')
       })
     }
   }
