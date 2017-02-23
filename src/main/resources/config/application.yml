@@ -16,3 +16,6 @@ app:
   log:
     filter:
       type: SIMPLE # NOTHING, SIMPLE, DEBUG
+  timecard:
+    excel:
+      template: './template/timecard.xlsx'
