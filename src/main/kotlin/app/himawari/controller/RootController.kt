@@ -3,7 +3,10 @@ package app.himawari.controller
 import org.slf4j.LoggerFactory
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -22,5 +25,15 @@ open class RootController {
     @ResponseBody
     open fun root(): Resource {
         return ClassPathResource("/static/index.html")
+    }
+
+    @GetMapping(path = arrayOf("xlsx"), produces = arrayOf("application/vnd.ms-excel"))
+    open fun createTimecardXlsx(): ResponseEntity<Any> {
+        val headers = HttpHeaders()
+        val fileName = ""
+        headers.set("Content-Disposition", "attachment; filename=${fileName}")
+        // TODO:Excel生成
+        val body = Any()
+        return ResponseEntity(body, headers, HttpStatus.OK)
     }
 }
