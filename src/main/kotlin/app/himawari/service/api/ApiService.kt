@@ -40,7 +40,7 @@ class ApiService(
                         endDatetime = appDate.toZonedDateTime(it.endDatetime)?.format(appDate.FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION)
                     }
                     day.dailyStartEndAsCurrentValue.ifPresent {
-                        vacationTypeCode = if (it.vacationTypeCode == null) null else VacationTypeCode.valueOf(it.vacationTypeCode)
+                        vacationType = if (it.vacationTypeCode == null) null else VacationType.valueOf(it.vacationTypeCode)
                     }
                     day.dailyStartEndAsCurrentValue.ifPresent { note = it.note }
                 }
@@ -65,7 +65,7 @@ class ApiService(
                 timecardDayId = timecardDay.timecardDayId
                 startDatetime = appDate.toLocalDateTime(day.startDatetime ?: "")
                 endDatetime = appDate.toLocalDateTime(day.endDatetime ?: "")
-                vacationTypeCode = day.vacationTypeCode?.name
+                vacationTypeCode = day.vacationType?.name
                 note = day.note
             }
         }

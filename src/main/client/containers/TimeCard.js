@@ -50,7 +50,7 @@ class TimeCard extends AppBaseComponent {
       const start = v.get('startDatetime') ? moment(v.get('startDatetime')).format('HH:mm') : ''
       const end = v.get('endDatetime') ? moment(v.get('endDatetime')).format('HH:mm') : ''
       const backgroundColor = bizDate.weekday() === 0 ? '#e7bdbd': bizDate.weekday() === 6 ? '#a7d0eb' : undefined
-      const vacationTypeName = (ENUMS.VACATION_TYPE[v.get('vacationTypeCode')] || {}).description
+      const vacationTypeName = (ENUMS.VACATION_TYPE[v.get('vacationType')] || {}).description
       return (
         <TableRow key={i} style={{backgroundColor}}>
           <TableRowColumn><Link to={ROUTES.TIMECARD_ENTRY(`/${bizDate.format('YYYYMMDD')}`)}>{bizDate.format('MM/DD(ddd)')}</Link></TableRowColumn>

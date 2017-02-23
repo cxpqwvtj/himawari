@@ -4,7 +4,7 @@
       "bizDate": "文字列",
       "startDatetime": "文字列",
       "endDatetime": "文字列",
-      "vacationTypeCode": "文字列",
+      "vacationType": "文字列",
       "note": "文字列"
     }
   ]

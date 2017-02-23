@@ -122,7 +122,7 @@ definitions:
           title: 終了日時
           description: yyyy-MM-ddTHH:mm:dd:ssZ
           type: string
-        vacationTypeCode:
+        vacationType:
           $ref: '#/definitions/VacationType'
         note:
           title: 備考
