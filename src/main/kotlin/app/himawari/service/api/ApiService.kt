@@ -20,8 +20,7 @@ import java.time.format.DateTimeFormatter
 class ApiService(
         private val appDate: AppDate,
         private val timecardDayBhv: TimecardDayBhv,
-        private val dailyStartEndBhv: DailyStartEndBhv,
-        @Value("\${app.timecard.excel.template}") private val templateFilePath: String
+        private val dailyStartEndBhv: DailyStartEndBhv
 ) {
     fun selectMonthlyInOutData(userId: String, yearMonth: LocalDate): Api1001Response {
         val list = timecardDayBhv.selectList { cb ->

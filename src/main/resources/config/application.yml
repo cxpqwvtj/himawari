@@ -18,4 +18,10 @@ app:
       type: SIMPLE # NOTHING, SIMPLE, DEBUG
   timecard:
     excel:
-      template: './template/timecard.xlsx'
+      template: ./template/timecard.xlsx
+      outputSheetName: timecard
+      beginRowNum: 1
+      startDatetimeColumnIndex: 1
+      endDatetimeColumnIndex: 2
+      vacationTypeColumnIndex: 3
+      noteColumnIndex: 4
