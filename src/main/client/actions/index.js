@@ -71,3 +71,6 @@ export const changeSettingValue = (name, value) => action(CHANGE_SETTING_VALUE, 
 
 export const INITIALIZE_TIMECARD_ENTRY = 'INITIALIZE_TIMECARD_ENTRY'
 export const initializeTimecardEntry = (payload) => action(INITIALIZE_TIMECARD_ENTRY, payload)
+
+export const CREATE_TIMECARD_XLSX_ACTION = 'CREATE_TIMECARD_XLSX_ACTION'
+export const createTimecardXlsxAction = (payload) => action(CREATE_TIMECARD_XLSX_ACTION, payload)

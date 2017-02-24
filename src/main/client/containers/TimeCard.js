@@ -62,6 +62,7 @@ class TimeCard extends AppBaseComponent {
       )
     })
     const buttonMargin = {margin: '10px'}
+    const currentMonth = yearMonth.clone().format('YYYYMM')
     const prevMonth = yearMonth.clone().add(-1, 'months').format('YYYYMM')
     const nextMonth = yearMonth.clone().add(1, 'months').format('YYYYMM')
     return (
@@ -69,6 +70,7 @@ class TimeCard extends AppBaseComponent {
         <div>
           <RaisedButton label='前月' style={buttonMargin} onClick={() => { super.handleUrlChange(ROUTES.USER_TIMECARD(prevMonth)) }} />
           <RaisedButton label='次月' style={buttonMargin} onClick={() => { super.handleUrlChange(ROUTES.USER_TIMECARD(nextMonth)) }} />
+          <RaisedButton label='EXCEL' style={buttonMargin} onClick={() => { window.open(ROUTES.USER_TIMECARD_EXCEL(currentMonth), '_blank') }} />
         </div>
         <Toolbar>
           <ToolbarGroup>
