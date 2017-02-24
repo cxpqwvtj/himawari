@@ -36,6 +36,7 @@ if (process.env.USE_PROXY === 'false') {
   app.use('/api', appSrv)
   app.use('/login', appSrv)
   app.use('/logout', appSrv)
+  app.use('/excel', appSrv)
 }
 
 app.get('/**', function(req, res) {
