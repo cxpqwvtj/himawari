@@ -25,12 +25,6 @@ class PortalPage extends AppBaseComponent {
           <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}} />
         </div>
         <div style={{margin: '10px'}}>
-          <RaisedButton label='API' onClick={() => {super.handleUrlChange(ROUTES.API_SPEC)}} />
-        </div>
-        <div style={{margin: '10px'}}>
-          <RaisedButton label='mock setting' onClick={() => {super.handleUrlChange(ROUTES.MOCK_SETTING)}} />
-        </div>
-        <div style={{margin: '10px'}}>
           <RaisedButton href='/swagger-ui' label='swagger-ui' />
         </div>
         <div style={{margin: '10px'}}>
