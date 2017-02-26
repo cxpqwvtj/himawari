@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.servlet.http.HttpServletResponse
 
 /**
@@ -34,7 +35,7 @@ open class RootController(
     open fun createTimecardXlsx(@PathVariable yearMonth: String, response: HttpServletResponse) {
         val fileName = "timecard.xlsx"
         response.setHeader("Content-Disposition", "attachment; filename=${fileName}")
-        // TODO:Excel生成
-        reportService.createXlsx(LocalDate.now(), "kougami").write(response.outputStream)
+        val localDate = LocalDate.parse("${yearMonth}01", DateTimeFormatter.ofPattern("yyyyMMdd"))
+        reportService.createXlsx(localDate, "kougami").write(response.outputStream)
     }
 }
