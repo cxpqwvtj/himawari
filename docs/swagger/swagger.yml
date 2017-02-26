@@ -33,11 +33,42 @@ paths:
                 type: string
               days:
                 $ref: '#/definitions/Days'
+  /users:
+    get:
+      summary: API1002
+      description: |
+        ユーザーの一覧を返します。
+      tags:
+        - admin
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ユーザー一覧
+            type: object
+            properties:
+              users:
+                title: ユーザー情報リスト
+                type: array
+                items:
+                  title: ユーザー情報
+                  type: object
+                  properties:
+                    userId:
+                      title: ユーザーID
+                      type: string
+                    userName:
+                      title: ユーザー名
+                      type: string
+                  required:
+                    - userId
+                    - userName
+            required:
+              - users
   /users/{userId}/timecards/{yearMonth}:
     get:
       summary: API1001:開始/終了時間取得
       description: |
-        管理者権限のみアクセス可能です。
         対象月の日次の開始/終了日時の一覧を返します。
       tags:
         - admin
