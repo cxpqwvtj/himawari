@@ -18,7 +18,8 @@ app:
       type: SIMPLE # NOTHING, SIMPLE, DEBUG
   timecard:
     excel:
-      template: ./template/timecard.xlsx
+      templateFilePath: ./template/timecard.xlsx
+      downloadFileName: timecard.xlsx
       outputSheetName: timecard
       beginRowNum: 1
       bizDateColumnIndex: 1
@@ -26,3 +27,4 @@ app:
       endDatetimeColumnIndex: 3
       vacationTypeColumnIndex: 4
       noteColumnIndex: 5
+      autoSizeColumnIndexes: 1,2,3,4,5

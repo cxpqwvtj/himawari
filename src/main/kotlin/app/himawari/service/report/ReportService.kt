@@ -63,6 +63,9 @@ class ReportService(
             row.getCell(reportProps.vacationTypeColumnIndex).setCellValue(timecardRow.vacationType)
             row.getCell(reportProps.noteColumnIndex).setCellValue(timecardRow.note)
         }
+        reportProps.autoSizeColumnIndexes.map {
+            sheet.autoSizeColumn(it)
+        }
         return workbook
     }
 }

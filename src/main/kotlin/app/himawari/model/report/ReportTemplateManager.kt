@@ -24,6 +24,7 @@ class ReportTemplateManager(private val reportProps: ReportProps) {
                     row.createCell(cellIndex)
                 }
             }
+            sheet.trackAllColumnsForAutoSizing()
             workbook
         }
     }
