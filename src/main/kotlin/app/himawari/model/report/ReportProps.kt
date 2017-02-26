@@ -12,8 +12,9 @@ class ReportProps(
         @Value("\${app.timecard.excel.template}") val templateFilePath: String,
         @Value("\${app.timecard.excel.outputSheetName}") val outputSheetName: String,
         @Value("\${app.timecard.excel.beginRowNum}") val beginRowNum: Int,
-        @Value("\${app.timecard.excel.startDatetimeColumnIndex}") val startDatetimeColumnIndex: String,
-        @Value("\${app.timecard.excel.endDatetimeColumnIndex}") val endDatetimeColumnIndex: String,
-        @Value("\${app.timecard.excel.vacationTypeColumnIndex}") val vacationTypeColumnIndex: String,
-        @Value("\${app.timecard.excel.noteColumnIndex}") val noteColumnIndex: String
+        @Value("\${app.timecard.excel.bizDateColumnIndex}") val bizDateColumnIndex: Int,
+        @Value("\${app.timecard.excel.startDatetimeColumnIndex}") val startDatetimeColumnIndex: Int,
+        @Value("\${app.timecard.excel.endDatetimeColumnIndex}") val endDatetimeColumnIndex: Int,
+        @Value("\${app.timecard.excel.vacationTypeColumnIndex}") val vacationTypeColumnIndex: Int,
+        @Value("\${app.timecard.excel.noteColumnIndex}") val noteColumnIndex: Int
 )

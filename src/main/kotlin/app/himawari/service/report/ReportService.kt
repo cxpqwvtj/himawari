@@ -37,7 +37,7 @@ class ReportService(
         val firstDayOfMonth = yearMonth.with(TemporalAdjusters.firstDayOfMonth())
         val lastDayOfMonth = yearMonth.with(TemporalAdjusters.lastDayOfMonth())
         val rows = (0..ChronoUnit.DAYS.between(firstDayOfMonth, lastDayOfMonth)).map { dayIndex ->
-            val bizDate = firstDayOfMonth.plusDays(dayIndex).format(appDate.FORMAT_ISO_DATE_JST)
+            val bizDate = appDate.toDate(firstDayOfMonth.plusDays(dayIndex).atStartOfDay())
             val timecardDay = list.singleOrNull { it.bizDate.compareTo(firstDayOfMonth.plusDays(dayIndex)) == 0 }
             if (timecardDay?.dailyStartEndAsCurrentValue?.isPresent ?: false) {
                 val day = timecardDay!!.dailyStartEndAsCurrentValue.get()
@@ -50,7 +50,19 @@ class ReportService(
                 TimecardRow(bizDate, "", "", "", "")
             }
         }
-        println(rows)
+        rows.mapIndexed { i, timecardRow ->
+            val row = sheet.getRow(reportProps.beginRowNum + i)
+            val bizDateCell = row.getCell(reportProps.bizDateColumnIndex)
+            bizDateCell.setCellValue(timecardRow.bizDate)
+            val bizDateStyle = workbook.creationHelper.createDataFormat().getFormat("yyyy/MM/dd")
+            val bizDateCellStyle = workbook.createCellStyle()
+            bizDateCellStyle.dataFormat = bizDateStyle
+            bizDateCell.cellStyle = bizDateCellStyle
+            row.getCell(reportProps.startDatetimeColumnIndex).setCellValue(timecardRow.startDatetime)
+            row.getCell(reportProps.endDatetimeColumnIndex).setCellValue(timecardRow.endDatetime)
+            row.getCell(reportProps.vacationTypeColumnIndex).setCellValue(timecardRow.vacationType)
+            row.getCell(reportProps.noteColumnIndex).setCellValue(timecardRow.note)
+        }
         return workbook
     }
 }

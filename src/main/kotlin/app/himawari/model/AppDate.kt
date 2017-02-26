@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 /**
  * システムの日付を扱うクラスです
@@ -44,6 +45,10 @@ class AppDate(
             return null
         }
         return ZonedDateTime.of(localDateTime, ZoneId.of(timeZone))
+    }
+
+    fun toDate(localDateTime: LocalDateTime): Date {
+        return Date.from(localDateTime.atZone(zoneId()).toInstant());
     }
 
     fun systemDate(): ZonedDateTime {

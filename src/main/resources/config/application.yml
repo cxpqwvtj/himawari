@@ -21,7 +21,8 @@ app:
       template: ./template/timecard.xlsx
       outputSheetName: timecard
       beginRowNum: 1
-      startDatetimeColumnIndex: 1
-      endDatetimeColumnIndex: 2
-      vacationTypeColumnIndex: 3
-      noteColumnIndex: 4
+      bizDateColumnIndex: 1
+      startDatetimeColumnIndex: 2
+      endDatetimeColumnIndex: 3
+      vacationTypeColumnIndex: 4
+      noteColumnIndex: 5
