@@ -71,6 +71,6 @@
     "package": "NODE_ENV=production webpack --progress --colors",
     "start": "NODE_ENV=development HOT_DEPLOY=true USE_PROXY=true node src/main/client-dev-server/server.js",
     "watch": "NODE_ENV=development webpack --progress --colors --watch",
-    "generate": "node buildSrc/src/main/javascript/jsonSchemaToKotlinDataClass.js"
+    "generate": "node buildSrc/src/main/javascript/swaggerToKotlin.js"
   }
 }
