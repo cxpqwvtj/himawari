@@ -65,6 +65,23 @@ paths:
                     - userName
             required:
               - users
+  /user/profile:
+    get:
+      summary: API0003
+      description: |
+        プロフィール情報を返します。
+      tags:
+        - user
+      response:
+        200:
+          description: Successful response
+          schema:
+            title: プロフィール情報
+            type: object
+            properties:
+              id:
+                title: アカウントID
+                type: string
   /users/{userId}/timecards/{yearMonth}:
     get:
       summary: API1001:開始/終了時間取得
