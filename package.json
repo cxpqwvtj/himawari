@@ -46,7 +46,6 @@
     "express": "^4.14.1",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
-    "install": "^0.8.7",
     "js-yaml": "^3.8.1",
     "json-schema-ref-parser": "^3.1.2",
     "npm": "^4.2.0",
