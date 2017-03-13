@@ -19,6 +19,7 @@ import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
 import { ROUTES, ENUMS } from '../constants'
+import App from './App'
 
 class TimeCardEntry extends AppBaseComponent {
   static propTypes = {
@@ -68,8 +69,9 @@ class TimeCardEntry extends AppBaseComponent {
 
   render() {
     const date = this.props.bizDate
+    const { history } = this.props
     const dateColor = date.weekday() === 0 ? 'red': date.weekday() === 6 ? 'blue' : undefined
-    return (
+    const contents = (
       <div style={{margin: '10px'}}>
         <RaisedButton label='一覧' style={{marginLeft: '10px'}} onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
         <RaisedButton label='前日' style={{marginLeft: '10px'}} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(-1, 'days').format('YYYYMMDD')}`))} />
@@ -107,15 +109,19 @@ class TimeCardEntry extends AppBaseComponent {
         </form>
       </div>
     )
+    return (
+      <App children={contents} history={history} />
+    )
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  const paramDate = moment(ownProps.params.date, 'YYYYMMDD')
+  const paramDate = moment()
   const bizDate = paramDate.isValid() ? paramDate : moment().startOf('day')
   return {
     state: Immutable.fromJS(state),
-    bizDate
+    bizDate,
+    history: ownProps.history
   }
 }
 

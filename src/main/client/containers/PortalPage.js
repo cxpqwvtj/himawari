@@ -6,20 +6,23 @@ import moment from 'moment'
 import RaisedButton from 'material-ui/RaisedButton'
 
 import AppBaseComponent from '../components/AppBaseComponent'
+import App from './App'
 
 import { ROUTES } from '../constants'
 import * as actions from '../actions'
 
 class PortalPage extends AppBaseComponent {
   static propTypes = {
+    history: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
   }
 
   render() {
-    return (
+    const { history } = this.props
+    const contents = (
       <div>
         <div style={{margin: '10px'}}>
-          <RaisedButton label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY())}} />
+          <RaisedButton label='ENTRY' onClick={() => {history.push(ROUTES.TIMECARD_ENTRY())}} />
         </div>
         <div style={{margin: '10px'}}>
           <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}} />
@@ -38,11 +41,15 @@ class PortalPage extends AppBaseComponent {
         </form>
       </div>
     )
+    return (
+      <App children={contents} history={history} />
+    )
   }
 }
 
 function mapStateToProps(state, ownProps) {
   return {
+    history: ownProps.history
   }
 }
 

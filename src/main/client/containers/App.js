@@ -19,6 +19,7 @@ injectTapEventPlugin()
 
 class App extends AppBaseComponent {
   static propTypes = {
+    history: PropTypes.object.isRequired,
     children: PropTypes.node,
     actions: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired
@@ -41,7 +42,7 @@ class App extends AppBaseComponent {
         <div>
           <AppBar
             title="Himawari"
-            iconElementLeft={<IconButton onClick={() => super.handleUrlChange('')}><FirstPageIcon /></IconButton>}
+            iconElementLeft={<IconButton onClick={() => this.props.history.push('/')}><FirstPageIcon /></IconButton>}
             iconElementRight={
               <FlatButton
                 label='Sign in'
@@ -61,7 +62,8 @@ class App extends AppBaseComponent {
 function mapStateToProps(state, ownProps) {
   const api = Immutable.fromJS(state.api)
   return {
-    error: api.get('error', Immutable.Map())
+    error: api.get('error', Immutable.Map()),
+    history: ownProps.history
   }
 }
 

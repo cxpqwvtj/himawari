@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { routerReducer as routing } from 'react-router-redux'
+import { routerReducer as router } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 import Immutable from 'immutable'
 import moment from 'moment'
@@ -25,7 +25,7 @@ function api(state = {}, action) {
 }
 
 const rootReducer = combineReducers({
-  routing,
+  router,
   api,
   form: formReducer.plugin({
     mockSettingForm: (state={}, action) => {

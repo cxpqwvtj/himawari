@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Route } from 'react-router'
 
 import App from './containers/App'
 import PortalPage from './containers/PortalPage'
@@ -9,7 +9,7 @@ import TimeCard from './containers/TimeCard'
 import ApiSpec from './containers/ApiSpec'
 import MockSetting from './containers/MockSetting'
 
-export default (
+/*export default (
   <Route path={`${process.env.CONTEXT_PATH}/`} component={App}>
     <IndexRoute component={PortalPage} />
     <Route path='login' component={Login} />
@@ -18,4 +18,11 @@ export default (
     <Route path='dev/docs/api' component={ApiSpec} />
     <Route path='dev/mock/setting' component={MockSetting} />
   </Route>
+)*/
+
+export default (
+  <div>
+    <Route exact path={`${process.env.CONTEXT_PATH}/`} component={PortalPage} />
+    <Route path={`${process.env.CONTEXT_PATH}/timecards/entry`} component={TimeCardEntry} />
+  </div>
 )
