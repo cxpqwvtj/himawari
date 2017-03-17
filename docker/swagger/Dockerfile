@@ -10,7 +10,7 @@ ENV UI_FOLDER="swagger-ui-$UI_VERSION" \
 
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-RUN apk add --no-cache openssl && \
+RUN apk add --no-cache --virtual .bootstrap-deps wget ca-certificates && \
     wget -qO- https://github.com/swagger-api/swagger-ui/archive/v${UI_VERSION}.tar.gz | tar xvz && \
     mkdir -p $UI_DOC_ROOT && \
     cp -r $UI_FOLDER/dist/* $UI_DOC_ROOT && rm -rf $UI_FOLDER && \
@@ -20,4 +20,4 @@ RUN apk add --no-cache openssl && \
     unzip swagger-editor.zip && \
     rm -rf swagger-editor.zip && \
 \
-    apk del openssl
+    apk del .bootstrap-deps
