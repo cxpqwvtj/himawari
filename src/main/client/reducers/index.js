@@ -6,13 +6,6 @@ import moment from 'moment'
 
 import * as Actions from '../actions'
 
-function mockSettingDefinition(state = {}, action) {
-  if (action.type === Actions.MOCK_SETTING_DEFINITION) {
-    return Object.assign({}, state, action.payload)
-  }
-  return state
-}
-
 function api(state = {}, action) {
   if (action.payload && action.payload.response) {
     return Object.assign({}, state, {[action.type]: action.payload.response})
@@ -94,8 +87,7 @@ const rootReducer = combineReducers({
       }
       return state
     }
-  }),
-  mockSettingDefinition
+  })
 })
 
 export default rootReducer
