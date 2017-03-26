@@ -21,32 +21,6 @@ const rootReducer = combineReducers({
   routing,
   api,
   form: formReducer.plugin({
-    mockSettingForm: (state={}, action) => {
-      if (action.type === Actions.CHANGE_SETTING_VALUE) {
-        return {
-          ...state,
-          values: {
-            ...state.values,
-            [action.payload.name]: action.payload.value
-          },
-          fields: {
-            ...state.fields,
-            [action.payload.name]: undefined
-          }
-        }
-      } else if (action.type === Actions.MOCK_SETTING_DEFINITION) {
-        return {
-          ...state,
-          values: {
-            ...Immutable.fromJS(action.payload.def.properties).map((v) => v.get('default')).toJS(),
-          },
-          fields: {
-            ...state.fields
-          }
-        }
-      }
-      return state
-    },
     timecardEntry: (state={values: {vacationType: 'NOTHING'}}, action) => {
       if (action.type === Actions.INITIALIZE_TIMECARD_ENTRY) {
         return {
