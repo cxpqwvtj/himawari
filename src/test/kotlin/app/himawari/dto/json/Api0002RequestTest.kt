@@ -2,7 +2,7 @@
 package app.himawari.dto.json
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 /**
  * Api0002Requestのテストクラスです

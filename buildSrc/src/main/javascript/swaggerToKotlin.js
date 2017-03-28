@@ -136,7 +136,7 @@ const generateKotlinTestClass = (k, v) => {
     `package ${config.packageName}`,
     '',
     'import com.fasterxml.jackson.databind.ObjectMapper',
-    'import org.junit.jupiter.api.Test',
+    'import org.junit.Test',
     '',
     '/**',
     ` * ${k}のテストクラスです`,
