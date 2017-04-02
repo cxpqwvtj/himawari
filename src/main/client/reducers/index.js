@@ -1,18 +1,28 @@
-import { combineReducers } from 'redux'
-import { routerReducer as routing } from 'react-router-redux'
+import { combineReducers } from 'redux-immutablejs'
+import { LOCATION_CHANGE } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 import Immutable from 'immutable'
 import moment from 'moment'
 
 import * as Actions from '../actions'
 
-function api(state = {}, action) {
+const routingInitialState = Immutable.fromJS({
+  locationBeforeTransitions: null
+})
+function routing(state = routingInitialState, action) {
+  if (action.type === LOCATION_CHANGE) {
+    return state.set('locationBeforeTransitions', action.payload)
+  }
+  return state
+}
+
+function api(state = Immutable.fromJS({}), action) {
   if (action.payload && action.payload.response) {
-    return Object.assign({}, state, {[action.type]: action.payload.response})
+    return state.merge({[action.type]: action.payload.response})
   } else if (action.type.endsWith('_FAILURE') && Immutable.fromJS(action).getIn(['payload', 'error'])) {
-    return Object.assign({}, state, {error: action.payload.error})
+    return state.merge({error: action.payload.error})
   } else if (action.type === Actions.DELETE_ERROR_ACTION) {
-    return Immutable.fromJS(state).delete('error').toJS()
+    return state.delete('error').toJS()
   }
   return state
 }

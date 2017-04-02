@@ -99,9 +99,8 @@ class TimeCard extends AppBaseComponent {
 }
 
 function mapStateToProps(state, ownProps) {
-  const s = Immutable.fromJS(state)
   return {
-    timecard: s.getIn(['api', 'TIMECARD_LOAD_SUCCESS']),
+    timecard: state.getIn(['api', 'TIMECARD_LOAD_SUCCESS']),
     params: ownProps.params
   }
 }

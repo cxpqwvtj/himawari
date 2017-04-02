@@ -9,7 +9,22 @@ import rootSaga from './sagas'
 
 const store = configureStore()
 store.runSaga(rootSaga)
-const history = syncHistoryWithStore(browserHistory, store)
+
+const createSelectLocationState = () => {
+  let prevRoutingState, prevRoutingStateJS
+  return (state) => {
+    const routingState = state.get('routing')
+    if (typeof prevRoutingState === 'undefined' || !prevRoutingState.equals(routingState)) {
+      prevRoutingState = routingState
+      prevRoutingStateJS = routingState.toJS()
+    }
+    return prevRoutingStateJS
+  }
+}
+
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: createSelectLocationState(),
+})
 
 render(
   <div>

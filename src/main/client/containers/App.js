@@ -59,9 +59,8 @@ class App extends AppBaseComponent {
 }
 
 function mapStateToProps(state, ownProps) {
-  const api = Immutable.fromJS(state.api)
   return {
-    error: api.get('error', Immutable.Map())
+    error: state.getIn(['api', 'error'], Immutable.Map())
   }
 }
 
