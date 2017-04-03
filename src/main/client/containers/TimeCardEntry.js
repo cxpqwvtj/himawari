@@ -11,7 +11,7 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import RaisedButton from 'material-ui/RaisedButton'
 import { RadioButton } from 'material-ui/RadioButton'
 
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field } from 'redux-form/immutable'
 import { Checkbox, RadioButtonGroup, SelectField, TextField, Toggle, DatePicker, TimePicker } from 'redux-form-material-ui'
 import TextFieldOrg from 'material-ui/TextField'
 

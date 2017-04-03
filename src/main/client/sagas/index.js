@@ -37,8 +37,8 @@ function* watchGetTimecard() {
 
 const entryTimecard = fetchEntity.bind(null, actions.timecardEntryTypes, api.fetchData)
 function* postTimecard(requestParam) {
-  const state = yield select((state) => Immutable.fromJS(state))
-  const entry = state.getIn(['form', 'timecardEntry', 'values'])
+  const state = yield select()
+  const entry = Immutable.fromJS(state.getIn(['form'])).getIn(['timecardEntry', 'values'])
   const bizDate = moment(entry.get('entryDate')).format('YYYY-MM-DD') 
   const startDatetime = entry.get('startDatetime') ? moment(`${bizDate} ${entry.get('startDatetime')}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ssZ') : ''
   const endDatetime = entry.get('endDatetime') ? moment(`${bizDate} ${entry.get('endDatetime')}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ssZ') : ''
