@@ -23,7 +23,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
+  devtool: DEBUG ? 'inline-source-map' : false,
   plugins: [
     new webpack.DefinePlugin({
       'process.env.CONTEXT_PATH': `"${CONTEXT_PATH}"`,
