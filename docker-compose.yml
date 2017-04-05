@@ -45,5 +45,6 @@ services:
       - 3306:3306
     volumes:
       - ./docker/mysql/conf.d:/etc/mysql/conf.d:ro
+      - ./docker/data/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=pass
