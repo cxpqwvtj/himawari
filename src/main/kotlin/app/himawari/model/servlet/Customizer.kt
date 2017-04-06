@@ -1,4 +1,4 @@
-package app.himawari.model.servletcontainer
+package app.himawari.model.servlet
 
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer
