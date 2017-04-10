@@ -10,4 +10,10 @@ import org.springframework.stereotype.Component
 @Component
 @ConfigurationProperties(prefix = "app")
 class AppProperty {
+    var datetime: DateTime = DateTime()
+
+    class DateTime {
+        var timezone: String = "Asia/Tokyo"
+        var bizDate: String = ""
+    }
 }
