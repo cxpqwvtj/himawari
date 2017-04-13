@@ -147,6 +147,41 @@ paths:
             required:
               - resultType
 
+  /user/today:
+    post:
+      summary: API0003:出退勤情報登録
+      description: 当日の開始、終了時間を登録します。
+      tags:
+        - user
+      parameters:
+        - name: StartEndDatetimes
+          in: body
+          schema:
+            title: 日次情報登録パラメータ
+            type: object
+            properties:
+              days:
+                $ref: '#/definitions/Days'
+            required: [days]
+      responses:
+        200:
+          description: 登録結果
+          schema:
+            title: Result
+            type: object
+            properties:
+              resultType:
+                title: 登録結果コード
+                type: string
+                enum:
+                  - success
+                  - failure
+              message:
+                title: 結果メッセージ
+                type: string
+            required:
+              - resultType
+
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
