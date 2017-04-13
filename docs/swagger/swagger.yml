@@ -150,7 +150,9 @@ paths:
   /user/today:
     post:
       summary: API0003:出退勤情報登録
-      description: 当日の開始、終了時間を登録します。
+      description: |-
+        当日の開始、終了時間を登録します。
+        ユーザー識別子のみを送信し、サーバ側で開始 or 終了を判定します。
       tags:
         - user
       parameters:
@@ -160,8 +162,9 @@ paths:
             title: 日次情報登録パラメータ
             type: object
             properties:
-              days:
-                $ref: '#/definitions/Days'
+              id:
+                title: ユーザーID
+                type: string
             required: [days]
       responses:
         200:
