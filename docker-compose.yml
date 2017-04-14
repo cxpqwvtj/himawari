@@ -26,19 +26,6 @@ services:
       - TZ=Asia/Tokyo
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlhost:3306/himawari?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     command: ./gradlew bootRun
-  himawari-client:
-    build:
-      context: .
-      dockerfile: docker/node-libs/Dockerfile
-    image: cxpqwvtj/himawari-node-libs:latest
-    volumes:
-      - .:/app:Z
-    command: npm run watch
-  swagger:
-    build:
-      context: docker/swagger
-    volumes:
-      - ./docs/swagger/swagger.yml:/app/swagger/swagger.yml
   mysql:
     image: mysql:5.7.17
     ports:

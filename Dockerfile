@@ -16,7 +16,7 @@ ADD package.json /app/package.json
 ADD .babelrc /app/.babelrc
 ADD .eslintrc.js /app/.eslintrc.js
 ADD webpack.config.js /app/webpack.config.js
-RUN npm install
+RUN npm install yarn
 
 ADD src /app/src
 
@@ -24,7 +24,7 @@ RUN ./gradlew build -x test
 
 ADD docker/himawari/entrypoint.sh /app/entrypoint.sh
 
-RUN npm install && \
+RUN npm run yarn && \
     npm run package && \
     ./gradlew build -x test && \
     cp ./build/libs/himawari.jar . && \
