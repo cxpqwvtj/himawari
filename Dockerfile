@@ -1,7 +1,9 @@
 FROM java:openjdk-8-jdk-alpine
 MAINTAINER cxpqwvtj
 
-RUN apk add --update bash libstdc++ nodejs && rm -rf /var/cache/apk/*
+RUN apk add --no-cache bash libstdc++ nodejs
+RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories && \
+    apk add --no-cache yarn
 
 WORKDIR /app
 
@@ -16,16 +18,13 @@ ADD package.json /app/package.json
 ADD .babelrc /app/.babelrc
 ADD .eslintrc.js /app/.eslintrc.js
 ADD webpack.config.js /app/webpack.config.js
-RUN npm install yarn
+RUN yarn --no-progress --no-emoji
 
 ADD src /app/src
 
-RUN ./gradlew build -x test
-
 ADD docker/himawari/entrypoint.sh /app/entrypoint.sh
 
-RUN npm run yarn && \
-    npm run package && \
+RUN npm run package && \
     ./gradlew build -x test && \
     cp ./build/libs/himawari.jar . && \
     rm -rf ./node_modules && \

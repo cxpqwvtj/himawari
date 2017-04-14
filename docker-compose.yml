@@ -9,15 +9,11 @@ services:
     ports:
       - 80:80
     links:
-      - swagger:swagger-server
       - himawari-server:himawari-server
   himawari-server:
     build:
       context: .
-      dockerfile: docker/java-libs/Dockerfile
     image: cxpqwvtj/himawari-java-libs:latest
-    volumes:
-      - .:/app:Z
     expose:
       - 8080
     links:
@@ -25,7 +21,6 @@ services:
     environment:
       - TZ=Asia/Tokyo
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlhost:3306/himawari?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    command: ./gradlew bootRun
   mysql:
     image: mysql:5.7.17
     ports:
