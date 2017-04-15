@@ -13,7 +13,6 @@ services:
   himawari-server:
     build:
       context: .
-    image: cxpqwvtj/himawari-java-libs:latest
     expose:
       - 8080
     links:
