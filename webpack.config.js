@@ -43,7 +43,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'js/vender',
       minChunks: function(module) {
-        return isExternal(module);
+        return isExternal(module)
       }
     }),
     ...(HOT_DEPLOY ? [new webpack.HotModuleReplacementPlugin()] : []),
