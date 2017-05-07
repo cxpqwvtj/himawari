@@ -107,3 +107,4 @@ jspm_packages
 /config/*
 /dbflute_himawari/dfprop/system-password.txt
 /src/main/resources/static/*
+application.yml
