@@ -14,21 +14,20 @@ import java.util.*
  */
 @Component
 class AppDate(
-        @Value("\${app.datetime.timezone}") private val timeZone: String,
-        @Value("\${app.datetime.bizDate}") private val bizDate: String
+        private val appProperty: AppProperty
 ) {
-    val FORMAT_ISO_DATE_JST = DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneId.of(timeZone))
+    val FORMAT_ISO_DATE_JST = DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneId.of(appProperty.datetime.timezone))
     val FORMAT_ISO_OFFSET_DATE_TIME_FIXED_FRACTION = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
 
     fun now(): ZonedDateTime {
-        if (bizDate == "") {
-            return ZonedDateTime.of(LocalDateTime.now(), ZoneId.of(timeZone))
+        if (appProperty.datetime.bizDate == "") {
+            return ZonedDateTime.of(LocalDateTime.now(), ZoneId.of(appProperty.datetime.timezone))
         }
-        return ZonedDateTime.parse(bizDate, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+        return ZonedDateTime.parse(appProperty.datetime.bizDate, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
     }
 
     fun zoneId(): ZoneId {
-        return ZoneId.of(timeZone)
+        return ZoneId.of(appProperty.datetime.timezone)
     }
 
     fun toLocalDateTime(date: String): LocalDateTime? {
@@ -44,7 +43,7 @@ class AppDate(
         if (localDateTime == null) {
             return null
         }
-        return ZonedDateTime.of(localDateTime, ZoneId.of(timeZone))
+        return ZonedDateTime.of(localDateTime, ZoneId.of(appProperty.datetime.timezone))
     }
 
     fun toDate(localDateTime: LocalDateTime): Date {
@@ -52,6 +51,6 @@ class AppDate(
     }
 
     fun systemDate(): ZonedDateTime {
-        return ZonedDateTime.of(LocalDateTime.now(), ZoneId.of(timeZone))
+        return ZonedDateTime.of(LocalDateTime.now(), ZoneId.of(appProperty.datetime.timezone))
     }
 }
