@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: production
   output:
     ansi:
       enabled: ALWAYS
@@ -16,6 +16,8 @@ app:
   log:
     filter:
       type: SIMPLE # NOTHING, SIMPLE, DEBUG
+  security:
+    enabled: true
   timecard:
     excel:
       templateFilePath: ./template/timecard.xlsx
