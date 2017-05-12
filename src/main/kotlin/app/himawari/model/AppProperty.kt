@@ -27,6 +27,12 @@ class AppProperty {
         }
     }
 
+    var security: Security = Security()
+
+    class Security {
+        var enabled: Boolean = false
+    }
+
     var timecard: TimeCard = TimeCard()
 
     class TimeCard {
