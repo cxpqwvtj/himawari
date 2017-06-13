@@ -7,6 +7,7 @@ import app.himawari.model.AppDate
 import app.himawari.model.AppProperty
 import app.himawari.model.report.ReportTemplateProvider
 import org.apache.poi.ss.usermodel.Workbook
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -24,9 +25,11 @@ class ReportService(
         private val reportTemplateProvider: ReportTemplateProvider,
         private val timecardDayBhv: TimecardDayBhv
 ) {
+    private val logger = LoggerFactory.getLogger(this.javaClass)
+
     fun createXlsx(yearMonth: LocalDate, userId: String): Workbook {
         val workbook = reportTemplateProvider.reportTemplateManager.excelTemplate()
-        val sheet = workbook.getSheet(appProperty.timecard.excel.outputSheetName)
+        val sheet = workbook.getSheet(appProperty.timecard.excel.outputSheetName) ?: workbook.createSheet(appProperty.timecard.excel.outputSheetName)
 
         val list = timecardDayBhv.selectList { cb ->
             cb.setupSelect_DailyStartEndAsCurrentValue()
@@ -51,17 +54,17 @@ class ReportService(
             }
         }
         rows.mapIndexed { i, timecardRow ->
-            val row = sheet.getRow(appProperty.timecard.excel.beginRowNum + i)
-            val bizDateCell = row.getCell(appProperty.timecard.excel.bizDateColumnIndex)
+            val row = sheet.getRow(appProperty.timecard.excel.beginRowNum + i) ?: sheet.createRow(appProperty.timecard.excel.beginRowNum + i)
+            val bizDateCell = row.getCell(appProperty.timecard.excel.bizDateColumnIndex) ?: row.createCell(appProperty.timecard.excel.bizDateColumnIndex)
             bizDateCell.setCellValue(timecardRow.bizDate)
             val bizDateStyle = workbook.creationHelper.createDataFormat().getFormat("yyyy/MM/dd")
             val bizDateCellStyle = workbook.createCellStyle()
             bizDateCellStyle.dataFormat = bizDateStyle
             bizDateCell.cellStyle = bizDateCellStyle
-            row.getCell(appProperty.timecard.excel.startDatetimeColumnIndex).setCellValue(timecardRow.startDatetime)
-            row.getCell(appProperty.timecard.excel.endDatetimeColumnIndex).setCellValue(timecardRow.endDatetime)
-            row.getCell(appProperty.timecard.excel.vacationTypeColumnIndex).setCellValue(timecardRow.vacationType)
-            row.getCell(appProperty.timecard.excel.noteColumnIndex).setCellValue(timecardRow.note)
+            (row.getCell(appProperty.timecard.excel.startDatetimeColumnIndex) ?: row.createCell(appProperty.timecard.excel.startDatetimeColumnIndex)).setCellValue(timecardRow.startDatetime)
+            (row.getCell(appProperty.timecard.excel.endDatetimeColumnIndex) ?: row.createCell(appProperty.timecard.excel.endDatetimeColumnIndex)).setCellValue(timecardRow.endDatetime)
+            (row.getCell(appProperty.timecard.excel.vacationTypeColumnIndex) ?: row.createCell(appProperty.timecard.excel.vacationTypeColumnIndex)).setCellValue(timecardRow.vacationType)
+            (row.getCell(appProperty.timecard.excel.noteColumnIndex) ?: row.createCell(appProperty.timecard.excel.noteColumnIndex)).setCellValue(timecardRow.note)
         }
         appProperty.timecard.excel.autoSizeColumnIndexes.map {
             sheet.autoSizeColumn(it)
