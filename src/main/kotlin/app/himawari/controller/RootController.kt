@@ -1,7 +1,7 @@
 package app.himawari.controller
 
+import app.himawari.model.AppProperty
 import app.himawari.model.HimawariUser
-import app.himawari.model.report.ReportProps
 import app.himawari.service.report.ReportService
 import org.slf4j.LoggerFactory
 import org.springframework.core.io.ClassPathResource
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse
 @RequestMapping("/")
 open class RootController(
         private val reportService: ReportService,
-        private val reportProps: ReportProps
+        private val appProperty: AppProperty
 ) {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
@@ -37,7 +37,7 @@ open class RootController(
 
     @GetMapping(path = arrayOf("excel/timecards/{yearMonth}"), produces = arrayOf("application/vnd.ms-excel"))
     open fun createTimecardXlsx(@PathVariable yearMonth: String, @AuthenticationPrincipal user: HimawariUser, response: HttpServletResponse) {
-        response.setHeader("Content-Disposition", "attachment; filename=${reportProps.downloadFileName}")
+        response.setHeader("Content-Disposition", "attachment; filename=${appProperty.timecard.excel.downloadFileName}")
         val localDate = LocalDate.parse("${yearMonth}01", DateTimeFormatter.ofPattern("yyyyMMdd"))
         reportService.createXlsx(localDate, user.username).write(response.outputStream)
     }
