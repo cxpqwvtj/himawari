@@ -241,14 +241,14 @@ const promises = schemaDefFiles.filter((v) => v.endsWith('swagger.yml')).map((fi
           fs.writeFileSync(`${testClassFileDir}/${testClassFileName}`, generateKotlinTestClass(schemaName, schema))
           return Immutable.List.of(jsonFileName, mainClassFileName, testClassFileName)
         }
-        const generateFiles = properties.get('paths').flatMap((pathsObject, path) => {
+        const generateFiles = properties.get('paths').map((pathsObject, path) => {
           return pathsObject.map((pathsItem, method) => {
             const apiName = pathsItem.get('summary').split(':')[0]
             const upperCamelApiName = `${apiName[0].toUpperCase()}${apiName.substring(1).toLowerCase()}`
             const requestFiles = pathsItem.get('parameters', Immutable.List.of()).filter(v => v.get('in') === 'body').map(v => generate({path, method, object: v, type: 'Request', apiName: upperCamelApiName}))
             const responseFiles = pathsItem.get('responses').map((v, k) => generate({path, method, object: v, type: k, apiName: upperCamelApiName})).toList()
             return requestFiles.push(...responseFiles).flatten(1)
-          })
+          }).toList().flatten(1)
         }).toList().flatten(1)
 
         // サンプルJSONファイル掃除
