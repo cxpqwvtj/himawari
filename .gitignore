@@ -106,5 +106,5 @@ jspm_packages
 /buildSrc/src/main/javascript/custom_config.yml
 /config/*
 /dbflute_himawari/dfprop/system-password.txt
-/src/main/resources/static/*
-application.yml
+/web/src/main/resources/static/*
+/web/application-production.yml
