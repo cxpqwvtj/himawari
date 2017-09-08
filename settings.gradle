@@ -16,4 +16,5 @@ include 'api'
 include 'services:webservice'
 */
 
+include 'web', 'shared'
 rootProject.name = 'himawari'

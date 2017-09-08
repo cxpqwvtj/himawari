@@ -1,0 +1,8 @@
+dependencies {
+  compile "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+  compile "org.aspectj:aspectjweaver:1.8.10"
+  compile "mysql:mysql-connector-java:5.1.40"
+  compile "org.codehaus.janino:janino:3.0.0"
+  compile "org.dbflute:dbflute-runtime:1.1.2"
+  compile "org.apache.poi:poi-ooxml:3.15"
+}
