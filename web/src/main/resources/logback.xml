@@ -10,7 +10,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>./logs/himawari.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>./timber/${HOSTNAME}/himawari_%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>./logs/${HOSTNAME}/himawari_%d{yyyy-MM-dd}.gz</fileNamePattern>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -21,7 +21,7 @@
     <appender name="TRAIL" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>./logs/trail.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>./timber/trail/trail_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <fileNamePattern>./logs/trail/trail_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>1MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
