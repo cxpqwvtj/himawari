@@ -19,6 +19,7 @@ import java.time.LocalDate
  */
 @RunWith(SpringRunner::class)
 @SpringBootTest(classes = arrayOf(Application::class), webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@ActiveProfiles("ut")
 class ApiServiceTest : UnitHimawariContainerTestCase() {
     @Autowired
     lateinit var apiService: ApiService

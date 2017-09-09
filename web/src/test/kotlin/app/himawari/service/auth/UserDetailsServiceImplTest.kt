@@ -8,6 +8,7 @@ import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner
  */
 @RunWith(SpringRunner::class)
 @SpringBootTest(classes = arrayOf(Application::class), webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@ActiveProfiles("ut")
 class UserDetailsServiceImplTest : UnitHimawariContainerTestCase() {
     @Autowired
     lateinit var passwordEncoder: PasswordEncoder
