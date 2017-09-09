@@ -1,6 +1,6 @@
 buildscript {
   ext {
-    kotlinVersion = '1.1.1'
+    kotlinVersion = '1.1.4'
     springBootVersion = '1.5.1.RELEASE'
   }
   repositories {
@@ -13,7 +13,7 @@ buildscript {
   }
 }
 
-subprojets {
+subprojects {
   apply plugin: "java"
   apply plugin: "kotlin"
   //apply plugin: "org.junit.platform.gradle.plugin"
@@ -27,6 +27,7 @@ subprojets {
 
   dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+    compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
     testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
     testCompile "org.dbflute.utflute:utflute-spring-web:0.6.9"

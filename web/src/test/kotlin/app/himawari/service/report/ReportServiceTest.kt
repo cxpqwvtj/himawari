@@ -1,5 +1,7 @@
 package app.himawari.service.report
 
+import app.himawari.Application
+import app.himawari.UnitHimawariContainerTestCase
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,8 +16,8 @@ import java.time.Month
  * Created by cxpqwvtj on 2017/02/26.
  */
 @RunWith(SpringRunner::class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-class ReportServiceTest {
+@SpringBootTest(classes = arrayOf(Application::class), webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+class ReportServiceTest : UnitHimawariContainerTestCase() {
     @Autowired
     lateinit var service: ReportService
 

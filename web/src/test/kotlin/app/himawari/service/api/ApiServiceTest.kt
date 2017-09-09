@@ -1,5 +1,7 @@
 package app.himawari.service.api
 
+import app.himawari.Application
+import app.himawari.UnitHimawariContainerTestCase
 import app.himawari.dto.json.Api0002Request
 import app.himawari.model.HimawariUser
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -7,6 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
 import java.time.LocalDate
 
@@ -15,8 +18,8 @@ import java.time.LocalDate
  * Created by cxpqwvtj on 2017/02/12.
  */
 @RunWith(SpringRunner::class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-internal class ApiServiceTest {
+@SpringBootTest(classes = arrayOf(Application::class), webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+class ApiServiceTest : UnitHimawariContainerTestCase() {
     @Autowired
     lateinit var apiService: ApiService
 
@@ -34,5 +37,4 @@ internal class ApiServiceTest {
         })
         apiService.createDailyStartEndHistory(HimawariUser(1, "kougami", "", listOf()), Api0002Request().apply { days = dailyStartEndList })
     }
-
 }
