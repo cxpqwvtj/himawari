@@ -1,7 +1,7 @@
 const fs = require('fs')
 const JsYaml = require('js-yaml')
 const Immutable = require('immutable')
-const join = require('path').join;
+const join = require('path').join
 
 const Utils = require('./utils')
 
