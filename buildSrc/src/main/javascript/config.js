@@ -11,10 +11,10 @@ const customConfig = Utils.existsFile(customFilePath) ? JsYaml.safeLoad(fs.readF
 
 module.exports = Immutable.fromJS({
   schemaJsonFilePath: './docs/json-schema/schema.json',
-  mainPackageRoot: './src/main/kotlin',
-  testPackageRoot: './src/test/kotlin',
+  mainPackageRoot: './web/src/main/kotlin',
+  testPackageRoot: './web/src/test/kotlin',
   packageName: 'app.himawari.dto.json',
-  sampleJsonDir: './src/test/resources/json',
+  sampleJsonDir: './web/src/test/resources/json',
   jsonDefXlsxDir: './docs/xlsx',
   outputHtmlDir: './docs/html',
   csvConvertPaths: [
