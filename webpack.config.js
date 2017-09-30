@@ -22,12 +22,12 @@ function isExternal(module) {
 }
 
 module.exports = {
-  context: __dirname + '/src/main/client',
+  context: __dirname + '/web/src/main/client',
   entry: {
     'js/bundle': [...(HOT_DEPLOY ? [hotMiddlewareScript] : []), './index.js']
   },
   output: {
-    path: __dirname + '/src/main/resources/static',
+    path: __dirname + '/web/src/main/resources/static',
     filename: 'assets/[name].js',
     publicPath: `${CONTEXT_PATH}/`
   },
