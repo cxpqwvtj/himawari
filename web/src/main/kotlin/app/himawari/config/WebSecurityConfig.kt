@@ -2,7 +2,6 @@ package app.himawari.config
 
 import app.himawari.service.auth.UserDetailsServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.security.SecurityProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -40,13 +39,13 @@ open class WebSecurityConfig(
     @Configuration
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 1)
     open class ApiWebSecurityConfigurationAdapter(
-            @Value("\${spring.profiles.active}") private val activeProfile: String
+            private val appConfig: AppConfig
     ) : WebSecurityConfigurerAdapter() {
         @Throws(Exception::class)
         override fun configure(http: HttpSecurity) {
             http.antMatcher("/api/**").authorizeRequests().anyRequest().hasRole("USER")
 //                    .and().httpBasic()
-            if (activeProfile == "dev") {
+            if (!appConfig.security.enabled) {
                 http.csrf().disable()
             }
         }
@@ -55,14 +54,14 @@ open class WebSecurityConfig(
     @Configuration
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
     open class FormLoginWebSecurityConfigurerAdapter(
-            @Value("\${spring.profiles.active}") private val activeProfile: String
+            private val appConfig: AppConfig
     ) : WebSecurityConfigurerAdapter() {
         override fun configure(httpSecurity: HttpSecurity) {
             http.authorizeRequests().anyRequest().authenticated()
                     .and().formLogin()//.loginPage("/login").permitAll()
                     .and().logout().permitAll()
             http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-            if (activeProfile == "dev") {
+            if (!appConfig.security.enabled) {
                 http.csrf().disable()
             }
         }
