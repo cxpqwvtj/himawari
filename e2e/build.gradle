@@ -1,0 +1,3 @@
+dependencies {
+  testConpile "com.codeborne:selenide:4.5.1"
+}
