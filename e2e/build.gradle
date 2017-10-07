@@ -1,3 +1,4 @@
 dependencies {
-  testConpile "com.codeborne:selenide:4.5.1"
+  compile project(":web")
+  testCompile "com.codeborne:selenide:4.5.1"
 }
