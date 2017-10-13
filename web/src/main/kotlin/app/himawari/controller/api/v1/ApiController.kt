@@ -1,4 +1,4 @@
-package app.himawari.controller.api
+package app.himawari.controller.api.v1
 
 import app.himawari.dto.json.Api0002Request
 import app.himawari.dto.json.Api0002Response
