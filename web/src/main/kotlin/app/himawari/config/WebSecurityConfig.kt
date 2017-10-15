@@ -43,8 +43,12 @@ open class WebSecurityConfig(
     ) : WebSecurityConfigurerAdapter() {
         @Throws(Exception::class)
         override fun configure(http: HttpSecurity) {
-            http.antMatcher("/api/**").authorizeRequests().anyRequest().hasRole("USER")
-//                    .and().httpBasic()
+            // @formatter:off
+            http.antMatcher("/api/**")
+                .authorizeRequests()
+                    .anyRequest()
+                    .hasRole("USER")
+            // @formatter:on
             if (!appConfig.security.enabled) {
                 http.csrf().disable()
             }
