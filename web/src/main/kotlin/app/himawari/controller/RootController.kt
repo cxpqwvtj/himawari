@@ -6,6 +6,7 @@ import app.himawari.service.report.ReportService
 import org.slf4j.LoggerFactory
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -45,7 +46,9 @@ open class RootController(
     }
 
     @GetMapping(path = arrayOf("pdf/timecards/{yearMonth}"))
-    open fun createTimecardPdf(@PathVariable yearMongh: String, @AuthenticationPrincipal user: HimawariUser): ResponseEntity<ByteArray> {
-        return ResponseEntity<ByteArray>(ClassPathResource("static/404.html").file.readBytes(), HttpStatus.NOT_FOUND)
+    open fun createTimecardPdf(@PathVariable yearMonth: String, @AuthenticationPrincipal user: HimawariUser): ResponseEntity<ByteArray> {
+        val httpHeaders = HttpHeaders()
+        httpHeaders.contentType = MediaType.TEXT_HTML
+        return ResponseEntity<ByteArray>(ClassPathResource("static/404.html").file.readBytes(), httpHeaders, HttpStatus.NOT_FOUND)
     }
 }
