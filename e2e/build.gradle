@@ -1,9 +1,3 @@
-repositories {
-  mavenCentral artifactUrls: [
-    'http://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/'
-  ]
-}
-
 dependencies {
   compile project(":web")
   testCompile "com.codeborne:selenide:4.5.1"

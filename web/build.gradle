@@ -1,15 +1,8 @@
 apply plugin: "org.springframework.boot"
 
-repositories {
-  mavenCentral artifactUrls: [
-    'http://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/'
-  ]
-}
-
 dependencies {
   compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
   compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
   compile "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
-  compile "net.sf.jasperreports:jasperreports:6.4.1"
   compile project(":shared")
 }
