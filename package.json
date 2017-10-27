@@ -68,7 +68,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=development webpack --progress --colors",
     "package": "NODE_ENV=production webpack --progress --colors",
+    "package_ci": "NODE_ENV=production webpack --colors",
+    "package_win": "set NODE_ENV=production&& webpack --progress --colors",
+    "package_win_ci": "set NODE_ENV=production&& webpack --colors",
     "start": "NODE_ENV=development HOT_DEPLOY=true USE_PROXY=true node web/src/main/client-dev-server/server.js",
+    "start_win": "set NODE_ENV=development&& set HOT_DEPLOY=true && set USE_PROXY=true && node web/src/main/client-dev-server/server.js",
     "watch": "NODE_ENV=development webpack --progress --colors --watch",
     "generate": "node buildSrc/src/main/javascript/swaggerToKotlin.js"
   }
