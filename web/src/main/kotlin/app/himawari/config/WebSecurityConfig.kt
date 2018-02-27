@@ -17,7 +17,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository
 
 /**
  * SpringSecurity用のJavaConfigクラスです。
- * Created by masahiro on 2016/11/12.
+ * Created by cxpqwvtj on 2016/11/12.
  */
 @Configuration
 @EnableWebSecurity
@@ -41,7 +41,6 @@ open class WebSecurityConfig(
     open class ApiWebSecurityConfigurationAdapter(
             private val appConfig: AppConfig
     ) : WebSecurityConfigurerAdapter() {
-        @Throws(Exception::class)
         override fun configure(http: HttpSecurity) {
             // @formatter:off
             http.antMatcher("/api/**")
@@ -49,9 +48,6 @@ open class WebSecurityConfig(
                     .anyRequest()
                     .hasRole("USER")
             // @formatter:on
-            if (!appConfig.security.enabled) {
-                http.csrf().disable()
-            }
         }
     }
 
@@ -61,13 +57,12 @@ open class WebSecurityConfig(
             private val appConfig: AppConfig
     ) : WebSecurityConfigurerAdapter() {
         override fun configure(httpSecurity: HttpSecurity) {
+            // @formatter:off
             http.authorizeRequests().anyRequest().authenticated()
                     .and().formLogin()//.loginPage("/login").permitAll()
                     .and().logout().permitAll()
             http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-            if (!appConfig.security.enabled) {
-                http.csrf().disable()
-            }
+            // @formatter:on
         }
     }
 }
