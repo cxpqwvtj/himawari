@@ -28,7 +28,8 @@
           "debug": true
         }
       ],
-      "@babel/react"
+      "@babel/react",
+      "@babel/preset-stage-2"
     ]
   },
   "dependencies": {
@@ -51,6 +52,7 @@
     "@babel/core": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/preset-react": "^7.0.0-beta.40",
+    "@babel/preset-stage-2": "^7.0.0-beta.40",
     "babel-loader": "8.0.0-beta.0",
     "copy-webpack-plugin": "^4.5.1",
     "ejs": "^2.5.7",
