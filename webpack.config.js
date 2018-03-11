@@ -9,18 +9,6 @@ let CONTEXT_PATH = `${(process.env.CONTEXT_PATH || '')}`
 
 const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'
 
-function isExternal(module) {
-  var userRequest = module.userRequest
-
-  if (typeof userRequest !== 'string') {
-    return false
-  }
-
-  return userRequest.indexOf('bower_components') >= 0 ||
-         userRequest.indexOf('node_modules') >= 0 ||
-         userRequest.indexOf('libraries') >= 0
-}
-
 module.exports = {
   context: __dirname + '/web/src/main/client',
   entry: {
@@ -40,16 +28,8 @@ module.exports = {
       'process.env.CONTEXT_PATH': `"${CONTEXT_PATH}"`,
       'process.env.NODE_ENV': `"${process.env.NODE_ENV || (DEBUG ? 'development' : 'production')}"` 
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'js/vender',
-      minChunks: function(module) {
-        return isExternal(module)
-      }
-    }),
     ...(HOT_DEPLOY ? [new webpack.HotModuleReplacementPlugin()] : []),
-    ...(DEBUG ? [] : [new webpack.optimize.AggressiveMergingPlugin(),
-      new webpack.optimize.UglifyJsPlugin({ compress: { screw_ie8: true, warnings: VERBOSE } })
-    ]),
+    ...(DEBUG ? [] : [new webpack.optimize.AggressiveMergingPlugin()]),
     new HtmlWebpackPlugin({
       title: 'himawari',
       template: 'index.ejs'
