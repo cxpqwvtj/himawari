@@ -9,13 +9,10 @@ import Snackbar from 'material-ui/Snackbar'
 import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
 import FirstPageIcon from 'material-ui/svg-icons/navigation/first-page'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
-
-injectTapEventPlugin()
 
 class App extends AppBaseComponent {
   static propTypes = {
