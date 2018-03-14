@@ -42,18 +42,12 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        // react.jsに分離
-        react: {
-          test: /react/,
-          name: 'react',
+        commons: {
+          test: /node_modules/,
+          name: 'vendor',
           chunks: 'all',
-        },
-        // core.jsに分離
-        core: {
-          test: /redux|core-js|jss|history|matarial-ui|lodash|moment|rollbar|radium|prefixer|\.io|platform|axios/,
-          name: 'core',
-          chunks: 'all',
-        },
+          minSize: 1
+        }
       },
     },
   },
