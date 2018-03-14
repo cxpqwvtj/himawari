@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createLogger from 'redux-logger'
 import rootReducer from '../reducers'
 import createSagaMiddleware, { END } from 'redux-saga'
-import DevTools from '../containers/DevTools'
 import { Iterable } from 'immutable'
 
 export default function configureStore(initialState) {
@@ -17,8 +16,7 @@ export default function configureStore(initialState) {
           if (Iterable.isIterable(state)) return state.toJS()
           else return state
         }
-      })),
-      DevTools.instrument()
+      }))
     )
   )
 
