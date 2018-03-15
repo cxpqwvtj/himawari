@@ -24,7 +24,7 @@
           },
           "loose": true,
           "modules": false,
-          "useBuiltIns": "entry",
+          "useBuiltIns": "usage",
           "debug": true
         }
       ],
