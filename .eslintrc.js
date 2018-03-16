@@ -30,6 +30,7 @@ module.exports = {
       'never'
     ],
     'no-constant-condition': [0],
-    indent: ['error', 2]
+    indent: ['error', 2],
+    'no-unused-vars': ['error', {'args': 'none'}]
   }
 }
