@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import createLogger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers'
 import createSagaMiddleware, { END } from 'redux-saga'
 import { Iterable } from 'immutable'
