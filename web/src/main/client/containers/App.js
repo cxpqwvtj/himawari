@@ -43,7 +43,7 @@ class App extends AppBaseComponent {
             iconElementRight={
               <FlatButton
                 label='Sign in'
-                labelStyle={{textTransform: 'none'}}
+                labelStyle={{ textTransform: 'none' }}
                 onClick={() => {super.handleUrlChange('/login')}}
               />
             }

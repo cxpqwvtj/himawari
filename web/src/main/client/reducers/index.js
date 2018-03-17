@@ -18,9 +18,9 @@ function routing(state = routingInitialState, action) {
 
 function api(state = Immutable.fromJS({}), action) {
   if (action.payload && action.payload.response) {
-    return state.merge({[action.type]: action.payload.response})
+    return state.merge({ [action.type]: action.payload.response })
   } else if (action.type.endsWith('_FAILURE') && Immutable.fromJS(action).getIn(['payload', 'error'])) {
-    return state.merge({error: action.payload.error})
+    return state.merge({ error: action.payload.error })
   } else if (action.type === Actions.DELETE_ERROR_ACTION) {
     return state.delete('error').toJS()
   }
@@ -31,7 +31,7 @@ const rootReducer = combineReducers({
   routing,
   api,
   form: formReducer.plugin({
-    timecardEntry: (state={values: {vacationType: 'NOTHING'}}, action) => {
+    timecardEntry: (state={ values: { vacationType: 'NOTHING' }}, action) => {
       if (action.type === Actions.INITIALIZE_TIMECARD_ENTRY) {
         return {
           ...state,

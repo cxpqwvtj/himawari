@@ -8,7 +8,7 @@ import { ENUMS } from '../constants'
 
 function* fetchEntity(entity, apiFunction, param, url) {
   yield put(entity.request(param))
-  const {response, error} = yield call(apiFunction, url || param)
+  const { response, error } = yield call(apiFunction, url || param)
   if (response) {
     yield put(entity.success(param, response))
   } else {
@@ -29,7 +29,7 @@ function* getTimecard(requestParam) {
   }))
 }
 function* watchGetTimecard() {
-  while(true) {
+  while (true) {
     const requestParam = yield take(actions.TIMECARD_LOAD_ACTION)
     yield fork(getTimecard, requestParam.payload)
   }
@@ -44,10 +44,10 @@ function* postTimecard(requestParam) {
   const endDatetime = entry.get('endDatetime') ? moment(`${bizDate} ${entry.get('endDatetime')}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ssZ') : ''
   const vacationType = entry.get('vacationType') === ENUMS.VACATION_TYPE.NOTHING.name ? undefined : entry.get('vacationType')
   const note = entry.get('note')
-  yield call(entryTimecard, Object.assign(requestParam, {body: {days: [{bizDate, startDatetime, endDatetime, vacationType, note}]}}))
+  yield call(entryTimecard, Object.assign(requestParam, { body: { days: [{ bizDate, startDatetime, endDatetime, vacationType, note }]}}))
 }
 function* watchEntryTimecard() {
-  while(true) {
+  while (true) {
     const requestParam = yield take(actions.TIMECARD_ENTRY_ACTION)
     yield fork(postTimecard, requestParam.payload)
   }
@@ -58,7 +58,7 @@ function* postLogout(requestParam) {
   yield call(fetchLogout, requestParam)
 }
 function* watchLogout() {
-  while(true) {
+  while (true) {
     const requestParam = yield take(actions.LOGOUT_ACTION)
     yield fork(postLogout, requestParam.payload)
   }

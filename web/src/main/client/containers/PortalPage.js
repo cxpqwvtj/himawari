@@ -19,22 +19,22 @@ class PortalPage extends AppBaseComponent {
   render() {
     return (
       <div>
-        <div style={{margin: '10px'}}>
+        <div style={{ margin: '10px' }}>
           <RaisedButton label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY())}} />
         </div>
-        <div style={{margin: '10px'}}>
+        <div style={{ margin: '10px' }}>
           <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}} />
         </div>
-        <div style={{margin: '10px'}}>
+        <div style={{ margin: '10px' }}>
           <RaisedButton href='/swagger-ui' label='swagger-ui' />
         </div>
-        <div style={{margin: '10px'}}>
+        <div style={{ margin: '10px' }}>
           <RaisedButton href='/swagger-editor/#/?import=/swagger/swagger.yml' label='swagger-editor' />
         </div>
-        <div style={{margin: '10px'}}>
+        <div style={{ margin: '10px' }}>
           <RaisedButton href='/login' label='ログイン' />
         </div>
-        <form action='/logout' method='POST' style={{margin: '10px'}}>
+        <form action='/logout' method='POST' style={{ margin: '10px' }}>
           <RaisedButton type='submit' label='ログアウト' />
         </form>
       </div>
