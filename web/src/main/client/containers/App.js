@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
@@ -9,13 +10,10 @@ import Snackbar from 'material-ui/Snackbar'
 import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
 import FirstPageIcon from 'material-ui/svg-icons/navigation/first-page'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
 import * as actions from '../actions'
-
-injectTapEventPlugin()
 
 class App extends AppBaseComponent {
   static propTypes = {
@@ -45,7 +43,7 @@ class App extends AppBaseComponent {
             iconElementRight={
               <FlatButton
                 label='Sign in'
-                labelStyle={{textTransform: 'none'}}
+                labelStyle={{ textTransform: 'none' }}
                 onClick={() => {super.handleUrlChange('/login')}}
               />
             }

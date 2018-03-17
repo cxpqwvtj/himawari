@@ -1,17 +1,12 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
 class Dashboard extends AppBaseComponent {
-  static propTypes = {
-  }
-
   render() {
     return (
       <div>

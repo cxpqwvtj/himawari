@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Immutable from 'immutable'
 import moment from 'moment'
 
-import LinearProgress from 'material-ui/LinearProgress'
-import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table'
 import RaisedButton from 'material-ui/RaisedButton'
 
@@ -38,12 +38,12 @@ class TimeCard extends AppBaseComponent {
     }
     const yearMonth = moment(this.props.timecard.get('yearMonth'), 'YYYYMM')
     const res = this.props.timecard.get('days', Immutable.fromJS([])).reduce((r, v) => {
-      return r.merge({[v.get('bizDate')]: v})
+      return r.merge({ [v.get('bizDate')]: v })
     }, Immutable.fromJS({}))
     const days = Immutable.Range(0, yearMonth.clone().endOf('month').diff(yearMonth.clone().startOf('month'), 'days') + 1, 1).map(v => {
       return yearMonth.clone().add(v, 'days')
     }).map(v => {
-      return res.get(v.format('YYYY-MM-DD')) || Immutable.fromJS({bizDate: v.format('YYYY-MM-DD')})
+      return res.get(v.format('YYYY-MM-DD')) || Immutable.fromJS({ bizDate: v.format('YYYY-MM-DD') })
     })
     const rows = days.map((v, i) => {
       const bizDate = moment(v.get('bizDate'))
@@ -52,7 +52,7 @@ class TimeCard extends AppBaseComponent {
       const backgroundColor = bizDate.weekday() === 0 ? '#e7bdbd': bizDate.weekday() === 6 ? '#a7d0eb' : undefined
       const vacationTypeName = (ENUMS.VACATION_TYPE[v.get('vacationType')] || {}).description
       return (
-        <TableRow key={i} style={{backgroundColor}}>
+        <TableRow key={i} style={{ backgroundColor }}>
           <TableRowColumn><Link to={ROUTES.TIMECARD_ENTRY(`/${bizDate.format('YYYYMMDD')}`)}>{bizDate.format('MM/DD(ddd)')}</Link></TableRowColumn>
           <TableRowColumn>{start}</TableRowColumn>
           <TableRowColumn>{end}</TableRowColumn>
@@ -61,7 +61,7 @@ class TimeCard extends AppBaseComponent {
         </TableRow>
       )
     })
-    const buttonMargin = {margin: '10px'}
+    const buttonMargin = { margin: '10px' }
     const currentMonth = yearMonth.clone().format('YYYYMM')
     const prevMonth = yearMonth.clone().add(-1, 'months').format('YYYYMM')
     const nextMonth = yearMonth.clone().add(1, 'months').format('YYYYMM')

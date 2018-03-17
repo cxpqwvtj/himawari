@@ -1,19 +1,15 @@
-import React, { PropTypes } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import moment from 'moment'
 
-import LinearProgress from 'material-ui/LinearProgress'
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table'
 import RaisedButton from 'material-ui/RaisedButton'
 import { RadioButton } from 'material-ui/RadioButton'
 
 import { reduxForm, Field } from 'redux-form/immutable'
-import { Checkbox, RadioButtonGroup, SelectField, TextField, Toggle, DatePicker, TimePicker } from 'redux-form-material-ui'
-import TextFieldOrg from 'material-ui/TextField'
+import { RadioButtonGroup, TextField, DatePicker } from 'redux-form-material-ui'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
@@ -28,10 +24,10 @@ class TimeCardEntry extends AppBaseComponent {
   }
 
   componentWillMount() {
-    const {bizDate} = this.props
+    const { bizDate } = this.props
     if (!this.props.state.getIn(['api', 'TIMECARD_LOAD_SUCCESS'])) {
       this.props.actions.timecardLoadAction(bizDate.format('YYYYMM'))
-      this.props.actions.initializeTimecardEntry({entryDate: bizDate.clone().toDate()})
+      this.props.actions.initializeTimecardEntry({ entryDate: bizDate.clone().toDate() })
     } else {
       const day = this.props.state.getIn(['api', 'TIMECARD_LOAD_SUCCESS', 'days'], Immutable.List()).filter(v => v.get('bizDate') === bizDate.format('YYYY-MM-DD')).first() || Immutable.Map()
       this.props.actions.initializeTimecardEntry({
@@ -70,13 +66,13 @@ class TimeCardEntry extends AppBaseComponent {
     const date = this.props.bizDate
     const dateColor = date.weekday() === 0 ? 'red': date.weekday() === 6 ? 'blue' : undefined
     return (
-      <div style={{margin: '10px'}}>
-        <RaisedButton label='一覧' style={{marginLeft: '10px'}} onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
-        <RaisedButton label='前日' style={{marginLeft: '10px'}} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(-1, 'days').format('YYYYMMDD')}`))} />
-        <RaisedButton label='翌日' style={{marginLeft: '10px'}} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))} />
+      <div style={{ margin: '10px' }}>
+        <RaisedButton label='一覧' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
+        <RaisedButton label='前日' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(-1, 'days').format('YYYYMMDD')}`))} />
+        <RaisedButton label='翌日' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))} />
         <form>
           <div>
-            <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' floatingLabelText="業務日" inputStyle={{color: dateColor}} />
+            <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' floatingLabelText="業務日" inputStyle={{ color: dateColor }} />
           </div>
           <div>
             <Field name='startDatetime' component={TextField} floatingLabelText='開始時間' hintText='09:00' withRef ref={(input) => this.inputStartDatetime = input} />
