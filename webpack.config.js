@@ -1,10 +1,10 @@
-const path = require('path')
+// const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const DEBUG = !(process.env.NODE_ENV === 'production')
-const VERBOSE = process.argv.includes('--verbose')
+// const VERBOSE = process.argv.includes('--verbose')
 const HOT_DEPLOY = !!process.env.HOT_DEPLOY
 let CONTEXT_PATH = `${(process.env.CONTEXT_PATH || '')}`
 
@@ -36,7 +36,7 @@ module.exports = {
       template: 'index.ejs'
     }),
     new CopyWebpackPlugin([
-      { from: 'assets'}
+      { from: 'assets' }
     ])
   ],
   optimization: {
@@ -57,6 +57,14 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
+      },
+      {
+        test: /\.js|jsx$/,
+        exclude: /(node_modules)/,
+        loader: 'eslint-loader',
+        options: {
+          failOnError: true
+        }
       },
       {
         test: /\.ejs$/,
