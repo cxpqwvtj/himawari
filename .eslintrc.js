@@ -17,20 +17,18 @@ module.exports = {
     'react'
   ],
   rules: {
-    'linebreak-style': [
-      'error',
-      'unix'
-    ],
-    quotes: [
-      'error',
-      'single'
-    ],
-    semi: [
-      2,
-      'never'
-    ],
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'never'],
     'no-constant-condition': [0],
     indent: ['error', 2],
-    'no-unused-vars': ['warn', {'args': 'none'}]
+    'no-unused-vars': ['warn', { 'args': 'none' }],
+    'keyword-spacing': ['error', { 'before': true, 'after': true }],
+    'space-before-blocks': 'error',
+    'key-spacing': ['error', { 'beforeColon': false }],
+    'object-curly-spacing': ['error', 'always', {
+      'arraysInObjects': false,
+      'objectsInObjects': false
+    }]
   }
 }
