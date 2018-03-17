@@ -2,10 +2,8 @@ package app.himawari.config
 
 import app.himawari.service.auth.UserDetailsServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.security.SecurityProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.core.annotation.Order
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -37,7 +35,6 @@ open class WebSecurityConfig(
     }
 
     @Configuration
-    @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 1)
     open class ApiWebSecurityConfigurationAdapter(
             private val appConfig: AppConfig
     ) : WebSecurityConfigurerAdapter() {
@@ -52,7 +49,6 @@ open class WebSecurityConfig(
     }
 
     @Configuration
-    @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
     open class FormLoginWebSecurityConfigurerAdapter(
             private val appConfig: AppConfig
     ) : WebSecurityConfigurerAdapter() {
