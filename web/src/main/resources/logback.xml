@@ -41,7 +41,6 @@
     </appender>
     <logger name="app.himawari" level="TRACE" />
     <logger name="org.dbflute" level="TRACE" />
-    <logger name="org.springframework.security" level="DEBUG" />
     <root>
         <level value="INFO" />
         <appender-ref ref="STDOUT" />
