@@ -20,7 +20,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository
  */
 @Configuration
 @EnableWebSecurity
-open class WebSecurityConfig(
+class WebSecurityConfig(
         private val appConfig: AppConfig,
         private val userDetailsService: UserDetailsServiceImpl
 ) : WebSecurityConfigurerAdapter() {
@@ -41,7 +41,7 @@ open class WebSecurityConfig(
     }
 
     @Bean
-    open fun passwordEncoder(): PasswordEncoder {
+    fun passwordEncoder(): PasswordEncoder {
         return BCryptPasswordEncoder()
     }
 

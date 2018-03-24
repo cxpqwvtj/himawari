@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse
  */
 @Controller
 @RequestMapping("/")
-open class RootController(
+class RootController(
         private val reportService: ReportService,
         private val appProperty: AppProperty
 ) {
@@ -34,19 +34,19 @@ open class RootController(
 
     @GetMapping(path = arrayOf("", "timecards/**", "dev/**"), produces = arrayOf(MediaType.TEXT_HTML_VALUE))
     @ResponseBody
-    open fun root(): Resource {
+    fun root(): Resource {
         return ClassPathResource("/static/index.html")
     }
 
     @GetMapping(path = arrayOf("excel/timecards/{yearMonth}"), produces = arrayOf("application/vnd.ms-excel"))
-    open fun createTimecardXlsx(@PathVariable yearMonth: String, @AuthenticationPrincipal user: HimawariUser, response: HttpServletResponse) {
+    fun createTimecardXlsx(@PathVariable yearMonth: String, @AuthenticationPrincipal user: HimawariUser, response: HttpServletResponse) {
         response.setHeader("Content-Disposition", "attachment; filename=${appProperty.timecard.excel.downloadFileName}")
         val localDate = LocalDate.parse("${yearMonth}01", DateTimeFormatter.ofPattern("yyyyMMdd"))
         reportService.createXlsx(localDate, user.username).write(response.outputStream)
     }
 
     @GetMapping(path = arrayOf("pdf/timecards/{yearMonth}"))
-    open fun createTimecardPdf(@PathVariable yearMonth: String, @AuthenticationPrincipal user: HimawariUser): ResponseEntity<ByteArray> {
+    fun createTimecardPdf(@PathVariable yearMonth: String, @AuthenticationPrincipal user: HimawariUser): ResponseEntity<ByteArray> {
         val httpHeaders = HttpHeaders()
         httpHeaders.contentType = MediaType.TEXT_HTML
         return ResponseEntity<ByteArray>(ClassPathResource("static/404.html").file.readBytes(), httpHeaders, HttpStatus.NOT_FOUND)

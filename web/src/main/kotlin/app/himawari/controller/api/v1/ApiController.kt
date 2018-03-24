@@ -19,32 +19,32 @@ import javax.servlet.http.HttpServletRequest
  */
 @RestController
 @RequestMapping("/api/v1")
-open class ApiController(
+class ApiController(
         val service: ApiService
 ) {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
     @RequestMapping(path = arrayOf("/**"), method = arrayOf(RequestMethod.GET, RequestMethod.POST))
-    open fun root(request: HttpServletRequest) {
+    fun root(request: HttpServletRequest) {
         logger.debug(request.requestURL.toString())
     }
 
     @GetMapping(path = arrayOf("/timecards/{year_month}"))
-    open fun userTimecard(@AuthenticationPrincipal user: HimawariUser, @PathVariable("year_month") yearMonth: String): Api1001Response {
+    fun userTimecard(@AuthenticationPrincipal user: HimawariUser, @PathVariable("year_month") yearMonth: String): Api1001Response {
         val pattern = DateTimeFormatter.ofPattern("yyyyMMdd")
         val localDate = LocalDate.parse("${yearMonth}01", pattern)
         return service.selectMonthlyInOutData(user.username, localDate)
     }
 
     @GetMapping(path = arrayOf("/users/{user_id}/timecards/{year_month}"))
-    open fun adminTimecard(@PathVariable("user_id") userId: String, @PathVariable("year_month") yearMonth: String): Api1001Response {
+    fun adminTimecard(@PathVariable("user_id") userId: String, @PathVariable("year_month") yearMonth: String): Api1001Response {
         val pattern = DateTimeFormatter.ofPattern("yyyyMMdd")
         val localDate = LocalDate.parse("${yearMonth}01", pattern)
         return service.selectMonthlyInOutData(userId, localDate)
     }
 
     @PostMapping(path = arrayOf("/user/days"), consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    open fun createStartEnd(@AuthenticationPrincipal user: HimawariUser, @RequestBody startEndDatetimes: Api0002Request): Api0002Response {
+    fun createStartEnd(@AuthenticationPrincipal user: HimawariUser, @RequestBody startEndDatetimes: Api0002Request): Api0002Response {
         return service.createDailyStartEndHistory(user, startEndDatetimes)
     }
 }
