@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController
  * Created by cxpqwvtj on 2017/03/30.
  */
 @RestController
-open class ErrorController {
+class ErrorController {
 }
