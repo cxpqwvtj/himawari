@@ -10,7 +10,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy
  */
 @SpringBootApplication
 @EnableAspectJAutoProxy
-open class Application {
+class Application {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
