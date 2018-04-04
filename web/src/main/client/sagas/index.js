@@ -1,4 +1,4 @@
-import { take, put, call, fork, select } from 'redux-saga/effects'
+import { all, take, put, call, fork, select } from 'redux-saga/effects'
 import Immutable from 'immutable'
 import moment from 'moment'
 
@@ -65,9 +65,9 @@ function* watchLogout() {
 }
 
 export default function* root() {
-  yield [
+  yield all([
     fork(watchGetTimecard),
     fork(watchEntryTimecard),
     fork(watchLogout)
-  ]
+  ])
 }
