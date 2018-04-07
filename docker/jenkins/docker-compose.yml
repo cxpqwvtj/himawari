@@ -1,0 +1,11 @@
+version: '3'
+services:
+  jenkins:
+    image: jenkins/jenkins:2.114
+    container_name: himawari_jenkins
+    volumes:
+      - ../data/jenkins:/var/jenkins_home
+    ports:
+      - 8080:8080
+    environment:
+      - TZ=Asia/Tokyo
