@@ -1,5 +1,5 @@
 FROM java:openjdk-8-jdk-alpine
-MAINTAINER cxpqwvtj
+LABEL maintainer="cxpqwvtj@gmail.com"
 
 RUN apk add --no-cache bash libstdc++ nodejs
 RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories && \
