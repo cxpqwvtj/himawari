@@ -5,7 +5,7 @@ services:
     container_name: himawari_db
     ports:
       - 3306:3306
-    # volumes:
-    #   - ./conf.d:/etc/mysql/conf.d:ro
+    volumes:
+      - ./conf.d:/etc/mysql/conf.d:ro
     environment:
       - MYSQL_ROOT_PASSWORD=pass
