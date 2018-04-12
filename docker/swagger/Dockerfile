@@ -1,5 +1,5 @@
 FROM nginx:1.11.9-alpine
-MAINTAINER cxpqwvtj
+LABEL maintainer "cxpqwvtj <cxpqwvtj@gmail.com>"
 
 WORKDIR /app
 

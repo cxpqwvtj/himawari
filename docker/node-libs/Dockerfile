@@ -1,5 +1,5 @@
 FROM node:7.4.0-alpine
-MAINTAINER cxpqwvtj
+LABEL maintainer "cxpqwvtj <cxpqwvtj@gmail.com>"
 
 WORKDIR /app
 

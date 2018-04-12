@@ -1,5 +1,5 @@
 FROM java:openjdk-8-jdk-alpine
-MAINTAINER cxpqwvtj
+LABEL maintainer "cxpqwvtj <cxpqwvtj@gmail.com>"
 
 RUN apk add --no-cache bash libstdc++ curl
 
