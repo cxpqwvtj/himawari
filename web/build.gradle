@@ -2,6 +2,7 @@ apply plugin: "org.springframework.boot"
 
 dependencies {
   compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+  compile "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
   compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
   compile "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
   compile "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
