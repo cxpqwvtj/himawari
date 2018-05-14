@@ -1,7 +1,12 @@
-version: '2'
+version: '3'
 services:
   swagger:
-    build:
-      context: docker/swagger
+    image: swaggerapi/swagger-ui:v3.0.5
+    container_name: himawari_swagger_ui
+    ports:
+      - 8180:8180
+    environment:
+      - SWAGGER_JSON=/app/swagger.json
+      - PORT=8180
     volumes:
-      - ../../docs/swagger/swagger.yml:/app/swagger/swagger.yml
+      - ../../docs/swagger/swagger.yml:/app/swagger.yml
