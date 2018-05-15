@@ -4,9 +4,8 @@ services:
     image: swaggerapi/swagger-ui:v3.0.5
     container_name: himawari_swagger_ui
     ports:
-      - 8180:8180
+      - 8180:8080
     environment:
-      - SWAGGER_JSON=/app/swagger.json
-      - PORT=8180
+      API_URL: swagger.yml
     volumes:
       - ../../docs/swagger/swagger.yml:/app/swagger.yml
