@@ -4,12 +4,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Immutable from 'immutable'
 
-import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles'
-import AppBar from 'material-ui/AppBar'
-import Snackbar from 'material-ui/Snackbar'
-import IconButton from 'material-ui/IconButton'
-import FlatButton from 'material-ui/FlatButton'
-import FirstPageIcon from 'material-ui/svg-icons/navigation/first-page'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Snackbar from '@material-ui/core/Snackbar'
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
+import FirstPage from '@material-ui/icons/FirstPage'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
@@ -25,13 +25,8 @@ class App extends AppBaseComponent {
   render() {
     const { children } = this.props
 
-    const muiTheme = getMuiTheme({
-      tableRowColumn: {
-        height: '30px'
-      },
-      tableRow: {
-        height: '30px'
-      }
+    const muiTheme = createMuiTheme({
+      // テーマ設定
     })
 
     return (
@@ -39,9 +34,10 @@ class App extends AppBaseComponent {
         <div>
           <AppBar
             title="Himawari"
-            iconElementLeft={<IconButton onClick={() => super.handleUrlChange('')}><FirstPageIcon /></IconButton>}
+            iconElementLeft={<IconButton onClick={() => super.handleUrlChange('')}><FirstPage /></IconButton>}
             iconElementRight={
-              <FlatButton
+              <Button
+                variant="contained"
                 label='Sign in'
                 labelStyle={{ textTransform: 'none' }}
                 onClick={() => {super.handleUrlChange('/login')}}

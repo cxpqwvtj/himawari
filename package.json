@@ -29,11 +29,17 @@
         }
       ],
       "@babel/preset-react",
-      ["@babel/preset-stage-2", { "decoratorsLegacy": true }]
+      [
+        "@babel/preset-stage-2",
+        {
+          "decoratorsLegacy": true
+        }
+      ]
     ]
   },
   "dependencies": {
     "@material-ui/core": "^1.2.1",
+    "@material-ui/icons": "^1.1.0",
     "immutable": "^3.8.2",
     "moment": "^2.21.0",
     "react": "^16.4.1",
@@ -85,7 +91,7 @@
     "package_win_ci": "set NODE_ENV=production&& webpack --colors",
     "start": "NODE_ENV=development HOT_DEPLOY=true USE_PROXY=true node web/src/main/client-dev-server/server.js",
     "start_win": "set NODE_ENV=development&& set HOT_DEPLOY=true && set USE_PROXY=true && node web/src/main/client-dev-server/server.js",
-    "watch": "NODE_ENV=development webpack --progress --colors --watch",
+    "watch": "NODE_ENV=development webpack --colors --watch",
     "generate": "node buildSrc/src/main/javascript/swaggerToKotlin.js"
   }
 }

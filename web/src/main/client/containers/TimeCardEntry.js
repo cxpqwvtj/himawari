@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import Immutable from 'immutable'
 import moment from 'moment'
 
-import RaisedButton from 'material-ui/RaisedButton'
-import { RadioButton } from 'material-ui/RadioButton'
+import Button from '@material-ui/core/Button'
+import { Radio } from '@material-ui/core/Radio'
 
 import { reduxForm, Field } from 'redux-form/immutable'
 import { RadioButtonGroup, TextField, DatePicker } from 'redux-form-material-ui'
@@ -67,9 +67,9 @@ class TimeCardEntry extends AppBaseComponent {
     const dateColor = date.weekday() === 0 ? 'red': date.weekday() === 6 ? 'blue' : undefined
     return (
       <div style={{ margin: '10px' }}>
-        <RaisedButton label='一覧' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
-        <RaisedButton label='前日' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(-1, 'days').format('YYYYMMDD')}`))} />
-        <RaisedButton label='翌日' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))} />
+        <Button label='一覧' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
+        <Button label='前日' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(-1, 'days').format('YYYYMMDD')}`))} />
+        <Button label='翌日' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))} />
         <form>
           <div>
             <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' floatingLabelText="業務日" inputStyle={{ color: dateColor }} />
@@ -81,7 +81,7 @@ class TimeCardEntry extends AppBaseComponent {
             <Field name='endDatetime' component={TextField} floatingLabelText='終了時間' hintText='18:00' />
           </div>
           <div>
-            <RaisedButton label='登録' onClick={() => {
+            <Button label='登録' onClick={() => {
               this.props.actions.timecardEntryAction()
               super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))
               this.selectStartDatetime()
@@ -92,12 +92,12 @@ class TimeCardEntry extends AppBaseComponent {
           </div>
           <div>
             <Field name='vacationType' component={RadioButtonGroup}>
-              <RadioButton value='NOTHING' label={ENUMS.VACATION_TYPE.NOTHING.description} />
-              <RadioButton value='PAID_DAY_OFF' label={ENUMS.VACATION_TYPE.PAID_DAY_OFF.description} />
-              <RadioButton value='SP_DAY_OFF' label={ENUMS.VACATION_TYPE.SP_DAY_OFF.description} />
-              <RadioButton value='AM_OFF' label={ENUMS.VACATION_TYPE.AM_OFF.description} />
-              <RadioButton value='PM_OFF' label={ENUMS.VACATION_TYPE.PM_OFF.description} />
-              <RadioButton value='TRANSFER_DAY_OFF' label={ENUMS.VACATION_TYPE.TRANSFER_DAY_OFF.description} />
+              <Radio value='NOTHING' label={ENUMS.VACATION_TYPE.NOTHING.description} />
+              <Radio value='PAID_DAY_OFF' label={ENUMS.VACATION_TYPE.PAID_DAY_OFF.description} />
+              <Radio value='SP_DAY_OFF' label={ENUMS.VACATION_TYPE.SP_DAY_OFF.description} />
+              <Radio value='AM_OFF' label={ENUMS.VACATION_TYPE.AM_OFF.description} />
+              <Radio value='PM_OFF' label={ENUMS.VACATION_TYPE.PM_OFF.description} />
+              <Radio value='TRANSFER_DAY_OFF' label={ENUMS.VACATION_TYPE.TRANSFER_DAY_OFF.description} />
             </Field>
           </div>
         </form>

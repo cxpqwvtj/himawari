@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
@@ -20,7 +20,7 @@ class Login extends AppBaseComponent {
           <TextField floatingLabelText='パスワード' />
         </div>
         <div style={{ textAlign: 'center' }}>
-          <RaisedButton label="Default" style={{ margin: '12px' }} onClick={() => { super.handleUrlChange('/login') }} />
+          <Button label="Default" style={{ margin: '12px' }} onClick={() => { super.handleUrlChange('/login') }} />
         </div>
       </div>
     )

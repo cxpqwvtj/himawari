@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import moment from 'moment'
 
-import RaisedButton from 'material-ui/RaisedButton'
+import Button from '@material-ui/core/Button'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
@@ -20,22 +20,22 @@ class PortalPage extends AppBaseComponent {
     return (
       <div>
         <div style={{ margin: '10px' }}>
-          <RaisedButton label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY())}} />
+          <Button label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY())}} />
         </div>
         <div style={{ margin: '10px' }}>
-          <RaisedButton label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}} />
+          <Button label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}} />
         </div>
         <div style={{ margin: '10px' }}>
-          <RaisedButton href='/swagger-ui' label='swagger-ui' />
+          <Button href='/swagger-ui' label='swagger-ui' />
         </div>
         <div style={{ margin: '10px' }}>
-          <RaisedButton href='/swagger-editor/#/?import=/swagger/swagger.yml' label='swagger-editor' />
+          <Button href='/swagger-editor/#/?import=/swagger/swagger.yml' label='swagger-editor' />
         </div>
         <div style={{ margin: '10px' }}>
-          <RaisedButton href='/login' label='ログイン' />
+          <Button href='/login' label='ログイン' />
         </div>
         <form action='/logout' method='POST' style={{ margin: '10px' }}>
-          <RaisedButton type='submit' label='ログアウト' />
+          <Button type='submit' label='ログアウト' />
         </form>
       </div>
     )
