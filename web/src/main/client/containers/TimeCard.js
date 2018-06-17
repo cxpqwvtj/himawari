@@ -7,7 +7,7 @@ import Immutable from 'immutable'
 import moment from 'moment'
 
 // import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar'
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from '@material-ui/core'
+import { Table, TableBody, TableHead, TableRow, TableCell } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 
 import AppBaseComponent from '../components/AppBaseComponent'
@@ -53,11 +53,11 @@ class TimeCard extends AppBaseComponent {
       const vacationTypeName = (ENUMS.VACATION_TYPE[v.get('vacationType')] || {}).description
       return (
         <TableRow key={i} style={{ backgroundColor }}>
-          <TableRowColumn><Link to={ROUTES.TIMECARD_ENTRY(`/${bizDate.format('YYYYMMDD')}`)}>{bizDate.format('MM/DD(ddd)')}</Link></TableRowColumn>
-          <TableRowColumn>{start}</TableRowColumn>
-          <TableRowColumn>{end}</TableRowColumn>
-          <TableRowColumn>{vacationTypeName}</TableRowColumn>
-          <TableRowColumn>{v.get('note')}</TableRowColumn>
+          <TableCell><Link to={ROUTES.TIMECARD_ENTRY(`/${bizDate.format('YYYYMMDD')}`)}>{bizDate.format('MM/DD(ddd)')}</Link></TableCell>
+          <TableCell>{start}</TableCell>
+          <TableCell>{end}</TableCell>
+          <TableCell>{vacationTypeName}</TableCell>
+          <TableCell>{v.get('note')}</TableCell>
         </TableRow>
       )
     })
@@ -79,15 +79,15 @@ class TimeCard extends AppBaseComponent {
         </Toolbar> */}
         <div>
           <Table>
-            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            <TableHead displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
-                <TableHeaderColumn>年月日</TableHeaderColumn>
-                <TableHeaderColumn>開始時間</TableHeaderColumn>
-                <TableHeaderColumn>終了時間</TableHeaderColumn>
-                <TableHeaderColumn>休暇タイプ</TableHeaderColumn>
-                <TableHeaderColumn>備考</TableHeaderColumn>
+                <TableCell>年月日</TableCell>
+                <TableCell>開始時間</TableCell>
+                <TableCell>終了時間</TableCell>
+                <TableCell>休暇タイプ</TableCell>
+                <TableCell>備考</TableCell>
               </TableRow>
-            </TableHeader>
+            </TableHead>
             <TableBody displayRowCheckbox={false}>
               {rows}
             </TableBody>
