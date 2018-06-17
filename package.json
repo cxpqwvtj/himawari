@@ -25,7 +25,7 @@
           "loose": true,
           "modules": false,
           "useBuiltIns": "usage",
-          "debug": true
+          "debug": false
         }
       ],
       "@babel/preset-react",
