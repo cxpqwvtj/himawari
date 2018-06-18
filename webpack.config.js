@@ -11,6 +11,7 @@ let CONTEXT_PATH = `${(process.env.CONTEXT_PATH || '')}`
 const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'
 
 module.exports = {
+  mode: DEBUG ? 'development' : 'production',
   context: __dirname + '/web/src/main/client',
   entry: {
     'js/bundle': [...(HOT_DEPLOY ? [hotMiddlewareScript] : []), './index.js']
