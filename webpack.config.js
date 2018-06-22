@@ -19,7 +19,7 @@ module.exports = {
   output: {
     path: __dirname + '/web/src/main/resources/static',
     filename: 'assets/[name].js',
-    publicPath: `${CONTEXT_PATH}/`
+    publicPath: ''
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -34,7 +34,8 @@ module.exports = {
     ...(DEBUG ? [] : [new webpack.optimize.AggressiveMergingPlugin()]),
     new HtmlWebpackPlugin({
       title: 'himawari',
-      template: 'index.ejs'
+      template: 'index.ejs',
+      filename: '../templates/index.html'
     }),
     new CopyWebpackPlugin([
       { from: 'assets' }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.servlet.ModelAndView
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.servlet.http.HttpServletResponse
@@ -33,9 +34,10 @@ class RootController(
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
     @GetMapping(path = arrayOf("", "timecards/**", "dev/**"), produces = arrayOf(MediaType.TEXT_HTML_VALUE))
-    @ResponseBody
-    fun root(): Resource {
-        return ClassPathResource("/static/index.html")
+    fun root(): ModelAndView {
+        val mav = ModelAndView()
+        mav.viewName = "index"
+        return mav
     }
 
     @GetMapping(path = arrayOf("excel/timecards/{yearMonth}"), produces = arrayOf("application/vnd.ms-excel"))

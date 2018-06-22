@@ -1,8 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="UTF-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <base href="/" th:href="@{/}" />
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+      var CONTEXT_PATH = /*[[@{/}]]*/ "/";
+      var AUTHORITIES = /*<%="[[${authorities}]]"%>*/ [];
+    /*]]>*/
+    </script>
   </head>
   <body style="margin: 0px">
     <div id="root"></div>
