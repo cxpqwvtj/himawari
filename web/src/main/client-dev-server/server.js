@@ -33,7 +33,7 @@ if (process.env.USE_PROXY === 'false') {
     res.json({})
   })
 } else {
-  const appSrv = proxy({target: 'http://localhost:8080', changeOrigin: false})
+  const appSrv = proxy({ target: 'http://localhost:8080', changeOrigin: false })
   app.use('/api', appSrv)
   app.use('/login', appSrv)
   app.use('/logout', appSrv)
@@ -43,7 +43,7 @@ if (process.env.USE_PROXY === 'false') {
 app.get('/**', function(req, res) {
   console.log(`${moment().format(LOG_DATE_FORMAT)} [${(req.method + '    ').slice(0, 4)}] ${req.url}`) // eslint-disable-line no-console
   res.setHeader('Content-Type', 'text/html')
-  res.send(compiler.outputFileSystem.readFileSync(compiler.outputPath + '/index.html'))
+  res.send(compiler.outputFileSystem.readFileSync(compiler.outputPath + '/../templates/index.html'))
 })
 
 app.listen(port, function(error) {
