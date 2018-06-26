@@ -6,10 +6,10 @@ import Immutable from 'immutable'
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 import Snackbar from '@material-ui/core/Snackbar'
-import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
-import FirstPage from '@material-ui/icons/FirstPage'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
@@ -30,20 +30,21 @@ class App extends AppBaseComponent {
     })
 
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider theme={muiTheme}>
         <div>
-          <AppBar
-            title="Himawari"
-            iconElementLeft={<IconButton onClick={() => super.handleUrlChange('')}><FirstPage /></IconButton>}
-            iconElementRight={
+          <AppBar>
+            <Toolbar>
+              <Typography variant="title" color="inherit" style={{ flex: 1 }}>
+                <Button color="inherit" onClick={() => super.handleUrlChange('')}>Title</Button>
+              </Typography>
               <Button
-                variant="contained"
-                label='Sign in'
-                labelStyle={{ textTransform: 'none' }}
+                color="inherit"
                 onClick={() => {super.handleUrlChange('/login')}}
-              />
-            }
-          />
+              >
+                Login
+              </Button>
+            </Toolbar>
+          </AppBar>
           <Snackbar open={!!this.props.error.get('message')} autoHideDuration={4000} message={`${this.props.error.get('status', '')}:${this.props.error.get('message', '')}`} onRequestClose={() => this.props.actions.deleteErrorAction()} />
           {children}
         </div>
