@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Button from '@material-ui/core/Button'
 import moment from 'moment'
 
-import Button from '@material-ui/core/Button'
-
 import AppBaseComponent from '../components/AppBaseComponent'
-
+import App from './App'
 import { ROUTES } from '../constants'
 import * as actions from '../actions'
 
@@ -18,26 +18,29 @@ class PortalPage extends AppBaseComponent {
 
   render() {
     return (
-      <div>
-        <div style={{ margin: '10px' }}>
-          <Button label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY())}} />
+      <App>
+        <div style={{ marginTop: '140px' }}>
+          <Button variant="contained" color="primary"><NavLink to="/timecards/entry/1">ログイン</NavLink></Button>
         </div>
         <div style={{ margin: '10px' }}>
-          <Button label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}} />
+          <Button label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY())}}>ENTRY</Button>
         </div>
         <div style={{ margin: '10px' }}>
-          <Button href='/swagger-ui' label='swagger-ui' />
+          <Button label='TimeCard' onClick={() => {super.handleUrlChange(ROUTES.USER_TIMECARD(moment().format('YYYYMM')))}}>TimeCard</Button>
         </div>
         <div style={{ margin: '10px' }}>
-          <Button href='/swagger-editor/#/?import=/swagger/swagger.yml' label='swagger-editor' />
+          <Button href='/swagger-ui' label='swagger-ui'>swagger</Button>
         </div>
         <div style={{ margin: '10px' }}>
-          <Button href='/login' label='ログイン' />
+          <Button href='/swagger-editor/#/?import=/swagger/swagger.yml' label='swagger-editor'>swagger</Button>
+        </div>
+        <div style={{ margin: '10px' }}>
+          <Button href='/login' label='ログイン'>ログイン</Button>
         </div>
         <form action='/logout' method='POST' style={{ margin: '10px' }}>
-          <Button type='submit' label='ログアウト' />
+          <Button type='submit' label='ログアウト'>ログアウト</Button>
         </form>
-      </div>
+      </App>
     )
   }
 }

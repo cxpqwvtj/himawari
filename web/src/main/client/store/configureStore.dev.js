@@ -1,16 +1,18 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { createLogger } from 'redux-logger'
-import rootReducer from '../reducers'
 import createSagaMiddleware, { END } from 'redux-saga'
 import { Iterable } from 'immutable'
+import { routerMiddleware } from 'react-router-redux'
 
-export default function configureStore(initialState) {
+import rootReducer from '../reducers'
+
+export default function configureStore(initialState, history) {
   const sagaMiddleware = createSagaMiddleware()
   const store = createStore(
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(sagaMiddleware, createLogger({
+      applyMiddleware(sagaMiddleware, routerMiddleware(history), createLogger({
         collapsed: () => true,
         stateTransformer: (state) => {
           if (Iterable.isIterable(state)) return state.toJS()
