@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import moment from 'moment'
@@ -20,7 +20,10 @@ class PortalPage extends AppBaseComponent {
     return (
       <App>
         <div style={{ marginTop: '140px' }}>
-          <Button variant="contained" color="primary"><NavLink to="/timecards/entry/1">ログイン</NavLink></Button>
+          <Button variant='contained' color='primary' component={Link} to='/timecards/entry/1'>ログイン</Button>
+        </div>
+        <div style={{ margin: '10px' }}>
+          <Button label='ENTRY'>ENTRY</Button>
         </div>
         <div style={{ margin: '10px' }}>
           <Button label='ENTRY' onClick={() => {super.handleUrlChange(ROUTES.TIMECARD_ENTRY())}}>ENTRY</Button>
