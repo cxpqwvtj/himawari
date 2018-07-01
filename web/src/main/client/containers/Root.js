@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
-import { Route } from 'react-router'
-import { ConnectedRouter } from 'react-router-redux'
+import { Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router/immutable'
 
 import PortalPage from './PortalPage'
 import Login from './Login'
@@ -15,12 +15,13 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <div>
-            <Route path='/' component={PortalPage} />
-            <Route path='/login' component={Login} />
+          <Switch>
+            <Route exact path='/' component={PortalPage} />
+            <Route exact path='/login' component={Login} />
             <Route path='/timecards/entry(/:date)' component={TimeCardEntry} />
-            <Route path='/timecards(/:yearMonth)' component={TimeCard} />
-          </div>
+            <Route exact path='/timecards(/:yearMonth)' component={TimeCard} />
+            <Route component={PortalPage} />
+          </Switch>
         </ConnectedRouter>
       </Provider>
     )

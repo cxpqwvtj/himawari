@@ -1,15 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
+import Immutable from 'immutable'
 
 import Root from './containers/Root'
 import configureStore from './store/configureStore'
 import rootSaga from './sagas'
 
-const store = configureStore()
-store.runSaga(rootSaga)
+const history = createBrowserHistory({ basename: `${window.CONTEXT_PATH}` })
 
-const history = createHistory()
+const store = configureStore(Immutable.Map(), history)
+store.runSaga(rootSaga)
 
 render(
   <Root store={store} history={history} />,

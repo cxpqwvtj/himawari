@@ -1,20 +1,9 @@
 import { combineReducers } from 'redux-immutablejs'
-import { LOCATION_CHANGE } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 import Immutable from 'immutable'
 import moment from 'moment'
 
 import * as Actions from '../actions'
-
-const routingInitialState = Immutable.fromJS({
-  locationBeforeTransitions: null
-})
-function routing(state = routingInitialState, action) {
-  if (action.type === LOCATION_CHANGE) {
-    return state.set('locationBeforeTransitions', action.payload)
-  }
-  return state
-}
 
 function api(state = Immutable.fromJS({}), action) {
   if (action.payload && action.payload.response) {
@@ -28,7 +17,6 @@ function api(state = Immutable.fromJS({}), action) {
 }
 
 const rootReducer = combineReducers({
-  routing,
   api,
   form: formReducer.plugin({
     timecardEntry: (state={ values: { vacationType: 'NOTHING' }}, action) => {
