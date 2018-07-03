@@ -20,7 +20,10 @@ class PortalPage extends AppBaseComponent {
     return (
       <App>
         <div style={{ marginTop: '140px' }}>
-          <Button variant='contained' color='primary' component={Link} to='/timecards/entry/1'>ログイン</Button>
+          <Button variant='contained' color='primary' component={Link} to='/timecards/entry/201701'>timecard</Button>
+        </div>
+        <div style={{ margin: '10px' }}>
+          <Button variant='contained' color='primary' component={Link} to='/login'>ログイン</Button>
         </div>
         <div style={{ margin: '10px' }}>
           <Button label='ENTRY'>ENTRY</Button>

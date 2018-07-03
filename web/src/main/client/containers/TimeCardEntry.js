@@ -107,7 +107,7 @@ class TimeCardEntry extends AppBaseComponent {
 }
 
 function mapStateToProps(state, ownProps) {
-  const paramDate = moment(ownProps.params.date, 'YYYYMMDD')
+  const paramDate = moment(ownProps.match.params.date, 'YYYYMMDD')
   const bizDate = paramDate.isValid() ? paramDate : moment().startOf('day')
   return {
     state: Immutable.fromJS(state),

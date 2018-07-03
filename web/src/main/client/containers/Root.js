@@ -18,7 +18,8 @@ export default class Root extends Component {
           <Switch>
             <Route exact path='/' component={PortalPage} />
             <Route exact path='/login' component={Login} />
-            <Route path='/timecards/entry(/:date)' component={TimeCardEntry} />
+            <Route exact path='/timecards/entry' component={TimeCardEntry} />
+            <Route exact path='/timecards/entry/:date' component={TimeCardEntry} />
             <Route exact path='/timecards(/:yearMonth)' component={TimeCard} />
             <Route component={PortalPage} />
           </Switch>
