@@ -2,14 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Immutable from 'immutable'
 import moment from 'moment'
 
 import Button from '@material-ui/core/Button'
-import { Radio } from '@material-ui/core/Radio'
+import Radio from '@material-ui/core/Radio'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 import { reduxForm, Field } from 'redux-form/immutable'
-import { RadioButtonGroup, TextField, DatePicker } from 'redux-form-material-ui'
+import { RadioGroup, TextField } from 'redux-form-material-ui'
 
 import AppBaseComponent from '../components/AppBaseComponent'
 
@@ -58,46 +60,61 @@ class TimeCardEntry extends AppBaseComponent {
   }
 
   selectStartDatetime() {
-    this.inputStartDatetime.getRenderedComponent().getRenderedComponent().focus()
-    this.inputStartDatetime.getRenderedComponent().getRenderedComponent().input.setSelectionRange(0, this.inputStartDatetime.getRenderedComponent().getRenderedComponent().input.value.length)
+    // this.inputStartDatetime.getRenderedComponent().getRenderedComponent().input.setSelectionRange(0, this.inputStartDatetime.getRenderedComponent().getRenderedComponent().input.value.length)
+    // this.inputStartDatetime.getRenderedComponent().getRenderedComponent().focus()
   }
 
   render() {
     const date = this.props.bizDate
-    const dateColor = date.weekday() === 0 ? 'red': date.weekday() === 6 ? 'blue' : undefined
+    // const dateColor = date.weekday() === 0 ? 'red': date.weekday() === 6 ? 'blue' : undefined
     return (
       <div style={{ margin: '10px' }}>
-        <Button label='一覧' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.USER_TIMECARD(date.format('YYYYMM')))} />
-        <Button label='前日' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(-1, 'days').format('YYYYMMDD')}`))} />
-        <Button label='翌日' style={{ marginLeft: '10px' }} onClick={() => super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))} />
+        <Button variant='contained' color='primary' style={{ marginLeft: '10px' }} component={Link} to={ROUTES.USER_TIMECARD(date.format('YYYYMM'))}>一覧</Button>
+        <Button variant='contained' color='primary' style={{ marginLeft: '10px' }} component={Link} to={ROUTES.TIMECARD_ENTRY(`/${date.clone().add(-1, 'days').format('YYYYMMDD')}`)}>前日</Button>
+        <Button variant='contained' color='primary' style={{ marginLeft: '10px' }} component={Link} to={ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`)}>翌日</Button>
         <form>
+          {/* <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' floatingLabelText="業務日" inputStyle={{ color: dateColor }} /> */}
           <div>
-            <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' floatingLabelText="業務日" inputStyle={{ color: dateColor }} />
+            TODO:業務日表示
+            {/* <Field name='entryDate' component={TextField} label='業務日'
+              id='date'
+              type='date'
+              defaultValue='2017/05/24'
+              InputLabelProps={{
+                shrink: true,
+              }}
+            /> */}
           </div>
           <div>
-            <Field name='startDatetime' component={TextField} floatingLabelText='開始時間' hintText='09:00' withRef ref={(input) => this.inputStartDatetime = input} />
+            <Field name='startDatetime' component={TextField} label='開始時間' placeholder='09:00' withRef ref={(input) => this.inputStartDatetime = input} />
           </div>
           <div>
-            <Field name='endDatetime' component={TextField} floatingLabelText='終了時間' hintText='18:00' />
+            <Field name='endDatetime' component={TextField} label='終了時間' placeholder='18:00' />
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => {
+                this.props.actions.timecardEntryAction()
+                super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))
+                this.selectStartDatetime()
+              }}
+            >
+              登録
+            </Button>
           </div>
           <div>
-            <Button label='登録' onClick={() => {
-              this.props.actions.timecardEntryAction()
-              super.handleUrlChange(ROUTES.TIMECARD_ENTRY(`/${date.clone().add(1, 'days').format('YYYYMMDD')}`))
-              this.selectStartDatetime()
-            }} />
+            <Field name='note' component={TextField} label='備考' placeholder='客先作業 - 帰社' />
           </div>
           <div>
-            <Field name='note' component={TextField} floatingLabelText='備考' hintText='客先作業 -> 帰社' />
-          </div>
-          <div>
-            <Field name='vacationType' component={RadioButtonGroup}>
-              <Radio value='NOTHING' label={ENUMS.VACATION_TYPE.NOTHING.description} />
-              <Radio value='PAID_DAY_OFF' label={ENUMS.VACATION_TYPE.PAID_DAY_OFF.description} />
-              <Radio value='SP_DAY_OFF' label={ENUMS.VACATION_TYPE.SP_DAY_OFF.description} />
-              <Radio value='AM_OFF' label={ENUMS.VACATION_TYPE.AM_OFF.description} />
-              <Radio value='PM_OFF' label={ENUMS.VACATION_TYPE.PM_OFF.description} />
-              <Radio value='TRANSFER_DAY_OFF' label={ENUMS.VACATION_TYPE.TRANSFER_DAY_OFF.description} />
+            <Field name='vacationType' component={RadioGroup}>
+              <FormControlLabel value='NOTHING' control={<Radio color='primary' />} label={ENUMS.VACATION_TYPE.NOTHING.description} />
+              <FormControlLabel value='PAID_DAY_OFF' control={<Radio color='primary' />} label={ENUMS.VACATION_TYPE.PAID_DAY_OFF.description} />
+              <FormControlLabel value='SP_DAY_OFF' control={<Radio color='primary' />} label={ENUMS.VACATION_TYPE.SP_DAY_OFF.description} />
+              <FormControlLabel value='AM_OFF' control={<Radio color='primary' />} label={ENUMS.VACATION_TYPE.AM_OFF.description} />
+              <FormControlLabel value='PM_OFF' control={<Radio color='primary' />} label={ENUMS.VACATION_TYPE.PM_OFF.description} />
+              <FormControlLabel value='TRANSFER_DAY_OFF' control={<Radio color='primary' />} label={ENUMS.VACATION_TYPE.TRANSFER_DAY_OFF.description} />
             </Field>
           </div>
         </form>
