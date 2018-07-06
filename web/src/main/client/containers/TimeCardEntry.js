@@ -9,6 +9,7 @@ import moment from 'moment'
 import Button from '@material-ui/core/Button'
 import Radio from '@material-ui/core/Radio'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import { DatePicker } from 'material-ui-pickers'
 
 import { reduxForm, Field } from 'redux-form/immutable'
 import { RadioGroup, TextField } from 'redux-form-material-ui'
@@ -75,15 +76,32 @@ class TimeCardEntry extends AppBaseComponent {
         <form>
           {/* <Field name='entryDate' component={DatePicker} autoOk={true} formatDate={(date) => date ? moment(date).format('YYYY/MM/DD(ddd)') : ''} container='inline' floatingLabelText="業務日" inputStyle={{ color: dateColor }} /> */}
           <div>
-            TODO:業務日表示
-            {/* <Field name='entryDate' component={TextField} label='業務日'
-              id='date'
-              type='date'
-              defaultValue='2017/05/24'
-              InputLabelProps={{
-                shrink: true,
-              }}
-            /> */}
+            <Field
+              name="entryDate"
+              component={({
+                timezone,
+                showErrorsInline,
+                input: { onChange, value, name },
+                meta: { touched, error, form },
+                dispatch,
+                ...other
+              }) => (
+                <DatePicker
+                  name={name}
+                  error={touched && Boolean(error)}
+                  helperText={touched && error}
+                  value={value}
+                  onChange={onChange}
+                  format="YYYY/MM/DD"
+                  {...other}
+                />
+              )}
+              fullWidth
+              label='業務日'
+              placeholder="2018/1/1"
+              autoOk
+              animateYearScrolling={false}
+            />
           </div>
           <div>
             <Field name='startDatetime' component={TextField} label='開始時間' placeholder='09:00' withRef ref={(input) => this.inputStartDatetime = input} />
