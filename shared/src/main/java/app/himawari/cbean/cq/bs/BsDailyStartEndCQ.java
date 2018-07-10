@@ -79,7 +79,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _dailyStartEndId; }
     protected ConditionValue xgetCValueDailyStartEndId() { return xdfgetDailyStartEndId(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * DAILY_START_END_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
@@ -99,7 +99,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _timecardDayId; }
     protected ConditionValue xgetCValueTimecardDayId() { return xdfgetTimecardDayId(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * TIMECARD_DAY_ID: {IX, NotNull, BIGINT(19), FK to TIMECARD_DAY}
      * @return this. (NotNull)
@@ -119,7 +119,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _startDatetime; }
     protected ConditionValue xgetCValueStartDatetime() { return xdfgetStartDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * START_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
@@ -139,7 +139,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _endDatetime; }
     protected ConditionValue xgetCValueEndDatetime() { return xdfgetEndDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * END_DATETIME: {DATETIME(19)}
      * @return this. (NotNull)
@@ -159,7 +159,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _vacationTypeCode; }
     protected ConditionValue xgetCValueVacationTypeCode() { return xdfgetVacationTypeCode(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * VACATION_TYPE_CODE: {IX, VARCHAR(20), FK to VACATION_TYPE}
      * @return this. (NotNull)
@@ -179,7 +179,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _note; }
     protected ConditionValue xgetCValueNote() { return xdfgetNote(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * NOTE: {TEXT(65535)}
      * @return this. (NotNull)
@@ -199,7 +199,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _registerDatetime; }
     protected ConditionValue xgetCValueRegisterDatetime() { return xdfgetRegisterDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -219,7 +219,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _registerUser; }
     protected ConditionValue xgetCValueRegisterUser() { return xdfgetRegisterUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -239,7 +239,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _updateDatetime; }
     protected ConditionValue xgetCValueUpdateDatetime() { return xdfgetUpdateDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -259,7 +259,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _updateUser; }
     protected ConditionValue xgetCValueUpdateUser() { return xdfgetUpdateUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -279,7 +279,7 @@ public class BsDailyStartEndCQ extends AbstractBsDailyStartEndCQ {
       return _versionNo; }
     protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)

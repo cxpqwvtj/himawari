@@ -79,7 +79,7 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
       return _memberRoleId; }
     protected ConditionValue xgetCValueMemberRoleId() { return xdfgetMemberRoleId(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * MEMBER_ROLE_ID: {PK, ID, NotNull, BIGINT(19)}
      * @return this. (NotNull)
@@ -99,7 +99,7 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
       return _memberId; }
     protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @return this. (NotNull)
@@ -119,7 +119,7 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
       return _roleTypeCode; }
     protected ConditionValue xgetCValueRoleTypeCode() { return xdfgetRoleTypeCode(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * ROLE_TYPE_CODE: {+UQ, IX, NotNull, VARCHAR(20), FK to ROLE}
      * @return this. (NotNull)
@@ -139,7 +139,7 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
       return _registerDatetime; }
     protected ConditionValue xgetCValueRegisterDatetime() { return xdfgetRegisterDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -159,7 +159,7 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
       return _registerUser; }
     protected ConditionValue xgetCValueRegisterUser() { return xdfgetRegisterUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -179,7 +179,7 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
       return _updateDatetime; }
     protected ConditionValue xgetCValueUpdateDatetime() { return xdfgetUpdateDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -199,7 +199,7 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
       return _updateUser; }
     protected ConditionValue xgetCValueUpdateUser() { return xdfgetUpdateUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -219,7 +219,7 @@ public class BsMemberRoleCQ extends AbstractBsMemberRoleCQ {
       return _versionNo; }
     protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)

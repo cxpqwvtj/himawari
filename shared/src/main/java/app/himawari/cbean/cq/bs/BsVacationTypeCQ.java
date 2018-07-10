@@ -93,7 +93,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
     public Map<String, Object> xdfgetVacationTypeCode_QueryDerivedReferrer_DailyStartEndListParameter() { return xgetSQuePmMap("vacationTypeCode_QueryDerivedReferrer_DailyStartEndList"); }
     public String keepVacationTypeCode_QueryDerivedReferrer_DailyStartEndListParameter(Object pm) { return xkeepSQuePm("vacationTypeCode_QueryDerivedReferrer_DailyStartEndList", pm); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * VACATION_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
      * @return this. (NotNull)
@@ -113,7 +113,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
       return _vacationTypeName; }
     protected ConditionValue xgetCValueVacationTypeName() { return xdfgetVacationTypeName(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * VACATION_TYPE_NAME: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -133,7 +133,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
       return _registerDatetime; }
     protected ConditionValue xgetCValueRegisterDatetime() { return xdfgetRegisterDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -153,7 +153,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
       return _registerUser; }
     protected ConditionValue xgetCValueRegisterUser() { return xdfgetRegisterUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -173,7 +173,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
       return _updateDatetime; }
     protected ConditionValue xgetCValueUpdateDatetime() { return xdfgetUpdateDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -193,7 +193,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
       return _updateUser; }
     protected ConditionValue xgetCValueUpdateUser() { return xdfgetUpdateUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -213,7 +213,7 @@ public class BsVacationTypeCQ extends AbstractBsVacationTypeCQ {
       return _versionNo; }
     protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)

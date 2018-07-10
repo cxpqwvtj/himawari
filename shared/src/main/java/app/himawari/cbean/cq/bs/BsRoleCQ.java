@@ -93,7 +93,7 @@ public class BsRoleCQ extends AbstractBsRoleCQ {
     public Map<String, Object> xdfgetRoleTypeCode_QueryDerivedReferrer_MemberRoleListParameter() { return xgetSQuePmMap("roleTypeCode_QueryDerivedReferrer_MemberRoleList"); }
     public String keepRoleTypeCode_QueryDerivedReferrer_MemberRoleListParameter(Object pm) { return xkeepSQuePm("roleTypeCode_QueryDerivedReferrer_MemberRoleList", pm); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
      * @return this. (NotNull)
@@ -113,7 +113,7 @@ public class BsRoleCQ extends AbstractBsRoleCQ {
       return _roleName; }
     protected ConditionValue xgetCValueRoleName() { return xdfgetRoleName(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
      * @return this. (NotNull)
@@ -133,7 +133,7 @@ public class BsRoleCQ extends AbstractBsRoleCQ {
       return _registerDatetime; }
     protected ConditionValue xgetCValueRegisterDatetime() { return xdfgetRegisterDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -153,7 +153,7 @@ public class BsRoleCQ extends AbstractBsRoleCQ {
       return _registerUser; }
     protected ConditionValue xgetCValueRegisterUser() { return xdfgetRegisterUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -173,7 +173,7 @@ public class BsRoleCQ extends AbstractBsRoleCQ {
       return _updateDatetime; }
     protected ConditionValue xgetCValueUpdateDatetime() { return xdfgetUpdateDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -193,7 +193,7 @@ public class BsRoleCQ extends AbstractBsRoleCQ {
       return _updateUser; }
     protected ConditionValue xgetCValueUpdateUser() { return xdfgetUpdateUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -213,7 +213,7 @@ public class BsRoleCQ extends AbstractBsRoleCQ {
       return _versionNo; }
     protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)

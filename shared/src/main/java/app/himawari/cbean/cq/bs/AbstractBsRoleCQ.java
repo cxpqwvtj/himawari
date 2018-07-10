@@ -46,7 +46,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCode The value of roleTypeCode as equal. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleTypeCode_Equal(String roleTypeCode) {
         doSetRoleTypeCode_Equal(fRES(roleTypeCode));
@@ -59,7 +59,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCode The value of roleTypeCode as notEqual. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleTypeCode_NotEqual(String roleTypeCode) {
         doSetRoleTypeCode_NotEqual(fRES(roleTypeCode));
@@ -72,7 +72,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCode The value of roleTypeCode as greaterThan. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as greaterThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleTypeCode_GreaterThan(String roleTypeCode) {
         regRoleTypeCode(CK_GT, fRES(roleTypeCode));
@@ -81,7 +81,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCode The value of roleTypeCode as lessThan. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as lessThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleTypeCode_LessThan(String roleTypeCode) {
         regRoleTypeCode(CK_LT, fRES(roleTypeCode));
@@ -90,7 +90,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCode The value of roleTypeCode as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as greaterEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleTypeCode_GreaterEqual(String roleTypeCode) {
         regRoleTypeCode(CK_GE, fRES(roleTypeCode));
@@ -99,7 +99,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCode The value of roleTypeCode as lessEqual. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as lessEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleTypeCode_LessEqual(String roleTypeCode) {
         regRoleTypeCode(CK_LE, fRES(roleTypeCode));
@@ -108,7 +108,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCodeList The collection of roleTypeCode as inScope. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCodeList The collection of roleTypeCode as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleTypeCode_InScope(Collection<String> roleTypeCodeList) {
         doSetRoleTypeCode_InScope(roleTypeCodeList);
@@ -121,7 +121,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCodeList The collection of roleTypeCode as notInScope. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCodeList The collection of roleTypeCode as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleTypeCode_NotInScope(Collection<String> roleTypeCodeList) {
         doSetRoleTypeCode_NotInScope(roleTypeCodeList);
@@ -135,7 +135,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)} <br>
      * <pre>e.g. setRoleTypeCode_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param roleTypeCode The value of roleTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
     public void setRoleTypeCode_LikeSearch(String roleTypeCode, ConditionOptionCall<LikeSearchOption> opLambda) {
@@ -146,7 +146,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)} <br>
      * <pre>e.g. setRoleTypeCode_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param roleTypeCode The value of roleTypeCode as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
     protected void setRoleTypeCode_LikeSearch(String roleTypeCode, LikeSearchOption likeSearchOption) {
@@ -157,7 +157,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCode The value of roleTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
     public void setRoleTypeCode_NotLikeSearch(String roleTypeCode, ConditionOptionCall<LikeSearchOption> opLambda) {
@@ -168,7 +168,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
      * ROLE_TYPE_CODE: {PK, NotNull, VARCHAR(20)}
-     * @param roleTypeCode The value of roleTypeCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param roleTypeCode The value of roleTypeCode as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
     protected void setRoleTypeCode_NotLikeSearch(String roleTypeCode, LikeSearchOption likeSearchOption) {
@@ -266,7 +266,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as equal. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleName_Equal(String roleName) {
         doSetRoleName_Equal(fRES(roleName));
@@ -279,7 +279,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as notEqual. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleName_NotEqual(String roleName) {
         doSetRoleName_NotEqual(fRES(roleName));
@@ -292,7 +292,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as greaterThan. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as greaterThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleName_GreaterThan(String roleName) {
         regRoleName(CK_GT, fRES(roleName));
@@ -301,7 +301,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as lessThan. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as lessThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleName_LessThan(String roleName) {
         regRoleName(CK_LT, fRES(roleName));
@@ -310,7 +310,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as greaterEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleName_GreaterEqual(String roleName) {
         regRoleName(CK_GE, fRES(roleName));
@@ -319,7 +319,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as lessEqual. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as lessEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleName_LessEqual(String roleName) {
         regRoleName(CK_LE, fRES(roleName));
@@ -328,7 +328,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleNameList The collection of roleName as inScope. (NullAllowed: if null (or empty), no condition)
+     * @param roleNameList The collection of roleName as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleName_InScope(Collection<String> roleNameList) {
         doSetRoleName_InScope(roleNameList);
@@ -341,7 +341,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleNameList The collection of roleName as notInScope. (NullAllowed: if null (or empty), no condition)
+     * @param roleNameList The collection of roleName as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRoleName_NotInScope(Collection<String> roleNameList) {
         doSetRoleName_NotInScope(roleNameList);
@@ -355,7 +355,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)} <br>
      * <pre>e.g. setRoleName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param roleName The value of roleName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
     public void setRoleName_LikeSearch(String roleName, ConditionOptionCall<LikeSearchOption> opLambda) {
@@ -366,7 +366,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)} <br>
      * <pre>e.g. setRoleName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param roleName The value of roleName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
     protected void setRoleName_LikeSearch(String roleName, LikeSearchOption likeSearchOption) {
@@ -377,7 +377,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
     public void setRoleName_NotLikeSearch(String roleName, ConditionOptionCall<LikeSearchOption> opLambda) {
@@ -388,7 +388,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
      * ROLE_NAME: {NotNull, VARCHAR(50)}
-     * @param roleName The value of roleName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param roleName The value of roleName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
     protected void setRoleName_NotLikeSearch(String roleName, LikeSearchOption likeSearchOption) {
@@ -476,7 +476,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUser The value of registerUser as equal. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRegisterUser_Equal(String registerUser) {
         doSetRegisterUser_Equal(fRES(registerUser));
@@ -489,7 +489,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUser The value of registerUser as notEqual. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRegisterUser_NotEqual(String registerUser) {
         doSetRegisterUser_NotEqual(fRES(registerUser));
@@ -502,7 +502,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUser The value of registerUser as greaterThan. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as greaterThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRegisterUser_GreaterThan(String registerUser) {
         regRegisterUser(CK_GT, fRES(registerUser));
@@ -511,7 +511,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUser The value of registerUser as lessThan. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as lessThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRegisterUser_LessThan(String registerUser) {
         regRegisterUser(CK_LT, fRES(registerUser));
@@ -520,7 +520,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUser The value of registerUser as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as greaterEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRegisterUser_GreaterEqual(String registerUser) {
         regRegisterUser(CK_GE, fRES(registerUser));
@@ -529,7 +529,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUser The value of registerUser as lessEqual. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as lessEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRegisterUser_LessEqual(String registerUser) {
         regRegisterUser(CK_LE, fRES(registerUser));
@@ -538,7 +538,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUserList The collection of registerUser as inScope. (NullAllowed: if null (or empty), no condition)
+     * @param registerUserList The collection of registerUser as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRegisterUser_InScope(Collection<String> registerUserList) {
         doSetRegisterUser_InScope(registerUserList);
@@ -551,7 +551,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUserList The collection of registerUser as notInScope. (NullAllowed: if null (or empty), no condition)
+     * @param registerUserList The collection of registerUser as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setRegisterUser_NotInScope(Collection<String> registerUserList) {
         doSetRegisterUser_NotInScope(registerUserList);
@@ -565,7 +565,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)} <br>
      * <pre>e.g. setRegisterUser_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param registerUser The value of registerUser as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
     public void setRegisterUser_LikeSearch(String registerUser, ConditionOptionCall<LikeSearchOption> opLambda) {
@@ -576,7 +576,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)} <br>
      * <pre>e.g. setRegisterUser_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param registerUser The value of registerUser as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
     protected void setRegisterUser_LikeSearch(String registerUser, LikeSearchOption likeSearchOption) {
@@ -587,7 +587,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUser The value of registerUser as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
     public void setRegisterUser_NotLikeSearch(String registerUser, ConditionOptionCall<LikeSearchOption> opLambda) {
@@ -598,7 +598,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
-     * @param registerUser The value of registerUser as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param registerUser The value of registerUser as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
     protected void setRegisterUser_NotLikeSearch(String registerUser, LikeSearchOption likeSearchOption) {
@@ -686,7 +686,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUser The value of updateUser as equal. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setUpdateUser_Equal(String updateUser) {
         doSetUpdateUser_Equal(fRES(updateUser));
@@ -699,7 +699,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUser The value of updateUser as notEqual. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setUpdateUser_NotEqual(String updateUser) {
         doSetUpdateUser_NotEqual(fRES(updateUser));
@@ -712,7 +712,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUser The value of updateUser as greaterThan. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as greaterThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setUpdateUser_GreaterThan(String updateUser) {
         regUpdateUser(CK_GT, fRES(updateUser));
@@ -721,7 +721,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUser The value of updateUser as lessThan. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as lessThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setUpdateUser_LessThan(String updateUser) {
         regUpdateUser(CK_LT, fRES(updateUser));
@@ -730,7 +730,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUser The value of updateUser as greaterEqual. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as greaterEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setUpdateUser_GreaterEqual(String updateUser) {
         regUpdateUser(CK_GE, fRES(updateUser));
@@ -739,7 +739,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUser The value of updateUser as lessEqual. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as lessEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setUpdateUser_LessEqual(String updateUser) {
         regUpdateUser(CK_LE, fRES(updateUser));
@@ -748,7 +748,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUserList The collection of updateUser as inScope. (NullAllowed: if null (or empty), no condition)
+     * @param updateUserList The collection of updateUser as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setUpdateUser_InScope(Collection<String> updateUserList) {
         doSetUpdateUser_InScope(updateUserList);
@@ -761,7 +761,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUserList The collection of updateUser as notInScope. (NullAllowed: if null (or empty), no condition)
+     * @param updateUserList The collection of updateUser as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setUpdateUser_NotInScope(Collection<String> updateUserList) {
         doSetUpdateUser_NotInScope(updateUserList);
@@ -775,7 +775,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)} <br>
      * <pre>e.g. setUpdateUser_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param updateUser The value of updateUser as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
     public void setUpdateUser_LikeSearch(String updateUser, ConditionOptionCall<LikeSearchOption> opLambda) {
@@ -786,7 +786,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)} <br>
      * <pre>e.g. setUpdateUser_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param updateUser The value of updateUser as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
     protected void setUpdateUser_LikeSearch(String updateUser, LikeSearchOption likeSearchOption) {
@@ -797,7 +797,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUser The value of updateUser as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
     public void setUpdateUser_NotLikeSearch(String updateUser, ConditionOptionCall<LikeSearchOption> opLambda) {
@@ -808,7 +808,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
-     * @param updateUser The value of updateUser as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param updateUser The value of updateUser as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
     protected void setUpdateUser_NotLikeSearch(String updateUser, LikeSearchOption likeSearchOption) {
@@ -885,8 +885,8 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
-     * @param minNumber The min number of versionNo. (NullAllowed: if null, no from-condition)
-     * @param maxNumber The max number of versionNo. (NullAllowed: if null, no to-condition)
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of range-of. (NotNull)
      */
     public void setVersionNo_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
@@ -898,8 +898,8 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
-     * @param minNumber The min number of versionNo. (NullAllowed: if null, no from-condition)
-     * @param maxNumber The max number of versionNo. (NullAllowed: if null, no to-condition)
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param rangeOfOption The option of range-of. (NotNull)
      */
     protected void setVersionNo_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
@@ -909,7 +909,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
-     * @param versionNoList The collection of versionNo as inScope. (NullAllowed: if null (or empty), no condition)
+     * @param versionNoList The collection of versionNo as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setVersionNo_InScope(Collection<Long> versionNoList) {
         doSetVersionNo_InScope(versionNoList);
@@ -922,7 +922,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
-     * @param versionNoList The collection of versionNo as notInScope. (NullAllowed: if null (or empty), no condition)
+     * @param versionNoList The collection of versionNo as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setVersionNo_NotInScope(Collection<Long> versionNoList) {
         doSetVersionNo_NotInScope(versionNoList);
@@ -946,7 +946,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.specify().<span style="color: #CC4747">columnPurchasePrice</span>(); <span style="color: #3F7E5E">// *Point!</span>
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
-     * </pre> 
+     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<RoleCB> scalar_Equal() {
@@ -961,7 +961,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.specify().<span style="color: #CC4747">columnPurchasePrice</span>(); <span style="color: #3F7E5E">// *Point!</span>
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
-     * </pre> 
+     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<RoleCB> scalar_NotEqual() {
@@ -976,7 +976,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.specify().<span style="color: #CC4747">columnPurchasePrice</span>(); <span style="color: #3F7E5E">// *Point!</span>
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
-     * </pre> 
+     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<RoleCB> scalar_GreaterThan() {
@@ -991,7 +991,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.specify().<span style="color: #CC4747">columnPurchasePrice</span>(); <span style="color: #3F7E5E">// *Point!</span>
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
-     * </pre> 
+     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<RoleCB> scalar_LessThan() {
@@ -1006,7 +1006,7 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      *     <span style="color: #553000">purchaseCB</span>.specify().<span style="color: #CC4747">columnPurchasePrice</span>(); <span style="color: #3F7E5E">// *Point!</span>
      *     <span style="color: #553000">purchaseCB</span>.query().setPaymentCompleteFlg_Equal_True();
      * });
-     * </pre> 
+     * </pre>
      * @return The object to set up a function. (NotNull)
      */
     public HpSLCFunction<RoleCB> scalar_GreaterEqual() {
@@ -1109,7 +1109,6 @@ public abstract class AbstractBsRoleCQ extends AbstractConditionQuery {
      * <span style="color: #3F7E5E">//   end asc, ...</span>
      *
      * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #CC4747">withManualOrder</span>(<span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">op</span>.<span style="color: #CC4747">when_GreaterEqual</span>(priorityDate); <span style="color: #3F7E5E">// e.g. 2000/01/01</span>
      *     <span style="color: #553000">op</span>.<span style="color: #CC4747">when_Equal</span>(CDef.MemberStatus.Withdrawal);
      *     <span style="color: #553000">op</span>.<span style="color: #CC4747">when_Equal</span>(CDef.MemberStatus.Formalized);
      *     <span style="color: #553000">op</span>.<span style="color: #CC4747">when_Equal</span>(CDef.MemberStatus.Provisional);

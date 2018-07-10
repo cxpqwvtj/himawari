@@ -93,7 +93,7 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
     public Map<String, Object> xdfgetTimecardDayId_QueryDerivedReferrer_DailyStartEndListParameter() { return xgetSQuePmMap("timecardDayId_QueryDerivedReferrer_DailyStartEndList"); }
     public String keepTimecardDayId_QueryDerivedReferrer_DailyStartEndListParameter(Object pm) { return xkeepSQuePm("timecardDayId_QueryDerivedReferrer_DailyStartEndList", pm); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * TIMECARD_DAY_ID: {PK, ID, NotNull, BIGINT(19), FK to DAILY_START_END}
      * @return this. (NotNull)
@@ -113,7 +113,7 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
       return _memberId; }
     protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * MEMBER_ID: {UQ+, NotNull, BIGINT(19), FK to MEMBER}
      * @return this. (NotNull)
@@ -133,7 +133,7 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
       return _bizDate; }
     protected ConditionValue xgetCValueBizDate() { return xdfgetBizDate(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * BIZ_DATE: {+UQ, NotNull, DATE(10)}
      * @return this. (NotNull)
@@ -153,7 +153,7 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
       return _registerDatetime; }
     protected ConditionValue xgetCValueRegisterDatetime() { return xdfgetRegisterDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -173,7 +173,7 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
       return _registerUser; }
     protected ConditionValue xgetCValueRegisterUser() { return xdfgetRegisterUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -193,7 +193,7 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
       return _updateDatetime; }
     protected ConditionValue xgetCValueUpdateDatetime() { return xdfgetUpdateDatetime(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
@@ -213,7 +213,7 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
       return _updateUser; }
     protected ConditionValue xgetCValueUpdateUser() { return xdfgetUpdateUser(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
@@ -233,7 +233,7 @@ public class BsTimecardDayCQ extends AbstractBsTimecardDayCQ {
       return _versionNo; }
     protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
 
-    /** 
+    /**
      * Add order-by as ascend. <br>
      * VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)

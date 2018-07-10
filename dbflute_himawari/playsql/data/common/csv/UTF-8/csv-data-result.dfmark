@@ -1,0 +1,14 @@
+
+* * * * * * * * * *
+*                 *
+* Csv Data Result *
+*                 *
+* * * * * * * * * *
+data-directory: playsql/data/common/csv/UTF-8
+
+00-VACATION_TYPE.csv (5)
+01-ROLE.csv (2)
+20-MEMBER.csv (8)
+21-MEMBER_ROLE.csv (10)
+22-TIMECARD_DAY.csv (26)
+23-DAILY_START_END.csv (24)

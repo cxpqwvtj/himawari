@@ -109,7 +109,7 @@ public abstract class BsRoleBhv extends AbstractBehaviorWritable<Role, RoleCB> {
      *     <span style="color: #3F7E5E">// called if present, or exception</span>
      *     ... = <span style="color: #553000">role</span>.get...
      * });
-     * 
+     *
      * <span style="color: #3F7E5E">// if it might be no data, ...</span>
      * <span style="color: #0000C0">roleBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
@@ -1037,8 +1037,8 @@ public abstract class BsRoleBhv extends AbstractBehaviorWritable<Role, RoleCB> {
     /**
      * Prepare the all facade executor of outside-SQL to execute it.
      * <pre>
-     * <span style="color: #3F7E5E">// main style</span> 
-     * roleBhv.outideSql().selectEntity(pmb); <span style="color: #3F7E5E">// optional</span> 
+     * <span style="color: #3F7E5E">// main style</span>
+     * roleBhv.outideSql().selectEntity(pmb); <span style="color: #3F7E5E">// optional</span>
      * roleBhv.outideSql().selectList(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
      * roleBhv.outideSql().selectPage(pmb); <span style="color: #3F7E5E">// PagingResultBean</span>
      * roleBhv.outideSql().selectPagedListOnly(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
@@ -1046,7 +1046,7 @@ public abstract class BsRoleBhv extends AbstractBehaviorWritable<Role, RoleCB> {
      * roleBhv.outideSql().execute(pmb); <span style="color: #3F7E5E">// int (updated count)</span>
      * roleBhv.outideSql().call(pmb); <span style="color: #3F7E5E">// void (pmb has OUT parameters)</span>
      *
-     * <span style="color: #3F7E5E">// traditional style</span> 
+     * <span style="color: #3F7E5E">// traditional style</span>
      * roleBhv.outideSql().traditionalStyle().selectEntity(path, pmb, entityType);
      * roleBhv.outideSql().traditionalStyle().selectList(path, pmb, entityType);
      * roleBhv.outideSql().traditionalStyle().selectPage(path, pmb, entityType);
@@ -1054,7 +1054,7 @@ public abstract class BsRoleBhv extends AbstractBehaviorWritable<Role, RoleCB> {
      * roleBhv.outideSql().traditionalStyle().selectCursor(path, pmb, handler);
      * roleBhv.outideSql().traditionalStyle().execute(path, pmb);
      *
-     * <span style="color: #3F7E5E">// options</span> 
+     * <span style="color: #3F7E5E">// options</span>
      * roleBhv.outideSql().removeBlockComment().selectList()
      * roleBhv.outideSql().removeLineComment().selectList()
      * roleBhv.outideSql().formatSql().selectList()
