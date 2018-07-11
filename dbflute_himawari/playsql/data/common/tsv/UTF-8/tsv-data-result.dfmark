@@ -1,0 +1,14 @@
+
+* * * * * * * * * *
+*                 *
+* Tsv Data Result *
+*                 *
+* * * * * * * * * *
+data-directory: playsql/data/common/tsv/UTF-8
+
+00-VACATION_TYPE.tsv (5)
+01-ROLE.tsv (2)
+20-MEMBER.tsv (8)
+21-MEMBER_ROLE.tsv (10)
+22-TIMECARD_DAY.tsv (26)
+23-DAILY_START_END.tsv (24)
