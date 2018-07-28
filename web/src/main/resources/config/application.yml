@@ -4,9 +4,6 @@ logging:
 spring:
   profiles:
     active: dev
-  output:
-    ansi:
-      enabled: ALWAYS
   datasource:
     url: jdbc:mysql://localhost:3306/himawari?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: himawari
