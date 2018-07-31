@@ -18,17 +18,10 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Tokyo} ${LOG_LEVEL_PATTERN:-%p} [%t] %logger{1} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>
         </encoder>
     </appender>
-    <springProfile name="dev,staging">
-        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>./logs/himawari.json.log</file>
-            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>./logs/${HOSTNAME}/himawari_json_%d{yyyy-MM-dd}.gz</fileNamePattern>
-                <maxHistory>10</maxHistory>
-            </rollingPolicy>
-            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            </encoder>
-        </appender>
-    </springProfile>
+    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>127.0.0.1:4560</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
     <appender name="TRAIL" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>./logs/trail.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -57,5 +50,8 @@
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
         <appender-ref ref="TRAIL" />
+        <springProfile name="staging">
+            <appender-ref ref="stash" />
+        </springProfile>
     </root>
 </configuration>
