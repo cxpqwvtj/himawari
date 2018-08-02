@@ -1,0 +1,9 @@
+<included>
+  <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <destination>127.0.0.1:4560</destination>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+  </appender>
+  <root level="INFO">
+    <appender-ref ref="LOGSTASH" />
+  </root>
+</included>
