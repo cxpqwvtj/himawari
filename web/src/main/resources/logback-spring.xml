@@ -5,7 +5,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <target>System.out</target>
         <encoder>
-            <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Tokyo}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([%15.15t]){magenta} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern> -->
+            <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Tokyo}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([%15.15t]){magenta} %clr(%-40.40logger{39}){cyan} %clr([%5.-5X{username}]){faint} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern> -->
         </encoder>
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -16,7 +16,7 @@
         </rollingPolicy>
         <encoder>
             <charset>UTF-8</charset>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Tokyo} ${LOG_LEVEL_PATTERN:-%p} [%t] %logger{1} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Tokyo} ${LOG_LEVEL_PATTERN:-%p} [%t] %logger{1} [%X{username}] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>
         </encoder>
     </appender>
     <appender name="TRAIL" class="ch.qos.logback.core.rolling.RollingFileAppender">
