@@ -14,7 +14,10 @@ import javax.servlet.*
 @Component
 @Order(Ordered.LOWEST_PRECEDENCE - 1)
 class UserMDCInsertingServletFilter : Filter {
-    private val USER_KEY = "username"
+
+    companion object {
+        private const val USER_KEY = "username"
+    }
 
     override fun init(filterConfig: FilterConfig?) {
         // NOP
