@@ -1,6 +1,7 @@
 logging:
   level:
     org.springframework.security: INFO
+    org.springframework.boot.web.servlet.ServletContextInitializerBeans: DEBUG
 spring:
   profiles:
     active: dev
