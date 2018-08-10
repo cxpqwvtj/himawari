@@ -65,7 +65,7 @@ class AppMetricsFilter : OncePerRequestFilter() {
             val beginTime = request.getAttribute(APP_BEGIN_TIME)
             if (beginTime is Long) {
                 val elapsedTime = (System.nanoTime() - beginTime) / (1000 * 1000)
-                log.info("{} ms", keyValue("elapsed_time", elapsedTime))
+                log.info("{} {} ms", keyValue("status", response?.status), keyValue("elapsed_time", elapsedTime))
             }
             MDC.remove(REMOTE_HOST)
             MDC.remove(REMOTE_USER)
