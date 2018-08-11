@@ -18,7 +18,7 @@ services:
     environment:
       - TZ=Asia/Tokyo
     volumes:
-      - ./logstash.conf/:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     ports:
       - "4560:4560"
     links:
