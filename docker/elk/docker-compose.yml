@@ -7,7 +7,7 @@ services:
     environment:
       - TZ=Asia/Tokyo
     volumes:
-      - ./data:/usr/share/elasticsearch/data
+      - ./data/es:/usr/share/elasticsearch/data
       - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
       - 9200:9200
@@ -19,6 +19,7 @@ services:
       - TZ=Asia/Tokyo
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./data/logstash/lake:/usr/share/logstash/lake
     ports:
       - "4560:4560"
     links:
