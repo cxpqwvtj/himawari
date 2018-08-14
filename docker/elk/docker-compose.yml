@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 services:
   elasticsearch:
     restart: always
@@ -18,8 +18,11 @@ services:
     environment:
       - TZ=Asia/Tokyo
     volumes:
+      - ./logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
       - ./data/logstash/lake:/usr/share/logstash/lake
+    expose:
+      - 5043
     ports:
       - "4560:4560"
     links:
@@ -34,3 +37,16 @@ services:
       - "5601:5601"
     links:
       - elasticsearch:elasticsearch
+  filebeat:
+    restart: always
+    image: docker.elastic.co/beats/filebeat:6.3.2
+    container_name: filebeat
+    volumes:
+      - type: bind
+        source: ./filebeat.yml
+        target: /usr/share/filebeat/filebeat.yml
+      - type: bind
+        source: ../../web/logs
+        target: /app
+    links:
+      - logstash:logstash
