@@ -7,3 +7,8 @@ filebeat:
 output:
   logstash:
     hosts: ["logstash:5043"]
+xpack:
+  monitoring:
+    enabled: true
+    elasticsearch:
+      hosts: ["http://elasticsearch:9200"]

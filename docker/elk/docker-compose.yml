@@ -49,4 +49,5 @@ services:
         source: ../../web/logs
         target: /app
     links:
+      - elasticsearch:elasticsearch
       - logstash:logstash
