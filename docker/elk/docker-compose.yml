@@ -30,11 +30,13 @@ services:
     environment:
       - TZ=Asia/Tokyo
     volumes:
-      - ./logstash.yml:/usr/share/logstash/config/logstash.yml
-      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ./logstash/logstash-nginx.conf:/usr/share/logstash/pipeline/logstash-nginx.conf
+      - ./logstash/logstash-app.conf:/usr/share/logstash/pipeline/logstash-app.conf
       - ./data/logstash/lake:/usr/share/logstash/lake
     expose:
-      - 5043
+      - 5044
     ports:
       - "4560:4560"
     links:
