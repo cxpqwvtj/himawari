@@ -60,7 +60,7 @@ services:
         source: ./filebeat.yml
         target: /usr/share/filebeat/filebeat.yml
       - type: bind
-        source: ../../web/logs
+        source: ../nginx/data/log
         target: /app
     links:
       - es1:elasticsearch
